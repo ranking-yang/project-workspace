@@ -15,11 +15,11 @@ public class MainController {
 	private final ExampleService exService;
 	
 	@GetMapping("/")
-	String index(Model model) {
+	String index() {
 		
-		model.addAttribute("ex", exService.getAll());
+//		model.addAttribute("ex", exService.getAll());
 		
-		return "index";
+		return "/detail/detail_bottom";
 	}
 	
 }
