@@ -30,7 +30,7 @@ public class DetailController {
    
     @GetMapping("/detailTop")
     //@RequestMapping(value="/api", produces = MediaType.APPLICATION_JSON_VALUE)
-       public String callAPI(Model model) throws JsonProcessingException {
+       String callAPI(Model model) throws JsonProcessingException {
     
            HashMap<String, Object> result = new HashMap<String, Object>();
     
@@ -76,7 +76,7 @@ public class DetailController {
                model.addAttribute("category", jsonob.get("genrenm"));
                System.out.println(jsonob.get("fcltynm")); // 장소
                model.addAttribute("place", jsonob.get("fcltynm"));
-               System.out.println(jsonob.get("styurls")); // 안내사진?
+//               System.out.println(jsonob.get("styurls")); // 안내사진
 //               model.addAttribute("guidepost", jsonob.get("fcltynm"));
 //               JSONObject jsonstyuri = (JSONObject) parser.parse((String) jsonob.get("styurl"));
 //               System.out.println("guide?" + jsonob.get("styurl"));
@@ -94,6 +94,6 @@ public class DetailController {
            System.out.println(jsonInString);
            
            
-           return "/detail/detailTop";    
+           return "/detail/detailTop";  
        }
 }

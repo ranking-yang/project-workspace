@@ -16,25 +16,27 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_green.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 </head>
 <body>
 
-<div class="detail-top-con">                <!-- product-list로 돌아감 -->
-        <div class="detail-top-now-category">📁 <a href="">${category}></a></div> <!-- 카테고리 -->
+	<div class="detail-top-con">                <!-- product-list로 돌아감 -->
+        <div class="detail-top-now-category">📁 <a href="">(카테고리) > </a></div> <!-- 카테고리 -->
         <div class="detail-top-left">
             <!-- 좌측 작품 소개 칸 -->
             <div class="detail-top-info">            	
-                <img src="${post}" alt="포스터"> <!-- 포스터 이미지 -->
+                <img src="" alt="포스터"> <!-- 포스터 이미지 -->
                 <!-- 좌측 포스터 텍스트-->
                 <div class="detail-top-info-con">
                     <div class="detail-top-info-icon">(DB지역)</div> <!-- DB 지역 -->
                     <div class="detail-top-info-icon">(DB분야)</div> <!-- DB 분야 -->
                     <p class="detail-top-info-subtitle">(DB서브제목)</p> <!-- DB 서브제목 -->
-                    <div class="detail-top-info-title">${name}</div> <!-- DB 제목 -->
+                    <div class="detail-top-info-title">(제목)</div> <!-- DB 제목 -->
                     <div class="detail-top-info-openrun">
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">event_available</span></div>
-                           <div class="detail-top-run-txt">${stdate} ~ ${endate}</div> <!-- DB 시작일~종료일 -->
+                           <div class="detail-top-run-txt">(날짜)</div> <!-- DB 시작일~종료일 -->
                         </div>
                         <div class="detail-top-run-info"> 
                             <div><span class="material-symbols-outlined">schedule</span></div> 
@@ -44,7 +46,7 @@
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
-                            <div class="detail-top-run-txt">${place}</div> <!-- DB 장소 -->
+                            <div class="detail-top-run-txt">(장소)</div> <!-- DB 장소 -->
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                         <div>티켓킹가</div>
                         <div>현재 최저가</div> <!-- DB 최저가 -->
                     </div>
-                    <div>(DB가격)원</div> <!-- DB 최저가 가격 -->
+                    <div>(DB가격)원 ~</div> <!-- DB 최저가 가격 -->
                 </div>
             </div>
             <!-- 여백 -->
@@ -61,28 +63,58 @@
         </div>
         <div class="detail-top-right">
             <!-- 달력 -->
-            <div class="placeholder"></div>
+            <div class="placeholder" data-maxdate="2024-07-25"></div>
 
-            <div class="popup-time">
+            <div class="popup-time-parent">
+                <!-- 시간 -->
                 <div>시간선택</div>
-                <!-- form 추가하기 -->
                 <div class="popup-time-btn">
                     <input type="button" name="time" value="(DB시간)">
-                    <div>[남은 티켓: 0개]</div>
+                    <div>[남은 티켓: 1개]</div>
+                 </div>
+                 <div class="popup-time-btn">
+                    <input type="button" name="time" value="(DB시간)">
+                    <div>[남은 티켓: 1개]</div>
                  </div>
             </div>
             <div class="popup-qty">
-                <div>권종·수량선택</div>
-                <!-- form 추가하기 -->
-                <div class="popup-qty-sub">(DB수량)</div>
+                <!-- 권종/수량 -->
+                <div>권종/수량선택</div>
+                <div class="popup-qty-parent">
+                    <div>성인</div>
+                    <div class="popup-qty-price">10</div>
+                    <div>원</div>
+                    <button class="qty-minus">-</button>
+                    <div class="qty-value">0</div>
+                    <button class="qty-plus">+</button>
+                </div>
+                <div class="popup-qty-parent">
+                    <div>청소년</div>
+                    <div class="popup-qty-price">20</div>
+                    <div>원</div>
+                    <button class="qty-minus">-</button>
+                    <div class="qty-value">0</div>
+                    <button class="qty-plus">+</button>
+                </div>
+                <div class="popup-qty-parent">
+                    <div>아동</div>
+                    <div class="popup-qty-price">30</div>
+                    <div>원</div>
+                    <button class="qty-minus">-</button>
+                    <div class="qty-value">0</div>
+                    <button class="qty-plus">+</button>
+                </div>
             </div>
             <div class="popup-totalPrice">
+                <!-- 총 금액 -->
                 <div>총 결제금액</div>
-                <input type="text" name="totalPrice" value="TOTAL원" id="popup-totalPrice-value" readonly>
+                <input type="text" name="totalPrice" value="" id="popup-totalPrice-value" readonly>
+                <div>원</div>
             </div>
+            <!-- 결제하기 버튼 -->
             <button class="popup-submit">결제하기</button>
         </div>
-    </div>  
+    </div> 
 
     <script src="${top_js}"></script>
 
