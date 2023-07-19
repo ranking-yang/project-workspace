@@ -38,7 +38,8 @@ qtyParent.forEach((qtydiv) => {
             alert('더이상 구매할 수 없습니다.');
         } else {
             qtyValue.innerHTML = count + 1;
-            totalPrice += qtyPrice * (count+1);
+            // 계산 다시 흑흑...
+            totalPrice += qtyPrice * (count + 1);
             openPriceDiv();
         }
     });
@@ -49,7 +50,8 @@ qtyParent.forEach((qtydiv) => {
             alert('올바른 수량...');
         } else {
             qtyValue.innerHTML = count - 1;
-            totalPrice += qtyPrice * (count-1);
+            // 계산 다시 흑흑...
+            totalPrice += qtyPrice * (count - 1);
             openPriceDiv();
         }
     });
@@ -72,4 +74,5 @@ function closeQtyDiv() {
     document.querySelectorAll('.popup-qty-value').forEach(a=>a.style.display = 'none');
     document.querySelector('.popup-totalPrice').style.display = 'none';
     document.querySelector('.popup-submit').style.backgroundColor = '#b0b0b0';
+    totalPrice = 0;
 }
