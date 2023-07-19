@@ -1,0 +1,214 @@
+
+.loading_img_div {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, .8) url('../../mobile_img/loading.gif')
+		50% 40% no-repeat;
+	background-size: 60px 60px;
+}
+
+.join_wrap {
+	width: 500px;
+	margin: 50px auto;
+	padding: 60px 0 50px 0;
+	text-align: center;
+	border: 3px solid rgba(70, 200, 180, 0.5);
+	border-radius: 30px;
+	background-color: #fff;
+}
+
+.section_wrap_top {
+	margin-top: 40px;
+}
+
+.section_wrap {
+	margin-top: 7px;
+}
+
+#section_hphone_verify {
+	padding-top: 10px;
+}
+
+.input_box {
+	width: 350px;
+	height: 55px;
+	padding: 0 10px 0 60px;
+	font-size: 18px;
+	border-radius: 10px;
+	border: 1px solid #ddd;
+	background-repeat: no-repeat;
+	background-size: 24px;
+	background-position: 20px 15px; /* 오른쪽, 아래 */
+}
+
+.readonly {
+	background-color: #eee;
+}
+
+.input_alret_id, .input_alret_password, .input_alret_name,
+	.input_alret_email, .input_alret_cid, .input_alret_birth_date {
+	text-align: left;
+	margin-left: 60px;
+	height: 15px;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #f00;
+}
+
+.icon_id {
+	background-image: url('/resources/join/images/user_id.png');
+}
+
+.icon_pass {
+	background-image: url('/resources/join/images/user_pass.png');
+}
+
+.icon_pass2 {
+	background-image: url('/resources/join/images/user_pass2.png');
+}
+
+.icon_name {
+	background-image: url('/resources/join/images/user_name.png');
+}
+
+.icon_email {
+	background-image: url('/resources/join/images/user_email.png');
+}
+
+.icon_hphone {
+	background-image: url('/resources/join/images/user_hphone.png');
+}
+
+.icon_cid {
+	background-image: url('/resources/join/images/user_cid.png');
+}
+
+.icon_icon_user_birth_date {
+	background-image: url('/resources/join/images/user_birth_date.png');
+}
+
+.section_title {
+	text-align: left;
+	margin: 10px 0 10px 45px;
+	color: #555;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.flex_between {
+	display: flex;
+	justify-content: space-between;
+	width: 423px;
+	margin-left: 40px;
+}
+
+.btn_hphone_on {
+	width: 90px;
+	height: 57px;
+	border: none;
+	border-radius: 10px;
+	background: rgba(70, 200, 180);
+	color: #fff;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.btn_hphone_off {
+	width: 90px;
+	height: 57px;
+	border: none;
+	border-radius: 10px;
+	background: #bbbbbb;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.noti_hphone {
+	width: 400px;
+	padding: 15px 0 15px 25px;
+	margin: 15px 0 0 40px;
+	border: none;
+	border-radius: 10px;
+	background: #f5f5f5;
+	color: #333;
+	font-size: 15px;
+	text-align: left;
+	line-height: 180%;
+}
+
+.disableBackGround {
+	background-color: #eee;
+}
+
+.checkbox_group {
+	width: 375px;
+	padding: 5px 25px;
+	margin-top: 20px;
+	margin-left: 40px;
+	border: none;
+	border-radius: 10px;
+	background: #f5f5f5;
+	color: #333;
+	text-align: left;
+	line-height: 180%;
+}
+
+.checkbox {
+	vertical-align: -3px;
+	width: 18px;
+	height: 18px;
+}
+
+.checkbox_line label {
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+.checkbox_line {
+	color: #777;
+	padding: 12px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.check_all {
+	color: #333;
+	font-weight: 700;
+}
+
+.detail_seperate {
+	display: flex;
+	justify-content: space-between;
+}
+
+.check_req {
+	font-size: 13px;
+	padding-left: 7px;
+	color: #ff4b4b;
+	vertical-align: 1px;
+}
+
+.check_detail {
+	font-size: 16px;
+	color: #999;
+	font-weight: 300;
+	text-decoration: underline;
+}
+
+.btn_submit {
+	margin-top: 30px;
+	width: 425px;
+	height: 60px;
+	border: none;
+	border-radius: 10px;
+	background: rgba(70, 200, 180);
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+}
