@@ -112,6 +112,7 @@ function resetQty() {
         parent.querySelector('.qty-value').textContent = 0;
     });    
     document.getElementById('popup-totalPrice-value').value = 0;
+    submitBtn.disabled = true;
 }
 
 // 총 금액 계산
