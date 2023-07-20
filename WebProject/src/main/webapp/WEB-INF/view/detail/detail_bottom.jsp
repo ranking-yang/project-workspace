@@ -187,8 +187,8 @@
 
     <!-- 메뉴영역, js/ajaxtabs.css -->
     <ul id="maintab" class="shadetabs FixedTopMenu" style="border-radius:10px 10px 0 0;">
-      <li id="tab_01_notice" class="" onclick="loadTab('content_1', this)"><a class="tabLink" href="#default" rel="ajaxcontentarea"><span>안내</span></a></li>
-      <li class="selected"><a onclick="loadTab('content_2', this)"><span>후기<span style="letter-spacing:-1px;">(826)</span></span></a></li>
+      <li id="tab_01_notice" class="selected"><a onclick="loadTab('content_1', this)" class="tabLink" href="#default" rel="ajaxcontentarea"><span>안내</span></a></li>
+      <li class=""><a onclick="loadTab('content_2', this)"><span>후기<span style="letter-spacing:-1px;">(826)</span></span></a></li>
       <li class=""><a onclick="loadTab('content_3', this)"><span>Q&amp;A<span style="letter-spacing:-1px;">(24)</span></span></a></li>
       <li class=""><a onclick="loadTab('content_4', this)"><span>장소</span></a></li>
       <li class=""><a onclick="loadTab('content_5', this)"><span>환불규정</span></a></li>
@@ -1384,7 +1384,8 @@ $('body').on('click', '.goPage', function() {
 
 </div>
 
-<!-- <div id="ajaxcontentarea" class="contentstyle1" style="border-radius:0 0 10px 10px"> --><div class="contentstyle1" id="content_4">
+<!-- <div id="ajaxcontentarea" class="contentstyle1" style="border-radius:0 0 10px 10px"> -->
+<div class="contentstyle1" id="content_4">
 	<div class="main_tab_title">장소안내</div>
 
   <div class="viewpage_text radius_box" style="margin-top:10px; border-radius: 10px 10px 0 0;">
@@ -2213,14 +2214,6 @@ $('body').on('click', '.goPage', function() {
       }
     }
   }
-	
-  
-  const reviewSeeMoreBtn = document.querySelector('.review_preview_right');
-  const mainTab = document.querySelector('#maintab');
-  reviewSeeMoreBtn.addEventListener('click', () => {
-	  loadTab('content_2', this);
-    mainTab.scrollIntoView({ behavior: "smooth" });
-  });
   
   function loadReview() {
     $.ajax({
@@ -2307,7 +2300,7 @@ $('body').on('click', '.goPage', function() {
 
 
   // 이미지 로드
-  function showOriginalRatio(selected) {
+  /* function showOriginalRatio(selected) {
     let selectedImg = document.getElementsByClassName(selected);
     let viewMode = selectedImg[0].getAttribute('viewmode');
     let img_url = selectedImg[0].getAttribute('name');
@@ -2343,7 +2336,7 @@ $('body').on('click', '.goPage', function() {
         }, 50);
       }
     }
-  }
+  } */
 
 
   function GoWrite(divid, mode, name, title, content, Count, Msg) {
@@ -2430,19 +2423,48 @@ $('body').on('click', '.goPage', function() {
 <!-- </div> -->
   </section>
   
-  <script>
+<script>
+
+document.getElementById('content_1').style.display = 'block';
+document.getElementById('content_2').style.display = 'none';
+document.getElementById('content_3').style.display = 'none';
+document.getElementById('content_4').style.display = 'none';
+document.getElementById('content_5').style.display = 'none';
+
 function loadTab(divId, element) {
-  var contentDivs = document.getElementsByClassName('contentstyle1');
-  
+  var contentDivs = document.getElementsByClassName('contentstyle1')
+  var tabListItems = document.getElementsByTagName('li');
   // 모든 <div> 요소를 숨김
   for (var i = 0; i < contentDivs.length; i++) {
     contentDivs[i].style.display = 'none';
   }
   
+//모든 탭에 있는 "selected" 클래스를 제거
+  for (var i = 0; i < tabListItems.length; i++) {
+    tabListItems[i].classList.remove('selected');
+  }
+
+  // 선택한 탭에 "selected" 클래스를 추가
+  element.parentNode.classList.add('selected');
+
+  
   // 선택한 <div> 요소를 표시
   var selectedContentDiv = document.getElementById(divId);
   selectedContentDiv.style.display = 'block';
 }
+
+//더보기 버튼 처리
+function showFullReviewForSample(selected) {
+  document.getElementById('sample_review_' + selected).classList.add('show');
+  document.getElementById('sample_seemore_' + selected).setAttribute("style", "display: none;");
+}
+
+const reviewSeeMoreBtn = document.querySelector('.review_preview_right');
+/* const mainTab = document.querySelector('#maintab'); */
+reviewSeeMoreBtn.addEventListener('click', () => {
+	  loadTab('content_2', this);
+  /* mainTab.scrollIntoView({ behavior: "smooth" }); */
+});
 </script>
 </body>
 </html>
