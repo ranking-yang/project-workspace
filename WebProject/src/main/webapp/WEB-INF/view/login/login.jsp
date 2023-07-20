@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title>로그인 - 타임티켓</title>
+<title>로그인 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/login/css/login.css" />
 
@@ -56,11 +56,14 @@
 					class="social_join_btn" alt="카카오로그인">
 			</div>
 		</div>
-
+		
 		<div class="join_noti">
 			<a href="/bbs_detail.php?bbs_num=65&amp;tb=board_faq" target="_blank"
 				alt="불편사항"> ※ 회원가입/로그인에 문제가 있어요! &gt; </a>
 		</div>
+		
+		<br />
+		<a href="/admin" style="font-size: 20px;">관리자?</a>
 
 	</div>
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title>회원가입 - 타임티켓</title>
+<title>회원가입 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/join/css/join.css" />
 
@@ -19,7 +19,7 @@
 
 		<div>
 			<a id="join_btn" href="/new-join"> <input type="button"
-				class="join_btn" value="타임티켓 회원가입">
+				class="join_btn" value="티켓킹 회원가입">
 			</a>
 		</div>
 
