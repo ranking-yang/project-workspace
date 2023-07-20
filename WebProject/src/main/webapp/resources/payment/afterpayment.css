@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.afterpay-con {
+    width: 1100px;
+    margin: auto;
+}
+
+    .afterpay-title {
+        margin-bottom: 1%;
+        font-size: 24px;
+        font-weight: 700;
+        color: #555;
+    }
+
+    .afterpay-notion-con {
+        border: 2px solid rgb(120,86,184);
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 17px;
+        padding: 25px 0;
+    }
+
+
+        .afterpay-notion-con > div:nth-child(2) {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(120,86,184);
+        }
+
+        .afterpay-notion-con > div:last-child {
+            font-size: 14px;
+            font-weight: 300;
+            color: #333;
+            padding-top: 15px;
+        }
+
+    .afterpay-value-con {
+        border: 2px solid #f5f5f5;
+        border-radius: 15px;
+        margin-top: 20px;
+        display: grid;
+        grid-template-rows: 50px 1fr;
+    }
+
+        .afterpay-value-top {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 1%;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .afterpay-value-middle {
+            display: grid;
+            grid-template-columns: 200px 1fr 70px;
+        }
+
+        .afterpay-value-middle > div:first-child {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .afterpay-value-poster {
+            width: 120px;
+            height: 160px;
+            border-radius: 10px;
+        }
+
+        .afterpay-value-text {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            padding-top: 20px;
+            font-size: 17px;
+            text-align: left;
+        }
+
+            .afterpay-value-title {
+                font-weight: bold;
+            }
+
+            .afterpay-value-date {
+                color: gray;
+            }
+
+            .afterpay-value-qty {
+                font-weight: bold;
+            }
+
+.afterpay-value-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    #afterpay-goHome {
+        width: 200px;
+        height: 50px;
+        border: 1px solid rgb(120,86,184);
+        border-radius: 5px;
+        background: #fff;
+        color: rgb(120,86,184);
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #afterpay-checkReserve {
+        width: 200px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: rgb(120,86,184);
+        border: 0;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
