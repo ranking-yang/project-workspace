@@ -63,25 +63,25 @@
         </div>
         <div class="detail-top-right">
             <!-- 달력 -->
-            <div class="placeholder" data-maxdate="2024-07-25"></div>
+            <div class="placeholder" data-maxdate="2023-07-30"></div>
 
-            <div class="popup-time-parent">
+            <div class="popup-time">
                 <!-- 시간 -->
                 <div>시간선택</div>
-                <div class="popup-time-btn">
-                    <input type="button" name="time" value="(DB시간)">
+                <div class="popup-time-parent">
+                    <input type="button" name="time" value="(DB시간1)">
                     <div>[남은 티켓: 1개]</div>
                  </div>
-                 <div class="popup-time-btn">
-                    <input type="button" name="time" value="(DB시간)">
-                    <div>[남은 티켓: 1개]</div>
+                 <div class="popup-time-parent">
+                    <input type="button" name="time" value="(DB시간2)">
+                    <div>[남은 티켓: 2개]</div>
                  </div>
             </div>
             <div class="popup-qty">
                 <!-- 권종/수량 -->
                 <div>권종/수량선택</div>
                 <div class="popup-qty-parent">
-                    <div>성인</div>
+                    <div class="popup-qty-age">성인</div>
                     <div class="popup-qty-price">10</div>
                     <div>원</div>
                     <button class="qty-minus">-</button>
@@ -89,7 +89,7 @@
                     <button class="qty-plus">+</button>
                 </div>
                 <div class="popup-qty-parent">
-                    <div>청소년</div>
+                    <div class="popup-qty-age">청소년</div>
                     <div class="popup-qty-price">20</div>
                     <div>원</div>
                     <button class="qty-minus">-</button>
@@ -97,7 +97,7 @@
                     <button class="qty-plus">+</button>
                 </div>
                 <div class="popup-qty-parent">
-                    <div>아동</div>
+                    <div class="popup-qty-age">아동</div>
                     <div class="popup-qty-price">30</div>
                     <div>원</div>
                     <button class="qty-minus">-</button>
@@ -112,9 +112,9 @@
                 <div>원</div>
             </div>
             <!-- 결제하기 버튼 -->
-            <button class="popup-submit">결제하기</button>
+            <input type="submit" id="popup-submit" value="결제하기" disabled>
         </div>
-    </div> 
+    </div>
 
     <script src="${top_js}"></script>
 

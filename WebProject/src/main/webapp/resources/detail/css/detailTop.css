@@ -154,7 +154,7 @@ html {
     }
 
     /* 시간선택 , 수량 선택 */
-    .popup-time-parent, .popup-qty {
+    .popup-time, .popup-qty {
         display: none;
         flex-direction: column;
         flex-wrap: wrap;
@@ -162,28 +162,28 @@ html {
         padding: 10px 15px 15px 10px;
         font-size: 14px;
     }
-        .popup-time-parent > div:first-child, .popup-qty > div:first-child {
+
+        .popup-time > div:first-child, .popup-qty > div:first-child {
             color: gray;
             font-weight: bold;
         }
 
-        .popup-time-btn {
-            width: 100%;
+        .popup-time-parent {
             margin-top: 5px;
             padding: 10px;
+            font-size: 11px;
             background: #f5f5f5;
             border-radius: 5px;
             text-align: left;
             cursor: pointer;
-            font-size: 11px;
         }
 
-        .popup-time-btn > input {
-            background: #f5f5f5;
+        .popup-time-parent > input {
+            background: none;
             border: 0;
         }
 
-        .popup-time-btn > div {
+        .popup-time-parent > div {
             padding-left: 7px;
         }
         
@@ -240,10 +240,9 @@ html {
     }
 
     /* 결제하기 버튼 */
-    .popup-submit {
+    #popup-submit {
         width: 100%;
         height: 50px;
-        background-color: #b0b0b0;
         color: white;
         font-size: 16px;
         font-weight: bold;
@@ -251,4 +250,9 @@ html {
         border: 0;
         cursor: pointer;
         border-radius: 10px;
+        background-color: #46c8b4;
+    }
+
+    #popup-submit:disabled {
+        background-color: #b0b0b0;
     }
