@@ -1,5 +1,6 @@
 package com.team.webproject.mapper;
 
+import com.team.webproject.dto.AdminDTO;
 import com.team.webproject.dto.MembersDTO;
 
 public interface LoginMapper {

@@ -3,7 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.webproject.mapper.LoginMapper">
-
+	
+	<select id="getAdmin">
+		SELECT admin_id, admin_pwd FROM administrators;
+	</select>
+	
 	<insert id="memberJoin">
   		INSERT INTO members VALUES(member_code_seq.nextval, 'bb1', 'bbb', 'aaa', sysdate, 'aaaq', 'aaa')
   	</insert>
@@ -14,7 +18,7 @@
 			#{member_id},
 			#{member_pwd},
 			#{member_name},
-			#{member_birth},
+			sysdate,
 			#{member_phone},
 			#{member_email})
 	</insert>

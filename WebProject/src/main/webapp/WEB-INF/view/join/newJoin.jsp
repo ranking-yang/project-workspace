@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
 
+<!-- <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> -->
+<html>
 <head>
 
-<title>회원가입 작성 - 타임티켓</title>
+<title>회원가입 작성 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/join/css/newJoin.css" />
 
@@ -20,7 +21,7 @@
 				style="width: 150px; height: 102px;">
 		</div>
 
-		<form method="post">
+		<form action="/new-join" method="post">
 
 			<!-- 아이디 -->
 			<section class="section_wrap_top">
