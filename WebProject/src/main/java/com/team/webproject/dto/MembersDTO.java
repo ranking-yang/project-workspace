@@ -1,11 +1,8 @@
 package com.team.webproject.dto;
 
-<<<<<<< HEAD
-=======
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
->>>>>>> refs/heads/developing_loginpage
 
 import lombok.Data;
 

@@ -47,4 +47,3 @@ public class ExampleServiceImpl implements ExampleService {
     }
 	// 회원가입 및 로그인 서비스 끝
 }
-
