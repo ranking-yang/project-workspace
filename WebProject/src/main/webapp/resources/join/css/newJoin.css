@@ -1,5 +1,5 @@
 
-.loading_img_div {
+.loading-img-div {
 	display: none;
 	position: fixed;
 	z-index: 1000;
@@ -7,12 +7,12 @@
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: rgba(255, 255, 255, .8) url('../../mobile_img/loading.gif')
+	background: rgba(255, 255, 255, .8) url('../../mobile-img/loading.gif')
 		50% 40% no-repeat;
 	background-size: 60px 60px;
 }
 
-.join_wrap {
+.join-wrap {
 	width: 500px;
 	margin: 50px auto;
 	padding: 60px 0 50px 0;
@@ -22,19 +22,19 @@
 	background-color: #fff;
 }
 
-.section_wrap_top {
+.section-wrap-top {
 	margin-top: 40px;
 }
 
-.section_wrap {
+.section-wrap {
 	margin-top: 7px;
 }
 
-#section_hphone_verify {
+#section-hphone-verify {
 	padding-top: 10px;
 }
 
-.input_box {
+.input-box {
 	width: 350px;
 	height: 55px;
 	padding: 0 10px 0 60px;
@@ -50,8 +50,8 @@
 	background-color: #eee;
 }
 
-.input_alret_id, .input_alret_password, .input_alret_name,
-	.input_alret_email, .input_alret_cid, .input_alret_birth_date {
+.input-alret-id, .input-alret-password, .input-alret-name,
+	.input-alret-email, .input-alret-cid, .input-alret-birth-date {
 	text-align: left;
 	margin-left: 60px;
 	height: 15px;
@@ -60,39 +60,39 @@
 	color: #f00;
 }
 
-.icon_id {
-	background-image: url('/resources/join/images/user_id.png');
+.icon-id {
+	background-image: url('/resources/join/images/user-id.png');
 }
 
-.icon_pass {
-	background-image: url('/resources/join/images/user_pass.png');
+.icon-pass {
+	background-image: url('/resources/join/images/user-pass.png');
 }
 
-.icon_pass2 {
-	background-image: url('/resources/join/images/user_pass2.png');
+.icon-pass2 {
+	background-image: url('/resources/join/images/user-pass2.png');
 }
 
-.icon_name {
-	background-image: url('/resources/join/images/user_name.png');
+.icon-name {
+	background-image: url('/resources/join/images/user-name.png');
 }
 
-.icon_email {
-	background-image: url('/resources/join/images/user_email.png');
+.icon-email {
+	background-image: url('/resources/join/images/user-email.png');
 }
 
-.icon_hphone {
-	background-image: url('/resources/join/images/user_hphone.png');
+.icon-hphone {
+	background-image: url('/resources/join/images/user-hphone.png');
 }
 
-.icon_cid {
-	background-image: url('/resources/join/images/user_cid.png');
+.icon-cid {
+	background-image: url('/resources/join/images/user-cid.png');
 }
 
-.icon_icon_user_birth_date {
-	background-image: url('/resources/join/images/user_birth_date.png');
+.icon-birth-date {
+	background-image: url('/resources/join/images/user-birth-date.png');
 }
 
-.section_title {
+.section-title {
 	text-align: left;
 	margin: 10px 0 10px 45px;
 	color: #555;
@@ -100,14 +100,14 @@
 	font-weight: 700;
 }
 
-.flex_between {
+.flex-between {
 	display: flex;
 	justify-content: space-between;
 	width: 423px;
 	margin-left: 40px;
 }
 
-.btn_hphone_on {
+.btn-hphone-on {
 	width: 90px;
 	height: 57px;
 	border: none;
@@ -118,7 +118,7 @@
 	font-weight: 400;
 }
 
-.btn_hphone_off {
+.btn-hphone-off {
 	width: 90px;
 	height: 57px;
 	border: none;
@@ -129,7 +129,7 @@
 	font-weight: 400;
 }
 
-.noti_hphone {
+.noti-hphone {
 	width: 400px;
 	padding: 15px 0 15px 25px;
 	margin: 15px 0 0 40px;
@@ -146,7 +146,7 @@
 	background-color: #eee;
 }
 
-.checkbox_group {
+.checkbox-group {
 	width: 375px;
 	padding: 5px 25px;
 	margin-top: 20px;
@@ -165,42 +165,42 @@
 	height: 18px;
 }
 
-.checkbox_line label {
+.checkbox-line label {
 	padding-left: 10px;
 	font-size: 16px;
 }
 
-.checkbox_line {
+.checkbox-line {
 	color: #777;
 	padding: 12px 0;
 	border-bottom: 1px solid #ccc;
 }
 
-.check_all {
+.check-all {
 	color: #333;
 	font-weight: 700;
 }
 
-.detail_seperate {
+.detail-seperate {
 	display: flex;
 	justify-content: space-between;
 }
 
-.check_req {
+.check-req {
 	font-size: 13px;
 	padding-left: 7px;
 	color: #ff4b4b;
 	vertical-align: 1px;
 }
 
-.check_detail {
+.check-detail {
 	font-size: 16px;
 	color: #999;
 	font-weight: 300;
 	text-decoration: underline;
 }
 
-.btn_submit {
+.btn-submit {
 	margin-top: 30px;
 	width: 425px;
 	height: 60px;

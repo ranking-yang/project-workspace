@@ -23,20 +23,14 @@ public class MembersDTO {
 	@NotBlank(message = "이름은 필수 입력 값입니다.")
 	private String member_name;
 	
-//	@NotBlank(message = "생년월일은 필수 입력 값입니다.")
-	private Integer member_birth;
+	@NotBlank(message = "생년월일은 필수 입력 값입니다.")
+	private String member_birth;
 	
 	@NotBlank(message = "휴대폰번호는 필수 입력 값입니다.")
+	@Pattern(regexp="^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
 	private String member_phone;
 	
 	@NotBlank(message = "이메일은 필수 입력 값입니다.")
 	@Email(message = "이메일 형식에 맞지 않습니다.")
 	private String member_email;
-	
-//	private String member_id;
-//	private String member_pwd;
-//	private String member_name;
-//	private Integer member_birth;
-//	private String member_phone;
-//	private String member_email;
 }

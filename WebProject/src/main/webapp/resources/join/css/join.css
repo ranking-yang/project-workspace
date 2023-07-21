@@ -27,7 +27,7 @@ body, table {
 	font-weight: 400;
 }
 
-.join_wrap_cid {
+.join-wrap-cid {
 	width: 500px;
 	margin: 50px auto;
 	padding-bottom: 60px;
@@ -37,7 +37,7 @@ body, table {
 	background-color: #f6f6f6;
 }
 
-.join_wrap {
+.join-wrap {
 	width: 500px;
 	margin: 50px auto;
 	padding: 60px 0;
@@ -47,7 +47,7 @@ body, table {
 	background-color: #f6f6f6;
 }
 
-.join_btn {
+.join-btn {
 	margin-top: 50px;
 	width: 425px;
 	height: 60px;
@@ -60,18 +60,18 @@ body, table {
 	cursor: pointer;
 }
 
-.simple_title {
+.simple-title {
 	margin-top: 90px;
 }
 
-.simple_line {
+.simple-line {
 	height: 1px;
 	background: #ddd;
 	margin: 0 40px;
 	position: relative;
 }
 
-.simple_text {
+.simple-text {
 	width: 170px;
 	background: #f6f6f6;
 	color: #999;
@@ -83,24 +83,24 @@ body, table {
 	margin-left: 125px;
 }
 
-.social_wrap {
+.social-wrap {
 	margin-top: 40px;
 	display: flex;
 	justify-content: center;
 }
 
-.social_join_btn {
+.social-join-btn {
 	float: left;
 	margin: 0 15px;
 	width: 85px;
 	cursor: pointer;
 }
 
-.join_noti {
+.join-noti {
 	margin-top: 80px;
 }
 
-.join_noti a {
+.join-noti a {
 	color: #2F80ED;
 	font-size: 16px;
 }

@@ -1,7 +1,6 @@
 package com.team.webproject.controller;
 
-import java.util.Map;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -24,47 +23,53 @@ public class LoginController {
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String loginGET(MembersDTO member) {
-
-		// exService.memberJoin(member);
-
+		
 		return "login/login";
 	}
 
 	// 타임티켓/간편 회원가입 선택 페이지
 	@GetMapping("/join")
 	public String joinGET() {
-
+		
 		return "join/join";
 	}
-
-	// 타임티켓 회원가입 페이지
+	
+	// 타임티켓 회원가입 페이지로
 	@GetMapping("/new-join")
 	public String newJoinGET() {
-
+		
 		return "join/newJoin";
 	}
-
-	// 회원가입 후 로그인 페이지로
+	
+	// 회원가입
 	@PostMapping("/new-join")
 	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model
-			) throws Exception {
+			, String member_pwd_verify) throws Exception {
 		
 		if (errors.hasErrors()) {
-            // 회원가입 실패시, 입력 데이터를 유지
-            model.addAttribute("memberDto", member);
-
-            // 유효성 통과 못한 필드와 메시지를 핸들링
-            Map<String, String> validatorResult = exService.validateHandling(errors);
-            for (String key : validatorResult.keySet()) {
-                model.addAttribute(key, validatorResult.get(key));
-            }
-            System.out.println("회원가입 실패");
-            
-            return "/join/newJoin";
-        }
+			System.out.println("회원가입 실패");
+			return "/join/newJoin";
+		} else {
+			return exService.checkId(member, member_pwd_verify);
+		}
+	}
+	
+	// 회원가입 성공 후 로그인 페이지로
+	@PostMapping("/login")
+	public String loginPOST(MembersDTO member, HttpServletResponse response) {
 		
-		exService.add(member);
-		System.out.println("회원가입 성공");
+		if (exService.login(member, response)) {
+			return "login/successLogin";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logoutGET(HttpServletResponse response) {
+		
+		exService.logout(response);
 		
 		return "redirect:/login";
 	}
@@ -72,14 +77,14 @@ public class LoginController {
 	// 아이디 찾기 페이지
 	@GetMapping("/findId")
 	public String findIdGET() {
-
+		
 		return "join/findId";
 	}
 
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPassword")
 	public String findPasswordGET() {
-
+		
 		return "join/findPassword";
 	}
 	
