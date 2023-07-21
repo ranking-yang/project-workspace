@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/resources/main/css/main.css" var="css"/>
-<c:url value="/resources/main/js/main.js" var="js"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="/resources/main/css/main.css" var="css" />
+<c:url value="/resources/main/js/main.js" var="js" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,64 +50,86 @@
 			<i id="left" class="fa-solid fa-angle-left"></i>
 			<div class="performance-list">
 				<div class="poster">
-					<span class="ranking">1</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222318_230718_152555.gif"
-						alt="">
+					<span class="ranking">1</span>
+					<!-- <span class="title">제목</span> -->
+					<span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222318_230718_152555.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">2</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222203_230717_135603.gif"
-						alt="">
+					<span class="ranking">2</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222203_230717_135603.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">3</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222164_230717_122606.gif"
-						alt="">
+					<span class="ranking">3</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222164_230717_122606.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">4</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222143_230714_160301.png"
-						alt="">
+					<span class="ranking">4</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222143_230714_160301.png"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">5</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222105_230714_133231.jpg"
-						alt="">
+					<span class="ranking">5</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222105_230714_133231.jpg"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">6</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222058_230713_173933.jpg"
-						alt="">
+					<span class="ranking">6</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222058_230713_173933.jpg"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">7</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221944_230712_121249.gif"
-						alt="">
+					<span class="ranking">7</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221944_230712_121249.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">8</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221913_230711_173316.gif"
-						alt="">
+					<span class="ranking">8</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221913_230711_173316.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">9</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221775_230710_144810.gif"
-						alt="">
+					<span class="ranking">9</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221775_230710_144810.gif"
+							alt="">
+					</div>
 				</div>
 				<div class="poster">
-					<span class="ranking">10</span> <span class="title">제목</span> <span
-						class="star">별점</span> <img
-						src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221975_230712_140757.jpg"
-						alt="">
+					<span class="ranking">10</span> <span class="star">별점</span>
+					<div class="img-wrap">
+						<img
+							src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF221975_230712_140757.jpg"
+							alt="">
+					</div>
 				</div>
 			</div>
 			<i id="right" class="fa-solid fa-angle-right"></i>
