@@ -13,16 +13,17 @@ import com.team.webproject.dto.MembersDTO;
 public interface ExampleService {
 	
 	// 회원가입 및 로그인 서비스 시작
-	void memberJoin(MembersDTO member) throws Exception;
+	String checkId(MembersDTO member, String member_pwd_verify);
+	
+	boolean login(MembersDTO member, HttpServletResponse response);
+	
+	void logout(HttpServletResponse response);
+	
 	int add(MembersDTO login);
 	
 	public Map<String, String> validateHandling(Errors errors);
 	
 	List<MembersDTO> getAll();
 	// 회원가입 및 로그인 서비스 끝
-	int checkId(MembersDTO member);
-	boolean equalPwd(MembersDTO member, String member_pwd_verify);
-	boolean login(MembersDTO member, HttpServletResponse response);
-	void logout(HttpServletResponse response);
 	
 }

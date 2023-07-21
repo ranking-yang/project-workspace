@@ -7,15 +7,13 @@ import com.team.webproject.dto.MembersDTO;
 
 public interface LoginMapper {
 	
-	public void memberJoin(MembersDTO member);
+	public int checkId(MembersDTO member);
+	
+	public void login(MembersDTO member);
 	
 	int add(MembersDTO login);
 
 	public List<MembersDTO> getAll();
-
-	public int checkId(MembersDTO member);
-
-	public void login(MembersDTO member);
 
 	public boolean equalPwd(MembersDTO member);
 	

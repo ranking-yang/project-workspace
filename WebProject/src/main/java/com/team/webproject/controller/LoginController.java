@@ -1,7 +1,5 @@
 package com.team.webproject.controller;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -22,21 +20,44 @@ public class LoginController {
 	
 	private final ExampleService exService;
 	
-	//
-	@GetMapping("/login/all")
-	public void allGET(Model model) {
-		model.addAttribute("alls", exService.getAll());
-	}
-	
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String loginGET(MembersDTO member) {
+		
 		return "login/login";
 	}
 
-	// 로그인
+	// 타임티켓/간편 회원가입 선택 페이지
+	@GetMapping("/join")
+	public String joinGET() {
+		
+		return "join/join";
+	}
+	
+	// 타임티켓 회원가입 페이지로
+	@GetMapping("/new-join")
+	public String newJoinGET() {
+		
+		return "join/newJoin";
+	}
+	
+	// 회원가입
+	@PostMapping("/new-join")
+	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model
+			, String member_pwd_verify) throws Exception {
+		
+		if (errors.hasErrors()) {
+			System.out.println("회원가입 실패");
+			return "/join/newJoin";
+		} else {
+			return exService.checkId(member, member_pwd_verify);
+		}
+	}
+	
+	// 회원가입 성공 후 로그인 페이지로
 	@PostMapping("/login")
 	public String loginPOST(MembersDTO member, HttpServletResponse response) {
+		
 		if (exService.login(member, response)) {
 			return "login/successLogin";
 		} else {
@@ -47,56 +68,23 @@ public class LoginController {
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logoutGET(HttpServletResponse response) {
+		
 		exService.logout(response);
+		
 		return "redirect:/login";
 	}
 
-	// 타임티켓/간편 회원가입 선택 페이지
-	@GetMapping("/join")
-	public String joinGET() {
-		return "join/join";
-	}
-
-	// 타임티켓 회원가입 페이지
-	@GetMapping("/new-join")
-	public String newJoinGET() {
-		return "join/newJoin";
-	}
-
-	// 회원가입 후 로그인 페이지로
-	@PostMapping("/new-join")
-	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model
-			, String member_pwd_verify) throws Exception {
-		
-		if (errors.hasErrors()) {
-            System.out.println("회원가입 실패");
-            return "/join/newJoin";
-        } else {
-        	if (exService.checkId(member) > 0) {
-        		System.out.println("아이디 중복, 회원가입 실패");
-        		return "redirect:/new-Join";
-        	} else if (exService.equalPwd(member, member_pwd_verify)) {
-        		exService.add(member);
-        		System.out.println("회원가입 성공");
-        		return "redirect:/login";
-        	}
-        	System.out.println("실패");
-        	return "redirect:/new-join";
-        }
-		
-	}
-	
 	// 아이디 찾기 페이지
 	@GetMapping("/findId")
 	public String findIdGET() {
-
+		
 		return "join/findId";
 	}
 
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPassword")
 	public String findPasswordGET() {
-
+		
 		return "join/findPassword";
 	}
 	
