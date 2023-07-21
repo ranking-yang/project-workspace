@@ -1,7 +1,8 @@
 package com.team.webproject.controller;
 
-import java.util.Map;
-
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -21,54 +22,70 @@ public class LoginController {
 	
 	private final ExampleService exService;
 	
+	//
+	@GetMapping("/login/all")
+	public void allGET(Model model) {
+		model.addAttribute("alls", exService.getAll());
+	}
+	
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String loginGET(MembersDTO member) {
-
-		// exService.memberJoin(member);
-
 		return "login/login";
+	}
+
+	// 로그인
+	@PostMapping("/login")
+	public String loginPOST(MembersDTO member, HttpServletResponse response) {
+		if (exService.login(member, response)) {
+			return "login/successLogin";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logoutGET(HttpServletResponse response) {
+		exService.logout(response);
+		return "redirect:/login";
 	}
 
 	// 타임티켓/간편 회원가입 선택 페이지
 	@GetMapping("/join")
 	public String joinGET() {
-
 		return "join/join";
 	}
 
 	// 타임티켓 회원가입 페이지
 	@GetMapping("/new-join")
 	public String newJoinGET() {
-
 		return "join/newJoin";
 	}
 
 	// 회원가입 후 로그인 페이지로
 	@PostMapping("/new-join")
 	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model
-			) throws Exception {
+			, String member_pwd_verify) throws Exception {
 		
 		if (errors.hasErrors()) {
-            // 회원가입 실패시, 입력 데이터를 유지
-            model.addAttribute("memberDto", member);
-
-            // 유효성 통과 못한 필드와 메시지를 핸들링
-            Map<String, String> validatorResult = exService.validateHandling(errors);
-            for (String key : validatorResult.keySet()) {
-                model.addAttribute(key, validatorResult.get(key));
-            }
             System.out.println("회원가입 실패");
-            
             return "/join/newJoin";
+        } else {
+        	if (exService.checkId(member) > 0) {
+        		System.out.println("아이디 중복, 회원가입 실패");
+        		return "redirect:/new-Join";
+        	} else if (exService.equalPwd(member, member_pwd_verify)) {
+        		exService.add(member);
+        		System.out.println("회원가입 성공");
+        		return "redirect:/login";
+        	}
+        	System.out.println("실패");
+        	return "redirect:/new-join";
         }
 		
-		exService.add(member);
-		System.out.println("회원가입 성공");
-		
-		return "redirect:/login";
 	}
-
+	
 	// 아이디 찾기 페이지
 	@GetMapping("/findId")
 	public String findIdGET() {

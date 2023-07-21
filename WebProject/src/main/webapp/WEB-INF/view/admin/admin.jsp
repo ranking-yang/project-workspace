@@ -11,7 +11,7 @@
 </head>
 <body style="max-height: 650px;">
 
-	<div class="login_wrap">
+	<div class="login-wrap">
 
 		<div>
 			<img src="/resources/login/images/logo2.jpg"
@@ -23,14 +23,14 @@
 
 			<div style="margin-top: 50px;">
 				<input type="text" name="id" placeholder="아이디"
-					class="input_box icon_id">
+					class="input-box icon-id">
 			</div>
 			<div style="margin-top: 20px;">
 				<input type="password" name="pwd" placeholder="비밀번호"
-					class="input_box icon_pass">
+					class="input-box icon-pass">
 			</div>
 			<div style="margin-top: 20px;">
-				<input type="submit" class="login_btn" value="로그인">
+				<input type="submit" class="login-btn" value="로그인">
 			</div>
 		</form>
 	</div>

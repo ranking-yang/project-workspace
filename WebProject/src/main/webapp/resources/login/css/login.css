@@ -16,7 +16,7 @@ a:-webkit-any-link {
     cursor: pointer;
     text-decoration: underline;
 }
-.login_wrap {
+.login-wrap {
     width: 500px;
     margin: 50px auto;
     padding: 60px 0;
@@ -31,7 +31,7 @@ body, table {
     font-weight: 400;
 }
 
-.login_wrap {
+.login-wrap {
 	width: 500px;
 	margin: 50px auto;
 	padding: 60px 0;
@@ -40,7 +40,7 @@ body, table {
 	background-color: #f6f6f6;
 }
 
-.input_box {
+.input-box {
 	width: 350px;
 	height: 60px;
 	padding: 0 10px 0 60px;
@@ -52,15 +52,15 @@ body, table {
 	background-position: 20px 15px; /* 오른쪽, 아래 */
 }
 
-.icon_id {
-	background-image: url('/resources/login/images/user_id.png');
+.icon-id {
+	background-image: url('/resources/login/images/user-id.png');
 }
 
-.icon_pass {
-	background-image: url('/resources/login/images/user_pass.png');
+.icon-pass {
+	background-image: url('/resources/login/images/user-pass.png');
 }
 
-.login_btn {
+.login-btn {
 	width: 425px;
 	height: 60px;
 	border: none;
@@ -72,35 +72,35 @@ body, table {
 	cursor: pointer;
 }
 
-.login_submenu {
+.login-submenu {
 	margin-top: 25px;
 	font-size: 14px;
 	text-decoration: none;
 }
 
-.login_submenu a {
+.login-submenu a {
 	color: #777;
 }
 
-.login_submenu span {
+.login-submenu span {
 	color: #777;
 	font-size: 14px;
 	vertical-align: 0px;
 	margin: 0 10px;
 }
 
-.simple_title {
+.simple-title {
 	margin-top: 90px;
 }
 
-.simple_line {
+.simple-line {
 	height: 1px;
 	background: #ddd;
 	margin: 0 40px;
 	position: relative;
 }
 
-.simple_text {
+.simple-text {
 	width: 170px;
 	background: #f6f6f6;
 	color: #999;
@@ -112,24 +112,24 @@ body, table {
 	margin-left: 125px;
 }
 
-.social_wrap {
+.social-wrap {
 	margin-top: 40px;
 	display: flex;
 	justify-content: center;
 }
 
-.social_join_btn {
+.social-join-btn {
 	float: left;
 	margin: 0 15px;
 	width: 85px;
 	cursor: pointer;
 }
 
-.join_noti {
+.join-noti {
 	margin-top: 80px;
 }
 
-.join_noti a {
+.join-noti a {
 	color: #2F80ED;
 	font-size: 16px;
 }
