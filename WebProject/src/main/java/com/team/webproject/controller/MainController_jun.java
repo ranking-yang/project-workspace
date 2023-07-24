@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
+public class MainController_jun {
 	
 	private final ExampleService exService;
 	
