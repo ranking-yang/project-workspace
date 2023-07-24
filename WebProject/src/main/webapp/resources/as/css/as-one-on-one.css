@@ -1,0 +1,139 @@
+/* 고객센터 - 1:1 문의 css */
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body{
+    background-color: rgb(236, 236, 236);
+}
+#as-container{
+    width: 1100px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 700px;
+    column-gap: 20px;
+}
+#as-container> * {
+    border-radius: 15px;
+    padding: 40px 30px 0;
+}
+#as-side-menu{
+    background-color: white;
+}
+.as-side-menu-subtitle{
+    padding: 10px 0;
+    cursor: pointer;
+}
+.as-side-menu-subtitle.selected{
+    color: rgb(70,200,180);
+}
+.as-side-menu-subtitle:hover{
+    color: rgb(70,200,180);
+}
+#as-side-menu-title{
+    border-bottom: 1px solid rgb(236, 236, 236);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+#as-board{
+    background-color: white;
+
+}
+#as-board-list-header{
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    padding: 0 0 15px 0;
+
+}
+#as-board-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
+#addAsk{
+    background: rgb(70,200,180);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8rem;
+    
+}
+
+#as-board-list{
+    display: grid;
+    grid-template-rows: repeat(11, 1fr);
+    margin: 5px 0 30px 0;
+}
+#as-board-list > div{
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 100px;
+    padding: 10px 20px;
+    column-gap: 20px;
+}
+#as-board-list-category{
+    font-weight: 500;
+    background-color: rgb(236, 236, 236);
+    text-align: center;
+}
+.as-board-list-board{
+    border-bottom: 1px solid rgb(236, 236, 236);
+    font-weight: 300;
+}
+.as-board-list-board > div:first-child{
+    text-align: center;
+}
+.as-board-list-board > div:nth-child(2){
+    padding: 0 20px;
+}
+.as-board-list-board > div:nth-child(2):hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.as-board-list-board > div:nth-child(3),
+.as-board-list-board > div:last-child{
+    text-align: center;
+}
+/* 1:1 문의의 처리상태 */
+.board-status > span{
+    color: white;
+    border-radius: 15px;
+    font-weight: 500;
+    padding: 1px 5px;
+}
+/* 처리상태가 답변 대기일 경우 */
+.board-status.standby >span{
+    background-color: gray;
+}
+/* 처리 상태가 처리중일 경우 */
+.board-status.on >span{
+    background-color: rgb(230, 64, 64);
+}
+/* 처리 상태가 답변 완료일 경우 */
+.board-status.done >span{
+    background-color: rgb(20, 92, 224);
+}
+
+#as-board-list-page-buttons{
+    text-align: center;
+}
+.page-buttons{
+    border: 0.1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 20px 0;
+}
+.page-buttons:hover{
+    border: 0.1px solid gray;
+    background-color: rgb(240, 239, 239);
+    cursor: pointer;
+}
+.page-buttons.selected{
+    border: none;
+    color: rgb(70,200,180);
+}

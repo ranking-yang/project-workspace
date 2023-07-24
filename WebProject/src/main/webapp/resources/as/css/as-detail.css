@@ -1,0 +1,86 @@
+/* 고객센터 - 공지사항, 자주묻는 질문 css */
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body{
+    background-color: rgb(236, 236, 236);
+}
+#as-container{
+    width: 1100px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 700px;
+    column-gap: 20px;
+}
+#as-container> * {
+    border-radius: 15px;
+    padding: 40px 30px 0;
+}
+#as-side-menu{
+    background-color: white;
+}
+.as-side-menu-subtitle{
+    padding: 10px 0;
+    cursor: pointer;
+}
+.as-side-menu-subtitle.selected{
+    color: rgb(70,200,180);
+}
+.as-side-menu-subtitle:hover{
+    color: rgb(70,200,180);
+}
+#as-side-menu-title{
+    border-bottom: 1px solid rgb(236, 236, 236);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+#as-board{
+    background-color: white;
+
+}
+#as-board-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0 0 15px 0;
+    border-bottom: 3px solid rgb(70,200,180);
+
+}
+.as-board-detail{
+    display: grid;
+    grid-template-rows: 50px 1fr 50px;
+}
+#as-board-detail-header{
+    border-bottom: 1px solid gray;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    padding-top: 10px;
+}
+#as-board-detail-title{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-left: 10px;
+}
+#as-board-detail-date{
+    text-align: right;
+    padding-right: 10px;
+    color: rgb(92, 92, 92);
+}
+#as-board-detail-body{
+    border-bottom: 1px solid gray;
+    min-height: 450px;
+    padding: 30px 10px;
+
+}
+#as-board-detail-footer{
+    margin: 30px 10px;
+    text-align: right;
+}
+#as-board-detail-listBtn >span{
+    padding: 10px 30px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 10px;
+}

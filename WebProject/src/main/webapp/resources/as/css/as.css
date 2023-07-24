@@ -1,0 +1,131 @@
+@charset "UTF-8";
+/* 고객센터 - 메인 + 공통적으로 적용되는 사항 */
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+body{
+    background-color: rgb(236, 236, 236);
+}
+#as-container{
+    width: 1100px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 700px;
+    column-gap: 20px;
+}
+#as-container> * {
+    border-radius: 15px;
+    padding: 40px 30px 0;
+}
+#as-side-menu{
+    background-color: white;
+}
+.as-side-menu-subtitle{
+    padding: 10px 0;
+    cursor: pointer;
+}
+.as-side-menu-subtitle.selected{
+    color: rgb(70,200,180);
+}
+.as-side-menu-subtitle:hover{
+    color: rgb(70,200,180);
+}
+#as-side-menu-title{
+    border-bottom: 1px solid rgb(236, 236, 236);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+#as-board{
+    background-color: white;
+
+}
+#as-board-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0 0 15px 0;
+}
+#as-board-list{
+    display: grid;
+    grid-template-rows: repeat(11, 1fr);
+    margin: 5px 0 30px 0;
+}
+#as-board-list > div{
+    display: grid;
+    grid-template-columns: 50px 1fr 100px;
+    padding: 10px 20px;
+    column-gap: 20px;
+}
+#as-board-list-category{
+    font-weight: 500;
+    background-color: rgb(236, 236, 236);
+    text-align: center;
+}
+.as-board-list-board{
+    border-bottom: 1px solid rgb(236, 236, 236);
+    font-weight: 300;
+}
+.as-board-list-board > div:first-child{
+    text-align: center;
+
+}
+.as-board-list-board > div:nth-child(2){
+    padding: 0 20px;
+}
+.as-board-list-board > div:nth-child(2):hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.as-board-list-board > div:last-child{
+    text-align: center;
+}
+#as-board-list-page-buttons{
+    text-align: center;
+}
+.page-buttons{
+    border: 0.1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 20px 0;
+}
+.page-buttons:hover{
+    border: 0.1px solid gray;
+    background-color: rgb(240, 239, 239);
+    cursor: pointer;
+}
+.page-buttons.selected{
+    border: none;
+    color: rgb(70,200,180);
+}
+
+/* 고객센터 - 자주묻는 질문 css */
+#freq-questions-top3-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: rgb(231, 245, 243);
+    margin: 5px 0 20px 0;
+}
+#freq-questions-top3-container > * {
+    text-align: center;
+    margin: 30px;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+}
+.freq-q-top3-icon{
+    font-size: 50px;
+}
+.freq-q-top3-icon > img{
+    width: 100px;
+    height: 100px;
+}
+.freq-q-span{
+    color: rgb(70,200,180);
+    font-weight: 600;
+    margin-right: 10px;
+}
