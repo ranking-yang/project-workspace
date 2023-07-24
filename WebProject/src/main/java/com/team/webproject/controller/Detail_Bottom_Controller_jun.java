@@ -10,11 +10,11 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController_jun {
+public class Detail_Bottom_Controller_jun {
 	
 	private final ExampleService exService;
 	
-	@GetMapping("/")
+	@GetMapping("/detailBottom")
 	String index() {
 		
 //		model.addAttribute("ex", exService.getAll());
