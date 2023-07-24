@@ -377,7 +377,7 @@
   <input type="hidden" name="as_can" value="">
 
   <div style="float:left;">
-    <textarea name="content" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요" required=""></textarea>
+    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요" required=""></textarea>
   </div>
   <div style="float:right;">
     <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록
@@ -391,6 +391,9 @@
   
   
   <div class="review_start" style=";">
+  
+	<div class="review_text" id="review_text_container">
+    </div>  
     <div class="review_wrap" id="user_review_919427">
 	<div class="review_title">
 		<div class="review_title_left">
@@ -758,7 +761,7 @@
   <input type="hidden" name="as_can" value="">
 
   <div style="float:left;">
-    <textarea name="content" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
+    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
 · 날짜/시간 변경은 불가하며 환불 후 다시 예매해야 합니다.
 · 티켓 환불은 마이티켓>예매내역에서 신청 가능합니다." required=""></textarea>
   </div>
@@ -1619,7 +1622,8 @@ function showOriginalRatio(selected) {
     }
   }
 
-//댓글 등록 버튼을 눌렀을 때 호출될 함수
+
+/* //댓글 등록 버튼을 눌렀을 때 호출될 함수
 function submitForm() {
   if (reply_check()) {
     // 여기서 댓글 등록 처리를 진행 (Ajax 사용 권장)
@@ -1665,7 +1669,21 @@ function sendDataToServer(data) {
 	    // 오류 처리
 	    console.error('Error:', error);
 	  });
-}
+} */
+
+function submitForm() {
+    var content_comment = document.getElementById("content_comment").value;
+
+    // 새로운 리뷰를 추가하는 경우
+    var reviewTextContainer = document.getElementById("review_text_container");
+    var newReviewDiv = document.createElement("div");
+    newReviewDiv.className = "review_text_area";
+    newReviewDiv.innerText = content_comment;
+    reviewTextContainer.appendChild(newReviewDiv);
+
+    // 기존에 입력한 글 초기화
+    document.getElementById("content_comment").value = "";
+  }
 
 </script>
 </body>
