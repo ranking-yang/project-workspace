@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DetailController {
    
-    @GetMapping("/detailTop")
+    @GetMapping("/detail")
     //@RequestMapping(value="/api", produces = MediaType.APPLICATION_JSON_VALUE)
        String callAPI(Model model) throws JsonProcessingException {
     
@@ -94,6 +94,6 @@ public class DetailController {
            System.out.println(jsonInString);
            
            
-           return "/detail/detailTop";  
+           return "/detail/detail";  
        }
 }

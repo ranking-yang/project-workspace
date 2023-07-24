@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/resources/detail/css/detailTop.css" var="top_css"/>
 <c:url value="/resources/detail/js/detailTop.js" var="top_js"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>상세페이지</title>
 <!-- CSS -->
 <link rel="stylesheet" href="${top_css}">
 <!-- Icon -->
@@ -18,9 +13,8 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
-</head>
-<body>
 
+<!-- body -->
 	<div class="detail-top-con">                <!-- product-list로 돌아감 -->
         <div class="detail-top-now-category">📁 <a href="">(카테고리) > </a></div> <!-- 카테고리 -->
         <div class="detail-top-left">
@@ -117,6 +111,3 @@
     </div>
 
     <script src="${top_js}"></script>
-
-</body>
-</html>
