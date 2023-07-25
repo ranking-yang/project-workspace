@@ -1,103 +1,94 @@
-var bustcachevar=1 //bust potential caching of external pages after initial request? (1=yes, 0=no)
-var loadstatustext="<div style='height:500px;'></div>"
+/* 처음에 안내탭만 보이고 다른 탭은 안보이게 하기*/
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('content_1').style.display = 'block';
+    document.getElementById('content_2').style.display = 'none';
+    document.getElementById('content_3').style.display = 'none';
+    document.getElementById('content_4').style.display = 'none';
+    document.getElementById('content_5').style.display = 'none';
+    /* 안내탭 펼쳐보기 후 사진 숨기기*/
+    document.getElementById('main_img').style.display = 'none';
+});
 
-////NO NEED TO EDIT BELOW////////////////////////
-var loadedobjects=""
-var defaultcontentarray=new Object()
-var bustcacheparameter=""
+/* 최상단 안내 후기같은 탭버튼들 상호작용*/
+function loadTab(divId, element) {
+  var contentDivs = document.getElementsByClassName('contentstyle1')
+  var tabListItems = document.getElementsByTagName('li');
+  // 모든 <div> 요소를 숨김
+  for (var i = 0; i < contentDivs.length; i++) {
+    contentDivs[i].style.display = 'none';
+  }
+  
+//모든 탭에 있는 "selected" 클래스를 제거
+  for (var i = 0; i < tabListItems.length; i++) {
+    tabListItems[i].classList.remove('selected');
+  }
 
-function ajaxpage(url, containerid, targetobj){
-var page_request = false
-if (window.XMLHttpRequest) // if Mozilla, Safari etc
-page_request = new XMLHttpRequest()
-else if (window.ActiveXObject){ // if IE
-try {
-page_request = new ActiveXObject("Msxml2.XMLHTTP")
-} 
-catch (e){
-try{
-page_request = new ActiveXObject("Microsoft.XMLHTTP")
-}
-catch (e){}
-}
-}
-else
-return false
-var ullist=targetobj.parentNode.parentNode.getElementsByTagName("li")
-for (var i=0; i<ullist.length; i++)
-ullist[i].className=""  //deselect all tabs
-targetobj.parentNode.className="selected"  //highlight currently clicked on tab
-if (url.indexOf("#default")!=-1){ //if simply show default content within container (verus fetch it via ajax)
-document.getElementById(containerid).innerHTML=defaultcontentarray[containerid]
-return
-}
-document.getElementById(containerid).innerHTML=loadstatustext
-page_request.onreadystatechange=function(){
-loadpage(page_request, containerid)
-}
-if (bustcachevar) //if bust caching of external page
-bustcacheparameter=(url.indexOf("?")!=-1)? "&"+new Date().getTime() : "?"+new Date().getTime()
-page_request.open('GET', url+bustcacheparameter, true)
-page_request.send(null)
+  // 선택한 탭에 "selected" 클래스를 추가
+  element.parentNode.classList.add('selected');
+
+  
+  // 선택한 <div> 요소를 표시
+  var selectedContentDiv = document.getElementById(divId);
+  selectedContentDiv.style.display = 'block';
 }
 
-function loadpage(page_request, containerid){
-if (page_request.readyState == 4 && (page_request.status==200 || window.location.href.indexOf("http")==-1))
-document.getElementById(containerid).innerHTML=page_request.responseText
+// 더보기 버튼 처리
+function showFullReview(selected) {
+  document.getElementById('text_' + selected).classList.add('show');
+  document.getElementById('seemore_' + selected).setAttribute("style", "display: none;");
 }
 
-function loadobjs(revattribute){
-if (revattribute!=null && revattribute!=""){ //if "rev" attribute is defined (load external .js or .css files)
-var objectlist=revattribute.split(/\s*,\s*/) //split the files and store as array
-for (var i=0; i<objectlist.length; i++){
-var file=objectlist[i]
-var fileref=""
-if (loadedobjects.indexOf(file)==-1){ //Check to see if this object has not already been added to page before proceeding
-if (file.indexOf(".js")!=-1){ //If object is a js file
-fileref=document.createElement('script')
-fileref.setAttribute("type","text/javascript");
-fileref.setAttribute("src", file);
-}
-else if (file.indexOf(".css")!=-1){ //If object is a css file
-fileref=document.createElement("link")
-fileref.setAttribute("rel", "stylesheet");
-fileref.setAttribute("type", "text/css");
-fileref.setAttribute("href", file);
-}
-}
-if (fileref!=""){
-document.getElementsByTagName("head").item(0).appendChild(fileref)
-loadedobjects+=file+" " //Remember this object as being already added to page
-}
-}
-}
+// 안내탭 펼쳐보기 버튼 누르면 펼쳐지는 함수
+function showMoreDetailImage() {
+  document.querySelector('.info_detail_btn').remove();
+  document.querySelector('.info_detail_gradient').remove();
+  document.querySelector('.info_detail_poster').setAttribute("style", `display:none;`);
+  document.getElementById('main_img').style.display = 'block';
+  document.querySelector('.main_img').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function savedefaultcontent(contentid){// save default ajax tab content
-if (typeof defaultcontentarray[contentid]=="undefined") //if default content hasn't already been saved
-defaultcontentarray[contentid]=document.getElementById(contentid).innerHTML
+// 이미지 로드에 사용되는 함수
+function getMeta(url) {
+    const img = new Image();
+    img.addEventListener("load", function() {
+      sessionStorage.setItem('width', this.naturalWidth);
+      sessionStorage.setItem('height', this.naturalHeight);
+    });
+    img.src = url;
 }
 
-function startajaxtabs(){
-for (var i=0; i<arguments.length; i++){ //loop through passed UL ids
-var ulobj=document.getElementById(arguments[i])
-var ulist=ulobj.getElementsByTagName("li") //array containing the LI elements within UL
-for (var x=0; x<ulist.length; x++){ //loop through each LI element
-var ulistlink=ulist[x].getElementsByTagName("a")[0]
-if (ulistlink.getAttribute("rel")){
-var modifiedurl=ulistlink.getAttribute("href").replace(/^http:\/\/[^\/]+\//i, "http://"+window.location.hostname+"/")
-ulistlink.setAttribute("href", modifiedurl) //replace URL's root domain with dynamic root domain, for ajax security sake
-savedefaultcontent(ulistlink.getAttribute("rel")) //save default ajax tab content
-ulistlink.onclick=function(){
-ajaxpage(this.getAttribute("href"), this.getAttribute("rel"), this)
-loadobjs(this.getAttribute("rev"))
-return false
-}
-if (ulist[x].className=="selected"){
-ajaxpage(ulistlink.getAttribute("href"), ulistlink.getAttribute("rel"), ulistlink) //auto load currenly selected tab content
-loadobjs(ulistlink.getAttribute("rev")) //auto load any accompanying .js and .css files
-}
-}
-}
-}
-}
+//이미지 클릭시 이미지 크기가 커지고 작아지는 함수
+function showOriginalRatio(selected) {
+  let selectedImg = document.getElementsByClassName(selected);
+  let viewMode = selectedImg[0].getAttribute('viewmode');
+  let img_url = selectedImg[0].getAttribute('name');
+  
+    if (viewMode === 'off') {
+      getMeta(img_url);
+      setTimeout(() => {
+        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +'); width: ' + sessionStorage.getItem('width') + 'px; height: '+ sessionStorage.getItem('height') + 'px;');
+        selectedImg[0].setAttribute('viewMode', 'on');
+        sessionStorage.clear();
+      }, 50);
+    } else if (viewMode === 'on') {
+      setTimeout(() => {
+        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +')');
+        selectedImg[0].setAttribute('viewMode', 'off');
+      }, 50);
+    }
+  }
+
+// 후기탭에서 후기 작성하는 프로토 타입 함수
+function submitForm() {
+    var content_comment = document.getElementById("content_comment").value;
+
+    // 새로운 리뷰를 추가하는 경우
+    var reviewTextContainer = document.getElementById("review_text_container");
+    var newReviewDiv = document.createElement("div");
+    newReviewDiv.className = "review_text_area";
+    newReviewDiv.innerText = content_comment;
+    reviewTextContainer.appendChild(newReviewDiv);
+
+    // 기존에 입력한 글 초기화
+    document.getElementById("content_comment").value = "";
+  }

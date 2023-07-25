@@ -1,19 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-* {
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-/* 나중에 지우기 ~ (배경임) */
-html {
-    background-color: #F6F6F6;
-}
-
 /* 작품 상세페이지 (상단) 부모 div */
 .detail-top-con {
     width: 820px;
     padding: 1%;
+    padding-top: 10px;
     margin: 0 auto; /* 중앙정렬 */
     display: grid;
     grid-template-rows: 30px 1fr;
@@ -48,7 +37,7 @@ html {
 
         .detail-top-info > img {
             position: absolute;
-            top: 150px;
+            top: 155px;
             left: 25px;
             width: 140px;
             height: 200px;
@@ -72,7 +61,7 @@ html {
         }
 
         .detail-top-info-subtitle {
-            padding-top: 5px;
+            padding-top: 10px;
             font-size: 14px;
             font-weight: 300;
             height: 26px;
@@ -83,12 +72,14 @@ html {
             font-size: 20px;
             font-weight: 600;
             height: 54px;
+            padding-top: 10px;
         }
 
         .detail-top-info-openrun {
             font-size: 14px;
             font-weight: 400;
             text-align: left;
+            padding-top: 20px;
         }
 
             .detail-top-run-tit, .detail-top-run-tit {
@@ -129,6 +120,7 @@ html {
     }
 
     .detail-top-info-price > div:first-child > div:last-child {
+        padding-top: 5px;
         font-size: 12px;
     }
 

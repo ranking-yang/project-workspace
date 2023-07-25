@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/resources/detail/css/detailTop.css" var="top_css"/>
 <c:url value="/resources/detail/js/detailTop.js" var="top_js"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>상세페이지</title>
 <!-- CSS -->
 <link rel="stylesheet" href="${top_css}">
 <!-- Icon -->
@@ -18,25 +13,25 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
-</head>
-<body>
 
+<!-- body -->
 	<div class="detail-top-con">                <!-- product-list로 돌아감 -->
-        <div class="detail-top-now-category">📁 <a href="">(카테고리) > </a></div> <!-- 카테고리 -->
+        <div class="detail-top-now-category">📁 <a href="">${perfomance.main_category} > </a></div> <!-- 카테고리 -->
         <div class="detail-top-left">
             <!-- 좌측 작품 소개 칸 -->
             <div class="detail-top-info">            	
-                <img src="" alt="포스터"> <!-- 포스터 이미지 -->
+                <img src="${perfomance.poster}" alt="포스터"> <!-- 포스터 이미지 -->
                 <!-- 좌측 포스터 텍스트-->
                 <div class="detail-top-info-con">
-                    <div class="detail-top-info-icon">(DB지역)</div> <!-- DB 지역 -->
-                    <div class="detail-top-info-icon">(DB분야)</div> <!-- DB 분야 -->
-                    <p class="detail-top-info-subtitle">(DB서브제목)</p> <!-- DB 서브제목 -->
-                    <div class="detail-top-info-title">(제목)</div> <!-- DB 제목 -->
+                    <div class="detail-top-info-icon">
+                    	(DB 장소)
+					</div> <!-- DB 지역 -->
+                    <div class="detail-top-info-icon">${perfomance.sub_category}</div> <!-- DB 분야 -->
+                    <div class="detail-top-info-title">${perfomance.performance_name}</div> <!-- DB 제목 -->
                     <div class="detail-top-info-openrun">
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">event_available</span></div>
-                           <div class="detail-top-run-txt">(날짜)</div> <!-- DB 시작일~종료일 -->
+                           <div class="detail-top-run-txt">${perfomance.start_date} ~ ${perfomance.end_date}</div> <!-- DB 시작일~종료일 -->
                         </div>
                         <div class="detail-top-run-info"> 
                             <div><span class="material-symbols-outlined">schedule</span></div> 
@@ -46,7 +41,7 @@
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
-                            <div class="detail-top-run-txt">(장소)</div> <!-- DB 장소 -->
+                            <div class="detail-top-run-txt">${perfomance.place}</div> <!-- DB 장소 -->
                         </div>
                     </div>
                 </div>
@@ -55,7 +50,7 @@
                         <div>티켓킹가</div>
                         <div>현재 최저가</div> <!-- DB 최저가 -->
                     </div>
-                    <div>(DB가격)원 ~</div> <!-- DB 최저가 가격 -->
+                    <div>${perfomance.performance_price}원 ~</div> <!-- DB 최저가 가격 -->
                 </div>
             </div>
             <!-- 여백 -->
@@ -63,8 +58,7 @@
         </div>
         <div class="detail-top-right">
             <!-- 달력 -->
-            <div class="placeholder" data-maxdate="2023-07-30"></div>
-
+            <div class="placeholder" data-maxdate="${perfomance.end_date}"></div>
             <div class="popup-time">
                 <!-- 시간 -->
                 <div>시간선택</div>
@@ -117,6 +111,3 @@
     </div>
 
     <script src="${top_js}"></script>
-
-</body>
-</html>

@@ -6,183 +6,9 @@
 <meta charset="UTF-8">
 <title>detail_bottom</title>
 <link rel="stylesheet" href="/resources/detail/css/detail_bottom.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom2.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom3.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom4.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom5.css"/>
-<script src="/resources//detail/js/detail_bottom.js"></script>
-<style>
-  .main_tab_wrap {
-    border: 1px solid #eee;
-    border-top: none;
-    padding: 30px 59px;
-    border-radius:0 0 10px 10px;
-  }
-
-  /* 상세 이미지 펼쳐보기 */
-  .info_detail_btn {
-    position: absolute;
-    bottom: 15px;
-    width: 94%;
-    height: 55px;
-    line-height: 55px;
-    margin-left: 3%;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: #fff;
-    color: #000;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    box-shadow:1px 1px 3px 2px #ddd;
-  }
-  .info_detail_poster {
-    position: relative;
-    margin-top: 35px;
-    width: 100%;
-    height: 700px;
-    color: #fff;
-    font-size: 20px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position-y: 0%;
-    background-image: url('https://timeticket.co.kr/wys2/file_attach_thumb/2021/05/21/1621571534-67-0_wonbon_N_7_600x600_70_2.jpg');
-  }
-  .info_detail_gradient {
-    width: 100%;
-    height: 700px;
-    background-image: linear-gradient(to bottom,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.4) 60%,
-    rgba(255, 255, 255, 0.8) 80%,
-    rgb(255, 255, 255) 100%);
-  }
-
-  /* 상세 이미지 스타일   */
-  .main_img { margin-top:35px; width:700px; text-align: center; }
-  .main_img img { display:block; width:100%; }
-
-  .viewpage_flex {
-  display: flex; justify-content: flex-start;
-  }
-  .viewpage_flex div:nth-child(1) {
-    padding-left:10px; width: 120px; color: #888;
-  }
-  .viewpage_flex div:nth-child(2) {
-    color: #000;
-  }
-  .viewpage_flex a {
-    text-decoration: underline;
-  }
-  .border_box {
-  border: 1px solid #eee;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-top: 5px;
-  }
-  .border_box .viewpage_flex {
-    border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 8px;
-  }
-  .border_box .viewpage_flex:last-child {
-    border: none; padding-bottom: 0; margin-bottom: 0;
-  }
-
-  .now_engine { padding-bottom:15px; font-size:15px; font-weight:400; }
-  .now_engine a { color:#555; }
-
-</style>
+<script src="/resources/detail/js/detail_bottom.js" defer></script>
 </head>
 <body style="background-color: #fff; height: auto;">
-
-	<section style="width:820px; margin:0 auto; padding-top:20px;">
-    <div class="review_preview" style=";">
-    	
-      <div class="review_preview_container">
-        <div class="review_preview_title_section">
-          <div class="review_preview_left">
-            <span class="review_preview_title">이용후기</span>
-            <span class="review_preview_number">826</span>
-            <span class="review_preview_title">평점</span>
-            <span class="review_preview_number" style="color: #ff4b4b;">4.8/5</span>
-          </div>
-          <div class="review_preview_right">
-            후기 더보기
-            <span class="review_preview_right_btn"></span>
-          </div>
-        </div>
-        <div class="review_preview_samples">
-          <div class="review_wrap" id="user_review_919427">
-	<div class="review_title">
-		<div class="review_title_left">
-      <div class="review_title_left_stars">
-        <div class="review_title_left_star">
-          <div class="review_title_left_star_filled" style="width: calc(5 * 19px);"></div>
-        </div>
-      </div>
-			<div class="review_title_left_name" style="padding-left: 10px;">
-				김*현
-			</div>
-		</div>
-		<div class="review_title_right" style="padding-right:8px;">
-			2023-07-15
-		</div>
-	</div>
-
-	<div class="review_text">
-		<div class="review_text_area" id="sample_review_0">
-			평점도 높고 후기도 많아서 기대 많이하고 갔는데 그 기대보다도 그 이상의 재미였어요! <br>
-중간에 실제 라면냄새가 나서… 새벽에 라면을 끓여먹어야했지만ㅎㅎ <br>
-배우들 연기도 최고였고 시나리오 전체적으로 구성이 탄탄하더라구요! 모든 연령한테 추천하고 싶은 연극이였습니다! 
-		</div>
-    <div class="review_text_seemore" id="sample_seemore_0" onclick="showFullReviewForSample(0)">
-			... 더보기
-		</div>
-	</div>
-
-  <div style="1; margin-top: 10px;">
-    <div viewmode="off" style="background-image: url(https://timeticket.co.kr/wys2/user_review/4343/img_919427.jpeg)" name="https://timeticket.co.kr/wys2/user_review/4343/img_919427.jpeg" onclick="showOriginalRatio(0)" class="sample_img_label 0">
-    </div>
-  </div>
-</div>
-
-<div class="review_wrap" id="user_review_915998">
-	<div class="review_title">
-		<div class="review_title_left">
-      <div class="review_title_left_stars">
-        <div class="review_title_left_star">
-          <div class="review_title_left_star_filled" style="width: calc(5 * 19px);"></div>
-        </div>
-      </div>
-			<div class="review_title_left_name" style="padding-left: 10px;">
-				장*규
-			</div>
-		</div>
-		<div class="review_title_right" style="padding-right:8px;">
-			2023-07-11
-		</div>
-	</div>
-
-	<div class="review_text">
-		<div class="review_text_area" id="sample_review_1">
-			레트로 코미디답게 너무 재메있었어요!<br>
-배우분들 연기도 수준급이라 몰입도 잘되었습니당.<br>
-
-		</div>
-    <div class="review_text_seemore" id="sample_seemore_1" onclick="showFullReviewForSample(1)" style="display: none;">
-			... 더보기
-		</div>
-	</div>
-
-  <div style="1; margin-top: 10px;">
-    <div viewmode="off" style="background-image: url(https://timeticket.co.kr/wys2/user_review/4343/img_915998.jpeg)" name="https://timeticket.co.kr/wys2/user_review/4343/img_915998.jpeg" onclick="showOriginalRatio(1)" class="sample_img_label 1">
-    </div>
-  </div>
-</div>
-
-        </div>
-      </div>
-    </div>
-  </section>
 	<section style="width:820px; margin:0 auto; padding-top:20px;">
 
     <!-- 메뉴영역, js/ajaxtabs.css -->
@@ -352,16 +178,6 @@
 <div style="padding:10px 10px 15px 10px; background:#f5f5f5; margin-top:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
-			<script>
-  function reply_check() {
-    obj_frm = document.reply_write_frm;
-    if (obj_frm.content.value == " ") {
-      alert("내용을 입력해주세요.");
-      obj_frm.content.focus();
-      return false;
-    }
-  }
-</script>
 
 <form name="reply_write_frm" method="post" action="reply_action.php" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
   <input type="hidden" name="number" value="4343">
@@ -736,16 +552,6 @@
 	<div style="padding:10px 10px 15px 10px; background:#f5f5f5; margin-top:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
-<script>
-  function reply_check() {
-    obj_frm = document.reply_write_frm;
-    if (obj_frm.content.value == " ") {
-      alert("내용을 입력해주세요.");
-      obj_frm.content.focus();
-      return false;
-    }
-  }
-</script>
 
 <form name="reply_write_frm" method="post" action="reply_action.php" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
   <input type="hidden" name="number" value="4343">
@@ -1436,6 +1242,7 @@ $('body').on('click', '.goPage', function() {
       <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;" viewBox="0 0 3500 1750"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:c" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:c" name="daum.maps.Marker.Area:c"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
     </div>
   </div>
+<%--카카오맵 불러오는 거라서 안건듬 나중에 지우던지 해도 될듯--%>
 <script>
   let addrCoord = [37.581892989494186, 127.00256994369825];
     if (addrCoord.length > 0) {
@@ -1487,11 +1294,6 @@ $('body').on('click', '.goPage', function() {
 </div>
 
 <div class="contentstyle1" id="content_5">
-<style>
-	.viewpage_text { line-height:160%; font-size:15px;	}
-	.viewpage_text .viewpage_noti { padding:15px 0 0 0; font-weight:700; font-size:16px; }
-</style>
-
 <div class="main_tab_wrap">
 	<p class="main_tab_title">환불규정 및 안내사항</p>
 
@@ -1533,158 +1335,5 @@ $('body').on('click', '.goPage', function() {
 </div>
 <!-- </div> -->
 </section>
-  
-<script>
-
-document.getElementById('content_1').style.display = 'block';
-document.getElementById('content_2').style.display = 'none';
-document.getElementById('content_3').style.display = 'none';
-document.getElementById('content_4').style.display = 'none';
-document.getElementById('content_5').style.display = 'none';
-document.getElementById('main_img').style.display = 'none';
-function loadTab(divId, element) {
-  var contentDivs = document.getElementsByClassName('contentstyle1')
-  var tabListItems = document.getElementsByTagName('li');
-  // 모든 <div> 요소를 숨김
-  for (var i = 0; i < contentDivs.length; i++) {
-    contentDivs[i].style.display = 'none';
-  }
-  
-//모든 탭에 있는 "selected" 클래스를 제거
-  for (var i = 0; i < tabListItems.length; i++) {
-    tabListItems[i].classList.remove('selected');
-  }
-
-  // 선택한 탭에 "selected" 클래스를 추가
-  element.parentNode.classList.add('selected');
-
-  
-  // 선택한 <div> 요소를 표시
-  var selectedContentDiv = document.getElementById(divId);
-  selectedContentDiv.style.display = 'block';
-}
-
-//더보기 버튼 처리
-function showFullReviewForSample(selected) {
-  document.getElementById('sample_review_' + selected).classList.add('show');
-  document.getElementById('sample_seemore_' + selected).setAttribute("style", "display: none;");
-}
-
-const reviewSeeMoreBtn = document.querySelector('.review_preview_right');
-const tabLink = document.querySelector('li[class=""] a');
-reviewSeeMoreBtn.addEventListener('click', function () {
-	  loadTab('content_2', tabLink);
-	  const tabElement = document.getElementById('tab_02_review');
-	  tabElement.scrollIntoView({ behavior: 'smooth' });
-});
-
-// 더보기 버튼 처리
-function showFullReview(selected) {
-  document.getElementById('text_' + selected).classList.add('show');
-  document.getElementById('seemore_' + selected).setAttribute("style", "display: none;");
-}
-
-function showMoreDetailImage() {
-  document.querySelector('.info_detail_btn').remove();
-  document.querySelector('.info_detail_gradient').remove();
-  document.querySelector('.info_detail_poster').setAttribute("style", `display:none;`);
-  document.getElementById('main_img').style.display = 'block';
-  document.querySelector('.main_img').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function getMeta(url) {
-    const img = new Image();
-    img.addEventListener("load", function() {
-      sessionStorage.setItem('width', this.naturalWidth);
-      sessionStorage.setItem('height', this.naturalHeight);
-    });
-    img.src = url;
-}
-
-//이미지 로드
-function showOriginalRatio(selected) {
-  let selectedImg = document.getElementsByClassName(selected);
-  let viewMode = selectedImg[0].getAttribute('viewmode');
-  let img_url = selectedImg[0].getAttribute('name');
-  
-    if (viewMode === 'off') {
-      getMeta(img_url);
-      setTimeout(() => {
-        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +'); width: ' + sessionStorage.getItem('width') + 'px; height: '+ sessionStorage.getItem('height') + 'px;');
-        selectedImg[0].setAttribute('viewMode', 'on');
-        sessionStorage.clear();
-      }, 50);
-    } else if (viewMode === 'on') {
-      setTimeout(() => {
-        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +')');
-        selectedImg[0].setAttribute('viewMode', 'off');
-      }, 50);
-    }
-  }
-
-
-/* //댓글 등록 버튼을 눌렀을 때 호출될 함수
-function submitForm() {
-  if (reply_check()) {
-    // 여기서 댓글 등록 처리를 진행 (Ajax 사용 권장)
-
-    // 예시: 댓글을 등록하고, 새로운 댓글을 다른 div에 추가하는 코드
-    var newComment = document.reply_write_frm.content.value; // 새로운 댓글 내용
-    var commentDiv = document.createElement('div');
-    commentDiv.textContent = newComment;
-
-    // 다른 div에 새로운 댓글 추가
-    var otherDiv = document.getElementById('otherDiv'); // 다른 div의 id를 적절히 수정
-    otherDiv.appendChild(commentDiv);
-  }
-}
-
-function fetchDataFromServer() {
-	  fetch('http://localhost:8090') // 서버의 URL을 적절히 수정해야 합니다.
-	    .then(response => response.json()) // 서버로부터 응답을 JSON 형태로 파싱합니다.
-	    .then(data => {
-	      // 데이터를 사용하여 UI를 업데이트하거나 처리합니다.
-	      console.log(data); // 예시로 콘솔에 데이터 출력
-	    })
-	    .catch(error => {
-	      // 오류 처리
-	      console.error('Error:', error);
-	    });
-}
-
-function sendDataToServer(data) {
-	  fetch('http://localhost:8090', {
-	    method: 'POST', // 데이터를 전송하는 HTTP 메서드를 지정합니다.
-	    headers: {
-	      'Content-Type': 'application/json' // 전송하는 데이터의 타입을 지정합니다. JSON 형식 사용 시 application/json 지정
-	    },
-	    body: JSON.stringify(data) // 전송할 데이터를 JSON 문자열로 변환하여 body에 추가합니다.
-	  })
-	  .then(response => response.json())
-	  .then(data => {
-	    // 서버의 응답 데이터를 사용하여 UI를 업데이트하거나 처리합니다.
-	    console.log(data);
-	  })
-	  .catch(error => {
-	    // 오류 처리
-	    console.error('Error:', error);
-	  });
-} */
-
-function submitForm() {
-    var content_comment = document.getElementById("content_comment").value;
-
-    // 새로운 리뷰를 추가하는 경우
-    var reviewTextContainer = document.getElementById("review_text_container");
-    var newReviewDiv = document.createElement("div");
-    newReviewDiv.className = "review_text_area";
-    newReviewDiv.innerText = content_comment;
-    reviewTextContainer.appendChild(newReviewDiv);
-
-    // 기존에 입력한 글 초기화
-    document.getElementById("content_comment").value = "";
-  }
-
-</script>
 </body>
 </html>
