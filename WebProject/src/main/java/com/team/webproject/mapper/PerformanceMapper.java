@@ -6,6 +6,7 @@ import com.team.webproject.dto.PerformanceDTO;
 
 public interface PerformanceMapper {
 	List<PerformanceDTO> getAllPerformances();
+	List<PerformanceDTO> getPerformances(String main_category);
 	PerformanceDTO getPerformance(String pk);
 	
 }

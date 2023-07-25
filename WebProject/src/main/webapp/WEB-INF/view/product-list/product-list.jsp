@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/ad03eb7935.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%@ include file="../common/header.jsp" %>
 	<div id="product-container">
         <div id="navmenu">
             <div id="area">
@@ -36,7 +37,7 @@
                 <a href="">최고가순</a>
             </div>
         </div>
-        <div id="page-title">공연</div>
+        <div id="page-title">${main_category }</div>
         <div id="product">
         <c:forEach var="product" items="${performances }">
             <div class="product-module" data-pk="${product.performance_code }">
@@ -59,6 +60,7 @@
         </div>
 		<%@ include file="../common/scroll.jsp" %>
     </div>
+    <%@ include file="../common/footer.jsp" %>
 
 <script src="/resources/product-list/js/product-list.js"></script>
 <%@ include file="../common/commonJs.jsp" %>

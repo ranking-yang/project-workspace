@@ -1,3 +1,4 @@
+/* 화면 상단으로 이동하는 버튼 */
 const scrollUp = document.querySelector('.scroll-up');
 
 document.addEventListener('scroll', () =>{
@@ -13,4 +14,3 @@ scrollUp.addEventListener('click', () => {
 
 });
 
-  
