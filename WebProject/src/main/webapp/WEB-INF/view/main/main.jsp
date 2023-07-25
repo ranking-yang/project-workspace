@@ -3,14 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="/resources/main/css/main.css" var="css" />
 <c:url value="/resources/main/js/main.js" var="js" />
-<c:url value="/resources/fragments/css/fragments.css" var="fragments" />
+<%@ include file="/resources/common/commonCss.jsp" %> <!-- 공통 css -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
 <link rel="stylesheet" href="${css}">
-<link rel="stylesheet" href="${fragments}">
 <script src="${js}" defer></script>
 <script src="https://kit.fontawesome.com/cdd406875c.js"
 	crossorigin="anonymous"></script>
