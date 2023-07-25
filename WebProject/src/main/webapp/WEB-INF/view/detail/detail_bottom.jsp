@@ -6,10 +6,6 @@
 <meta charset="UTF-8">
 <title>detail_bottom</title>
 <link rel="stylesheet" href="/resources/detail/css/detail_bottom.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom2.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom3.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom4.css"/>
-<link rel="stylesheet" href="/resources/detail/css/detail_bottom5.css"/>
 <script src="/resources//detail/js/detail_bottom.js"></script>
 <style>
   .main_tab_wrap {
