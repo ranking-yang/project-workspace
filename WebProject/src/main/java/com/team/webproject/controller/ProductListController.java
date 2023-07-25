@@ -4,26 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team.webproject.mapper.PerformanceMapper;
 
-import lombok.RequiredArgsConstructor;
-
 
 @Controller
+@RequestMapping("/product")
 public class ProductListController {
 	
 	@Autowired
 	PerformanceMapper performanceMapper;	
 	
-	@GetMapping("/product")
-	String getProduckList(Model model) {
-		model.addAttribute("performances", performanceMapper.getAllPerformances());
+	@GetMapping("/performance")
+	String getProduckList(Model model, String main_category) {
 		
+		model.addAttribute("performances", performanceMapper.getPerformances(main_category));
+		model.addAttribute("main_category", main_category);
 		return "/product-list/product-list";
 	}
 	
-	@GetMapping("/product/product-detail")
+	
+	@GetMapping("/product-detail")
 	String getProductDetail(Model model, String performance_code) {
 		
 		model.addAttribute("perfomance", performanceMapper.getPerformance(performance_code));

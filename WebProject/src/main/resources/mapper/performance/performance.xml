@@ -6,6 +6,11 @@
 	<select id="getAllPerformances">
 		SELECT * FROM performance
 	</select>
+	
+	<select id="getPerformances">
+		SELECT * FROM performance where main_category=#{main_category}
+	</select>
+	
 	<select id="getPerformance" resultType="PerformanceDTO">
 		SELECT * FROM performance WHERE performance_code=#{performance_code}
 	</select>

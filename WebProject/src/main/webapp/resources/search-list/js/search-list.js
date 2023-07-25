@@ -1,20 +1,6 @@
 /**
  * 
  */
-const scrollUp = document.querySelector('.scroll-up');
-
-document.addEventListener('scroll', () =>{
-    if(window.scrollY > 300){
-        scrollUp.classList.add('visible');
-    }else{
-        scrollUp.classList.remove('visible');
-    }
-});
-
-scrollUp.addEventListener('click', () => {
-    document.querySelector('html').scrollIntoView({behavior: "smooth", block:"start"});
-
-});
 
 function toggleLike(event, buttonId) {
     event.stopPropagation();
@@ -33,8 +19,11 @@ function toggleLike(event, buttonId) {
     }
   }
   
-const product = document.querySelector('.product-module');
-
-// product.addEventListener('click', () => {
-//     window.location.href='상품상세페이지로 가면됨';
-// });
+const products = document.querySelectorAll('.product-module');
+	products.forEach(product => {
+		product.addEventListener('click', (e) => {
+	    	console.log(product.dataset.pk);
+	    	location.href = '../product/product-detail?performance_code=' + product.dataset.pk;
+	 });
+ });
+ 

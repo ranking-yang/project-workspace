@@ -101,6 +101,7 @@
 	}
 	
 	#search-box {
+		padding : 10px;
 	    width: 240px;
 	    height: 38px;
 		font-size: 15px;
@@ -124,7 +125,14 @@
 	    margin-top: 13px;
 		cursor:pointer;
 	}
-	
+
+/* header - nav -dropdown 메뉴*/ 
+.dropdown-content{
+	display: none;
+}
+
+
+
 /* footer */
 
 /* footer 컨테이너 */

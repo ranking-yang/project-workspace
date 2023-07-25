@@ -17,38 +17,19 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<div id="main-background">
-	<div>
 		<section id="ranking-container">
-			<div class="filters">
-				<div class="main-filters">
-					<ul id="main-filter-list">
-						<li class="main-filter-item">
-							<button class="main-filter-btn">공연</button>
-						</li>
-						<li class="main-filter-item">
-							<button class="main-filter-btn">전시</button>
-						</li>
-						<li class="main-filter-item">
-							<button class="main-filter-btn">음악</button>
-						</li>
-						<li class="main-filter-item">
-							<button class="main-filter-btn last-btn">키즈</button>
-						</li>
-					</ul>
-				</div>
-				<div class="sub-filter">
-					<ul id="sub-filter-list">
-						<li class="sub-filter-item">
-							<button class="sub-filter-btn">예매순</button>
-						</li>
-						<li class="sub-filter-item">
-							<button class="sub-filter-btn">별점순</button>
-						</li>
-						<li class="sub-filter-item">
-							<button class="sub-filter-btn last-btn">후기순</button>
-						</li>
-					</ul>
-				</div>
+			<div class="filter">
+				<ul id="filter-list">
+					<li class="filter-item">
+						<button class="filter-btn">예매순</button>
+					</li>
+					<li class="filter-item">
+						<button class="filter-btn">별점순</button>
+					</li>
+					<li class="filter-item">
+						<button class="filter-btn">후기순</button>
+					</li>
+				</ul>
 			</div>
 			<div class="wrapper">
 				<i id="left" class="fa-solid fa-angle-left"></i>
@@ -64,7 +45,8 @@
 						</div>
 					</div>
 					<div class="poster">
-						<span class="ranking">2</span> <span class="star">별점</span>
+						<span class="ranking">2</span>
+						<span class="star">별점</span>
 						<div class="img-wrap">
 							<img
 								src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF222203_230717_135603.gif"
@@ -139,8 +121,8 @@
 				<i id="right" class="fa-solid fa-angle-right"></i>
 			</div>
 		</section>
-		</div>
 	</div>
 	<%@ include file="../common/footer.jsp" %>
+	<%@ include file="../common/commonJs.jsp" %>
 </body>
 </html>
