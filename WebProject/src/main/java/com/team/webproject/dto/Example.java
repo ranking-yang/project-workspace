@@ -7,7 +7,7 @@ public class Example {
 	/*ENO        NOT NULL NUMBER(4)    
 	ENAME               VARCHAR2(10) 
 	JOB                 VARCHAR2(9)*/
-	private Integer eno;
+	private Integer code;
 	private String ename;
 	private String job;
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.AddPerformance">
+	<select id="selectShow" resultType="ShowDTO">
+		SELECT * FROM performance
+	</select>
+	
+	<insert id="addShow" parameterType="com.team.webproject.dto.ShowDTO">
+		INSERT INTO performance values(#{performance_code}, #{performance_name} ,#{performance_qty}, #{main_category}, #{sub_category}, #{performance_price}, #{start_date}, #{end_date}, #{address} , #{place}, #{kid_state}, #{porster})
+	</insert>
+</mapper>
