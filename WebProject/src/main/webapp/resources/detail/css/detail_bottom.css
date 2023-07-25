@@ -36,7 +36,7 @@
 }
 
 .score_section_left_star {
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars.png");
+  background-image: url("./common/image/icon_background_stars.png");
   background-repeat: no-repeat;
   background-size: 120px;
   width: 100%;
@@ -127,7 +127,7 @@
 }
 
 .review_title_left_star {
-  background-image: url("/mobile_img/icon_background_stars.png");
+  background-image: url("./common/image/icon_background_stars.png");
   background-repeat: no-repeat;
   background-size: 95px;
   width: 100%;

@@ -24,12 +24,6 @@
     <div id="ajaxcontentarea" class="contentstyle" style="border-radius:0 0 10px 10px">
     
     <div class="contentstyle1" id="content_1">
-
-        <!-- 클래스 안내 배너 -->
-        <div style="display:none;; width:700px; height:95px; margin-bottom:20px;">
-          <img src="img/bnr_class_noti.png" style="width:700px; border-radius:10px;" alt="예매전 주의사항 - 클래스">
-        </div>
-
         <div style="margin-top:10px;">
           <div class="viewpage_noti">예매정보</div>
           <div class="viewpage_text radius_box">
@@ -56,14 +50,14 @@
 
 
         <!-- 상세이미지 -->
-        <div class="info_detail_poster" alt="상세">
+        <div class="info_detail_poster">
           <div class="info_detail_gradient"></div>
           <div class="info_detail_btn" onclick="showMoreDetailImage()">펼쳐보기
             <img src="https://timeticket.co.kr/mobile_img/detail/icon_down.png" style="width:13px; vertical-align:2px;padding-left:10px;">
           </div>
         </div>
         <div id="main_img" class="main_img"><div style="max-width: 100%; width: 700px; height: 0; margin:20px 0; padding-bottom: 56.25%; position: relative;">
-			<iframe src="https://www.youtube.com/embed/s8Pbg-GSu6o" allowfullscreen="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
+			<iframe src="https://www.youtube.com/embed/s8Pbg-GSu6o" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
 			</div>
 			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_photo.jpg?230531">
 			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_reviewevent.jpg?230705">
@@ -93,7 +87,7 @@
           </div>
           <div align="center" style="margin-top:10px;">
             <div style="z-index:-1;" id="daum_map">
-              <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;" viewBox="0 0 3500 1750"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:v" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:v" name="daum.maps.Marker.Area:v"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
+              <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;" ></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:v" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:v" name="daum.maps.Marker.Area:v"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
             </div>
           </div>
         </div>
@@ -193,7 +187,7 @@
   <input type="hidden" name="as_can" value="">
 
   <div style="float:left;">
-    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요" required=""></textarea>
+    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
   </div>
   <div style="float:right;">
     <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록
@@ -201,7 +195,7 @@
   </div>
 </form>
 <!-- 로그인개선 : NeoHero 2009.07.30 -->
-<iframe name="h_blank" id="h_blank" src="" width="0" height="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="yes" style="visibility:hidden"></iframe>
+<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden"></iframe>
 </div>
 </div>
   
@@ -569,7 +563,7 @@
   <div style="float:left;">
     <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
 · 날짜/시간 변경은 불가하며 환불 후 다시 예매해야 합니다.
-· 티켓 환불은 마이티켓>예매내역에서 신청 가능합니다." required=""></textarea>
+· 티켓 환불은 마이티켓>예매내역에서 신청 가능합니다."></textarea>
   </div>
   <div style="float:right;">
     <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록
@@ -578,7 +572,7 @@
 </form>
 
 <!-- 로그인개선 : NeoHero 2009.07.30 -->
-<iframe name="h_blank" id="h_blank" src="" width="0" height="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="yes" style="visibility:hidden"></iframe>
+<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden"></iframe>
 
 
 		</div>
@@ -586,19 +580,7 @@
 	</div>
 
 	<div>
-		<span id="replyViewLabel" name="replyView"><script type="text/javascript">
-<!--
-	//reply_action.php?idx=$Reply[number]&number=$_GET[number]&id=$_GET[id]&action=$_GET[action]&mode=del
-	//reply_action.php?idx=$현재번호&number=$DETAIL[number]&id=$_GET[id]&action=$_GET[action]&mode=del
-	function reply_del(idx,number,id,action,mode)
-	{
-		if(confirm("정말 삭제 하시겠습니까?"))
-		{
-			location.href="reply_action.php?idx="+idx+"&number="+number+"&id="+id+"&action="+action+"&mode="+mode;
-		}
-	}
-//-->
-</script>
+		<span id="replyViewLabel" name="replyView">
 
 <div style="width:100%; padding-top:15px;">
 	<form name="reply_frm_1" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
@@ -612,10 +594,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;" align="absmiddle"> kakao_2908656890</span>&nbsp;&nbsp;(2023-07-13 15:22:23)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_2', '', '', '', '', '2', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;"> kakao_2908656890</span>&nbsp;&nbsp;(2023-07-13 15:22:23)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_2', '', '', '', '', '2', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기"></a></td>
   </tr>
 
   <tr>
@@ -624,7 +606,7 @@
 
   <tr id="habuReply_2">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -645,16 +627,16 @@
 
   <tr id="writeDiv_2" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -663,7 +645,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_3" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
+<form name="reply_frm_3" method="post" target="h_blank" style="margin:0;">
   <input type="hidden" name="number" value="4343">
   <input type="hidden" name="page" value="">
   <input type="hidden" name="userid" value="">
@@ -674,10 +656,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;" align="absmiddle"> kakao_1890701747</span>&nbsp;&nbsp;(2023-05-13 10:29:07)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_4', '', '', '', '', '4', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;"> kakao_1890701747</span>&nbsp;&nbsp;(2023-05-13 10:29:07)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_4', '', '', '', '', '4', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기"></a></td>
   </tr>
 
   <tr>
@@ -686,7 +668,7 @@
 
   <tr id="habuReply_4">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -707,16 +689,16 @@
 
   <tr id="writeDiv_4" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -736,10 +718,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" align="absmiddle"> naver_39316695</span>&nbsp;&nbsp;(2023-05-01 07:04:52)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_6', '', '', '', '', '6', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" > naver_39316695</span>&nbsp;&nbsp;(2023-05-01 07:04:52)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_6', '', '', '', '', '6', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -748,7 +730,7 @@
 
   <tr id="habuReply_6">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -769,16 +751,16 @@
 
   <tr id="writeDiv_6" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -798,10 +780,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:16:34)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_7', '', '', '', '', '7', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:16:34)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_7', '', '', '', '', '7', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -815,16 +797,16 @@
 
   <tr id="writeDiv_7" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -844,10 +826,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:10:26)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_9', '', '', '', '', '9', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:10:26)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_9', '', '', '', '', '9', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -856,7 +838,7 @@
 
   <tr id="habuReply_9">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -877,16 +859,16 @@
 
   <tr id="writeDiv_9" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -906,10 +888,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:09:45)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_10', '', '', '', '', '10', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">dalcomiss</span>&nbsp;&nbsp;(2022-10-30 21:09:45)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_10', '', '', '', '', '10', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -923,16 +905,16 @@
 
   <tr id="writeDiv_10" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -952,10 +934,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" align="absmiddle"> naver_44505770</span>&nbsp;&nbsp;(2022-08-31 19:37:59)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_12', '', '', '', '', '12', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" > naver_44505770</span>&nbsp;&nbsp;(2022-08-31 19:37:59)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_12', '', '', '', '', '12', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -964,7 +946,7 @@
 
   <tr id="habuReply_12">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -985,16 +967,16 @@
 
   <tr id="writeDiv_12" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -1014,10 +996,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">ffkee3</span>&nbsp;&nbsp;(2022-08-11 00:09:26)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_14', '', '', '', '', '14', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">ffkee3</span>&nbsp;&nbsp;(2022-08-11 00:09:26)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_14', '', '', '', '', '14', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -1026,7 +1008,7 @@
 
   <tr id="habuReply_14">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -1047,16 +1029,16 @@
 
   <tr id="writeDiv_14" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -1076,10 +1058,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" align="absmiddle"> naver_164704362</span>&nbsp;&nbsp;(2022-08-10 16:24:08)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_16', '', '', '', '', '16', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_naver.gif" style="padding-right:3px;" > naver_164704362</span>&nbsp;&nbsp;(2022-08-10 16:24:08)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_16', '', '', '', '', '16', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -1089,7 +1071,7 @@
 
   <tr id="habuReply_16">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -1110,16 +1092,16 @@
 
   <tr id="writeDiv_16" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -1139,10 +1121,10 @@
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
-  <table cellpadding="0" cellspacing="0" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+  <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
   <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">bmwwwww5</span>&nbsp;&nbsp;(2022-08-09 20:18:22)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_18', '', '', '', '', '18', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" align="absmiddle"></a></td>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;">bmwwwww5</span>&nbsp;&nbsp;(2022-08-09 20:18:22)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_18', '', '', '', '', '18', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기" ></a></td>
   </tr>
 
   <tr>
@@ -1152,7 +1134,7 @@
 
   <tr id="habuReply_18">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table cellspacing="0" style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
   <tbody><tr>
     <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
       <img src="https://timeticket.co.kr/img/reply_icon.png">
@@ -1173,16 +1155,16 @@
 
   <tr id="writeDiv_18" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
-      <table cellspacing="0" style="width:100%;">
+      <table style="width:100%;">
       <tbody><tr>
         <td>
-          <table cellspacing="0" style="width:100%;">
+          <table style="width:100%;">
           <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" required=""></textarea></td>
+            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;" ></textarea></td>
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
       </tr>
       </tbody></table>
     </td>
@@ -1206,7 +1188,7 @@
 
 
 <!-- ajax paging -->
-<script language="javascript">
+<script>
 $('body').on('click', '.goPage', function() {
     var param = $(this).attr('val');
     var b = '/reply_view_ajax.php?' + param;
@@ -1239,7 +1221,7 @@ $('body').on('click', '.goPage', function() {
   </div>
   <div align="center" style="margin-top:10px;">
     <div style="z-index:-1;" id="daum_map">
-      <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;" viewBox="0 0 3500 1750"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:c" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:c" name="daum.maps.Marker.Area:c"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
+      <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;"></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:c" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:c" name="daum.maps.Marker.Area:c"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
     </div>
   </div>
 <%--카카오맵 불러오는 거라서 안건듬 나중에 지우던지 해도 될듯--%>
