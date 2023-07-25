@@ -12,7 +12,7 @@ calendar.flatpickr({
     local: 'ko',
     inline: true,
     showMonths: 1,
-    minDate: "today",
+    minDate: chkStartDate(calendar.dataset.startdate),
     maxDate: (calendar.dataset.maxdate), // 날짜 형식 yyyy-mm-dd
     // 날짜 선택 시, 시간선택 오픈 및 초기화
     onChange : function(selectDates, dateStr, calendar) {
@@ -38,7 +38,6 @@ plusBtns.forEach(function (button) {
     button.addEventListener('click', function () {
         let parent = this.parentNode;
         let qtyValue = parent.querySelector('.qty-value');
-        let price = parseInt(parent.querySelector('.popup-qty-price').textContent);
         let currentQty = parseInt(qtyValue.textContent);
 
         // 수량 증가 (10이상 불가)
@@ -59,7 +58,6 @@ minusBtns.forEach(function (button) {
     button.addEventListener('click', function () {
         var parent = this.parentNode;
         var qtyValue = parent.querySelector('.qty-value');
-        var price = parseInt(parent.querySelector('.popup-qty-price').textContent);
         var currentQty = parseInt(qtyValue.textContent);
 
         // 수량 감소 (0 미만으로는 내려가지 않도록 조정)
@@ -82,8 +80,19 @@ function openTimeDiv() {
 // 권종/수량 div open
 function openQtyDiv() {
     closeQtyDiv();
-    document.querySelector('.popup-qty').style.display = 'flex';
-    qtyParents.forEach(a=>a.style.display = "grid");
+	document.querySelector('.popup-qty').style.display = "grid";
+    
+    // 연령 체크해서 qty 표출
+	const age = chkAge();
+    if (age >= 15) {
+		qtyParents[0].style.display = "grid";
+	} else if (age >= 7) {
+		qtyParents[0].style.display = "grid";
+		qtyParents[1].style.display = "grid";
+	} else {
+		qtyParents.forEach(a=>a.style.display = "grid");
+	}  
+    
 }
 
 // 권종/수량 div close
@@ -132,4 +141,25 @@ function updateTotalPrice() {
     }
     // 총 결제금액 표시
     document.getElementById('popup-totalPrice-value').value = totalPrice;
+}
+
+// 날짜 계산
+function chkStartDate(startdate) {
+	const date = new Date(startdate);
+	
+	if (date < "today") {
+		date = "today";
+	}
+	
+	return date;
+}
+
+// 연령 계산
+function chkAge() {	
+	const age = document.querySelector('#detail-top-age').textContent;	
+	if (age.includes('만')) {
+		return age.substring(age.indexOf(' '), age.indexOf('세'));
+	} else {
+		return 0;
+	}
 }
