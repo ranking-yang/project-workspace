@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.team.webproject.service.ExampleService;
+import com.team.webproject.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainController_jun {
 	
-	private final ExampleService exService;
+	private final LoginService exService;
 	
 	@GetMapping("/")
 	String index() {

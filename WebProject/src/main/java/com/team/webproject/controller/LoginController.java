@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.service.ExampleService;
+import com.team.webproject.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoginController {
 	
-	private final ExampleService exService;
+	private final LoginService exService;
 	
 	// 로그인 페이지
 	@GetMapping("/login")

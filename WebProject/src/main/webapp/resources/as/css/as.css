@@ -47,6 +47,9 @@ body{
     font-size: 1.5rem;
     font-weight: 500;
     padding: 0 0 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 #as-board-list{
     display: grid;
@@ -75,6 +78,10 @@ body{
 .as-board-list-board > div:nth-child(2){
     padding: 0 20px;
 }
+.as-board-list-board a {
+	text-decoration: none;
+	color: black;
+}
 .as-board-list-board > div:nth-child(2):hover{
     text-decoration: underline;
     cursor: pointer;
@@ -100,6 +107,21 @@ body{
 .page-buttons.selected{
     border: none;
     color: rgb(70,200,180);
+}
+
+.move-buttons {
+	border: none;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.move-buttons:hover{
+    border: 0.1px solid gray;
+    background-color: rgb(240, 239, 239);
+    cursor: pointer;
 }
 
 /* 고객센터 - 자주묻는 질문 css */

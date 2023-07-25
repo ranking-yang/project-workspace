@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.NoticeMapper">
+	<select id="getCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			notice
+	</select>
+	
+	<select id="getPage" resultType="NoticeDTO" parameterType="int">
+		SELECT 
+			* 
+		FROM
+			(SELECT 
+				rownum AS rn, A.*
+			FROM 
+				(SELECT
+					notice_code, notice_title, notice_date
+			 	FROM 
+					notice 
+			 	ORDER BY
+					notice_code DESC
+				) A
+			)
+		WHERE
+			rn &gt;= #{start} AND rn &lt;= #{end}
+	</select>
+	
+	<select id="getRecord" resultType="NoticeDTO" parameterType="int">
+		SELECT * FROM notice WHERE notice_code=#{pk}
+	</select>
+</mapper>

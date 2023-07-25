@@ -79,8 +79,12 @@ body{
     margin: 30px 10px;
     text-align: right;
 }
-#as-board-detail-listBtn >span{
+#as-board-detail-listBtn >button{
     padding: 10px 30px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
+	outline: none;
+    border: none;
 }
+
+

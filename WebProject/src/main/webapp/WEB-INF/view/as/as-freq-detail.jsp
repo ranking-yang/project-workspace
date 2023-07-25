@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항</title>
+    <title>자주 묻는 질문</title>
     <link rel="stylesheet" href="/resources/as/css/as-detail.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,18 +23,18 @@
             <div id="one-on-one" class="as-side-menu-subtitle">1:1 문의</div>
         </div>
         <div id="as-board">
-            <div id="as-board-title">공지사항</div>
+            <div id="as-board-title">자주 묻는 질문</div>
             <div class="as-board-detail">
                 <div id="as-board-detail-header">
-                    <div id="as-board-detail-title">테스트 제목 테스트 제목입니다</div>
-                    <div id="as-board-detail-date">23/07/21</div>
+                    <div id="as-board-detail-title">${freq.question_title}</div>
+                    <div id="as-board-detail-date">${freq.question_category}</div>
                 </div>
                 <div id="as-board-detail-body">
-                    <div id="as-board-detail-content">고객센터 공지사항 내용 테스트 내용입니다</div>
+                    <div id="as-board-detail-content">${freq.question_content}</div>
                 </div>
                 <div id="as-board-detail-footer">
                     <div id="as-board-detail-listBtn">
-                        <span>목록</span>
+                        <button onclick="location.href='/as/freq'">목록</button>
                     </div>
                 </div>
             </div>

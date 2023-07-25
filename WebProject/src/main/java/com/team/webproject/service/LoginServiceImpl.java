@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ExampleServiceImpl implements ExampleService {
+public class LoginServiceImpl implements LoginService {
 	
 	private final LoginMapper loginMapper;
 	
