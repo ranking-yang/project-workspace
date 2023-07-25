@@ -24,7 +24,7 @@
                 <!-- 좌측 포스터 텍스트-->
                 <div class="detail-top-info-con">
                     <div class="detail-top-info-icon">
-                    	
+                    	(DB 장소)
 					</div> <!-- DB 지역 -->
                     <div class="detail-top-info-icon">${perfomance.sub_category}</div> <!-- DB 분야 -->
                     <div class="detail-top-info-title">${perfomance.performance_name}</div> <!-- DB 제목 -->
@@ -59,7 +59,6 @@
         <div class="detail-top-right">
             <!-- 달력 -->
             <div class="placeholder" data-maxdate="${perfomance.end_date}"></div>
-
             <div class="popup-time">
                 <!-- 시간 -->
                 <div>시간선택</div>
