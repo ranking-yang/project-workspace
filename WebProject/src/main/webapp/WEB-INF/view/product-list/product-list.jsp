@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공연, 전시, 체험, 키즈 상세페이지</title>
-	<%@ include file="/resources/common/commonCss.jsp" %>
+	<%@ include file="../common/commonCss.jsp" %>
     <link rel="stylesheet" href="/resources/product-list/css/product-list.css">
     <link rel="stylesheet" href="/resources/product-list/css/product-list.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,10 +57,10 @@
            </div>
         </c:forEach>
         </div>
-		<%@ include file="/resources/common/scroll.jsp" %>
+		<%@ include file="../common/scroll.jsp" %>
     </div>
 
 <script src="/resources/product-list/js/product-list.js"></script>
-<%@ include file="/resources/common/commonJs.jsp" %>
+<%@ include file="../common/commonJs.jsp" %>
 </body>
 </html>
