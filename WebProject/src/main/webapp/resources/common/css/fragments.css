@@ -129,9 +129,9 @@
 
 /* footer 컨테이너 */
 .footer-container {
-	background-color: #f6f6f6;
 	border-top: 1px solid #eee;
     padding: 30px 0;  
+    background-color: #f6f6f6;
 }
 
 	.footer-container-sub {

@@ -28,7 +28,7 @@ public class ProductListController {
 		
 		model.addAttribute("perfomance", performanceMapper.getPerformance(performance_code));
 		
-		return "/detail/detailTop";
+		return "/detail/detail";
 	}
 	
 }
