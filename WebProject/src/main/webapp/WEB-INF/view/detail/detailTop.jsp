@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/resources/detail/css/detailTop.css" var="top_css"/>
 <c:url value="/resources/detail/js/detailTop.js" var="top_js"/>
@@ -23,9 +25,10 @@
                 <img src="${perfomance.poster}" alt="포스터"> <!-- 포스터 이미지 -->
                 <!-- 좌측 포스터 텍스트-->
                 <div class="detail-top-info-con">
-                    <div class="detail-top-info-icon">
-                    	(DB 장소)
-					</div> <!-- DB 지역 -->
+                    <div class="detail-top-info-icon"> <!-- DB 지역 -->
+                    	<c:set var="test" value="${perfomance.address}" />
+                    	${fn:substring(test,0,2)}
+					</div>
                     <div class="detail-top-info-icon">${perfomance.sub_category}</div> <!-- DB 분야 -->
                     <div class="detail-top-info-title">${perfomance.performance_name}</div> <!-- DB 제목 -->
                     <div class="detail-top-info-openrun">
@@ -35,9 +38,9 @@
                         </div>
                         <div class="detail-top-run-info"> 
                             <div><span class="material-symbols-outlined">schedule</span></div> 
-                            <div class="detail-top-run-txt">(DB시간)</div>  <!-- DB 총 공연 시간 -->
+                            <div class="detail-top-run-txt">${runtime}</div>  <!-- DB 총 공연 시간 -->
                             <div><span class="material-symbols-outlined">person</span></div>
-                            <div class="detail-top-run-txt">(DB연령대)</div> <!-- DB 연령대 -->
+                            <div class="detail-top-run-txt" id="detail-top-age">${age}</div> <!-- DB 연령대 -->
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
@@ -50,15 +53,18 @@
                         <div>티켓킹가</div>
                         <div>현재 최저가</div> <!-- DB 최저가 -->
                     </div>
-                    <div>${perfomance.performance_price}원 ~</div> <!-- DB 최저가 가격 -->
+                    <div> <!-- DB 최저가 가격 -->
+                    <fmt:parseNumber var="percent" value="${perfomance.performance_price - (perfomance.performance_price * 0.2)}" integerOnly="true" />
+                    ${percent}원 ~
+                    </div> 
                 </div>
             </div>
             <!-- 여백 -->
             <div></div>
         </div>
         <div class="detail-top-right">
-            <!-- 달력 -->
-            <div class="placeholder" data-maxdate="${perfomance.end_date}"></div>
+            <!-- 달력 -->   
+            <div class="placeholder" data-startdate="${perfomance.start_date}" data-maxdate="${perfomance.end_date}"></div>
             <div class="popup-time">
                 <!-- 시간 -->
                 <div>시간선택</div>

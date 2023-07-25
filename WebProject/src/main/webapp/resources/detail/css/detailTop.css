@@ -73,23 +73,26 @@
             font-weight: 600;
             height: 54px;
             padding-top: 10px;
+            padding-right: 5px;
         }
 
         .detail-top-info-openrun {
             font-size: 14px;
             font-weight: 400;
             text-align: left;
-            padding-top: 20px;
+            padding-top: 25px;
         }
 
-            .detail-top-run-tit, .detail-top-run-tit {
+            .detail-top-run-tit {
                 display: grid;
                 grid-template-columns: 30px 1fr;
+                padding-top: 5px;
             }
 
             .detail-top-run-info {
                 display: grid;
                 grid-template-columns: 30px 100px 30px 1fr;
+                padding-top: 5px;
             }
 
             .detail-top-run-txt {
@@ -121,11 +124,14 @@
 
     .detail-top-info-price > div:first-child > div:last-child {
         padding-top: 5px;
+        padding-left: 1px;
         font-size: 12px;
     }
 
     .detail-top-info-price > div:last-child {
         padding-top: 10px;
+        padding-right: 10px;
+        text-align: right;
     }
 
 /* 사용자 선택 popup */
