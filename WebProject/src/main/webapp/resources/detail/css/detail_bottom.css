@@ -6,13 +6,7 @@
   background-color: #fff;
 }
 
-.score_wrap {
-  border: 1px solid #eee;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  padding: 20px 55px;
-}
-
+/*후기탭 별점 칸*/
 .score_section {
   display: flex;
   justify-content: space-around;
@@ -68,7 +62,7 @@
   width: 50%;
   transform: translateY(8%);
 }
-
+/* 별점 분포 그래프 */
 .progress_section {
   display: flex;
   justify-content: center;
@@ -99,7 +93,7 @@
 
 
 /* 이용후기 : 상세p & 마이p : 이용후기 공통 */
-
+/* 후기탭 리뷰 칸 */
 .review_wrap {
   display: flex;
   flex-direction: column;
@@ -179,6 +173,7 @@
   padding-bottom: 10px;
 }
 
+/* 더보기 */
 .show {
   display: block;
   max-height: none;
@@ -206,7 +201,7 @@
   -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
 }
 
-
+/* 리뷰에 쓰이는 사진 */
 .img_label {
   display: inline-block;
   border-radius: 10px;
@@ -231,684 +226,14 @@
   cursor: pointer;
 }
 
+/* 리뷰와 별점 구분하기 위한 마진 */
 .review_start {
   margin: 20px 0;
 }
 
-
-
-/* 상세페이지 > 상단 요약 노출 영역 */
-/* main.html */
-
-.review_preview {
-  margin: 20px auto;
-  width: 820px;
-}
-
-.review_preview {}
-
-.review_preview_container {
-  background-color: #FFFFFF;
-  padding: 18px 50px 10px 50px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-}
-
-.review_preview_title_section {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 15px;
-}
-
-.review_preview_left {
-  display: flex;
-  font-size: 16px;
-  font-weight: 600;
-  align-items: baseline;
-  padding: 5px 0;
-}
-
-.review_preview_title {
-  padding-right: 8px;
-}
-
-.review_preview_number {
-  padding-right: 25px;
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.review_preview_right {
-  font-size: 16px;
-  color: #777;
-  transform: translateY(10%);
-  cursor: pointer;
-}
-
-.review_preview_right_btn {
-  background-image: url("https://timeticket.co.kr/img/icon_arrow_down.png");
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
-
-.review_seemore_wrap {
-	background-color: #fff;
-	width: 100%;
-	height: 65px;
-	display: flex;
-	justify-content: center;
-}
-
-.review_seemore {
-  background-image: url("https://timeticket.co.kr/img/btn_seemore.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  width: 155px;
-  height: 35px;
-  cursor: pointer;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-.review_empty {
-  display: none;
-  color: #999;
-  font-size: 16px;
-  text-align: center;
-  top: 50%;
-  transform: translateY(60%);
-  font-weight: 900;
-  padding-top : 60px;
-}
-
-.review_empty_icon {
-  margin-bottom: 15px;
-}
-
-
-
-/* 나의 이용후기 영역 ONLY */
-/* user_review_rows_my.html */
-
-.my_review_productname {
-  font-size: 18px;
-  font-weight: 800;
-  color: #000;
-}
-
-.my_review_title_right {
-  display: flex;
-  white-space: nowrap;
-  color: #777;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-.my_review_title_right div:hover {
-  color:#ff4b4b;
-}
-
-.my_review_title_right div {
-  margin-left: 5px;
-  font-size:13px;
-  cursor: pointer;
-}
-
-
-
-/* 후기 작성/수정 페이지 */
-/* my_buy_choice_wright */
-
-.review_write_wrap {
-  background-color: #fff;
-  margin-top: 5px;
-  padding-top: 15px;
-  border-top: #e2e2e2 1px solid;
-}
-
-.first_flex_container {
-  display: flex;
-  height: 100px;
-}
-
-.second_flex_container {
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  padding: 5px 0 10px 0;
-}
-
-.product_info_poster {
-  width: 100px;
-  height: 100px;
-  margin-right: 18px;
-  border-radius: 10px;
-  background-color: #cccccc;
-}
-
-.product_info_poster_img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-}
-
-.product_info_detail {
-  text-align: left;
-  padding-top: 7px;
-  width: 550px;
-}
-
-.product_info_detail_title {
-  font-size: 17px;
-  font-weight: 900;
-  color: #000;
-  padding-bottom: 10px;
-}
-
-.product_info_detail_option {
-  font-size: 14px;
-  color: #999;
-  white-space: nowrap;
-  width: 550px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-}
-
-.product_info_detail_date {
-  font-size: 14px;
-  color: #999;
-}
-
-.review_section_stars {
-  display:flex;
-  align-items: center;
-}
-
-.review_section_stars img {
-  width: 33px;
-  margin-right: 4px;
-  cursor: pointer;
-}
-
-.review_section_star_value {
-  visibility: hidden;
-}
-
-.review_section_text {
-  width: 100%;
-  height: 100%;
-}
-
-.review_section_text_input {
-  padding: 15px;
-  width: 750px;
-  height: 150px;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  resize: none;
-  outline: none;
-  line-height: 22px;
-  font-size: 14px;
-  text-align: justify;
-}
-
-.review_section_photo {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-}
-
-.review_section_photo_label {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
-.review_section_photo_preview {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.review_section_photo_cancel {
-  visibility: hidden;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  transform: translateY(-103%);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.review_section_text_limit {
-  text-align: right;
-  color: #ff4b4b;
-  font-size: 13px;
-  padding-top: 5px;
-  letter-spacing: -0.5px;
-}
-
-.review_section_reward {
-  display: flex;
-  align-items: center;
-}
-
-.review_section_reward_text {
-  padding: 7px 15px;
-  border-radius: 8px 8px 8px 0;
-  font-size: 14px;
-  background-color: #2bda8b;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.review_section_submit {
-  padding: 20px 0;
-  text-align: center;
-}
-
-.review_section_submit button {
-  background-color: #ff4b4b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: 400;
-  height: 55px;
-  width: 40%;
-  cursor: pointer;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-#img_upload {
-  display: none;
-}
-
-.notice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 130%;
-  height: 150%;
-  transform: translate(-35%, -35%);
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-}
-
-.notice_box {
-  position: absolute;
-  width: 480px;
-  height: auto;
-  background-color: #fff;
-}
-
-.notice_box_title {
-  color: #ff4b4b;
-  font-size: 20px;
-  font-weight: 800;
-  padding: 35px;
-  text-align: center;
-}
-
-.notice_box_description {
-  color: #777;
-  text-align: left;
-  padding: 0px 50px 50px ;
-  font-size: 16px;
-
-}
-
-.notice_box_confirm {
-  color: #777;
-  font-size: 20px;
-  text-align: center;
-  font-weight: 800;
-  padding: 20px 0px;
-  cursor: pointer;
-  border-top: #e2e2e2 1px solid;
-}
-
-.inactive {
-  display: none;
-}
-
-.info-warp {
-  width: 275px;
-  letter-spacing: -0.5px;
-}
-
-.info-warp .icon span {
-  display: inline-block;
-  font-size: 16px;
-  color: #fff;
-  padding: 5px 10px;
-  background: #555;
-  opacity: 0.9;
-  border-radius: 7px;
-  margin-right: 5px;
-}
-
-.info-warp .title {
-  padding: 10px 0 10px 0;
-  line-height: 140%;
-  height: 54px;
-  font-size: 20px;
-  color: #fff;
-  font-weight: 600;
-}
-
-.info-warp .openrun .run_tit {
-  font-size: 14px;
-  color: #fff;
-  padding-top: 2px;
-  font-weight: 400;
-}
-
-.info-warp .openrun .run_tit img {
-  width: 15px;
-  padding-right: 7px;
-  vertical-align: -2px;
-}
-
-.info-warp .openrun .run_info {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.info-warp .openrun .run_info span {
-  display: inline-block;
-  padding: 7px 10px 7px 15px;
-  color: #fff;
-  font-size: 15px;
-  position: relative
-}
-
-.info-warp .openrun .run_info span img {
-  width: 16px;
-  padding-right: 7px;
-  vertical-align: -3px;
-}
-
-.info-warp .openrun .run_info span:first-child {
-  padding-left: 0;
-}
-
-.info_bg_gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #000;
-  width: 482px;
-  height: 482px;
-  border-radius: 10px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.95) 100%);
-}
-
-/* í•˜ë‹¨ ê°€ê²© */
-.price_warp {
-  width: 430px;
-  display: flex;
-  justify-content: space-between;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
-  padding-top: 15px;
-  margin-left: 5px;
-}
-
-.price_warp .sale_info .sale_txt {
-  color: #fff;
-  padding-top: 7px;
-  font-size: 14px;
-}
-
-.price_warp .sale_info .sale_p {
-  color: #ff4b4b;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.price_warp .price_info {
-  text-align: right;
-  margin-top:13px;
-}
-
-.price_warp .price_info .origin_price {
-  color: #fff;
-  font-size: 14px;
-  text-decoration: line-through;
-  margin-right: 10px;
-}
-
-.price_warp .price_info .sale_price {
-  font-size: 26px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.price_section_etc {
-  text-align: center;
-  padding: 30px 0;
-  line-height: 180%;
-  font-size: 14px;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.selectBox {
-  display: none;
-  margin-top: 10px;
-  border-radius: 10px;
-  background: #fff;
-  padding: 13px 15px 15px 15px;
-}
-
-.selectBox .selectbox_title {
-  font-size: 14px;
-  color: #777;
-  line-height: 26px;
-  font-weight: bold;
-}
-
-.selectBox .time_btn,
-.selectBox .title1_btn,
-.selectBox .title2_btn {
-  margin-top: 5px;
-  background: #f6f6f6;
-  padding: 10px;
-  border-radius: 5px;
-  border: 0;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.option_title {
-  display: block;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #333333;
-  font-weight: 400;
-  margin-bottom: 5px;
-}
-
-.title2_left {
-  float: left;
-  font-size: 11px;
-  color: #777777;
-  padding-top: 4px;
-}
-
-.title2_price {
-  float: right;
-  font-size: 14px;
-  color: #333333;
-}
-
-.time_btn.active,
-.title1_btn.active,
-.title2_btn.active {
-  background: #ffdbdb;
-}
-
-.choice_select {
-  display: none;
-  margin-top: 10px;
-  border-radius: 10px;
-  background: #fff;
-  padding: 15px 15px 10px 15px;
-}
-
-.choice_select .title {
-  font-size: 14px;
-  color: #777;
-  font-weight: bold;
-}
-
-.choice_select .select_list {
-  margin-top: 10px;
-}
-
-.choice_select .select_item {
-  margin-top: 10px;
-  padding: 15px 0 10px 0;
-  border-top: 1px solid #eeeeee;
-}
-
-.choice_select .select_item .select_name {
-  font-size: 13px;
-  color: #333333;
-}
-
-.choice_select .price_warp {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding: 0;
-  width: 100%;
-}
-
-.choice_select .price_warp .quantity {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 75px;
-  height: 19px;
-  border-radius: 3px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #333333;
-  background: #f4f4f4;
-}
-
-.choice_select .price_warp .quantity button {
-  border: 0;
-  background: none;
-}
-
-.choice_select .price_warp .price {
-  font-size: 13px;
-  color: #333333;
-}
-
-.add_ticket,
-.remove_ticket {
-  font-size: 20px;
-  color: #888;
-  padding-bottom: 1px;
-  cursor: pointer;
-}
-
-.remove_ticket {
-  font-size: 20px;
-  color: #888;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
-.total_warp {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 5px 10px 5px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.total_warp .title {
-  font-size: 18px;
-  color: #333333;
-}
-
-.total_warp .total_price {
-  color: #ff4b4b;
-}
-
+/* Q&A 페이지*/
 .main_tab_title { font-size: 20px; margin-top:15px; font-weight: 700; color: #000; }
 
-.promo_box { position:relative; height:70px; padding: 15px 25px; margin-top:15px; border-radius: 10px; font-size: 16px; line-height: 150%;}
-.promo_datetime { float:left; margin-top: 10px; font-size: 16px; font-weight: 700;  color: #fff; border-radius: 10px; }
-.promo_btn_circle { position:absolute; bottom:25px; right: 15px; }
-.promo_btn_circle img { width: 40px; }
-
-.cls_detail {
-  width: 100%;
-  margin: 0 auto;
-  font-size: 14px;
-  color: #313131;
-  line-height: 1.8em;
-  text-align: left;
-}
-.cls_detail img {
-  margin: 20px 0;
-  width: 100%;
-  border-radius: 10px;
-}
-.cls_para {
-  padding: 10px 10px;
-  text-align: justify;
-}
-.cls_title {
-  margin: 30px 0 5px 0;
-  padding: 13px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  background: #F7DFDB;
-  color: #ff4b4b;
-  border-radius: 10px;
-}
-.cls_title:nth-child(1) {
-  margin-top: 40px;
-}
-
-.info_subtitle {
-  font-weight: 700;
-}
-
-.radius_box {
-  background: #f8f8f8;
-  padding: 12px 15px;
-  border-radius: 10px;
-  margin-top: 5px;
-}
-
-.red{ color:red; }
-.blue{ color:blue; }
-.txt_red {color:red;}
-.txt_blue {color:#000098;}
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
 
@@ -970,471 +295,22 @@ object {
   line-height: 22px;
 }
 
-
-/* ì›¹ TOP GNB ë¡œê·¸ì¸, ë¡œê·¸ì•„ì›ƒ */
-#top_gnb { margin:0; margin-top: 10px; }
-#top_gnb li { float:left; list-style:none; font-size:14px; font-weight:400; }
-#top_gnb li a { display: block; text-align:center; width: 50px; padding:10px; color: #454545; white-space: nowrap; }
-#top_gnb li a:hover { color:#ff4b4b; }
-#top_gnb li ul { position: absolute; visibility: hidden; margin-top:2px; margin-left:-45px; padding:10px; border-radius:10px; box-shadow: 0 0 10px #ddd; background:#fff; z-index:9999; }
-#top_gnb li ul li { float: none; display: inline; }
-#top_gnb li ul li a { width: 140px; font-size:14px; color:#454545; padding:10px 0; }
-#top_gnb li ul li a:hover { color:#ff4b4b; }
-
-/* ì›¹ GNB */
-.gnb_wrap { position:relative; width:1100px; margin:auto; ;}
-.gnb_nav { list-style:none; vertical-align:top; }
-.gnb_nav > li { position:relative; color:#333; font-size:18px; font-weight:500; height:50px; line-height:50px; border:0px solid #fff; }
-.gnb_nav > li { display:inline-block; padding:0 20px;} /*ë²„íŠ¼ ì‚¬ì´ ê°„ê²©*/
-.gnb_nav > li > a { color:#333; }
-.gnb_nav > li > a:hover { color:#ff4b4b; }
-.gnb_nav .on { border:1px solid #eee; border-bottom:none; border-radius:10px 10px 0 0; background: #f9f9f9; }
-.gnb_nav .on a { color:#ff4b4b; font-weight:700; }
-.gnb_nav .nav_divide { color:#ccc; font-size:16px; font-weight:100; padding:0 25px; }
-
-/* ì›¹ Footer ì˜ì—­*/
-#footer_menu { width:980px; margin:0 auto; }
-#footer_menu ul { width:980px; list-style:none; margin-left:120px; padding-top:10px; }
-#footer_menu li { float:left; margin:0px 60px 20px 25px; font-size:14px; font-weight:bold; color:#333; cursor: pointer; }
-
-/* ìƒì„¸íŽ˜ì´ì§€ í…ìŠ¤íŠ¸ */
+/* 환불 규정 */
 .viewpage_text { font-size:15px; font-weight:400; color:#000; line-height:180%; letter-spacing: 0; }
 .viewpage_text p { margin:0px; padding:0px;}
 .viewpage_noti { font-size:20px; font-weight:bold; color:#000; line-height:35px; }
 .viewpage_noti_blue { font-size:20px; font-weight:bold; color:#0011ad; line-height:35px; }
-
-/* ë²„íŠ¼(ê³ ê°ì„¼í„° ë“±) */
-.cs_btn_gray { float:right; margin-left:10px; width:75px; height:25px; padding-top:8px; background:#e2e2e2; border-radius:5px; color:#555; font-size:14px; font-weight:600; text-align:center; }
-.cs_btn_red { float:right; border:0; margin-left:10px; width:85px; height:28px; padding-top:10px; background:#ff4b4b; border-radius:5px; color:#fff; font-size:15px; font-weight:600; text-align:center; }
-.cs_btn_red_button { float:right; border:0; margin-left:10px; width:74px; height:31px; padding-top:2px; padding-bottom:2px; background:#ff4b4b; border-radius:5px; color:#fff; font-size:14px; font-weight:600; text-align:center; cursor:pointer; }
-
-/* íšŒì‚¬ì†Œê°œ, ì œíœ´ë¬¸ì˜ */
-.c_title { font-size:32px;line-height:1.8; letter-spacing:-1px; color:#333; }
-.c_subtitle { font-size:22px;line-height:1.8; color:#333; padding-bottom:10px; font-weight:bold;}
-.c_text { font-size:16px;line-height:1.8; color:#333; }
-.c_line { border: 0; height: 0; border-bottom: 1px solid #ccc; }
-
-.border0 { border:1px solid #ffffff;}
-.border1 { border:1px solid #c8c8c8;}
-.border2 { border:1px solid #e81b19;}
-.background_01 { background-color:#ffffff;}
-.background_02 { background-color:#f5f5f5;}
-
-.opacity { -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; opacity:.5; filter: alpha(opacity=50); }
-.ellipsis { overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
-.ellip { word-break:break-all;text-overflow-mode:ellipsis-word;text-overflow-mode:ellipsis;text-overflow-mode:clip;text-overflow:ellipsis;overflow:hidden; white-space:nowrap; }
-
+/* 환불 규정 글씨 색*/
 .red{ color:red; }
 .blue{ color:blue; }
 .txt_red {color:red;}
 .txt_blue {color:#000098;}
 
-.loading {
-  display: none;
-  width: 100vw;
-  height: 1000vh;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 9999;
-  background: url('/mobile_img/loading.gif') 50% 40% no-repeat; background-size: 60px 60px;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-/*---------- ë©”ì¸/ë¦¬ìŠ¤íŠ¸ 4ì—´ ê³ ì •í˜• í‹°ì¼“ ----------*/
-.ticket_list {
-  position: relative;
-  width: 255px;
-  margin-right: 26px;
-  margin-bottom: 60px;
-  letter-spacing: -1px;
-  text-align: left;
-  transition: transform 0.3s ease-in-out;
-}
-.ticket_list:hover {
-  transform: translateY(-5px);
-}
-.ticket_list .thumb img {
-  width: 255px;
-  height: 357px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-}
-.ticket_list .promo_badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  display: flex;
-}
-.ticket_list .ticket_info {
-  width: 95%;
-  padding: 0 5px;
-  letter-spacing: -0.5px;
-}
-.ticket_list .ticket_info .area {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: #333;
-  background: #eee;
-  border-radius: 10px;
-}
-.ticket_list .ticket_info .category {
-  display: block;
-  margin-top: 10px;
-  color: #999;
-  font-size: 14px;
-}
-.ticket_list .ticket_info .title {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #000;
-  font-weight: 400;
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
-}
-.ticket_list .ticket_info .price {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  font-size: 18px;
-  color: #000;
-  font-weight: 600;
-  text-align: left;
-}
-.ticket_list .ticket_info .price .stars {
-  font-size:15px; color:#333; font-weight:600;
-}
-.ticket_list .ticket_info .price .stars img {
-  width:15px; vertical-align:-1px; padding-right:3px;
-}
-.ticket_list .ticket_info .price .stars span {
-  font-size:14px; font-weight: 300;
-}
-.ticket_list .ticket_info .price .sale_percent {
-  color:#ff4b4b; font-size:16px; margin-right:3px;
-}
-
-
-/*---------- ë©”ì¸ 4/5ì—´ rolling í‹°ì¼“ ----------*/
-.category_ticket {
-  position: relative;
-  transition: transform 0.3s ease-in-out;
-}
-.category_ticket:hover {
-  transform: translateY(-5px);
-}
-.category_ticket .promo_badge {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-}
-.category_ticket .ticket_info {
-  width: 95%;
-  padding: 0 5px;
-  letter-spacing: -0.5px;
-}
-.category_ticket .ticket_info .area {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: #333;
-  background: #eee;
-  border-radius: 10px;
-}
-.category_ticket .ticket_info .category {
-  display: block;
-  margin-top: 10px;
-  color: #999;
-  font-size: 14px;
-}
-.category_ticket .ticket_info .title {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #000;
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
-}
-.category_ticket .ticket_info .price {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #ff4b4b;
-  font-weight: 600;
-  text-align: left;
-}
-.category_ticket .ticket_info .price span {
-  color: #000;
-  float: right;
-}
-
-
-
-/* í”„ë¡œëª¨ ë²„íŠ¼ ìƒ‰ê¹” ê³µí†µ */
-.promo_new { background: #ffbc28; }
-.promo_timesale { background: #FF7575; }
-.promo_today { background: #3DCE9D; }
-
-.promo_new2 { background: #ffbe28; }
-.promo_timesale2 { background: #FF7575; }
-.promo_today2 { background: #3DCE9D; }
-
-.promo_new,
-.promo_timesale,
-.promo_today {
-  font-size: 14px;
-  color: #fff;
-  border-radius: 10px;
-  margin-right: 10px;
-  padding: 5px 10px;
-}
-
-.promo_new2,
-.promo_timesale2,
-.promo_today2 {
-  font-size: 14px;
-  color: #fff;
-  border-radius: 10px;
-  margin-right: 4px;
-  padding: 5px 6px;
-}
-
-
-
-/* íŽ˜ì´ì§€ ìœ„ë¡œê°€ê¸° ë²„íŠ¼ */
-.scroll-up {
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  width: 70px;
-  height: 70px;
-  opacity: 0;
-  border-radius: 50%;
-  transition: all 300ms ease-in;
-  pointer-events: none;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-.scroll-up.visible {
-  opacity: 0.9;
-  display: block;
-  pointer-events: auto;
-}
-
-.scroll-up img {
-  width: 100%;
-  opacity: 0.9;
-}
-
-/* css 추가 */
-#calendar_popup .ui-widget.ui-widget-content {
-    width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    background: #fff;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
-
-#calendar_popup .ui-widget-header {
-    background: #fff;
-    border: 0;
-    margin-top:10px;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-prev {
-    position: static;
-    display: block;
-    width: 15px;
-    height: 18px;
-    background: url(../../mobile_img/detail/ico_pre.png) no-repeat center center;
-    background-size: 100% 100%;
-    margin-right: 20px;
-    cursor: pointer;
-    order: 0
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-next {
-    position: static;
-    display: block;
-    width: 15px;
-    height: 18px;
-    background: url(../../mobile_img/detail/ico_next.png) no-repeat center center;
-    background-size: 100% 100%;
-    margin-left: 20px;
-    cursor: pointer;
-    order: 2
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-prev span,
-#calendar_popup .ui-datepicker .ui-datepicker-next span {
-    position: static;
-    display: none;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-title {
-    margin: 0;
-    padding-bottom: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size:0;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-title span {
-    color: #414141;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-title span.ui-datepicker-year {
-    order: 0
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-title span.ui-datepicker-year::after {
-    content: ".";
-    display: inline-block;
-    color: #414141;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-#calendar_popup .ui-datepicker .ui-datepicker-calendar {
-    width:100%;
-    margin-top: 10px;
-}
-
-#calendar_popup .ui-datepicker th {
-    padding: 0;
-    color: #919191;
-    font-size: 15px;
-    font-weight: 400;
-    padding-bottom: 10px;
-}
-
-#calendar_popup .ui-datepicker td {
-    padding: 0;
-    padding-bottom: 12px;
-    position: relative;
-}
-
-#calendar_popup .ui-datepicker td a {
-    display: block;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    border-radius: 90px;
-    color: #414141;
-    font-size: 15px;
-    margin: 0 auto;
-    border: 0;
-    background: none;
-    text-align: center;
-    padding: 0;
-}
-
-#calendar_popup .ui-datepicker td.ui-datepicker-today a:after {
-    content: '오늘';
-    position: absolute;
-    font-size: 10px;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 0;
-    width: auto;
-    height: auto;
-    color: #ff4b4b;
-}
-
-#calendar_popup .ui-state-disabled {
-    opacity: 0.4;
-}
-
-#calendar_popup .ui-state-disabled span {
-    display: block;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    border-radius: 90px;
-    color: #414141;
-    font-size: 15px;
-    margin: 0 auto;
-    border: 0;
-    background: none;
-    text-align: center;
-    padding: 0;
-}
-
-#calendar_popup .ui-datepicker tr td:first-child a,
-#calendar_popup .ui-datepicker tr td:first-child span {
-    color: #ff4b4b;
-}
-
-#calendar_popup .ui-datepicker tr td:last-child a,
-#calendar_popup .ui-datepicker tr td:last-child span {
-    color: #4b75ff;
-}
-
-#calendar_popup .ui-datepicker tr td a.ui-state-active {
-    background: #ff4b4b;
-    color: #fff;
-}
-
-#calendar_popup.calendar_popup_02 .ui-widget.ui-widget-content {
-    padding-bottom: 5px;
-}
-
-.calendar_popup_02 .submit_btn {
-    padding-top:10px;
-    width: 100%;
-    background: #f4f4f4;
-    cursor: pointer;
-}
-
-.calendar_popup_02 .submit_btn button {
-    display: block;
-    width: 100%;
-    height:50px;
-    line-height: 50px;
-    text-align: center;
-    background: #ff4b4b;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 0;
-    cursor: pointer;
-}
-
-.calendar_popup_02 .submit_btn button.disabled {
-    background: #c6c6c6;
-    cursor: pointer;
-}
-
+/* id="maintab"의 클래스 shadetabs*/
 .shadetabs ul, li {list-style:none; margin:0; padding:0;  }
 
 .shadetabs{ width:818px; cursor:pointer; padding:0; background:#fff; height:61px; border:1px solid #eee; border-bottom:1px solid #eee;}
 
-.shadetabs li{  }
-
-/* ì…€ë ‰íŠ¸ë˜ê¸°ì „ */
 .shadetabs li a{
 text-decoration: none; float:left; width:20%; padding-top:20px;
 text-align:center;
@@ -1443,11 +319,6 @@ font-weight: 600;
 color:#777;
 }
 
-.shadetabs li a:visited{ }
-.shadetabs li a:hover{  }
-.shadetabs li.selected{ }
-
-/* ì…€ë ‰íŠ¸ ëœ í›„ */
 .shadetabs li.selected a{
 color:#ff4b4b;
 font-weight: 800;
@@ -1460,7 +331,88 @@ font-weight: 800;
 text-decoration: none;
 }
 
+/* 탭 영역시작 id="ajaxcontentarea"인 클래스*/
 .contentstyle{
 width: 100%;
 height:auto;
 }
+
+/* 환불 규정 탭*/
+.main_tab_wrap {
+	border: 1px solid #eee;
+	border-top: none;
+    padding: 30px 59px;
+    border-radius:0 0 10px 10px;
+}
+
+/* 상세 이미지 펼쳐보기 */
+.info_detail_btn {
+   position: absolute;
+   bottom: 15px;
+   width: 94%;
+   height: 55px;
+   line-height: 55px;
+    margin-left: 3%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow:1px 1px 3px 2px #ddd;
+}
+.info_detail_poster {
+    position: relative;
+    margin-top: 35px;
+    width: 100%;
+    height: 700px;
+    color: #fff;
+    font-size: 20px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: 0%;
+    background-image: url('https://timeticket.co.kr/wys2/file_attach_thumb/2021/05/21/1621571534-67-0_wonbon_N_7_600x600_70_2.jpg');
+}
+.info_detail_gradient {
+    width: 100%;
+    height: 700px;
+    background-image: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.8) 80%,
+    rgb(255, 255, 255) 100%);
+}
+
+/* 상세 이미지 스타일   */
+.main_img { margin-top:35px; width:700px; text-align: center; }
+.main_img img { display:block; width:100%; }
+
+.viewpage_flex {
+  display: flex; justify-content: flex-start;
+}
+.viewpage_flex div:nth-child(1) {
+    padding-left:10px; width: 120px; color: #888;
+}
+.viewpage_flex div:nth-child(2) {
+    color: #000;
+}
+.viewpage_flex a {
+    text-decoration: underline;
+}
+.border_box {
+  border: 1px solid #eee;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.border_box .viewpage_flex {
+    border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 8px;
+}
+.border_box .viewpage_flex:last-child {
+    border: none; padding-bottom: 0; margin-bottom: 0;
+}
+
+/* 환불 규정 텍스트*/
+.viewpage_text { line-height:160%; font-size:15px;	}
+.viewpage_text .viewpage_noti { padding:15px 0 0 0; font-weight:700; font-size:16px; }
