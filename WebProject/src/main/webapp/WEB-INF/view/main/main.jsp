@@ -3,17 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:url value="/resources/main/css/main.css" var="css" />
 <c:url value="/resources/main/js/main.js" var="js" />
+<c:url value="/resources/fragments/css/fragments.css" var="fragments" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
 <link rel="stylesheet" href="${css}">
+<link rel="stylesheet" href="${fragments}">
 <script src="${js}" defer></script>
 <script src="https://kit.fontawesome.com/cdd406875c.js"
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<%@ include file="../fragments/header/header.jsp" %>
 	<section id="ranking-container">
 		<div class="filters">
 			<div class="main-filters">
@@ -135,5 +138,6 @@
 			<i id="right" class="fa-solid fa-angle-right"></i>
 		</div>
 	</section>
+	<%@ include file="../fragments/footer/footer.jsp" %>
 </body>
 </html>

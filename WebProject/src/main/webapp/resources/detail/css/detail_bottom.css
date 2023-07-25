@@ -1,0 +1,583 @@
+@charset "EUC-KR";
+
+/* 상품페이지(main) 영역 */
+
+#ajaxcontentarea {
+  background-color: #fff;
+}
+
+.score_wrap {
+  border: 1px solid #eee;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 20px 55px;
+}
+
+.score_section {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  height: 150px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+
+.score_section_left {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  border-right: 2px solid #e2e2e2;
+  width: 50%;
+}
+
+.score_section_left_average {
+  padding-top: 15px;
+  font-size: 35px;
+}
+
+.score_section_left_stars {
+  width: 120px;
+  padding-top: 2px;
+}
+
+.score_section_left_star {
+  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars.png");
+  background-repeat: no-repeat;
+  background-size: 120px;
+  width: 100%;
+  height: 22px;
+}
+
+.score_section_left_star_filled {
+  position: absolute;
+  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
+  background-repeat: no-repeat;
+  background-size: 120px;
+  height: 22px;
+}
+
+.score_section_left_total {
+  padding-top: 15px;
+  color: #777;
+}
+
+.score_section_right {
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  transform: translateY(8%);
+}
+
+.progress_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  padding: 3px 0;
+}
+
+.progress_section div {
+  margin-right: 15px;
+}
+
+.progress_section_bar,
+.progress_section_value {
+  height: 6px;
+  border-radius: 10px;
+}
+
+.progress_section_bar {
+  width: 60%;
+  background-color: #e2e2e2;
+}
+
+.progress_section_value {
+  background-color: #FFA515;
+}
+
+
+
+/* 이용후기 : 상세p & 마이p : 이용후기 공통 */
+
+.review_wrap {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  border-top: 1px solid #e2e2e2;
+}
+
+.review_wrap:after {
+  content: "";
+  display: block;
+  width: 95%;
+  padding: 7px;
+  text-align: center;
+  transform: translateX(-2.5%);
+}
+
+.review_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 7px 0;
+}
+
+.review_title_left {
+  display: flex;
+  align-items: center;
+}
+
+.review_title_left_stars {
+  width: 95px;
+  height: 16px;
+}
+
+.review_title_left_star {
+  background-image: url("/mobile_img/icon_background_stars.png");
+  background-repeat: no-repeat;
+  background-size: 95px;
+  width: 100%;
+  height: 16px;
+}
+
+.review_title_left_star_filled {
+  position: absolute;
+  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
+  background-repeat: no-repeat;
+  background-size: 95px;
+  height: 16px;
+}
+
+.review_title_left_name,
+.review_title_right {
+  color: #777;
+  font-size: 14px;
+}
+
+.review_title_left_name {
+  align-items: flex-end;
+}
+
+.review_text {
+  position: relative;
+}
+
+.review_text_area {
+  display: -webkit-box;
+  width: 99%;
+  position: relative;
+  max-height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #333;
+  text-align: justify;
+  font-size: 15px;
+  line-height: 25px;
+  padding-top: 7px;
+  padding-bottom: 10px;
+}
+
+.show {
+  display: block;
+  max-height: none;
+  overflow: auto;
+  -webkit-line-clamp: unset;
+}
+
+.review_text_seemore {
+  position: absolute;
+  bottom: 2px;
+  right: 1%;
+  max-height: 16px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 10%
+  );
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
+
+.img_label {
+  display: inline-block;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+
+.sample_img_label {
+  display: inline-block;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+
+.review_start {
+  margin: 20px 0;
+}
+
+
+
+/* 상세페이지 > 상단 요약 노출 영역 */
+/* main.html */
+
+.review_preview {
+  margin: 20px auto;
+  width: 820px;
+}
+
+.review_preview {}
+
+.review_preview_container {
+  background-color: #FFFFFF;
+  padding: 18px 50px 10px 50px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+.review_preview_title_section {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.review_preview_left {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  align-items: baseline;
+  padding: 5px 0;
+}
+
+.review_preview_title {
+  padding-right: 8px;
+}
+
+.review_preview_number {
+  padding-right: 25px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.review_preview_right {
+  font-size: 16px;
+  color: #777;
+  transform: translateY(10%);
+  cursor: pointer;
+}
+
+.review_preview_right_btn {
+  background-image: url("https://timeticket.co.kr/img/icon_arrow_down.png");
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.review_seemore_wrap {
+	background-color: #fff;
+	width: 100%;
+	height: 65px;
+	display: flex;
+	justify-content: center;
+}
+
+.review_seemore {
+  background-image: url("https://timeticket.co.kr/img/btn_seemore.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 155px;
+  height: 35px;
+  cursor: pointer;
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
+.review_empty {
+  display: none;
+  color: #999;
+  font-size: 16px;
+  text-align: center;
+  top: 50%;
+  transform: translateY(60%);
+  font-weight: 900;
+  padding-top : 60px;
+}
+
+.review_empty_icon {
+  margin-bottom: 15px;
+}
+
+
+
+/* 나의 이용후기 영역 ONLY */
+/* user_review_rows_my.html */
+
+.my_review_productname {
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+}
+
+.my_review_title_right {
+  display: flex;
+  white-space: nowrap;
+  color: #777;
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
+.my_review_title_right div:hover {
+  color:#ff4b4b;
+}
+
+.my_review_title_right div {
+  margin-left: 5px;
+  font-size:13px;
+  cursor: pointer;
+}
+
+
+
+/* 후기 작성/수정 페이지 */
+/* my_buy_choice_wright */
+
+.review_write_wrap {
+  background-color: #fff;
+  margin-top: 5px;
+  padding-top: 15px;
+  border-top: #e2e2e2 1px solid;
+}
+
+.first_flex_container {
+  display: flex;
+  height: 100px;
+}
+
+.second_flex_container {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding: 5px 0 10px 0;
+}
+
+.product_info_poster {
+  width: 100px;
+  height: 100px;
+  margin-right: 18px;
+  border-radius: 10px;
+  background-color: #cccccc;
+}
+
+.product_info_poster_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.product_info_detail {
+  text-align: left;
+  padding-top: 7px;
+  width: 550px;
+}
+
+.product_info_detail_title {
+  font-size: 17px;
+  font-weight: 900;
+  color: #000;
+  padding-bottom: 10px;
+}
+
+.product_info_detail_option {
+  font-size: 14px;
+  color: #999;
+  white-space: nowrap;
+  width: 550px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.product_info_detail_date {
+  font-size: 14px;
+  color: #999;
+}
+
+.review_section_stars {
+  display:flex;
+  align-items: center;
+}
+
+.review_section_stars img {
+  width: 33px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.review_section_star_value {
+  visibility: hidden;
+}
+
+.review_section_text {
+  width: 100%;
+  height: 100%;
+}
+
+.review_section_text_input {
+  padding: 15px;
+  width: 750px;
+  height: 150px;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+  line-height: 22px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.review_section_photo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.review_section_photo_label {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.review_section_photo_preview {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.review_section_photo_cancel {
+  visibility: hidden;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-103%);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.review_section_text_limit {
+  text-align: right;
+  color: #ff4b4b;
+  font-size: 13px;
+  padding-top: 5px;
+  letter-spacing: -0.5px;
+}
+
+.review_section_reward {
+  display: flex;
+  align-items: center;
+}
+
+.review_section_reward_text {
+  padding: 7px 15px;
+  border-radius: 8px 8px 8px 0;
+  font-size: 14px;
+  background-color: #2bda8b;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.review_section_submit {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.review_section_submit button {
+  background-color: #ff4b4b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  height: 55px;
+  width: 40%;
+  cursor: pointer;
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+}
+
+#img_upload {
+  display: none;
+}
+
+.notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 130%;
+  height: 150%;
+  transform: translate(-35%, -35%);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.notice_box {
+  position: absolute;
+  width: 480px;
+  height: auto;
+  background-color: #fff;
+}
+
+.notice_box_title {
+  color: #ff4b4b;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 35px;
+  text-align: center;
+}
+
+.notice_box_description {
+  color: #777;
+  text-align: left;
+  padding: 0px 50px 50px ;
+  font-size: 16px;
+
+}
+
+.notice_box_confirm {
+  color: #777;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 800;
+  padding: 20px 0px;
+  cursor: pointer;
+  border-top: #e2e2e2 1px solid;
+}
+
+.inactive {
+  display: none;
+}

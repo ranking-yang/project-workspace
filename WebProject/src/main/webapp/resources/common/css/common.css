@@ -1,50 +1,12 @@
 @charset "UTF-8";
-#product{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 25px;
-    row-gap: 10px;
-    margin: auto;
-}
-.product-module{
-    column-gap: 10px;
-    text-align: center;
-    display: grid;
-    grid-template-rows: 4fr 40px 40px 30px;
-    transition: transform 0.3s ease-in-out;
-}
-.product-module:hover{
-    transform: translate(0,-5px);
-}
-.product-module > :nth-child(n+2):nth-child(-n+4){
-    text-align: left;
-    padding-left: 10px;
-}
-.product-module-poster{
-    border-radius: 15px;
-}
-.product-module-top{
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-}
-.product-module-top > :first-child{
-    text-align: left;
-}
-.product-module-top > :last-child{
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-.product-module-title{
-    font-weight: bold;
-    font-size: 20px;
-    padding-top: 5px;
-    color: black;
-}
-.product-module-bottom{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
 .scroll-up{
     z-index: 10000;
     width: 70px;
@@ -66,20 +28,4 @@
     opacity: 0.9;
     display: block;
     pointer-events: auto;
-}
-.likeBtn.liked{
-    color: red;
-}
-
-.star{
-    font-weight: bold;
-}
-
-.place > span{
-    background-color: #EEEEEE;
-    border-radius: 15px;
-    margin: 0;
-    padding: 3px;
-    font-size: 0.8rem;
-    color: rgb(41, 41, 41);
 }
