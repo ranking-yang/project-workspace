@@ -7,7 +7,7 @@
 	<div id="main-title">
 		<div></div>
 		<div id="main-logo">
-			<img src="/resources/fragments/image/logo.png" alt="로고">
+			<img src="/resources/common/image/logo.png" alt="로고">
 		</div>
 		<div id="main-user-nav">
 			<div></div>

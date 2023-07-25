@@ -4,7 +4,7 @@
 <div class="footer-container">
 	<div class="footer-container-sub">
 	 	<div id="footer-company">
-			<img src="/resources/fragments/image/logo.png" alt="로고"> <br>
+			<img src="/resources/common/image/logo.png" alt="로고"> <br>
 			(주)티켓킹 <br>
 			대표이사: 김도도 ｜ 경기 구리시 건원대로 44 태영빌딩 <br>
 			사업자등록번호: 105-11-11111 <br>
