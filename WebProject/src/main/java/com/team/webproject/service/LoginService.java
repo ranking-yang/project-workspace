@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 
 import com.team.webproject.dto.MembersDTO;
 
-public interface ExampleService {
+public interface LoginService {
 	
 	// 회원가입 및 로그인 서비스 시작
 	String checkId(MembersDTO member, String member_pwd_verify);

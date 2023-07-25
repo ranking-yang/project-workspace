@@ -3,12 +3,17 @@ package com.team.webproject.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.team.webproject.service.LoginService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
-public class Detail_Bottom_Controller_jun {
+@RequiredArgsConstructor
+public class MainController_jun {
 	
+	private final LoginService exService;
 	
-	@GetMapping("/detailBottom")
+	@GetMapping("/")
 	String index() {
 		
 //		model.addAttribute("ex", exService.getAll());
