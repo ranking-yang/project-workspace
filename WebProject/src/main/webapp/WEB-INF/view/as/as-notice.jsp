@@ -35,7 +35,7 @@
 						<div>작성일</div>
 					</div>
 					<c:forEach items="${listInPage}" var="notice">
-						<div class="as-board-list-board">
+						<div class="as-board-list-board level${notice.notice_level}">
 							<div>${notice.notice_code}</div>
 							<div>
 								<a href="/as/notice/detail?no=${notice.notice_code}">${notice.notice_title}</a>

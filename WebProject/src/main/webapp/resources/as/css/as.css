@@ -72,6 +72,7 @@
     border-bottom: 1px solid rgb(236, 236, 236);
     font-weight: 300;
 }
+
 .as-board-list-board > div:first-child{
     text-align: center;
 
@@ -90,6 +91,11 @@
 .as-board-list-board > div:last-child{
     text-align: center;
 }
+/*공지사항 우선순위*/
+.level1 {
+	font-weight: bold;
+}
+
 #as-board-list-page-buttons{
     text-align: center;
 }

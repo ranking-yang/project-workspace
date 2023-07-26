@@ -36,7 +36,7 @@ public class DetailController {
 	PerformanceMapper performanceMapper;
    
     @GetMapping("/detail")
-   String callAPI(Model model) throws JsonProcessingException {
+       String callAPI(Model model) throws JsonProcessingException {
 
        HashMap<String, Object> result = new HashMap<String, Object>();
 
@@ -52,7 +52,7 @@ public class DetailController {
            HttpHeaders header = new HttpHeaders();
            HttpEntity<?> entity = new HttpEntity<>(header);
 
-           String url = "http://www.kopis.or.kr/openApi/restful/pblprfr/PF222378";
+           String url = "http://www.kopis.or.kr/openApi/restful/pblprfr/PF222464";
 
            UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
 
@@ -73,6 +73,7 @@ public class DetailController {
            model.addAttribute("date", jsonob.get("dtguidance")); // 공연 일
            model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
            model.addAttribute("age", jsonob.get("prfage")); // 연령
+
            // 박정준이 쓴 코드
            model.addAttribute("startDate", jsonob.get("prfpdfrom")); // 공연시작일
            model.addAttribute("endDate", jsonob.get("prfpdto")); // 공연종료일
@@ -85,6 +86,7 @@ public class DetailController {
            //System.out.println(lijs.get(0));
            
            model.addAttribute("image", lijs); // 소개이미지
+
        } catch (HttpClientErrorException | HttpServerErrorException e) {
            result.put("statusCode", e.getRawStatusCode());
            result.put("body"  , e.getStatusText());
@@ -96,7 +98,7 @@ public class DetailController {
            System.out.println(e.toString()); 
        }
        
-       model.addAttribute("perfomance", performanceMapper.getPerformance("PF222378")); // 임의로 넣어놓음
+       model.addAttribute("perfomance", performanceMapper.getPerformance("PF222464")); // 임의로 넣어놓음
        
        return "/detail/detail";  
    }
