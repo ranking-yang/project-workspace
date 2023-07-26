@@ -3,6 +3,7 @@ package com.team.webproject.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,14 +66,25 @@ public class DetailController {
            ObjectMapper mapper = new ObjectMapper();
            System.out.println(mapper.writeValueAsString(resultMap.getBody().get("db")));
            jsonInString = mapper.writeValueAsString(resultMap.getBody().get("db"));
+           // 종현이형이 쓴 코드
            JSONParser parser = new JSONParser();
            JSONObject jsonob = (JSONObject) parser.parse(jsonInString);
            
            model.addAttribute("date", jsonob.get("dtguidance")); // 공연 일
            model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
            model.addAttribute("age", jsonob.get("prfage")); // 연령
-           model.addAttribute("image", jsonob.get("styurls")); // 소개이미지
-
+           // 박정준이 쓴 코드
+           model.addAttribute("startDate", jsonob.get("prfpdfrom")); // 공연시작일
+           model.addAttribute("endDate", jsonob.get("prfpdto")); // 공연종료일
+           model.addAttribute("age", jsonob.get("prfage")); // 공연 관람 연령
+           model.addAttribute("space", jsonob.get("fcltynm")); // 공연시설명(공연장명)
+           
+           // 종현이 형이 쓴 코드
+           JSONArray lijs = new JSONArray();
+           lijs.add(jsonob.get("styurls"));
+           //System.out.println(lijs.get(0));
+           
+           model.addAttribute("image", lijs); // 소개이미지
        } catch (HttpClientErrorException | HttpServerErrorException e) {
            result.put("statusCode", e.getRawStatusCode());
            result.put("body"  , e.getStatusText());
