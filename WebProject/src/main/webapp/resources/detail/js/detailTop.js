@@ -1,5 +1,5 @@
 const calendar = document.querySelector('.placeholder');
-const timeBtns = document.querySelectorAll('.popup-time-parent');
+const popupTimeDiv = document.querySelector('.popup-time');
 const qtyParents = document.querySelectorAll('.popup-qty-parent');
 const plusBtns = document.querySelectorAll('.qty-plus');
 const minusBtns = document.querySelectorAll('.qty-minus');
@@ -14,23 +14,32 @@ calendar.flatpickr({
     showMonths: 1,
     minDate: chkStartDate(calendar.dataset.startdate),
     maxDate: (calendar.dataset.maxdate), // 날짜 형식 yyyy-mm-dd
+    // 공연 없는 요일은 표시 X
+	enable: [
+		function(date) {
+			const day = date.getDay();
+			return timetable[day] !== undefined;			
+		}
+	],    
     // 날짜 선택 시, 시간선택 오픈 및 초기화
     onChange : function(selectDates, dateStr, calendar) {
         console.log(dateStr); // 선택한 날짜 yyyy-mm-dd
-        openTimeDiv();      
+        showTimeTable(new Date(dateStr).getDay());
     }
 });
 
-// 시간 선택 시, 권종/수량 오픈 및 초기화
-timeBtns.forEach((timeBtn) => {
-    timeBtn.addEventListener('click', (e) => {
-        resetTimeDiv(); // 초기화
-        e.currentTarget.style.backgroundColor = '#46c8b4'; // 선택된 것만 색 변경    
-        if (e.currentTarget) {
-            openQtyDiv();
-        }
-    });
-});
+ const timeBtns = document.querySelectorAll('.popup-time-parent');
+      
+  // 시간 선택 시, 권종/수량 오픈 및 초기화
+	timeBtns.forEach((timeBtn) => {
+	    timeBtn.addEventListener('click', (e) => {
+	        resetTimeDiv(); // 초기화
+	        e.currentTarget.style.backgroundColor = '#46c8b4'; // 선택된 것만 색 변경    
+	        if (e.currentTarget) {
+	            openQtyDiv();
+	        }
+	    });
+	});  
 
 // 권종/수량 선택 시, 총 가격 및 결제하기 활성화
 // plus, minus 버튼
@@ -74,7 +83,7 @@ minusBtns.forEach(function (button) {
 function openTimeDiv() {
     resetTimeDiv(); // 오픈 시, 시간선택 초기화
     closeQtyDiv(); // 오픈 시, qty 닫힘 밑 초기화
-    document.querySelector('.popup-time').style.display = 'flex';
+    popupTimeDiv.style.display = 'flex';
 }
 
 // 권종/수량 div open
@@ -108,7 +117,7 @@ function openPriceDiv() {
     document.querySelector('.popup-totalPrice').style.display = 'grid';
 }
 
-// 시간 선택  초기화
+// 시간 선택 초기화
 function resetTimeDiv() {
     timeBtns.forEach(function (element) {
         element.style.backgroundColor = '#f5f5f5';
@@ -145,12 +154,10 @@ function updateTotalPrice() {
 
 // 날짜 계산
 function chkStartDate(startdate) {
-	const date = new Date(startdate);
-	
+	const date = new Date(startdate);	
 	if (date < "today") {
 		date = "today";
-	}
-	
+	}	
 	return date;
 }
 
@@ -162,4 +169,33 @@ function chkAge() {
 	} else {
 		return 0;
 	}
+}
+
+function showTimeTable(date) {
+  const timeArray = timetable[date];
+
+  // 이전에 표시된 내용이 있다면 삭제
+  popupTimeDiv.innerHTML = "";
+
+  for (const time of timeArray) {
+    const timeParts = time.split(",");
+    for (const t of timeParts) {
+      const divElement = document.createElement("div");
+      divElement.className = "popup-time-parent";
+
+      const inputElement = document.createElement("input");
+      inputElement.type = "button";
+      inputElement.name = "time";
+      inputElement.value = t.trim();
+
+      const ticketElement = document.createElement("div");
+      ticketElement.textContent = "[남은 티켓: 1개]";
+
+      divElement.appendChild(inputElement);
+      divElement.appendChild(ticketElement);   
+
+      popupTimeDiv.appendChild(divElement);
+    }
+  }
+  openTimeDiv();
 }

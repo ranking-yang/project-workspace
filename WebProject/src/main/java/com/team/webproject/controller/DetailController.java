@@ -1,7 +1,13 @@
 package com.team.webproject.controller;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -23,69 +29,74 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.webproject.mapper.PerformanceMapper;
+import com.team.webproject.service.DetailServiceimpl;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class DetailController {
-	
+
 	// 나중에 product list controller랑 합치기	
 	@Autowired
 	PerformanceMapper performanceMapper;
-   
-    @GetMapping("/detail")
-       String callAPI(Model model) throws JsonProcessingException {
-
-       HashMap<String, Object> result = new HashMap<String, Object>();
-
-       String jsonInString = "";
-
-       try {
-
-           HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-           factory.setConnectTimeout(5000); //타임아웃 설정 5초
-           factory.setReadTimeout(5000);//타임아웃 설정 5초
-           RestTemplate restTemplate = new RestTemplate(factory);
-
-           HttpHeaders header = new HttpHeaders();
-           HttpEntity<?> entity = new HttpEntity<>(header);
-
-           String url = "http://www.kopis.or.kr/openApi/restful/pblprfr/PF222464";
-
-           UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
-
-           //이 한줄의 코드로 API를 호출해 MAP타입으로 전달 받는다.
-           ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
-           result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
-           result.put("header", resultMap.getHeaders()); //헤더 정보 확인
-           result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
-           
-           //데이터를 제대로 전달 받았는지 확인 string형태로 파싱해줌
-           ObjectMapper mapper = new ObjectMapper();
-           System.out.println(mapper.writeValueAsString(resultMap.getBody().get("db")));
-           jsonInString = mapper.writeValueAsString(resultMap.getBody().get("db"));
-           JSONParser parser = new JSONParser();
-           JSONObject jsonob = (JSONObject) parser.parse(jsonInString);
-           
-           model.addAttribute("date", jsonob.get("dtguidance")); // 공연 일
-           model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
-           model.addAttribute("age", jsonob.get("prfage")); // 연령
-
-       } catch (HttpClientErrorException | HttpServerErrorException e) {
-           result.put("statusCode", e.getRawStatusCode());
-           result.put("body"  , e.getStatusText());
-           System.out.println(e.toString());
-           
-       } catch (Exception e) {
-           result.put("statusCode", "999");
-           result.put("body"  , "excpetion오류");
-           System.out.println(e.toString()); 
-       }
-       
-       model.addAttribute("perfomance", performanceMapper.getPerformance("PF222464")); // 임의로 넣어놓음
-       
-       return "/detail/detail";  
-   }
 	
+	@Autowired
+	DetailServiceimpl detailServiceimpl;
+
+	@GetMapping("/detail")
+	String callAPI(Model model) throws JsonProcessingException {
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+
+		String jsonInString = "";
+
+		try {
+
+			HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+			factory.setConnectTimeout(5000); //타임아웃 설정 5초
+			factory.setReadTimeout(5000);//타임아웃 설정 5초
+			RestTemplate restTemplate = new RestTemplate(factory);
+
+			HttpHeaders header = new HttpHeaders();
+			HttpEntity<?> entity = new HttpEntity<>(header);
+
+			String url = "http://www.kopis.or.kr/openApi/restful/pblprfr/PF222146";
+
+			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
+
+			//이 한줄의 코드로 API를 호출해 MAP타입으로 전달 받는다.
+			ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
+			result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
+			result.put("header", resultMap.getHeaders()); //헤더 정보 확인
+			result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
+
+			//데이터를 제대로 전달 받았는지 확인 string형태로 파싱해줌
+			ObjectMapper mapper = new ObjectMapper();
+			System.out.println(mapper.writeValueAsString(resultMap.getBody().get("db")));
+			jsonInString = mapper.writeValueAsString(resultMap.getBody().get("db"));
+			JSONParser parser = new JSONParser();
+			JSONObject jsonob = (JSONObject) parser.parse(jsonInString);
+
+			// addAttribute
+			model.addAttribute("timetable", new JSONObject(detailServiceimpl.getTimeTable(jsonob.get("dtguidance")))); // 공연 일 - JSON으로 변환
+			model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
+			model.addAttribute("age", jsonob.get("prfage")); // 연령
+
+		} catch (HttpClientErrorException | HttpServerErrorException e) {
+			result.put("statusCode", e.getRawStatusCode());
+			result.put("body"  , e.getStatusText());
+			System.out.println(e.toString());
+
+		} catch (Exception e) {
+			result.put("statusCode", "999");
+			result.put("body"  , "excpetion오류");
+			System.out.println(e.toString()); 
+		}
+
+		model.addAttribute("perfomance", performanceMapper.getPerformance("PF222146")); // 임의로 넣어놓음
+
+		return "/detail/detail";
+	}
+
 }

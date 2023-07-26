@@ -66,16 +66,14 @@
             <!-- 달력 -->   
             <div class="placeholder" data-startdate="${perfomance.start_date}" data-maxdate="${perfomance.end_date}"></div>
             <div class="popup-time">
-                <!-- 시간 -->
                 <div>시간선택</div>
+            <!-- 시간 -->
+			<!--  
                 <div class="popup-time-parent">
                     <input type="button" name="time" value="(DB시간1)">
                     <div>[남은 티켓: 1개]</div>
                  </div>
-                 <div class="popup-time-parent">
-                    <input type="button" name="time" value="(DB시간2)">
-                    <div>[남은 티켓: 2개]</div>
-                 </div>
+			-->
             </div>
             <div class="popup-qty">
                 <!-- 권종/수량 -->
@@ -116,4 +114,8 @@
         </div>
     </div>
 
+	<script>
+		const timetable = JSON.parse('${timetable}');
+		console.log(timetable);
+	</script>
     <script src="${top_js}"></script>

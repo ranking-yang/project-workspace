@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* 상품페이지(main) 영역 */
 
 #ajaxcontentarea {
@@ -36,7 +34,7 @@
 }
 
 .score_section_left_star {
-  background-image: url("./common/image/icon_background_stars.png");
+  background-image: url('/resources/common/image/icon_background_stars.png');
   background-repeat: no-repeat;
   background-size: 120px;
   width: 100%;
@@ -127,7 +125,7 @@
 }
 
 .review_title_left_star {
-  background-image: url("./common/image/icon_background_stars.png");
+  background-image: url('/resources/common/image/icon_background_stars.png');
   background-repeat: no-repeat;
   background-size: 95px;
   width: 100%;
