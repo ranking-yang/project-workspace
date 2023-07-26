@@ -8,10 +8,7 @@
 <title>공연, 전시, 체험, 키즈 상세페이지</title>
 	<%@ include file="../common/commonCss.jsp" %>
     <link rel="stylesheet" href="/resources/product-list/css/product-list.css">
-    <link rel="stylesheet" href="/resources/product-list/css/product-list.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ad03eb7935.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -46,8 +43,8 @@
                     <div class="place">
                         <span>서울/종로구</span>
                     </div>
-                    <button class="likeBtn" data-like="${product.performance_code }" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-                        <i class="fa-regular fa-heart" style="color: #000000;"></i>
+                    <button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
+                        <i class="fa-regular fa-heart" style="color: #000000;"></i> <!-- 로그인 상태가 아닐때는 하트가 안보여야함 -->
                     </button>
                 </div>
                 <div class="product-module-title">${product.performance_name }</div>
@@ -63,6 +60,7 @@
     <%@ include file="../common/footer.jsp" %>
 
 <script src="/resources/product-list/js/product-list.js"></script>
+
 <%@ include file="../common/commonJs.jsp" %>
 </body>
 </html>

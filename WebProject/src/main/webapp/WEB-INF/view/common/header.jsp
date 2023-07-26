@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header-container">
 
 	<!-- 상단 로고, 로그인 / 회원가입 / 고객센터 -->
@@ -10,7 +10,8 @@
 			<img src="/resources/common/image/logo.png" alt="로고">
 		</div>
 		<div id="main-user-nav">
-			<div></div>
+			<div></div><!-- 로고 좌측 여백입니다 -->
+			<!-- 로그인 성공시 로그아웃, 마이페이지, 고객센터로 바뀌어야함 -->
 			<ul id="user-nav">
 				<li class="user-nav-item">
 					<button class="user-nav-btn" id="login">로그인</button>

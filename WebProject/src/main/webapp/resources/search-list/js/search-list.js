@@ -12,6 +12,8 @@ function toggleLike(event, buttonId) {
       icon.classList.add('fa-solid');
       icon.classList.remove('fa-regular');
       icon.style.color = '#e41b1b';
+      console.log("button",button.id);
+      // 추후에 버튼아이디로 찜목록 테이블에 저장
     } else {
       icon.classList.remove('fa-solid');
       icon.classList.add('fa-regular');
