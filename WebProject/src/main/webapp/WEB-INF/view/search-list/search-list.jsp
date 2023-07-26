@@ -8,13 +8,6 @@
 <title>검색 상세페이지</title>
 <link rel="stylesheet" href="/resources/search-list/css/search-list.css">
 <%@ include file="../common/commonCss.jsp" %>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
 <script src="https://kit.fontawesome.com/ad03eb7935.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -39,8 +32,8 @@
 				                    <div class="place">
 				                        <span>서울/종로구</span>
 				                    </div>
-				                    <button class="likeBtn" data-like="${product.performance_code }" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-				                        <i class="fa-regular fa-heart" style="color: #000000;"></i>
+				                    <button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
+				                        <i class="fa-regular fa-heart" style="color: #000000;"></i><!-- 로그인 상태가 아닐때는 하트가 안보여야함 -->
 				                    </button>
 				                </div>
 				                <div class="product-module-title">${product.performance_name }</div>

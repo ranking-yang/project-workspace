@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.WishlistMapper">
+	<select id="getUserWislist">
+		SELECT * FROM wish_list where list_writer_code=#{member_code}
+	</select>
+	<insert id="insertWishlist">
+  		insert into wish_list (list_writer_code, performance_code)
+  		values (#{member_code},#{performance_code})
+	</insert>
+	<delete id="deleteWishlist">
+  		delete from wish_list where wish_code=#{wish_code}
+	</delete>
+</mapper>
