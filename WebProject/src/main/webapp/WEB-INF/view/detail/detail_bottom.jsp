@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +23,15 @@
 
     <!---------------------- 탭 영역 시작 ----------------------->
     <div id="ajaxcontentarea" class="contentstyle" style="border-radius:0 0 10px 10px">
-    
+    <!-- 안내탭 시작 -->
     <div class="contentstyle1" id="content_1">
-        <div style="margin-top:10px;">
+    	<div class="main_tab_wrap">
+        <div>
           <div class="viewpage_noti">예매정보</div>
           <div class="viewpage_text radius_box">
-            <p>· 진행기간: OPEN RUN</p>
-            <p>· 이용등급: 만 11세 이상</p>
-            <p>· 이용시간: 약 90분</p>
+            <p>· 진행기간: ${startDate} ~ ${endDate}</p>
+            <p>· 이용등급: ${age}</p>
+            <p>· 이용시간: ${runtime}</p>
           </div>
         </div>
 
@@ -41,11 +43,11 @@
         <div style="margin-top:25px;">
           <div class="viewpage_noti">이용정보</div>
           <div class="viewpage_text radius_box"><p>· 예매가능시간: 공연 시작 10분 전까지</p>
-<p>· 티켓배부: 공연 시작 40분 전부터 공연장 매표소에서 배부</p>
-<p>· 티켓수령: 예매내역 제시 후 현장 수령(신분증/증빙자료 지참)</p>
-<p>· 입장시간: 공연 시작 15분 전부터 입장 가능</p>
-<p>· 좌석배정: 비지정석(타예매처 지정석 제외 후 매표소 선착순 배정)</p>
-<p class="txt_red">※ 각각 예매하더라도 함께 발권하면 연석 배정 가능합니다.</p></div>
+			<p>· 티켓배부: 공연 시작 40분 전부터 공연장 매표소에서 배부</p>
+			<p>· 티켓수령: 예매내역 제시 후 현장 수령(신분증/증빙자료 지참)</p>
+			<p>· 입장시간: 공연 시작 15분 전부터 입장 가능</p>
+			<p>· 좌석배정: 비지정석(타예매처 지정석 제외 후 매표소 선착순 배정)</p>
+			<p class="txt_red">※ 각각 예매하더라도 함께 발권하면 연석 배정 가능합니다.</p></div>
         </div>
 
 
@@ -56,17 +58,12 @@
             <img src="https://timeticket.co.kr/mobile_img/detail/icon_down.png" style="width:13px; vertical-align:2px;padding-left:10px;">
           </div>
         </div>
-        <div id="main_img" class="main_img"><div style="max-width: 100%; width: 700px; height: 0; margin:20px 0; padding-bottom: 56.25%; position: relative;">
-			<iframe src="https://www.youtube.com/embed/s8Pbg-GSu6o" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
-			</div>
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_photo.jpg?230531">
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_reviewevent.jpg?230705">
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_time_7.jpg?220930">
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_notice.jpg?230331">
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_00.jpg?230704">
-			<img src="//aidankims.cdn2.cafe24.com/ticket/4300/4343/4343_cast_7.jpg">
-		</div>
-
+        <div id="main_img" class="main_img">
+        	<!-- API에서 이미지 가져옴 -->
+			<c:forEach items="${image}" var="item">
+				<img src="${item.styurl}">
+			</c:forEach>	
+		</div>	
 
         <div style="margin-top:25px;">
           <div class="viewpage_noti">유의사항</div>
@@ -81,13 +78,14 @@
         <div style="margin-top:25px;">
           <div class="viewpage_noti">장소안내</div>
           <div class="viewpage_text radius_box" style="border-radius: 10px 10px 0 0;">
-            <p>· 장소: 해피씨어터&nbsp;/&nbsp;총 200석</p>
+            <p>· 장소: ${space} &nbsp;/&nbsp; 총 200석</p>
             <p>· 주소: 서울 종로구 대학로10길 5 , 지하1층</p>
             <p>· 주차: 주차불가(인근 유료주차장 이용 권장)</p>
           </div>
+          <!-- 지도가 위치할 곳 -->
           <div align="center" style="margin-top:10px;">
             <div style="z-index:-1;" id="daum_map">
-              <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;" ></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:v" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:v" name="daum.maps.Marker.Area:v"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
+            	<img src="../resources/common/image/question-mark.png"> 
             </div>
           </div>
         </div>
@@ -120,11 +118,11 @@
 
           </div>
         </div>
-
+		</div>
       </div>
-  
+  <!-- 후기탭 시작 -->
   <div class="contentstyle1" id="content_2" style=";">
-    
+  <div class="main_tab_wrap">
   <div class="score_section" style="padding-top:10px">
     <div class="score_section_left" style="margin-top:10px;">
       <div class="score_section_left_average">4.8</div>
@@ -169,25 +167,14 @@
     </div>
   </div>
   
-<div style="padding:10px 10px 15px 10px; background:#f5f5f5; margin-top:15px;">
+<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin: 15px;">
 
-		<div style="padding:10px 10px 0 10px; overflow:hidden;">
+		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
 
-<form name="reply_write_frm" method="post" action="reply_action.php" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="as_can" value="">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="0">
-  <input type="hidden" name="idx" value="0">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
-  <input type="hidden" name="keyword" value=""> <!-- 상품평 키워드 저장 custom hong -->
-  <input type="hidden" name="product_name" value="라면">
-  <input type="hidden" name="as_can" value="">
+<form name="reply_write_frm" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
 
   <div style="float:left;">
-    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
+    <textarea id="content_comment" name="content_comment" style= "font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
   </div>
   <div style="float:right;">
     <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록
@@ -227,6 +214,7 @@
 중간에 실제 라면냄새가 나서… 새벽에 라면을 끓여먹어야했지만ㅎㅎ <br>
 배우들 연기도 최고였고 시나리오 전체적으로 구성이 탄탄하더라구요! 모든 연령한테 추천하고 싶은 연극이였습니다! 
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_919427" onclick="showFullReview(919427)">
 			... 더보기
 		</div>
@@ -261,6 +249,7 @@
 배우분들 연기도 수준급이라 몰입도 잘되었습니당.<br>
 
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_915998" onclick="showFullReview(915998)" style="display: none;">
 			... 더보기
 		</div>
@@ -293,6 +282,7 @@
 		<div class="review_text_area" id="text_914548">
 			배우분들 연기도 엄청 뛰어나시고 자연스러우셔서 너무 좋았습니다! 굉장히 귀여운 공연이였어요. 가운데 계신 배우님 덕분에 너무 웃기고 재미있게 봤는데요ㅋㅋㅋㅋ 중간에 웃참하시느라 고생 많으셨습니다ㅋㅋㅋㅋㅋㅋ 그리고 이한배우님 등장하시마자 뒤에서 나지막히 우와...잘생겼다.... 하신 분.... 저랑 같은 생각 하셨네요.........감사합니다....
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_914548" onclick="showFullReview(914548)">
 			... 더보기
 		</div>
@@ -326,6 +316,7 @@
 			연극 보는내내 시간이 어떻게 흘러갔는지 몰랐네요ㅎㅎ 80년대생 사람으로 추억의 음악들, 그리고 공연장 밖에 전시 되어있었던 물건들(삐삐, 테이프, 잡지 등)보고 잠시 그 시절로 돌아간 것 같아 기분이 몽글몽글 했네요:) 배우들 연기 정말 잘하셨고 극 끝날 때쯤 라면 그릇 핀조명 하나로 비추는 장면이 인상적이었습니다.<br>
 잘 봤습니다^^
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_900836" onclick="showFullReview(900836)">
 			... 더보기
 		</div>
@@ -358,6 +349,7 @@
 		<div class="review_text_area" id="text_901927">
 			너무너무 재밌었고 계속 웃으면서 봤어요 배우분들 연기 다 너무 잘히셔서 몰입도가 너무 좋았습니다 ㅠㅠ 너무 재밌었어요 
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_901927" onclick="showFullReview(901927)" style="display: none;">
 			... 더보기
 		</div>
@@ -390,6 +382,7 @@
 		<div class="review_text_area" id="text_862432">
 			첨으로 연극을 보려갔는데 너무 좋았어요~~~~~
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_862432" onclick="showFullReview(862432)" style="display: none;">
 			... 더보기
 		</div>
@@ -423,6 +416,7 @@
 			배우님들의 열정적인 연기에 빠져들어서 봤어요!<br>
 저는 특히 멀티맨.... 계속 웃으면서 봤네요ㅎㅎ 정말 재밌으니 보는 거 강추!
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_892558" onclick="showFullReview(892558)" style="display: none;">
 			... 더보기
 		</div>
@@ -455,6 +449,7 @@
 		<div class="review_text_area" id="text_899071">
 			생애 첫 연극이 연극라면 입니다~무대위에 있는 분들이 펼치는  땀과 노력이  고스란히 내가 느낄수 있어서 좋았습니다. 앞으로도 연극 많이 관람 할듯합니다. 행복 주셔서 감사 드립니다~
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_899071" onclick="showFullReview(899071)" style="display: none;">
 			... 더보기
 		</div>
@@ -487,6 +482,7 @@
 		<div class="review_text_area" id="text_898452">
 			굿굿.  연인 및 부부 공감 백배^^
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_898452" onclick="showFullReview(898452)" style="display: none;">
 			... 더보기
 		</div>
@@ -519,6 +515,7 @@
 		<div class="review_text_area" id="text_857623">
 			다른연극을 보러가다가  우연히 티켓박스 오픈전에  줄서고계신분들이많아서  그다음 연극으로  정해서 관람하였습니다.공연시간이 어떻게 지나간지도  모를만큼 짧게 느껴졌고   즐겁게 웃고  힐링 타임가졌습니다.웃는가운데에서도 알려주는현재젊은이들의 사회특징을 내포하고있기도하네요.아직보지않은 지인과 재관람 의지도 있답니다. 주변에 소개많이하겠습니다.
 		</div>
+		<br>
     <div class="review_text_seemore" id="seemore_857623" onclick="showFullReview(857623)">
 			... 더보기
 		</div>
@@ -535,38 +532,42 @@
     <div class="review_seemore"></div>
   </div>
 </div>
+</div>
   </div>
+  
+  <!-- Q&A탭 시작 -->
   <div class="contentstyle1" id="content_3">
+  <div class="main_tab_wrap">
   <div class="main_tab_title">티켓 관련 문의사항을 남겨주세요.</div>
 
-	<div style="font-size:15px; color:#777; margin-top:15px;">
-		※ 환불/취소요청은 <a href="myticket.php?mode=buy"><span style="font-weight:400; text-decoration:underline; color:#000;">마이티켓 &gt; 환불신청</span></a>, 이용 불편 및 요청사항은 <a href="bbs_list.php?tb=board_private"><span style="font-weight:400; text-decoration:underline; color:#000;">1:1문의</span></a>를 이용해주세요.
+	<div style="font-size:15px; color:#777; margin:15px 15px 0 15px;">
+		※ 환불/취소요청은 <a href="myticket.php?mode=buy">
+		<span style="font-weight:400; text-decoration:underline; color:#000;">마이티켓 &gt; 환불신청
+		</span>
+		</a>, 이용 불편 및 요청사항은 
+		<a href="bbs_list.php?tb=board_private">
+		<span style="font-weight:400; text-decoration:underline; color:#000;">1:1문의
+		</span>
+		</a>를 이용해주세요.
 	</div>
 
-	<div style="padding:10px 10px 15px 10px; background:#f5f5f5; margin-top:15px;">
+	<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
 
-<form name="reply_write_frm" method="post" action="reply_action.php" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="as_can" value="">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="0">
-  <input type="hidden" name="idx" value="0">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
-  <input type="hidden" name="keyword" value=""> <!-- 상품평 키워드 저장 custom hong -->
-  <input type="hidden" name="product_name" value="라면">
-  <input type="hidden" name="as_can" value="">
+<form name="reply_write_frm"  onsubmit="return reply_check()" target="h_blank" style="margin:0;">
 
   <div style="float:left;">
-    <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding:5px 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
+    <textarea id="content_comment2" name="content_comment2" style="font-size:15px; color:#000; font-weight:300; width:520px; 
+    height: 300px padding:5px 10px; padding-left: 10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" 
+    placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
 · 날짜/시간 변경은 불가하며 환불 후 다시 예매해야 합니다.
 · 티켓 환불은 마이티켓>예매내역에서 신청 가능합니다."></textarea>
   </div>
   <div style="float:right;">
-    <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록
+    <button style="width:110px; height:92px; border:1px solid #e6e6e6;
+     font-size:18px; font-weight:600; color:#555; background:#fff;
+      margin-top:; text-align:center; cursor:pointer;" onclick="submitForm2()">등록
     </button>
   </div>
 </form>
@@ -583,21 +584,26 @@
 		<span id="replyViewLabel" name="replyView">
 
 <div style="width:100%; padding-top:15px;">
-	<form name="reply_frm_1" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5696">
-  <input type="hidden" name="idx" value="5696">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+	<form name="reply_frm_1"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
   <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
-  <tbody><tr>
-    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;"> kakao_2908656890</span>&nbsp;&nbsp;(2023-07-13 15:22:23)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_2', '', '', '', '', '2', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기"></a></td>
+  <tbody>
+  <div id="Q&A_text_container">
+  
+  </div>
+  <tr>
+    <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
+    <span style="font-size:15px; color:#555; font-weight:400;">
+    <img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;">
+     kakao_2908656890
+     </span>&nbsp;&nbsp;(2023-07-13 15:22:23)&nbsp;&nbsp;&nbsp;
+     <a href="#reply" onclick="GoWrite( 'writeDiv_2', '', '', '', '', '2', '등록합니다' )">
+     <img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기">
+     </a>
+     </td>
   </tr>
 
   <tr>
@@ -636,7 +642,9 @@
           </tr>
           </tbody></table>
         </td>
-        <td style="width:74px; padding-left:5px;"><input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;"></td>
+        <td style="width:74px; padding-left:5px;">
+        <input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;">
+        </td>
       </tr>
       </tbody></table>
     </td>
@@ -645,14 +653,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_3" method="post" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5520">
-  <input type="hidden" name="idx" value="5520">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_3"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -707,15 +708,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_5" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5498">
-  <input type="hidden" name="idx" value="5498">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
-
+<form name="reply_frm_5"  target="h_blank" style="margin:0;">
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
   <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
@@ -769,14 +762,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_5" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5177">
-  <input type="hidden" name="idx" value="5177">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_5"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -815,14 +801,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_8" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5175">
-  <input type="hidden" name="idx" value="5175">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_8"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -877,14 +856,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_8" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5174">
-  <input type="hidden" name="idx" value="5174">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_8"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -923,14 +895,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_11" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5064">
-  <input type="hidden" name="idx" value="5064">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_11"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -985,14 +950,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_13" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5033">
-  <input type="hidden" name="idx" value="5033">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_13"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -1047,14 +1005,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_15" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5029">
-  <input type="hidden" name="idx" value="5029">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_15"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -1110,14 +1061,7 @@
   </tbody></table>
 </form>
 
-<form name="reply_frm_17" method="post" action="reply_action.php" target="h_blank" style="margin:0;">
-  <input type="hidden" name="number" value="4343">
-  <input type="hidden" name="page" value="">
-  <input type="hidden" name="userid" value="">
-  <input type="hidden" name="parent" value="5024">
-  <input type="hidden" name="idx" value="5024">
-  <input type="hidden" name="mode" value="">
-  <input type="hidden" name="display" value="Y">
+<form name="reply_frm_17"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
@@ -1209,72 +1153,28 @@ $('body').on('click', '.goPage', function() {
 <!-- ajax paging 끝! -->
 
 </div>
+</div>
 
-<!-- <div id="ajaxcontentarea" class="contentstyle1" style="border-radius:0 0 10px 10px"> -->
+<!-- 장소탭 시작 -->
 <div class="contentstyle1" id="content_4">
+<div class="main_tab_wrap">
 	<div class="main_tab_title">장소안내</div>
 
   <div class="viewpage_text radius_box" style="margin-top:10px; border-radius: 10px 10px 0 0;">
-    <p>· 장소: 해피씨어터</p>
+    <p>· 장소: ${space}</p>
     <p>· 주소: 서울 종로구 대학로10길 5 , 지하1층</p>
     <p>· 주차: 주차불가(인근 유료주차장 이용 권장)</p>
   </div>
-  <div align="center" style="margin-top:10px;">
-    <div style="z-index:-1;" id="daum_map">
-      <div id="map" style="height: 350px; border-radius: 0px 0px 10px 10px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2005/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2005/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2005/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2005/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: 232px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2006/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2006/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2006/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2006/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -24px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2306uwn/L3/2007/897.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -245px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2306uwn/L3/2007/898.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2306uwn/L3/2007/899.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2306uwn/L3/2007/900.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523px; top: -280px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 700px; height: 350px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 3500px; height: 1750px; left: -1400px; top: -700px;"></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 350px; top: 175px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:c" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:c" name="daum.maps.Marker.Area:c"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 665px; top: 3px;"><button draggable="false" title="확대" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 16px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 16px;"></div></div></div><button draggable="false" title="축소" type="button" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
-    </div>
-  </div>
-<%--카카오맵 불러오는 거라서 안건듬 나중에 지우던지 해도 될듯--%>
-<script>
-  let addrCoord = [37.581892989494186, 127.00256994369825];
-    if (addrCoord.length > 0) {
-      var mapContainer = document.getElementById('map'),
-        mapOption = {
-          center: new kakao.maps.LatLng(addrCoord[0], addrCoord[1]),
-          level: 3
-        };
-      var map = new kakao.maps.Map(mapContainer, mapOption);
-      var position = new kakao.maps.LatLng(addrCoord[0], addrCoord[1]);
-      var marker = new kakao.maps.Marker({
-        position: position,
-        clickable: true
-      });
-      marker.setMap(map);
-      var zoomControl = new kakao.maps.ZoomControl();
-      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-    } else {
-      var mapContainer = document.getElementById('map'), mapOption = {
-        center: new kakao.maps.LatLng(0, 0),
-        level: 3
-      };
-
-      var map = new kakao.maps.Map(mapContainer, mapOption);
-      var ps = new kakao.maps.services.Places();
-      ps.keywordSearch('서울 종로구 대학로10길 5', placesSearchCB);
-      function placesSearchCB (data, status, pagination) {
-        if (status === kakao.maps.services.Status.OK) {
-          var bounds = new kakao.maps.LatLngBounds();
-          // 검색결과를 한개만 노출하기 위해 반복문 삭제하고 배열의 첫번째값만 사용
-          displayMarker(data[0]);
-          bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
-          map.setBounds(bounds);
-        }
-      }
-
-      function displayMarker(place) {
-        var marker = new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(place.y, place.x)
-        });
-        kakao.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-          infowindow.open(map, marker);
-        });
-      }
-    }
-</script>
+  <!-- 지도가 위치할 곳 -->
+          <div align="center" style="margin-top:10px;">
+            <div style="z-index:-1;" id="daum_map">
+            	<img src="../resources/common/image/question-mark.png"> 
+            </div>
+          </div>
+</div>
 </div>
 
+<!-- 환불규정탭 시작 -->
 <div class="contentstyle1" id="content_5">
 <div class="main_tab_wrap">
 	<p class="main_tab_title">환불규정 및 안내사항</p>
@@ -1315,7 +1215,6 @@ $('body').on('click', '.goPage', function() {
 
 </div>
 </div>
-<!-- </div> -->
 </section>
 </body>
 </html>

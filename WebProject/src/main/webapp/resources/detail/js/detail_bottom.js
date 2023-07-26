@@ -92,3 +92,17 @@ function submitForm() {
     // 기존에 입력한 글 초기화
     document.getElementById("content_comment").value = "";
   }
+// Q&A에서 문의사항 작성하는 프로토 타입 함수
+function submitForm2() {
+    var content_comment = document.getElementById("content_comment2").value;
+
+    // 새로운 리뷰를 추가하는 경우
+    var reviewTextContainer = document.getElementById("Q&A_text_container");
+    var newReviewDiv = document.createElement("div");
+    newReviewDiv.className = "Q&A_text_area";
+    newReviewDiv.innerText = content_comment;
+    reviewTextContainer.appendChild(newReviewDiv);
+
+    // 기존에 입력한 글 초기화
+    document.getElementById("content_comment").value = "";
+  }
