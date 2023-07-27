@@ -24,7 +24,14 @@ const products = document.querySelectorAll('.product-module');
 	products.forEach(product => {
 		product.addEventListener('click', (e) => {
 	    	console.log(product.dataset.pk);
-	    	location.href = '/product/product-detail?performance_code=' + product.dataset.pk;
+	    	console.log(product.dataset.category);
+	    	
+			if (product.dataset.category !== "전시") {
+	    		location.href = '/product/product-detail?performance_code=' + product.dataset.pk;				
+			} else {
+				location.href = '/product/product-detail-ex?performance_code=' + product.dataset.pk;				
+			}
+
 	 });
  });
  

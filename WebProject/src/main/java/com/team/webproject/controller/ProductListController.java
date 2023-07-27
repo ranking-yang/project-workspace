@@ -24,13 +24,4 @@ public class ProductListController {
 		return "/product-list/product-list";
 	}
 	
-	
-	@GetMapping("/product-detail")
-	String getProductDetail(Model model, String performance_code) {
-		
-		model.addAttribute("perfomance", performanceMapper.getPerformance(performance_code));
-		
-		return "/detail/detail";
-	}
-	
 }

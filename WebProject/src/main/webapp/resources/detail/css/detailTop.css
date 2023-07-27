@@ -2,7 +2,7 @@
 .detail-top-con {
     width: 820px;
     padding: 1%;
-    padding-top: 10px;
+    padding-top: 30px;
     margin: 0 auto; /* 중앙정렬 */
     display: grid;
     grid-template-rows: 30px 1fr;
@@ -130,7 +130,6 @@
 
     .detail-top-info-price > div:last-child {
         padding-top: 10px;
-        padding-right: 10px;
         text-align: right;
     }
 
@@ -152,21 +151,21 @@
     }
 
     /* 시간선택 , 수량 선택 */
-    .popup-time, .popup-qty {
+    .popup-time-parent, .popup-qty {
         display: none;
         flex-direction: column;
         flex-wrap: wrap;
         row-gap: 10px;
         padding: 10px 15px 15px 10px;
-        font-size: 14px;
     }
 
-        .popup-time > div:first-child, .popup-qty > div:first-child {
-            color: gray;
+        .popup-text {
+            color: black;
             font-weight: bold;
+            font-size: 15px;
         }
 
-        .popup-time-parent {
+        .popup-time {
             margin-top: 5px;
             padding: 10px;
             font-size: 11px;
@@ -176,13 +175,10 @@
             cursor: pointer;
         }
 
-        .popup-time-parent > input {
+        .popup-time > button {
             background: none;
             border: 0;
-        }
-
-        .popup-time-parent > div {
-            padding-left: 7px;
+            padding-left: 8px;
         }
         
         .popup-qty-sub {
@@ -238,7 +234,7 @@
     }
 
     /* 결제하기 버튼 */
-    #popup-submit {
+    #popup-payment-btn {
         width: 100%;
         height: 50px;
         color: white;
@@ -248,9 +244,11 @@
         border: 0;
         cursor: pointer;
         border-radius: 10px;
-        background-color: #46c8b4;
-    }
-
-    #popup-submit:disabled {
         background-color: #b0b0b0;
     }
+	
+	/*
+    #popup-payment-btn {
+        background-color: #46c8b4;
+    }
+    */

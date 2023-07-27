@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/resources/detail/css/detailTop.css" var="top_css"/>
@@ -18,23 +18,23 @@
 
 <!-- body -->
 	<div class="detail-top-con">                <!-- product-list로 돌아감 -->
-        <div class="detail-top-now-category">📁 <a href="">${perfomance.main_category} > </a></div> <!-- 카테고리 -->
+        <div class="detail-top-now-category">📁 <a href="/product/performance?main_category=${performance.main_category}">${perfomance.main_category} > </a></div> <!-- 카테고리 -->
         <div class="detail-top-left">
             <!-- 좌측 작품 소개 칸 -->
             <div class="detail-top-info">            	
-                <img src="${perfomance.poster}" alt="포스터"> <!-- 포스터 이미지 -->
+                <img src="${performance.poster}" alt="포스터"> <!-- 포스터 이미지 -->
                 <!-- 좌측 포스터 텍스트-->
                 <div class="detail-top-info-con">
                     <div class="detail-top-info-icon"> <!-- DB 지역 -->
-                    	<c:set var="test" value="${perfomance.address}" />
+                    	<c:set var="test" value="${performance.address}" />
                     	${fn:substring(test,0,2)}
 					</div>
-                    <div class="detail-top-info-icon">${perfomance.sub_category}</div> <!-- DB 분야 -->
-                    <div class="detail-top-info-title">${perfomance.performance_name}</div> <!-- DB 제목 -->
+                    <div class="detail-top-info-icon">${performance.sub_category}</div> <!-- DB 분야 -->
+                    <div class="detail-top-info-title">${performance.performance_name}</div> <!-- DB 제목 -->
                     <div class="detail-top-info-openrun">
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">event_available</span></div>
-                           <div class="detail-top-run-txt">${perfomance.start_date} ~ ${perfomance.end_date}</div> <!-- DB 시작일~종료일 -->
+                           <div class="detail-top-run-txt">${performance.start_date} ~ ${performance.end_date}</div> <!-- DB 시작일~종료일 -->
                         </div>
                         <div class="detail-top-run-info"> 
                             <div><span class="material-symbols-outlined">schedule</span></div> 
@@ -44,19 +44,16 @@
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
-                            <div class="detail-top-run-txt">${perfomance.place}</div> <!-- DB 장소 -->
+                            <div class="detail-top-run-txt">${performance.place}</div> <!-- DB 장소 -->
                         </div>
                     </div>
                 </div>
                 <div class="detail-top-info-price">
                     <div>
                         <div>티켓킹가</div>
-                        <div>현재 최저가</div> <!-- DB 최저가 -->
+                        <div>구매 가능 티켓 수 : ${performance.performance_qty}매</div> <!-- DB 최저가 -->
                     </div>
-                    <div> <!-- DB 최저가 가격 -->
-                    <fmt:parseNumber var="percent" value="${perfomance.performance_price - (perfomance.performance_price * 0.2)}" integerOnly="true" />
-                    ${percent}원 ~
-                    </div> 
+                    <div id="lowestprice"> <!-- DB 최저가 가격 --> </div>
                 </div>
             </div>
             <!-- 여백 -->
@@ -64,58 +61,39 @@
         </div>
         <div class="detail-top-right">
             <!-- 달력 -->   
-            <div class="placeholder" data-startdate="${perfomance.start_date}" data-maxdate="${perfomance.end_date}"></div>
-            <div class="popup-time">
-                <div>시간선택</div>
-            <!-- 시간 -->
-			<!--  
-                <div class="popup-time-parent">
-                    <input type="button" name="time" value="(DB시간1)">
-                    <div>[남은 티켓: 1개]</div>
-                 </div>
-			-->
-            </div>
+            <div class="placeholder" data-startdate="${performance.start_date}" data-maxdate="${performance.end_date}"></div>
+            <div class="popup-time-parent">	            
+	            <!-- 시간 JS에서 생성 -->
+	        </div>
             <div class="popup-qty">
                 <!-- 권종/수량 -->
-                <div>권종/수량선택</div>
-                <div class="popup-qty-parent">
-                    <div class="popup-qty-age">성인</div>
-                    <div class="popup-qty-price">10</div>
-                    <div>원</div>
-                    <button class="qty-minus">-</button>
-                    <div class="qty-value">0</div>
-                    <button class="qty-plus">+</button>
-                </div>
-                <div class="popup-qty-parent">
-                    <div class="popup-qty-age">청소년</div>
-                    <div class="popup-qty-price">20</div>
-                    <div>원</div>
-                    <button class="qty-minus">-</button>
-                    <div class="qty-value">0</div>
-                    <button class="qty-plus">+</button>
-                </div>
-                <div class="popup-qty-parent">
-                    <div class="popup-qty-age">아동</div>
-                    <div class="popup-qty-price">30</div>
-                    <div>원</div>
-                    <button class="qty-minus">-</button>
-                    <div class="qty-value">0</div>
-                    <button class="qty-plus">+</button>
-                </div>
+                <div class="popup-text">권종/수량선택</div>                
+                <c:forEach items="${discountRates}" var="discount">
+                	<div class="popup-qty-parent">
+	                    <div class="popup-qty-age">${discount.generation}</div>
+	                   		 <fmt:parseNumber var="price" value="${performance.performance_price - (performance.performance_price * discount.discount_rate)})" integerOnly="true" />
+	                    <div class="popup-qty-price">${price}</div>
+	                    <div>원</div>
+	                    <button class="qty-minus">-</button>
+	                    <div class="qty-value">0</div>
+	                    <button class="qty-plus">+</button>
+                	</div>
+                </c:forEach>
+                
             </div>
             <div class="popup-totalPrice">
                 <!-- 총 금액 -->
                 <div>총 결제금액</div>
-                <input type="text" name="totalPrice" value="" id="popup-totalPrice-value" readonly>
+                <div id="popup-totalPrice-value"></div>
                 <div>원</div>
             </div>
             <!-- 결제하기 버튼 -->
-            <input type="submit" id="popup-submit" value="결제하기" disabled>
+            <button id="popup-payment-btn">결제하기</button>
         </div>
     </div>
 
 	<script>
 		const timetable = JSON.parse('${timetable}');
-		console.log(timetable);
+		const totalQty = '${perfomance.performance_qty}';
 	</script>
     <script src="${top_js}"></script>
