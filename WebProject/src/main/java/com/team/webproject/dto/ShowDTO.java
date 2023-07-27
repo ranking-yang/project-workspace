@@ -18,7 +18,9 @@ public class ShowDTO {
 	 String address;
 	 String place;
 	 char kid_state;
-	 String porster;
+
+	 String poster;
+
 	 public String getPerformance_code() {
 		return performance_code;
 	}
@@ -85,11 +87,12 @@ public class ShowDTO {
 	public void setKid_state(char kid_state) {
 		this.kid_state = kid_state;
 	}
-	public String getPorster() {
-		return porster;
+
+	public String getPoster() {
+		return poster;
 	}
-	public void setPorster(String porster) {
-		this.porster = porster;
+	public void setPoster(String porster) {
+		this.poster = porster;
 	}
 	
 }

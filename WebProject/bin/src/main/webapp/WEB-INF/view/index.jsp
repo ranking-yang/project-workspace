@@ -10,9 +10,9 @@
 <body>
 <h1>index</h1>
 <c:forEach items="${ex}" var="item">
-	<div>${item.eno}</div>
-	<div>${item.ename}</div>
-	<div>${item.job}</div>
+	<div>${item.employee_id}</div>
+	<div>${item.first_name}</div>
+	<div>${item.last_name}</div>
 </c:forEach>
 </body>
 </html>

@@ -130,7 +130,7 @@ public class ShowAPIController2 {
 		        	show.setAddress((String) js.get("gpsX")+"/"+js.get("gpsY"));
 		        	show.setPlace((String) js.get("place"));
 		        	show.setKid_state('N');
-		        	show.setPorster((String) js.get("thumbnail"));
+		        	show.setPoster((String) js.get("thumbnail"));
 		        	System.out.println(show.toString());
 		        	addPerformance.addShow(show);
 		        }

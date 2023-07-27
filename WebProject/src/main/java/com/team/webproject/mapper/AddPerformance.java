@@ -10,7 +10,7 @@ import com.team.webproject.dto.ShowDTO;
 @Mapper
 public interface AddPerformance {
 	
-	List<ShowDTO> getAllShow();
+	List<JSONObject> selectShow();
 	
 	int addShow(ShowDTO show);
 

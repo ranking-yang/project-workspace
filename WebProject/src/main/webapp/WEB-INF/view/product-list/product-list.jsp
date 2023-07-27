@@ -56,7 +56,9 @@
         			<div class="product-module-title" style="font-size:15px;">${item.prfnm}</div>
                 <div class="product-module-bottom">
                     <div class="star"><i class="fa-solid fa-star" style="color: #ffcb0f;"></i>4.8(828)</div>
-                    <div>가격</div>
+
+                    <div class="price">${product.performa nce_price }원</div>
+
                 </div>
         		</div>
         	</c:forEach>
