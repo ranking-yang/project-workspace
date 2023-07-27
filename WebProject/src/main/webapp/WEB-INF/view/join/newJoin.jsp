@@ -9,7 +9,53 @@
 <title>회원가입 작성 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/join/css/newJoin.css" />
-
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#input-hphone-btn").click(function() {
+			const phone = $("#user-hphone").val();
+			console.log(phone);
+	        $.ajax({
+	            url : "/sms/send",
+	            type: "POST",
+	            data: {to:phone},
+	            cache : false,
+	            dataType: "text",
+	            success : function(result) {
+	            	code = result.smsConfirmNum;
+	            	$("#flex-between").append("<div>"
+							+"<input type=code id=code_input class=input-box icon-hphone"
+							+" maxlength=13 style=width: 265px; padding-left: 50px;>"
+							+"</div>"
+							+"<div>"
+							+"<input type=button id=checkBtn class=btn-hphone-on"
+							+"value=확인>"
+							+"</div>");
+	            },
+	            error : function(){
+	            	alert('휴대폰 틀림')
+	            	$("#flex-between").append("<div>"
+							+"<input type=code id=code_input class=input-box icon-hphone"
+							+" maxlength=13 style=width: 265px; padding-left: 50px;>"
+							+"</div>"
+							+"<div>"
+							+"<input type=button id=checkBtn class=btn-hphone-on"
+							+"value=확인>"
+							+"</div>");
+	            }
+	        });
+	    });
+		
+		$("#checkBtn").click(function() {
+			if($("#code_input").val() == code){ // 위에서 저장한값을 ㅣ교함
+		          alert('인증성공')
+		      }else{
+		          
+		      }
+	    });
+	});
+    </script>
 </head>
 
 <body>
@@ -81,19 +127,20 @@
 				<div class="section-title">휴대폰 인증</div>
 				<div class="flex-between">
 					<div>
-						<input type="tel" id="user-hphone" name="member_phone"
-							maxlength="13" value="" onkeydown="checkChangeNumber();"
+						<input type="tel" id="user-hphone" name="member_phone" 
+							maxlength="13" value=""
 							placeholder="휴대폰 번호" class="input-box icon-hphone"
-							style="width: 265px; padding-left: 50px;">
+							style="width: 265px; padding-left:50px;">
 					</div>
 					<div>
 						<input type="button" id="input-hphone-btn" class="btn-hphone-on"
 							value="인증요청">
 					</div>
+					
 				</div>
 
 			</section>
-
+			
 			<!-- <section class="section-wrap" style="margin-top: 30px;">
 				<div class="section-title">이용약관 동의</div>
 
@@ -135,7 +182,8 @@
 				value="가입완료" alt="가입완료">
 
 		</form>
-
+		
+		
 	</div>
 
 </body>
