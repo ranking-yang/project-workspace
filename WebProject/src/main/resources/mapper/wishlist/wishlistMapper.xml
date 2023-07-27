@@ -7,10 +7,10 @@
 		SELECT * FROM wish_list where list_writer_code=#{member_code}
 	</select>
 	<insert id="insertWishlist">
-  		insert into wish_list (list_writer_code, performance_code)
-  		values (#{member_code},#{performance_code})
+  		insert into wish_list (wish_code, list_writer_code, performance_code)
+  		values (wish_code_seq.nextval, #{member_code}, #{performance_code})
 	</insert>
 	<delete id="deleteWishlist">
-  		delete from wish_list where wish_code=#{wish_code}
+  		delete from wish_list where list_writer_code=#{member_code} and performance_code=#{performance_code}
 	</delete>
 </mapper>

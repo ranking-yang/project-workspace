@@ -14,4 +14,9 @@
 	<select id="getPerformance" resultType="PerformanceDTO">
 		SELECT * FROM performance WHERE performance_code=#{performance_code}
 	</select>
+	<select id="getUserWishlist">
+		SELECT * FROM performance LEFT OUTER JOIN wish_list USING(performance_code);
+	</select>
+	
+	
 </mapper>

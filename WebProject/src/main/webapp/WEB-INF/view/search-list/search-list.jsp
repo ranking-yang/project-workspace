@@ -8,8 +8,8 @@
 <title>검색 상세페이지</title>
 <link rel="stylesheet" href="/resources/search-list/css/search-list.css">
 <%@ include file="../common/commonCss.jsp" %>
-<script src="https://kit.fontawesome.com/ad03eb7935.js"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://kit.fontawesome.com/ad03eb7935.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

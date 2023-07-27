@@ -8,5 +8,6 @@ public interface PerformanceMapper {
 	List<PerformanceDTO> getAllPerformances();
 	List<PerformanceDTO> getPerformances(String main_category);
 	PerformanceDTO getPerformance(String pk);
+	List<PerformanceDTO> getUserWishlist();
 	
 }
