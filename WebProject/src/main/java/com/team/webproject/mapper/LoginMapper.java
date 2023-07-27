@@ -2,8 +2,10 @@ package com.team.webproject.mapper;
 
 import java.util.List;
 
-import com.team.webproject.dto.AdminDTO;
+import org.apache.ibatis.annotations.Param;
+
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.TestUserDTO;
 
 public interface LoginMapper {
 	
@@ -17,4 +19,7 @@ public interface LoginMapper {
 
 	public boolean equalPwd(MembersDTO member);
 	
+	// 카카오 관련 sql매핑
+	int insertOauthMember(TestUserDTO testUser);
+	TestUserDTO findByMemberEmail(@Param("email")String memberEmail);
 }

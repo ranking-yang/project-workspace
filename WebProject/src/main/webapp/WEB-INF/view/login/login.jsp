@@ -34,9 +34,8 @@
 			</div>
 
 			<div class="login-submenu">
-				<a href="/findId">아이디 찾기</a> <span>|</span> <a
-					href="/findPassword">비밀번호 찾기</a> <span>|</span>
-				<a id="join-btn" href="/join/">회원가입</a>
+				<a href="/findId">아이디 찾기</a> <span>|</span> <a href="/findPassword">비밀번호
+					찾기</a> <span>|</span> <a id="join-btn" href="/join/">회원가입</a>
 			</div>
 		</form>
 
@@ -52,18 +51,19 @@
 					class="social-join-btn" alt="네이버로그인">
 			</div>
 			<div>
-				<img src="/resources/login/images/circle-kakao.png" id="login-kakao"
-					class="social-join-btn" alt="카카오로그인">
+				<a
+					href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d7a60e4c5295cff647529128c70b7348&redirect_uri=http://localhost:8090/auth/kakao/callback"><img
+					src="/resources/login/images/circle-kakao.png" id="login-kakao"
+					class="social-join-btn" alt="카카오로그인"></a>
 			</div>
 		</div>
-		
+
 		<div class="join-noti">
 			<a href="/bbs-detail.php?bbs-num=65&amp;tb=board-faq" target="-blank"
 				alt="불편사항"> ※ 회원가입/로그인에 문제가 있어요! &gt; </a>
 		</div>
-		
-		<br />
-		<a href="/admin" style="font-size: 20px;">관리자?</a>
+
+		<br /> <a href="/admin" style="font-size: 20px;">관리자?</a>
 
 	</div>
 
