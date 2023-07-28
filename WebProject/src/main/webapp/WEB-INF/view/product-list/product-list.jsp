@@ -17,22 +17,20 @@
 	<div id="product-container">
         <div id="navmenu">
             <div id="area">
-                <a class="submenu" href="">전체</a>
-                <a class="submenu" href="">대학로</a>
-                <a class="submenu" href="">서울</a>
-                <a class="submenu" href="">경기·인천</a>
-                <a class="submenu" href="">충청·대전</a>
-                <a class="submenu" href="">경상·대구·부산</a>
-                <a class="submenu" href="">전라·광주</a>
-                <a class="submenu" href="">강원</a>
-                <a class="submenu" href="">제주</a>
-
+                <span class="submenu selected" id="all">전체</span>
+                <span class="submenu" id="seoul">서울</span>
+                <span class="submenu" id="gyeong-in">경기·인천</span>
+                <span class="submenu" id="chung-dae">충청·대전</span>
+                <span class="submenu" id="gyeong-dae-bu">경상·대구·부산</span>
+                <span class="submenu" id="jeon-kwang">전라·광주</span>
+                <span class="submenu" id="Gangwon">강원</span>
+                <span class="submenu" id="jeju">제주</span>
             </div>
-            <div id="filter">
-                <a href="">인기순</a>
-                <a href="">별점순</a>
-                <a href="">최저가순</a>
-                <a href="">최고가순</a>
+            <div id="filters">
+                <span class="filter">인기순</span>
+                <span class="filter">별점순</span>
+                <span class="filter">최저가순</span>
+                <span class="filter">최고가순</span>
             </div>
         </div>
         <div id="page-title">${main_category }</div>
@@ -42,18 +40,19 @@
                 <img class="product-module-poster" src="${product.poster }" alt="포스터">
                 <div class="product-module-top">
                     <div class="place">
-                        <span><c:set var="test" value="${performance.address}" />
-                       ${fn:substring(test,0,2)}</span>
+                        <span>
+                        	<c:set var="test" value="${product.address}"/>${fn:substring(test,0,2)}
+                        </span>
                     </div>
                     <c:choose>
-	                    <c:when test="${product.wish_code empty}">
+	                    <c:when test="${empty product.wish_code}">
 	                    	<button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
 	                        <i class="fa-regular fa-heart" style="color: #000000;"></i> 
 	                    </button>
 	                    </c:when>
 	                    <c:otherwise>
-		                    <button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-		                        <i class="fa-regular fa-heart" style="color: #000000;"></i>
+		                    <button class="likeBtn liked" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
+		                        <i class="fa-solid fa-heart" style="color: #e41b1b;"></i>
 		                    </button>
 	                    </c:otherwise>
                     </c:choose>

@@ -6,16 +6,24 @@
 	<select id="getAllPerformances">
 		SELECT * FROM performance
 	</select>
-	
 	<select id="getPerformances">
-		SELECT * FROM performance where main_category=#{main_category}
+		SELECT * FROM performance WHERE main_category=#{main_category}
 	</select>
-	
+	<select id="getKidsPerformances">
+		SELECT * FROM performance WHERE kid_state='Y'
+	</select>
+	<select id="getUserPerformancesforKids">
+		SELECT * FROM performance 
+		LEFT OUTER JOIN wish_list USING(performance_code) 
+		WHERE kid_state = 'Y'
+	</select>
+	<select id="getUserPerformances">
+		SELECT * FROM performance 
+		LEFT OUTER JOIN wish_list USING(performance_code) 
+		WHERE main_category=#{main_category}
+	</select>
 	<select id="getPerformance" resultType="PerformanceDTO">
 		SELECT * FROM performance WHERE performance_code=#{performance_code}
-	</select>
-	<select id="getUserWishlist">
-		SELECT * FROM performance LEFT OUTER JOIN wish_list USING(performance_code);
 	</select>
 	
 	

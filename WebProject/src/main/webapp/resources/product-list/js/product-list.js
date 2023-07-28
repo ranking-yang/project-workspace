@@ -48,3 +48,24 @@ $(document).ready(function(){
 		
 	})
 });
+
+
+$(document).ready(function(){
+	$('.submenu').on('click', function(){
+		const urlParams = new URLSearchParams(window.location.search);
+        const textContent = $(this).text();
+        //console.log(textContent);
+        // 파라미터 중 'area'를 바꾸기
+        urlParams.set('area',textContent);
+        
+        // 새로운 URL 생성
+        const newUrl = window.location.pathname + '?' + urlParams.toString();
+        //console.log(newUrl);
+        //console.log(urlParams);
+        //console.log(window.location.pathname);
+        // 새로운 URL로 리다이렉트
+        window.location.href = newUrl;
+		
+	})
+});
+

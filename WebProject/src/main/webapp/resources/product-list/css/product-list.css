@@ -29,18 +29,26 @@ button{
     padding-top: 15px;
     font-weight: 500px;
 }
-#navmenu a{
+
+#navmenu span{
     padding: 0 3px;
     color: rgb(131, 131, 131);
 }
-
-#area a:hover{
+#area span:hover{
+    color: rgb(70,200,180);
+    cursor: pointer;
+}
+#filters span:hover{
+    color: rgb(236, 36, 220);
+    cursor: pointer;
+}
+.submenu.selected{
     color: rgb(70,200,180);
 }
-#filter a:hover{
+.filterselected{
     color: rgb(236, 36, 220);
 }
-#filter{
+#filters{
     text-align: right;
 }
 

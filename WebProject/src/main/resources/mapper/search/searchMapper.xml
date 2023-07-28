@@ -4,6 +4,16 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.webproject.mapper.SearchMapper">
 	<select id="getSearchList">
-		SELECT * FROM performance where performance_name like '%${keyword}%' or address like '%${keyword}%' or place like '%${keyword}%'
+		SELECT * FROM performance 
+		WHERE performance_name LiKE '%' || #{keyword} || '%'
+			OR address LiKE '%' || #{keyword} || '%'
+			OR place LiKE '%' || #{keyword} || '%'
+	</select>
+	<select id="getUserSearchList">
+		SELECT * FROM performance 
+		LEFT OUTER JOIN wish_list USING(performance_code) 
+		WHERE performance_name LiKE '%' || #{keyword} || '%'
+			OR address LiKE '%' || #{keyword} || '%'
+			OR place LiKE '%' || #{keyword} || '%'
 	</select>
 </mapper>
