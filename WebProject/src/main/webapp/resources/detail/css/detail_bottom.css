@@ -369,8 +369,6 @@ height:auto;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position-y: 0%;
-    /* 안내탭 펼쳐보기 누르기전 보이는 이미지 */
-    background-image: url('http://www.kopis.or.kr/upload/pfmPoster/PF_PF222378_230719_132517.jpg');
 }
 .info_detail_gradient {
     width: 100%;

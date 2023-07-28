@@ -79,6 +79,7 @@ public class DetailController {
            model.addAttribute("endDate", jsonob.get("prfpdto")); // 공연종료일
            model.addAttribute("age", jsonob.get("prfage")); // 공연 관람 연령
            model.addAttribute("space", jsonob.get("fcltynm")); // 공연시설명(공연장명)
+           model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
            
            // 종현이 형이 쓴 코드
            JSONArray lijs = new JSONArray();
