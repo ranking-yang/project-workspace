@@ -4,13 +4,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +37,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@Validated
 public class LoginController {
 	
 	private final LoginService exService;
@@ -38,34 +45,44 @@ public class LoginController {
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String loginGET(MembersDTO member) {
-		
+		System.out.println("1번");
 		return "login/login";
 	}
 
-	// 타임티켓/간편 회원가입 선택 페이지
-	@GetMapping("/join")
-	public String joinGET() {
-		
-		return "join/join";
-	}
+//	// 타임티켓/간편 회원가입 선택 페이지
+//	@GetMapping("/join")
+//	public String joinGET() {
+//		System.out.println("2번");
+//		return "join/newJoin";
+//	}
 	
 	// 타임티켓 회원가입 페이지로
-	@GetMapping("/new-join")
-	public String newJoinGET() {
-		
-		return "join/newJoin";
+	@GetMapping("/join/newJoin")
+	public String newJoinGET(MembersDTO member) {
+		System.out.println("3번");
+		return "/join/newJoin";
 	}
 	
 	// 회원가입
-	@PostMapping("/new-join")
-	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model
-			, String member_pwd_verify) throws Exception {
-		
+	@PostMapping("/join/newJoin")
+	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model) throws Exception{
+//		, String member_pwd_verify
+		System.out.println("4번");
+		System.out.println(errors.hasErrors());
+//		return "/newJoin";
 		if (errors.hasErrors()) {
-			System.out.println("회원가입 실패");
-			return "/join/newJoin";
+			// 회원가입 실패시 입력 데이터 값을 유지
+			model.addAttribute("memberDto", member);
+			
+			// 유효성 통과 못한 필드와 메시지를 핸들링
+			Map<String, String> validatorResult = exService.validateHandling(errors);
+			for (String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+			return "/newJoin";
 		} else {
-			return exService.checkId(member, member_pwd_verify);
+//			return exService.checkId(member, member_pwd_verify);
+			return "redirect:/login";
 		}
 	}
 	
@@ -79,7 +96,23 @@ public class LoginController {
         System.out.println(to);
         messageDto.setTo(to);
     	SmsResponseDTO responseDto = smsService.sendSms(messageDto);
+    	
         return responseDto;
+    }
+    
+    @RequestMapping(value="/sms/test", method=RequestMethod.POST)
+    @ResponseBody
+    public SmsResponseDTO sendtest(@RequestParam("to") String to) throws UnsupportedEncodingException, URISyntaxException, NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
+//        MessageDTO messageDto = new MessageDTO();
+//        System.out.println(to);
+//        messageDto.setTo(to);
+    	SmsResponseDTO responseDto = new SmsResponseDTO();
+    	responseDto.setSmsConfirmNum("1234");
+    	
+		return responseDto;
+		
+		
+        
     }
 	
 	// 회원가입 성공 후 로그인 페이지로

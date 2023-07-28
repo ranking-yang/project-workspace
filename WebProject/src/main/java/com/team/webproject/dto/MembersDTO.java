@@ -1,11 +1,14 @@
 package com.team.webproject.dto;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
+@Valid
 @Data
 public class MembersDTO {
 	
@@ -27,7 +30,7 @@ public class MembersDTO {
 	private String member_birth;
 	
 	@NotBlank(message = "휴대폰번호는 필수 입력 값입니다.")
-	@Pattern(regexp="^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$")
+	@Pattern(regexp="^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$")
 	private String member_phone;
 	
 	@NotBlank(message = "이메일은 필수 입력 값입니다.")

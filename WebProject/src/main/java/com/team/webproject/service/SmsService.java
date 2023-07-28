@@ -43,7 +43,6 @@ public class SmsService {
 	private String secretKey = "LPj0vUhIbPGf83GPzSaIT5PjqUdcZwiyPAxm9Q9K";
 	private String serviceId = "ncp:sms:kr:280775754349:web_project";
 	private String phone = "01038411825";
-	private final String smsConfirmNum = createSmsKey();
 	
 	public String getSignature(String time) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         String space = " ";
@@ -86,6 +85,7 @@ public class SmsService {
 
         List<MessageDTO> messages = new ArrayList<>();
         messages.add(messageDto);
+        String smsConfirmNum = createSmsKey();
         System.out.println(smsConfirmNum);
         SmsRequestDTO request = SmsRequestDTO.builder()
                 .type("SMS")

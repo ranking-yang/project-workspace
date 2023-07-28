@@ -15,9 +15,7 @@
 	            type: "POST",
 	            success : function(result) {
 	            	$(result).each(function(){
-
 	            		console.log(this.poster);
-
 	            		$("#apiTable").append("<tr>"
 	            		+"<td>"+this.performance_code+"</td>"		
 	            		+"<td>"+this.performance_name+"</td>"

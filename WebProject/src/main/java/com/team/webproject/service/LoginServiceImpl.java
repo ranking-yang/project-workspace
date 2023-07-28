@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
@@ -29,14 +30,14 @@ public class LoginServiceImpl implements LoginService {
 		
 		if (loginMapper.checkId(member) > 0) {
 			System.out.println("아이디 중복, 회원가입 실패");
-			return "redirect:/new-Join";
+			return "redirect:/newJoin";
 		} else if (member.getMember_pwd().equals(member_pwd_verify)) {
 			add(member);
 			System.out.println("회원가입 성공");
 			return "redirect:/login";
 		}
 		System.out.println("실패");
-		return "redirect:/new-join";
+		return "redirect:/newJoin";
 	}
 	
 	@Override
@@ -74,10 +75,12 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
 
         for (FieldError error : errors.getFieldErrors()) {
+        	System.out.println("에러 필드:"+error.getField());
             String validKeyName = String.format("valid_%s", error.getField());
             validatorResult.put(validKeyName, error.getDefaultMessage());
         }
