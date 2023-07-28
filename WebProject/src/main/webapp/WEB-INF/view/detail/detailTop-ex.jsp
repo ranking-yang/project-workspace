@@ -38,9 +38,9 @@
                         </div>
                         <div class="detail-top-run-info"> 
                             <div><span class="material-symbols-outlined">schedule</span></div> 
-                            <div class="detail-top-run-txt">${runtime}</div>  <!-- DB 총 공연 시간 -->
+                            <div class="detail-top-run-txt">-</div>  <!-- DB 총 공연 시간 -->
                             <div><span class="material-symbols-outlined">person</span></div>
-                            <div class="detail-top-run-txt" id="detail-top-age">${age}</div> <!-- DB 연령대 -->
+                            <div class="detail-top-run-txt" id="detail-top-age">전체이용가</div> <!-- DB 연령대 -->
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
@@ -60,10 +60,9 @@
             <div></div>
         </div>
         <div class="detail-top-right">
-            <!-- 달력 -->   
-            <div class="placeholder" data-startdate="${performance.start_date}" data-maxdate="${performance.end_date}"></div>
-            <div class="popup-time-parent">	            
-	            <!-- 시간 JS에서 생성 -->
+            <div class="popup-option">
+	            <div class="popup-text">옵션선택</div>
+	            <button id="popup-option-btn">[유효기간 ~ ${performance.end_date}]</button>
 	        </div>
             <div class="popup-qty">
                 <!-- 권종/수량 -->
@@ -97,10 +96,9 @@
     <!-- 사용자 아이디 ...  -->
     <input type="hidden" name="user_id" value="51" form="payment_proceed" />
     
-    <form action="/payment/proceed" id="payment_proceed" method="POST"></form>
+    <form id="payment_proceed"></form>
 
 	<script>
-		const timetable = JSON.parse('${timetable}');
 		const totalQty = '${performance.performance_qty}';
 	</script>
     <script src="${top_js}"></script>

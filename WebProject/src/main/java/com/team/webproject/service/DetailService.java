@@ -5,13 +5,17 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 
+import com.team.webproject.dto.GenerationDiscountDTO;
+import com.team.webproject.dto.PerformanceDTO;
+
 public interface DetailService {
-	// JSON 타입으로 타임테이블 만들기
+	List<GenerationDiscountDTO> getDisCount();
+	
+	PerformanceDTO getPerformance(String performance_code);
+	
 	Map<String, List<String>> getTimeTable(Object schedule);
-	// 한글 요일을 숫자로 변환
+	
 	String[] expandDayRange(String dayRange);
 	
 	JSONObject getKopisInfo(String performance_code);
-	
-	String address(String id);
 }

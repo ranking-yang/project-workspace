@@ -21,6 +21,7 @@ public class ProductListController {
 		
 		model.addAttribute("performances", performanceMapper.getPerformances(main_category));
 		model.addAttribute("main_category", main_category);
+		
 		return "/product-list/product-list";
 	}
 	

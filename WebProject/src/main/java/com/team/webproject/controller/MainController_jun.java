@@ -13,12 +13,12 @@ public class MainController_jun {
 	
 	private final LoginService exService;
 	
-	@GetMapping("/")
-	String index() {
-		
-//		model.addAttribute("ex", exService.getAll());
-		
-		return "/detail/detail_bottom";
-	}
+//	@GetMapping("/")
+//	String index() {
+//		
+////		model.addAttribute("ex", exService.getAll());
+//		
+//		return "/detail/detail_bottom";
+//	}
 	
 }

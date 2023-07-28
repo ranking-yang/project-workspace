@@ -1,12 +1,5 @@
 package com.team.webproject.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,8 +24,6 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.team.webproject.common.DateChange;
 import com.team.webproject.dto.GenerationDiscountDTO;
 import com.team.webproject.dto.PerformanceDTO;
@@ -48,8 +39,6 @@ public class DetailServiceimpl implements DetailService {
 	@Autowired
 	GenerationDiscountMapper generationDiscountMapper;
 
-	private DateChange datech;	
-
 	// DB에서 할인률 조회
 	public List<GenerationDiscountDTO> getDisCount() {
 		return generationDiscountMapper.getDisCount();
@@ -60,7 +49,7 @@ public class DetailServiceimpl implements DetailService {
 		return performanceMapper.getPerformance(performance_code);
 	}
 
-	// 타임테이블 map으로 리턴
+	// 전시 외 - 타임테이블 map으로 리턴
 	@Override
 	public Map<String, List<String>> getTimeTable(Object schedule) {
 		// JSON으로 정리할 데이터를 담을 Map
@@ -184,97 +173,57 @@ public class DetailServiceimpl implements DetailService {
 	}
 
 	// 공공데이터 요청
-	public void getPublicDataInfo(String performance_code) {
-		
-		long start = System.currentTimeMillis();
-		LocalDate date = LocalDate.now();
-		LocalDate plusdate = date.plusMonths(1);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//	public void getPublicDataInfo(String performance_code) {
+//		
+//		long start = System.currentTimeMillis();
+//		LocalDate date = LocalDate.now();
+//		LocalDate plusdate = date.plusMonths(1);
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+//
+//		StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/d/"); /*URL*/
+//		
+//		try {
+//
+//			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
+//            urlBuilder.append("&" + URLEncoder.encode("ComMsgHeader","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
+//            urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
+//            urlBuilder.append("&" + URLEncoder.encode("CallBackURI","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*Optional 필드*/
+//            urlBuilder.append("&" + URLEncoder.encode("MsgBody","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
+//            urlBuilder.append("&" + URLEncoder.encode("seq","UTF-8") + "=" + URLEncoder.encode(performance_code, "UTF-8")); /* 시퀀스로 공연 조회 */
+//            
+//			URL url = new URL(urlBuilder.toString());
+//			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//			conn.setRequestMethod("GET");
+//			conn.setRequestProperty("Content-type", "application/json");
+//			System.out.println("Response code: " + conn.getResponseCode());
+//			
+//			BufferedReader rd;
+//			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+//				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//			} else {
+//				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+//			}
+//			StringBuilder sb = new StringBuilder();
+//			String line;
+//			while ((line = rd.readLine()) != null) {
+//				sb.append(line);
+//			}
+//			rd.close();
+//			conn.disconnect();
+//			System.out.println(sb.toString());
+//			
+//			XmlMapper xml = new XmlMapper();
+//	        Object dataInstance = xml.readValue(sb.toString().getBytes(), Object.class);
+//
+//	        
+//			// model.addAttribute("age", jsonob.get("prfage")); - 연령
+//
+//            
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} 
+//
+//	}
 
-		StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/d/"); /*URL*/
-		
-		try {
-
-			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
-            urlBuilder.append("&" + URLEncoder.encode("ComMsgHeader","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
-            urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
-            urlBuilder.append("&" + URLEncoder.encode("CallBackURI","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*Optional 필드*/
-            urlBuilder.append("&" + URLEncoder.encode("MsgBody","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
-            urlBuilder.append("&" + URLEncoder.encode("seq","UTF-8") + "=" + URLEncoder.encode(performance_code, "UTF-8")); /* 시퀀스로 공연 조회 */
-            
-			URL url = new URL(urlBuilder.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-type", "application/json");
-			System.out.println("Response code: " + conn.getResponseCode());
-			
-			BufferedReader rd;
-			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			} else {
-				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-			}
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = rd.readLine()) != null) {
-				sb.append(line);
-			}
-			rd.close();
-			conn.disconnect();
-			System.out.println(sb.toString());
-            
-            
-            
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-
-	}
-
-	// 공공데이터 : 좌표값 → 주소 값 변환
-	@Override
-	public String address(String id) {
-		try {
-			StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/d/"); /*URL*/
-			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
-			urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
-			urlBuilder.append("&" + URLEncoder.encode("seq","UTF-8") + "=" + URLEncoder.encode(id, "UTF-8")); /**/
-			URL url = new URL(urlBuilder.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-type", "application/json");
-			BufferedReader rd;
-			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			} else {
-				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-			}
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = rd.readLine()) != null) {
-				sb.append(line);
-			}
-			rd.close();
-			conn.disconnect();
-			XmlMapper xml = new XmlMapper();
-			Object dataInstance = xml.readValue(sb.toString().getBytes(), Object.class);
-
-			// json convert 부분
-			JsonMapper jsonMapper = new JsonMapper();
-			String json = jsonMapper.writeValueAsString(dataInstance); // json to String 변환
-
-			JSONParser parser = new JSONParser();
-			JSONObject json2 = (JSONObject) parser.parse(json);
-			JSONObject json3 = (JSONObject)json2.get("msgBody");
-			JSONObject json4 = (JSONObject)json3.get("perforInfo");
-			String adres =(String) json4.get("placeAddr");
-
-			return adres;
-
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 }
