@@ -18,7 +18,7 @@
     <!---------------------- 탭 영역 시작 ----------------------->
     <div id="ajaxcontentarea" class="contentstyle" style="border-radius:0 0 10px 10px">
 	    <!-- 안내탭 시작 -->
-	    <%@ include file="./frag/bottom_info.jsp" %>
+	    <%@ include file="./frag/bottom_info_ex.jsp" %>
 	  	<!-- 후기탭 시작 -->
 	  	<%@ include file="./frag/bottom_review.jsp" %>
 	  	<!-- Q&A탭 시작 -->

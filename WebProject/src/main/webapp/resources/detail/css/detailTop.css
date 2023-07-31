@@ -2,7 +2,7 @@
 .detail-top-con {
     width: 820px;
     padding: 1%;
-    padding-top: 10px;
+    padding-top: 30px;
     margin: 0 auto; /* 중앙정렬 */
     display: grid;
     grid-template-rows: 30px 1fr;
@@ -130,7 +130,6 @@
 
     .detail-top-info-price > div:last-child {
         padding-top: 10px;
-        padding-right: 10px;
         text-align: right;
     }
 
@@ -150,39 +149,45 @@
     .flatpickr-calendar {
         border-radius: 10px !important;
     }
-
+    
+    /* 전시 옵션선택 */
+    .popup-option {
+		display: flex;
+		flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px 15px 15px 10px;
+	}
+		
     /* 시간선택 , 수량 선택 */
-    .popup-time, .popup-qty {
+    .popup-time-parent, .popup-qty {
         display: none;
         flex-direction: column;
         flex-wrap: wrap;
         row-gap: 10px;
         padding: 10px 15px 15px 10px;
-        font-size: 14px;
     }
 
-        .popup-time > div:first-child, .popup-qty > div:first-child {
-            color: gray;
+        .popup-text {
+            color: black;
             font-weight: bold;
+            font-size: 15px;
         }
 
-        .popup-time-parent {
+        .popup-time, #popup-option-btn {
             margin-top: 5px;
             padding: 10px;
-            font-size: 11px;
+            font-size: 13px;
             background: #f5f5f5;
+            border: 0;
             border-radius: 5px;
             text-align: left;
             cursor: pointer;
         }
 
-        .popup-time-parent > input {
+        .popup-time > input {
             background: none;
             border: 0;
-        }
-
-        .popup-time-parent > div {
-            padding-left: 7px;
+            padding-left: 8px;
         }
         
         .popup-qty-sub {
@@ -202,13 +207,19 @@
 
             .popup-qty-parent {
                 display: none;
-                grid-template-columns: 70px 1fr 20px 30px 40px 30px;
+                grid-template-columns: 70px 100px 20px 30px 40px 30px;
                 text-align: center;
             }
             
             .popup-qty-price {
-                text-align: right;
+				text-align: right;
+                border: 0;
             }
+            
+            .qty-value {
+				text-align: center;
+				border: 0;
+			}
 
             .qty-minus, .qty-plus {
                 background-color: white;
@@ -238,7 +249,7 @@
     }
 
     /* 결제하기 버튼 */
-    #popup-submit {
+    #popup-payment-btn {
         width: 100%;
         height: 50px;
         color: white;
@@ -248,9 +259,9 @@
         border: 0;
         cursor: pointer;
         border-radius: 10px;
-        background-color: #46c8b4;
-    }
-
-    #popup-submit:disabled {
         background-color: #b0b0b0;
+    }
+	
+    #popup-payment-btn:enabled {
+        background-color: #46c8b4;
     }

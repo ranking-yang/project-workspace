@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* 상품페이지(main) 영역 */
 
 #ajaxcontentarea {
@@ -36,7 +34,7 @@
 }
 
 .score_section_left_star {
-  background-image: url("./common/image/icon_background_stars.png");
+  background-image: url('/resources/common/image/icon_background_stars.png');
   background-repeat: no-repeat;
   background-size: 120px;
   width: 100%;
@@ -127,7 +125,7 @@
 }
 
 .review_title_left_star {
-  background-image: url("./common/image/icon_background_stars.png");
+  background-image: url('/resources/common/image/icon_background_stars.png');
   background-repeat: no-repeat;
   background-size: 95px;
   width: 100%;
@@ -222,17 +220,6 @@
 /* Q&A 페이지*/
 .main_tab_title { font-size: 20px; font-weight: 700; color: #000; margin: 15px 0 0 15px}
 
-
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
-
-/* Reset styles */
-* { margin:0; padding:0; /* 타임티켓 폰트: font-family: 'Pretendard', 'Pretendard Variable'; */ }
-html, body{width:100%; height:100%; background:#fff;}
-body, table{word-break:break-all;font-size:13px;font-weight:400;}
-td, select {font-size:13px; font-weight:400; }
-html {overflow-y: scroll; }
-ul,li,dl,dt,dd{list-style:none; margin:0; padding:0;}
-form, p {margin:0}
 
 /* Links */
 a,

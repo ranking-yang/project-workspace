@@ -116,7 +116,7 @@
 	<div class="join-wrap">
 
 		<div>
-			<img src="/resources/join/images/logo.jpg"
+			<img  src="/resources/common/image/logo.png"
 				style="width: 150px; height: 102px;">
 		</div>
 

@@ -38,13 +38,16 @@ function toggleLike(event, buttonId) {
 	  });
     }
   };
-  
-
 
 $(document).ready(function(){
 	$('.product-module').on('click', function(){
 		console.log($(this).data('pk'));
-		location.href = '/product/product-detail?performance_code=' + $(this).data('pk');
+		
+		if ($(this).data('category') !== "전시") {
+	    		location.href = '/product/product-detail?performance_code=' + $(this).data('pk');				
+			} else {
+				location.href = '/product/product-detail-ex?performance_code=' + $(this).data('pk');				
+			}
 		
 	})
 });
@@ -68,4 +71,3 @@ $(document).ready(function(){
 		
 	})
 });
-

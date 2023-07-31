@@ -14,7 +14,7 @@
 	<div class="login-wrap">
 
 		<div>
-			<img src="/resources/login/images/logo2.jpg"
+			<img src="/resources/common/image/logo.png"
 				style="width: 150px; height: 102px;">
 		</div>
 

@@ -21,7 +21,8 @@ public class ProductListController {
 		member_code = 51;
 		model.addAttribute("performances", productListService.getProductList(main_category,member_code, area));
 		model.addAttribute("main_category", main_category);
+		
 		return "/product-list/product-list";
 	}
-
+	
 }

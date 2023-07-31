@@ -8,13 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>결제페이지</title>
+<%@ include file="../common/commonCss.jsp" %>
 <link rel="stylesheet" href="${payment_css}">
 </head>
 <body>
 
+		<%@ include file="../common/header.jsp" %>	
+
 	    <div class="payment-con">
         <!-- 페이지 타이틀 -->
-        <div class="payment-title">티켓 예매하기<div></div></div>
+        <div class="payment-title">티켓 예매하기</div>
         
         <div class="payment-selected-con">
             <!-- 티켓 정보 -->
@@ -22,24 +25,59 @@
                 <div class="payment-selected-subtitle">티켓정보</div>
                 <div class="payment-selected-box">
                     <div class="payment-selected-box-title">티켓명</div>
-                    <div>(티켓명)</div>
+                    <div>${performance.performance_name}</div>
                     <div class="payment-selected-box-title">이용장소</div>
-                    <div>(장소)</div>
+                    <div>${performance.address}</div>
                 </div>
             </div>
             <!-- 예매 정보 -->
-            <div">
+            <div>
                 <div class="payment-selected-subtitle">예매정보</div>
-                <div class="payment-selected-box">
-                    <div class="payment-selected-box-title">선택옵션</div>
-                    <div>(옵션)</div>
-                    <div class="payment-selected-box-title">티켓가격</div>
-                    <div>(티켓의가격)</div>
-                    <div class="payment-selected-box-title">수량</div>
-                    <div>(수량)</div>
-                    <div class="payment-selected-box-title">티켓합계</div>
-                    <div>(권종별합계)</div>
-                </div>
+                
+            	<c:if test="${order.adult_qty > 0}">
+           			<div class="payment-selected-box">
+	                    <div class="payment-selected-box-title">선택옵션</div>
+	                    <div>${order.booking_date} 
+	                    <c:if test="${!empty order.booking_time}">${order.booking_time} </c:if>
+	                    일반</div>
+	                    <div class="payment-selected-box-title">티켓가격</div>
+	                    <div>${order.adult_price} 원</div>
+	                    <div class="payment-selected-box-title">수량</div>
+	                    <div>${order.adult_qty} 매</div>
+	                    <div class="payment-selected-box-title">총 가격</div>
+	                    <div>${order.adult_price * order.adult_qty} 원</div>
+               		</div>
+            	</c:if>
+            	
+            	<c:if test="${order.youth_qty > 0}">
+           			<div class="payment-selected-box">
+	                    <div class="payment-selected-box-title">선택옵션</div>
+	                    <div>${order.booking_date} 
+	                    <c:if test="${!empty order.booking_time}">${order.booking_time} </c:if>
+	                    청소년</div>
+	                    <div class="payment-selected-box-title">티켓가격</div>
+	                    <div>${order.youth_price} 원</div>
+	                    <div class="payment-selected-box-title">수량</div>
+	                    <div>${order.youth_qty} 매</div>
+	                    <div class="payment-selected-box-title">티켓합계</div>
+	                    <div>${order.youth_price * order.youth_qty} 원</div>
+               		</div>
+            	</c:if>
+            	
+            	<c:if test="${order.child_qty > 0}">
+           			<div class="payment-selected-box">
+	                    <div class="payment-selected-box-title">선택옵션</div>
+	                    <div>${order.booking_date} 
+	                    <c:if test="${!empty order.booking_time}">${order.booking_time} </c:if>
+	                    아동</div>
+	                    <div class="payment-selected-box-title">티켓가격</div>
+	                    <div>${order.child_price} 원</div>
+	                    <div class="payment-selected-box-title">수량</div>
+	                    <div>${order.child_qty} 매</div>
+	                    <div class="payment-selected-box-title">티켓합계</div>
+	                    <div>${order.child_price * order.child_qty} 원</div>
+               		</div>
+            	</c:if>
             </div>
             <!-- 쿠폰 사용 -->
             <div>
@@ -54,7 +92,7 @@
             <!-- 총 금액 -->
             <div class="payment-total">
                 <div class="payment-selected-subtitle">총 결제금액</div>
-                <div>(총 가격)원</div>
+                <div>${order.total_price} 원</div>
             </div>
             <!-- 환불규정, 이용약관 -->
             <div class="payment-selected-policy">
@@ -96,6 +134,10 @@
             </div>
         </div>
     </div>
+    
+    <%@ include file="../common/footer.jsp" %>
+	
+	<%@ include file="../common/commonJs.jsp" %>
 
 	<script src="${payment_js}"></script>
 
