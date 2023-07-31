@@ -21,7 +21,7 @@
 						<c:otherwise>
 							<button class="user-nav-btn" id="login"><a href="/login">로그인</a></button>
 							<li class="user-nav-item">
-								<button class="user-nav-btn" id="join">회원가입</button>
+								<button class="user-nav-btn" id="join"><a href="/user/newJoin">회원가입</button>
 							</li>
 						</c:otherwise>
 					</c:choose>
