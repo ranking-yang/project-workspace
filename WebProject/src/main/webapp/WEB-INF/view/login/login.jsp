@@ -36,7 +36,7 @@
 			<div class="login-submenu">
 				<a href="/findId">아이디 찾기</a> <span>|</span> <a
 					href="/findPassword">비밀번호 찾기</a> <span>|</span>
-				<a id="join-btn" href="/join/">회원가입</a>
+				<a id="join-btn" href="/user/newJoin">회원가입</a>
 			</div>
 		</form>
 

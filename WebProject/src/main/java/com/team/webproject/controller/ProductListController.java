@@ -5,10 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.team.webproject.mapper.PerformanceMapper;
-import com.team.webproject.mapper.WishlistMapper;
+import com.team.webproject.service.ProductListService;
 
 
 @Controller
@@ -16,31 +14,14 @@ import com.team.webproject.mapper.WishlistMapper;
 public class ProductListController {
 	
 	@Autowired
-	PerformanceMapper performanceMapper;
-	@Autowired
-	WishlistMapper wishlistMapper;
-	
+	ProductListService productListService;
+
 	@GetMapping("/performance")
-	String getProduckList(Model model, String main_category) {
-		
-		model.addAttribute("performances", performanceMapper.getPerformances(main_category));
+	String getProduckList(Model model, String main_category, Integer member_code, String area) {
+		member_code = 51;
+		model.addAttribute("performances", productListService.getProductList(main_category,member_code, area));
 		model.addAttribute("main_category", main_category);
 		return "/product-list/product-list";
 	}
-	
-	@GetMapping("/wishlist")
-	String getUserWislist(Model model, int member_code) {
-		member_code = 50;
-		model.addAttribute("userWishlist", wishlistMapper.getUserWislist(member_code));
-		return "wish-list/wish-list";
-	}
-	
-	@GetMapping("/product-detail")
-	String getProductDetail(Model model, String performance_code) {
-		
-		model.addAttribute("perfomance", performanceMapper.getPerformance(performance_code));
-		
-		return "/detail/detail";
-	}
-	
+
 }

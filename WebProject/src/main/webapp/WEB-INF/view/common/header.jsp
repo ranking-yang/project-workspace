@@ -14,12 +14,19 @@
 			<!-- 로그인 성공시 로그아웃, 마이페이지, 고객센터로 바뀌어야함 -->
 			<ul id="user-nav">
 				<li class="user-nav-item">
-					<button class="user-nav-btn" id="login">로그인</button>
+					<c:choose>
+						<c:when test="${not empty userId}">
+							<button class="user-nav-btn" id="logout"><a href="/logout">로그아웃</a></button>
+						</c:when>
+						<c:otherwise>
+							<button class="user-nav-btn" id="login"><a href="/login">로그인</a></button>
+							<li class="user-nav-item">
+								<button class="user-nav-btn" id="join">회원가입</button>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</li>
 				<li>&nbsp;&nbsp;</li>
-				<li class="user-nav-item">
-					<button class="user-nav-btn" id="join">회원가입</button>
-				</li>
 				<li>&nbsp;&nbsp;</li>
 				<li class="user-nav-item">
 					<button class="user-nav-btn" id="as">고객센터</button>

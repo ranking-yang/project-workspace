@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.team.webproject.mapper.SearchMapper;
+import com.team.webproject.service.SearchListService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 public class SearchListController {
 	
 	@Autowired
-	SearchMapper searchMapper;
+	SearchListService searchListService;
 	
 	@GetMapping("/search")
-	String getSearchList(Model model, String keyword) {
-		
-		model.addAttribute("searchList", searchMapper.getSearchList(keyword));
+	String getSearchList(Model model, String keyword, Integer member_code) {
+		member_code=51;
+		model.addAttribute("searchList", searchListService.getSearchList(keyword, member_code));
 				
 		return "/search-list/search-list";
 	}
