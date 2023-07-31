@@ -17,12 +17,10 @@ public class PaymentController {
 	@PostMapping("/payment/proceed")
 	String getProceedPayment(OrderDTO order, Model model) {
 		
-		// 아이디값 가져와서 출력해주기
+		// 아이디값 가져와서 출력해주기 (이거는 시큐리티...)	
 		
 		model.addAttribute("performance", paymentService.getPerformance(order.getPerformance_code()));
 		model.addAttribute("order", order);
-		
-		System.out.println(order);
 		
 		return "payment/payment";
 	}

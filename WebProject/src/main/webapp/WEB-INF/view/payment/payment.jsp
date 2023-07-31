@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>결제페이지</title>
 <%@ include file="../common/commonCss.jsp" %>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <link rel="stylesheet" href="${payment_css}">
 </head>
 <body>
@@ -30,6 +34,7 @@
                     <div>${performance.address}</div>
                 </div>
             </div>
+            
             <!-- 예매 정보 -->
             <div>
                 <div class="payment-selected-subtitle">예매정보</div>
@@ -79,6 +84,18 @@
                		</div>
             	</c:if>
             </div>
+            
+            <!-- 이용자 정보 -->
+             <div>
+                <div class="payment-selected-subtitle">이용자정보</div>
+                <div class="payment-selected-box">
+                    <div class="payment-selected-box-title">이름</div>
+                    <div>이름</div>
+                    <div class="payment-selected-box-title">핸드폰</div>
+                    <div>핸드폰</div>
+                </div>
+            </div>
+            
             <!-- 쿠폰 사용 -->
             <div>
                 <div class="payment-selected-subtitle">쿠폰할인</div>   
@@ -129,7 +146,7 @@
             <!-- 결제하기 -->
             <!-- 체크박스 체크하면 결제 정보 넘어가게 / JSON으로 결제정보 넘어가게 등등.. -->
             <div class="payment-chkBox">                
-                <div id="payment-chk"><input type="checkbox"> 상단의 환불규정 / 주의사항 / 약관을 확인하였으며 이에 동의합니다.</div>
+                <div><input type="checkbox" id="payment-chk"> 상단의 환불규정 / 주의사항 / 약관을 확인하였으며 이에 동의합니다.</div>
                 <div><button id="payment-btn">결제하기</button></div>
             </div>
         </div>
