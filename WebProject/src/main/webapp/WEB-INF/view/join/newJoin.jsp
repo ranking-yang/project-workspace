@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="th" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
 <!-- <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> -->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-
+<meta charset="EUC-KR">
 <title>회원가입 작성 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/join/css/newJoin.css" />
@@ -51,20 +51,18 @@
 	            }
 	        });
 	    });
-	
+		
 	
 		$(document).on("click","#checkBtn", function() {
-			console.log($("#code_input").val());
-			console.log(code);
+			
 			if($("#code_input").val() == code){ // 위에서 저장한값을 ㅣ교함
 		          alert('인증성공')
-				  checkphone = true;
-		          $("#user-hphone").attr("disabled",true);
+		          /* $("#user-hphone").attr("disabled",true); */
 		          $("#code_input").attr("disabled",true);
 		          $("#checkBtn").attr("disabled",true);
 		          $("#input-hphone-btn").attr("disabled",true);
 		      }else{
-		          
+		    	  
 		      }
 	    });
 		
@@ -89,6 +87,26 @@
 	            	
 	            } 
 	    });*/
+		});
+	 $(document).ready(function() {
+	    $(document).on("click","#check-id-btn", function() {
+			console.log("test");	
+		
+			var userid = $("#user-id").val();
+			 $.ajax({
+	            url : "/join/idcheck", 
+	            type: "POST",
+	            data: {id:userid},
+	            cache : false,
+	            dataType: "text",
+	            success : function(result) {
+	            	alert(result);
+	            	
+	            }
+		});
+	    
+	    });
+	    
 	});
     </script>
 </head>
@@ -108,55 +126,57 @@
 			<div>(오류 메세지 안 뜸..)</div>
 		</div>
 
-		<form th:action="@{/join/newJoin}" method="post" modelAttribute="memberDto">
-
+		<form th:action="@{/user/newJoin}" method="post">
 			<!-- 아이디 autocomplete="off"-->
 			<section class="section-wrap-top">
-				<input type="text" id="user-id" name="member_id" placeholder="아이디"
-					class="input-box icon-id" th:value="${memberDto.member_id}"
-					style="text-transform: lowercase;">
-				
-				<div class="input-alret-id"><span th:text="${vaild_member_id}"></span></div>
+				<div>
+					<input type="text" id="user-id" name="member_id" placeholder="아이디"
+					class="input-box icon-id" value="${member.member_id}"
+					style="text-transform: lowercase; width:265px; padding-left:50px;">
+					<input type="button" id="check-id-btn" class="btn-hphone-on"
+						value="중복확인">
+				</div>
+				<div class="input-alret-id"><span>${valid_member_id}</span></div>
 			</section> 
 			
 			
 			<!-- 비밀번호 / 비밀번호 확인 -->
 			<section class="section-wrap">
 				<input type="password" id="user-pass" name="member_pwd"
-					placeholder="비밀번호" class="input-box icon-pass" th:value="${memberDto.member_pwd}"
+					placeholder="비밀번호" class="input-box icon-pass"
 					autocomplete="new-password">
 					
-				<div class="input-alret-password"><span th:text="${vaild_member_pwd}"></span></div>
+				<div class="input-alret-password"><span>${valid_member_pwd}</span></div>
 			</section>
 
 			<section class="section-wrap">
 				<input type="password" id="user-pass-verify"
 					name="member_pwd_verify" placeholder="비밀번호 확인"
 					class="input-box icon-pass2" autocomplete="new-password">
-				<div class="input-alret-password" style="visibility: hidden;"></div>
+				<div class="input-alret-password"><span>${pwd_check}</span></div>
 			</section>
 
 			<!-- 이름 -->
 			<section class="section-wrap">
 				<input type="text" id="user-name" name="member_name"
-					placeholder="이름" th:value="${memberDto.member_name}" class="input-box icon-name">
-				<div class="input-alret-name"><span th:text="${vaild_member_name}"></span></div>
+					placeholder="이름" value="${member.member_name}" class="input-box icon-name">
+				<div class="input-alret-name"><span>${valid_member_name}</span></div>
 			</section>
 
 			<!-- 이메일 -->
 			<section class="section-wrap">
 				<input type="text" id="user-email" name="member_email"
-					placeholder="이메일" th:value="${memberDto.member_email}" class="input-box icon-email"
+					placeholder="이메일" value="${member.member_email}" class="input-box icon-email"
 					oninput="removeSpace(this)">
-				<div class="input-alret-email"><span th:text="${vaild_member_email}"></span></div>
+				<div class="input-alret-email"><span>${valid_member_email}</span></div>
 			</section>
 
 			<!-- 생년월일 -->
 			<section class="section-wrap">
 				<input type="text" id="user-birth-date" name="member_birth"
-					placeholder="생년월일" th:value="${memberDto.member_birth}" class="input-box icon-birth-date"
+					placeholder="생년월일" value="${member.member_birth}" class="input-box icon-birth-date"
 					oninput="removeSpace(this)">
-				<div class="input-alret-birth-date"><span th:text="${vaild_member_birth}"></span></div>
+				<div class="input-alret-birth-date"><span>${valid_member_birth}</span></div>
 			</section>
 
 			<!-- 휴대폰 인증 -->
@@ -165,7 +185,7 @@
 				<div class="flex-between">
 					<div>
 						<input type="tel" id="user-hphone" name="member_phone" 
-							maxlength="13" th:value="${memberDto.member_phone}"
+							maxlength="13" value="${member.member_phone}"
 							placeholder="휴대폰 번호" class="input-box icon-hphone"
 							style="width: 265px; padding-left:50px;">
 					</div>
@@ -174,7 +194,7 @@
 							value="인증요청">
 					</div>
 				</div>
-				<div class="input-alret-phone"><span th:text="${vaild_member_phone}"></span></div>
+				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
 			</section>
 			
 			<!-- <section class="section-wrap" style="margin-top: 30px;">
@@ -213,12 +233,11 @@
 					</div>
 				</div>
 			</section> -->
-
-			<!-- <input type="submit" id="submitComplete" class="btn-submit"
-				value="회원가입" alt="회원가입"> -->
-			<button>등록</button>
+			
+			<input type="submit" id="submitComplete" class="btn-submit"
+				value="회원가입" alt="회원가입">
+			<!-- <button>등록</button> -->
 		</form>
-		
 		
 	</div>
 

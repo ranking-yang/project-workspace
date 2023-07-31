@@ -7,18 +7,18 @@ import com.team.webproject.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
-@RequiredArgsConstructor
-public class MainController_jun {
-	
-	private final LoginService exService;
-	
-	@GetMapping("/")
-	String index() {
-		
-//		model.addAttribute("ex", exService.getAll());
-		
-		return "/detail/detail_bottom";
-	}
-	
-}
+//@Controller
+//@RequiredArgsConstructor
+//public class MainController_jun {
+//	
+//	private final LoginService exService;
+//	
+//	@GetMapping("/")
+//	String index() {
+//		
+////		model.addAttribute("ex", exService.getAll());
+//		
+//		return "/detail/detail_bottom";
+//	}
+//	
+//}
