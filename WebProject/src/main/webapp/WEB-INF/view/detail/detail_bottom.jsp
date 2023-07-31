@@ -578,27 +578,22 @@
 </form>
 
 <!-- 로그인개선 : NeoHero 2009.07.30 -->
-<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden"></iframe>
-
-
-		</div>
-
-	</div>
-
-	<div>
-		<span id="replyViewLabel" name="replyView">
-
+<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden">
+</iframe>
+</div>
+</div>
+<div>
+<span id="replyViewLabel" name="replyView">
 <div style="width:100%; padding-top:15px;">
+<div id="Q&A_text_container" style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+</div>
 	<form name="reply_frm_1"  target="h_blank" style="margin:0;">
 
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 
   <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
 
-  <tbody>
-  <div id="Q&A_text_container">
   
-  </div>
   <tr>
     <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
     <span style="font-size:15px; color:#555; font-weight:400;">
@@ -610,68 +605,62 @@
      </a>
      </td>
   </tr>
-
   <tr>
     <td style="font-size:15px; padding:5px 15px 15px 15px; line-height:160%;" align="left">8월에도 공연이 있나요?</td>
   </tr>
-
   <tr id="habuReply_2">
-    <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
-  <tbody><tr>
-    <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
-      <img src="https://timeticket.co.kr/img/reply_icon.png">
-    </td>
-
-    <td style="font-size:12px; color:#555; padding-top:5px" align="left"><span style="font-size:15px; font-weight:400; color:darkblue">관리자</span>&nbsp;&nbsp;(2023-07-13 16:38:25)&nbsp;&nbsp;
-    </td>
-  </tr>
-
+   <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
+	<table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+	 <tbody>
+	 <tr>
+      <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
+       <img src="https://timeticket.co.kr/img/reply_icon.png">
+      </td>
+      <td style="font-size:12px; color:#555; padding-top:5px" align="left"><span style="font-size:15px; font-weight:400; color:darkblue">관리자</span>&nbsp;&nbsp;(2023-07-13 16:38:25)&nbsp;&nbsp;
+      </td>
+     </tr>
   <tr>
     <td colspan="2" style="font-size:15px; padding:0px 10px 15px 36px; line-height:160%;">연극 '라면'은 8월에도 진행됩니다. 날짜 선택하실 때 달력을 8월로 지정하시면 예매가 가능한 날짜를 확인하실 수 있습니다. :)</td>
   </tr>
-
-</tbody></table>
-</td>
+    </tbody>
+    </table>
+   </td>
   </tr>
-
-
   <tr id="writeDiv_2" style="display:none;">
     <td style="padding:0px 10px 15px 10px;">
       <table style="width:100%;">
-      <tbody><tr>
+      <tbody>
+       <tr>
         <td>
           <table style="width:100%;">
-          <tbody><tr>
-            <td><textarea name="content" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea></td>
-          </tr>
-          </tbody></table>
+          <tbody>
+           <tr>
+            <td><textarea id="content_comment2" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea></td>
+           </tr>
+          </tbody>
+         </table>
         </td>
         <td style="width:74px; padding-left:5px;">
         <input type="image" name="sendit" value="등록" src="https://timeticket.co.kr/mobile_img/btn_detail_answer.jpg" style="-webkit-border-radius:0; -webkit-appearance:none; width:74px; height:44px;">
         </td>
-      </tr>
-      </tbody></table>
+       </tr>
+      </tbody>
+     </table>
     </td>
-  </tr>
-
-  </tbody></table>
+   </tr>
+  </tbody>
+ </table>
 </form>
-
 <form name="reply_frm_3"  target="h_blank" style="margin:0;">
-
   <!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
-
   <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
-
+  
   <tbody><tr>
     <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;"><span style="font-size:15px; color:#555; font-weight:400;"><img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;"> kakao_1890701747</span>&nbsp;&nbsp;(2023-05-13 10:29:07)&nbsp;&nbsp;&nbsp;<a href="#reply" onclick="GoWrite( 'writeDiv_4', '', '', '', '', '4', '등록합니다' )"><img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기"></a></td>
   </tr>
-
   <tr>
     <td style="font-size:15px; padding:5px 15px 15px 15px; line-height:160%;" align="left">안녕하세요? 전상희라고 하는데 오늘 공연을 아침 8시경에 예배를 했는데 처음엔 예매확잉이 보였는데 갑자기 예매권이 보이질 않아요~ 결제내역도 있고 잘 예매가 된것같은데.. 확인 부탁드려요</td>
   </tr>
-
   <tr id="habuReply_4">
     <td><!-- 상단여백 / 아이디 / 댓글 / 하단여백 간격은 15 : 10 : 15px-->
 <table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
@@ -1132,31 +1121,6 @@
 
 </span>
 	</div>
-
-<!-- </div> -->
-
-
-<!-- ajax paging -->
-<script>
-$('body').on('click', '.goPage', function() {
-    var param = $(this).attr('val');
-    var b = '/reply_view_ajax.php?' + param;
-    $.ajax({
-        type: "GET",
-        url: b,
-        success: function(html) {
-            if ($('#replyViewLabel').length) {
-                $('#replyViewLabel').empty();
-            }
-            $(html).fadeIn(html).appendTo('#replyViewLabel');
-        },
-        error: function() {},
-        complete: function() {}
-    });
-});
-</script>
-<!-- ajax paging 끝! -->
-
 </div>
 </div>
 
