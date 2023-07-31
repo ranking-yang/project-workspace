@@ -44,7 +44,7 @@ function showMoreDetailImage() {
   document.querySelector('.info_detail_gradient').remove();
   document.querySelector('.info_detail_poster').setAttribute("style", `display:none;`);
   document.getElementById('main_img').style.display = 'block';
-  document.querySelector('.main_img').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelector('.main_img').scrollIntoView({block: 'start' });
 }
 
 // 이미지 로드에 사용되는 함수
@@ -182,16 +182,21 @@ function generateRandomNumber() {
   return Math.floor(Math.random() * 10000000000).toString().padStart(10, "0"); // 0 이상 10억 미만의 무작위 정수 생성
 }
 
-// Q&A에서 문의사항 작성하는 프로토 타입 함수
+// Q&A에서 문의사항 작성하는 함수
 function submitForm2() {
       var content_comment = document.getElementById("content_comment2").value;
+      // 리뷰 내용을 입력하지 않았다면 글이 써지지 않게 함
+  	  if (!content_comment.trim()) {
+      alert("리뷰 내용을 입력해주세요.");
+      return false;
+      }
 	  var randomNum = generateRandomNumber();
       var reviewTextContainer = document.getElementById("Q&A_text_container");
       var newReviewDiv = document.createElement("div");
       newReviewDiv.id = "Q&A_text_container_" + randomNum;
       newReviewDiv.className = "Q&A_text_area";
       newReviewDiv.innerHTML = `
-        <table style="width:100%; border:1px solid #e6e6e6; margin-top:15px; padding-top:10px; background:#fff;">
+        <table style="width:100%; border:1px solid #e6e6e6; padding-top:10px; background:#fff;">
           <tbody>
             <tr>
               <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
@@ -241,6 +246,7 @@ function submitForm2() {
     }
 
       document.getElementById("content_comment2").value = ""; // 입력창 초기화
+      return true;
     }
 
 function toggleReplyForm(replyDivId) {
@@ -261,7 +267,7 @@ function submitReplyForm(replyDivId) {
     newReplyTable.style = "width:100%; background:#fafafa; border-top:1px solid #e6e6e6;";
     newReplyTable.innerHTML = `
         <tr>
-            <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
+            <td style="padding:10px 10px 10px 10px;" valign="top" width="15" align="right">
                 <img src="https://timeticket.co.kr/img/reply_icon.png">
             </td>
             <td style="font-size:12px; color:#555; padding-top:5px" align="left">

@@ -10,9 +10,10 @@
 				<p>· 이용시간: -</p>
 			</div>
 		</div>
-
+		<br>
 		<!-- 진행사 홈페이지 -->
-		<iframe src="http://www.snart.or.kr/web/cms/?MENUMST_ID=21483">
+		<iframe src="http://www.snart.or.kr/web/cms/?MENUMST_ID=21483"
+		width="700px" height="750px">
 			
 		</iframe>
 

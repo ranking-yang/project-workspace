@@ -58,7 +58,7 @@
   text-align: center;
   align-items: center;
   width: 50%;
-  transform: translateY(8%);
+  transform: translateY(-10%);
 }
 /* 별점 분포 그래프 */
 .progress_section {
