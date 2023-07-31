@@ -246,8 +246,9 @@ paymentForm.addEventListener("submit", (e) => {
 	
 	// 선택한 date, time 처리
 	if (totalPirce > 0) {
-		// 날짜 선택한거 있으면 추가
-		if (selectedDate && selectedTime) {
+		
+		// 날짜 선택한거 있으면 추가		
+		if (selectedDate != undefined && selectedTime != undefined) {
 	        const selectedDateInput = document.createElement("input");
 	        selectedDateInput.type = "hidden";
 	        selectedDateInput.name = "booking_date";

@@ -22,6 +22,8 @@ public class PaymentController {
 		model.addAttribute("performance", paymentService.getPerformance(order.getPerformance_code()));
 		model.addAttribute("order", order);
 		
+		System.out.println(order);
+		
 		return "payment/payment";
 	}
 	

@@ -14,16 +14,12 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	// 아이디 정보 조회
 	
+	// 쿠폰 조회
+	
 	// 선택한 공연정보 조회
 	public PerformanceDTO getPerformance(String performance_code) {
 		return performanceMapper.getPerformance(performance_code);
-	}
-
-	@Override
-	public String test() {
-		return null;
-	}
-	
+	}	
 	
 
 }
