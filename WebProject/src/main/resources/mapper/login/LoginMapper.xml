@@ -27,4 +27,8 @@
 		SELECT member_id, member_pwd FROM members
 	</select>
 	
+	<select id="getId">
+		SELECT member_id, member_pwd FROM members WHERE member_id= #{id};
+	</select>
+	
 </mapper>

@@ -5,15 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.mapper.LoginMapper;
 
@@ -24,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginServiceImpl implements LoginService {
 //	private final Password password;
 	private final LoginMapper loginMapper;
-	
+	private final PasswordEncoder passwordEncoder;
 //	// 회원가입 및 로그인 서비스 시작
 //	@Override
 //	public String checkId(MembersDTO member, String member_pwd_verify) {
@@ -62,17 +58,13 @@ public class LoginServiceImpl implements LoginService {
 //	}
 	
 	@Override
-	public boolean login(MembersDTO member, HttpServletRequest httpServletRequest) {
+	public boolean login(MembersDTO member) {
 		List<MembersDTO> allMembers =  loginMapper.getAll();
 		for (MembersDTO mem : allMembers) {
 			if (member.getMember_id().equals(mem.getMember_id())
-					&& member.getMember_pwd().equals(mem.getMember_pwd())) {
+					&& passwordEncoder.matches(member.getMember_pwd(), mem.getMember_pwd())){
 				
 				System.out.println("로그인 성공");
-//				httpServletRequest.getSession().invalidate();
-//			    HttpSession session = httpServletRequest.getSession(true);
-//			    
-//			    session.setAttribute("userId", member.getMember_id());
 				return true;
 			}
 		}
@@ -83,7 +75,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public int add(MembersDTO login) {
-//		login.setMember_pwd(password.hashPassword(login.getMember_pwd()));
+		login.setMember_pwd(passwordEncoder.encode(login.getMember_pwd()));
 		loginMapper.add(login);
 		return 0;
 	}

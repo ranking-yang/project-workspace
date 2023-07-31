@@ -8,6 +8,8 @@ public interface LoginMapper {
 	
 	public Integer checkId(String id);
 	
+	public MembersDTO getId(String id);
+	
 	public void login(MembersDTO member);
 	
 	int add(MembersDTO login);

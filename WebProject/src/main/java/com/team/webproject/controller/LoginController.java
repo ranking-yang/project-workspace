@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -52,7 +53,7 @@ public class LoginController {
 	        httpServletRequest.getSession().invalidate();
 	        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
 	        
-			if (exService.login(member, httpServletRequest)) {
+			if (exService.login(member)) {
 				// 세션에 userId를 넣어줌
 				session.setAttribute("userId", member.getMember_id());
 				return "redirect:/main";
