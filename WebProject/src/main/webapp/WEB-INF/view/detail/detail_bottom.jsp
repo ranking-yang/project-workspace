@@ -79,9 +79,10 @@
           <div class="viewpage_noti">장소안내</div>
           <div class="viewpage_text radius_box" style="border-radius: 10px 10px 0 0;">
             <p>· 장소: ${space} &nbsp;/&nbsp; 총 200석</p>
-            <p>· 주소: 서울 종로구 대학로10길 5 , 지하1층</p>
+            <p>· 주소: 서울 종로구 대학로10길 5, 지하1층</p>
             <p>· 주차: 주차불가(인근 유료주차장 이용 권장)</p>
           </div>
+          
           <!-- 지도가 위치할 곳 -->
           <div align="center" style="margin-top:10px;">
             <div style="z-index:-1;" id="daum_map">

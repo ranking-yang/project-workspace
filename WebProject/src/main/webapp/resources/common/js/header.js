@@ -27,7 +27,7 @@ const menuBtns = document.querySelectorAll('.menu-btn');
 	 });
  });
  
-
+// 검색 기능
 const search = document.querySelector('#search');
 search.addEventListener('submit', (e) => {
 	const keyword = document.querySelector('#search-box');
