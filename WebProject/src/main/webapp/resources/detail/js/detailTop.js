@@ -1,25 +1,29 @@
-const calendar = document.querySelector('.placeholder'); // 캘린더
-const popupTimeDiv = document.querySelector('.popup-time-parent'); // 타임테이블 부모
+// 공통
+const lowestprice = document.querySelector('#lowestprice'); // 최저가 출력
 const qtyParents = document.querySelectorAll('.popup-qty-parent'); // 수량
 const qtyPirce = document.querySelectorAll('.popup-qty-price');
 const plusBtns = document.querySelectorAll('.qty-plus'); // +
 const minusBtns = document.querySelectorAll('.qty-minus'); // -
-const paymentBtn = document.querySelector('#popup-payment-btn'); // 결제하기
+const paymentSubmit = document.querySelector('#popup-payment-btn'); // 서브밋 버튼
+const paymentForm = document.querySelector('#payment_proceed_form'); // 결제하기
+
+// 공연, 음악, 키즈 파트
+const calendar = document.querySelector('.placeholder'); // 캘린더
+const popupTimeDiv = document.querySelector('.popup-time-parent'); // 타임테이블 부모
 let selectedDate; // 선택한 날짜
-let selectedInput; // 선택한 시간
+let selectedTime; // 선택한 시간
 
 // 전시 파트
 const optionBtn = document.querySelector('#popup-option-btn');
 
 // 최저가 출력 - 더 좋은 방법을 찾아보쟝 ... 
 const age = chkAge();
-const lowestprice = document.querySelector('#lowestprice');
 if (age >= 15) {
-	lowestprice.textContent = qtyPirce[0].textContent + "원 ~";
+	lowestprice.textContent = qtyPirce[0].value + "원 ~";
 } else if (age >= 7) {
-	lowestprice.textContent = qtyPirce[1].textContent + "원 ~";
+	lowestprice.textContent = qtyPirce[1].value + "원 ~";
 } else {
-	lowestprice.textContent = qtyPirce[2].textContent + "원 ~";
+	lowestprice.textContent = qtyPirce[2].value + "원 ~";
 }
 
 // flatpickr 캘린더 설정
@@ -118,25 +122,20 @@ function showTimeTable(date) {
     const timeParts = time.split(",");
     
     for (const t of timeParts) {
-      const buttonInput = document.createElement("input");
-      buttonInput.setAttribute("type", "text");
-      buttonInput.setAttribute("name", "booking_time");
-      buttonInput.setAttribute("value", t);
-      buttonInput.setAttribute("class", "popup-time");
-      buttonInput.setAttribute("form", "payment_proceed");
-      buttonInput.readOnly = true;
+      const timeBtn = document.createElement("button");
+      timeBtn.textContent = t;
+      timeBtn.classList.add("popup-time");
       
       // Time 클릭 시, 색 변환 및 수량 open
-      buttonInput.addEventListener('click', (e) => {
-		  resetTimeDiv(); // 초기화
+      timeBtn.addEventListener('click', (e) => {
+		   resetTimeDiv(); // 초기화
 	       e.currentTarget.style.backgroundColor = '#46c8b4'; // 선택된 것만 색 변경    
-	       selectedInput = e.currentTarget.value;
+	       selectedTime = e.currentTarget.innerText;
 	       if (e.currentTarget) {
 	           openQtyDiv();
 	       }
-	  })
-	  
-      popupTimeDiv.appendChild(buttonInput);
+	  });	  	  
+      popupTimeDiv.appendChild(timeBtn);      
     }
   }  
   openTimeDiv();  
@@ -147,7 +146,7 @@ function openTimeDiv() {
     resetTimeDiv(); // 오픈 시, 시간선택 초기화
     closeQtyDiv(); // 오픈 시, qty 닫힘 밑 초기화
     popupTimeDiv.style.display = 'flex';
-    paymentBtn.disabled = true;
+    paymentSubmit.disabled = true;
 }
 
 // 시간 선택 초기화
@@ -156,13 +155,13 @@ function resetTimeDiv() {
     timeDiv.forEach(function (element) {
         element.style.backgroundColor = '#f5f5f5';
     });
-    paymentBtn.disabled = true;
+    paymentSubmit.disabled = true;
 }
 
 // 권종/수량 div open
 function openQtyDiv() {
     closeQtyDiv();
-    paymentBtn.disabled = true;
+    paymentSubmit.disabled = true;
 	document.querySelector('.popup-qty').style.display = "grid";
     
     // 연령 체크해서 qty 표출
@@ -201,10 +200,13 @@ function updateTotalPrice() {
     });
     
     if (totalPrice > 0) {
-		paymentBtn.disabled = false;
-	} else {
-		paymentBtn.disabled = true;
-	}
+        paymentSubmit.classList.add("enabled");
+        paymentSubmit.disabled = false;
+    } else {
+        paymentSubmit.classList.remove("enabled");
+        paymentSubmit.disabled = true;
+    }
+    
     // 총 결제금액 표시
     document.getElementById('popup-totalPrice-value').value = totalPrice;
 }
@@ -237,21 +239,29 @@ function chkAge() {
 }
 
 // 결제하기 버튼 클릭 시 이벤트
-paymentBtn.addEventListener('click', (e) => {
-	const myForm = document.getElementById('payment_proceed');
-    const formData = new FormData(myForm);
-    const jsonData = {};
-
-    formData.forEach((value, key) => {
-      jsonData[key] = value;
-    });
-    
-    if (selectedInput) {
-    	jsonData["booking_time"] = selectedInput;
-  	}
-    
-    jsonData["booking_date"] = selectedDate;
-    
-    // JSON 보내기
+paymentForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	
+	let totalPirce = parseInt(document.getElementById('popup-totalPrice-value').value);
+	
+	// 선택한 date, time 처리
+	if (totalPirce > 0) {
+		// 날짜 선택한거 있으면 추가
+		if (selectedDate && selectedTime) {
+	        const selectedDateInput = document.createElement("input");
+	        selectedDateInput.type = "hidden";
+	        selectedDateInput.name = "booking_date";
+	        selectedDateInput.value = selectedDate;
+	      	paymentForm.appendChild(selectedDateInput);
+	      	
+	      	const selectedTimeInput = document.createElement("input");
+	        selectedTimeInput.type = "hidden";
+	        selectedTimeInput.name = "booking_time";
+	        selectedTimeInput.value = selectedTime;
+	      	paymentForm.appendChild(selectedTimeInput);		      	
+		}
+		
+		paymentForm.submit();
+	}
 	 
 });

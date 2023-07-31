@@ -1,14 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-* {
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
 .payment-con {
     width: 1100px;
     margin: auto;
-    padding: 10px 50px;
+    padding: 20px 50px;
     background:#f1f1f1;
     border-radius: 10px;
 }
