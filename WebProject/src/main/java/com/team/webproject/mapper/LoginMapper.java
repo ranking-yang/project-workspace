@@ -2,12 +2,11 @@ package com.team.webproject.mapper;
 
 import java.util.List;
 
-import com.team.webproject.dto.AdminDTO;
 import com.team.webproject.dto.MembersDTO;
 
 public interface LoginMapper {
 	
-	public int checkId(MembersDTO member);
+	public Integer checkId(String id);
 	
 	public void login(MembersDTO member);
 	

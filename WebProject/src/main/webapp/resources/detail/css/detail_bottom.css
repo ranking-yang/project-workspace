@@ -10,7 +10,7 @@
   justify-content: space-around;
   padding: 20px;
   height: 150px;
-  background-color: #f6f6f6;
+  background-color: #fff;
   border-radius: 10px;
 }
 
@@ -212,37 +212,14 @@
   cursor: pointer;
 }
 
-.sample_img_label {
-  display: inline-block;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 150px;
-  height: 150px;
-  transition: all 400ms ease;
-  cursor: pointer;
-}
-
 /* 리뷰와 별점 구분하기 위한 마진 */
 .review_start {
   margin: 20px 0;
 }
 
 /* Q&A 페이지*/
-.main_tab_title { font-size: 20px; margin-top:15px; font-weight: 700; color: #000; }
+.main_tab_title { font-size: 20px; font-weight: 700; color: #000; margin: 15px 0 0 15px}
 
-
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
-
-/* Reset styles */
-* { margin:0; padding:0; font-family: 'Pretendard', 'Pretendard Variable'; }
-html, body{width:100%; height:100%; background:#fff;}
-body, table{word-break:break-all;font-size:13px;font-weight:400;}
-td, select {font-size:13px; font-weight:400; }
-html {overflow-y: scroll; }
-ul,li,dl,dt,dd{list-style:none; margin:0; padding:0;}
-form, p {margin:0}
 
 /* Links */
 a,
@@ -292,11 +269,20 @@ object {
   height: 22px;
   line-height: 22px;
 }
+/* 텍스트 박스 설정 */
+.radius_box {
+  background: #f8f8f8;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
 
 /* 환불 규정 */
 .viewpage_text { font-size:15px; font-weight:400; color:#000; line-height:180%; letter-spacing: 0; }
 .viewpage_text p { margin:0px; padding:0px;}
-.viewpage_noti { font-size:20px; font-weight:bold; color:#000; line-height:35px; }
+.viewpage_noti { font-size:20px; font-weight:bold; color:#000; line-height:35px; margin-left: 15px}
 .viewpage_noti_blue { font-size:20px; font-weight:bold; color:#0011ad; line-height:35px; }
 /* 환불 규정 글씨 색*/
 .red{ color:red; }
@@ -322,7 +308,7 @@ color:#ff4b4b;
 font-weight: 800;
 }
 
-.shadetabs li.selected span{ border-bottom:4px solid #ff4b4b; padding-bottom:16px; }
+.shadetabs li.selected span{ border-bottom:4px solid #ff4b4b; padding-bottom:11px; }
 
 
 .shadetabs li.selected a:hover{
@@ -370,7 +356,6 @@ height:auto;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position-y: 0%;
-    background-image: url('https://timeticket.co.kr/wys2/file_attach_thumb/2021/05/21/1621571534-67-0_wonbon_N_7_600x600_70_2.jpg');
 }
 .info_detail_gradient {
     width: 100%;
@@ -414,3 +399,8 @@ height:auto;
 /* 환불 규정 텍스트*/
 .viewpage_text { line-height:160%; font-size:15px;	}
 .viewpage_text .viewpage_noti { padding:15px 0 0 0; font-weight:700; font-size:16px; }
+
+/* 안내탭같은 탭들 배경색 : 흰색 */
+.contentstyle1{
+	background-color: #fff;	
+}

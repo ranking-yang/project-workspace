@@ -40,7 +40,7 @@
                             <div><span class="material-symbols-outlined">schedule</span></div> 
                             <div class="detail-top-run-txt">-</div>  <!-- DB 총 공연 시간 -->
                             <div><span class="material-symbols-outlined">person</span></div>
-                            <div class="detail-top-run-txt" id="detail-top-age">전체이용가</div> <!-- DB 연령대 -->
+                            <div class="detail-top-run-txt" id="detail-top-age">전체관람가</div> <!-- DB 연령대 -->
                         </div>
                         <div class="detail-top-run-tit">
                             <div><span class="material-symbols-outlined">location_on</span></div>
@@ -60,21 +60,25 @@
             <div></div>
         </div>
         <div class="detail-top-right">
-            <div class="popup-option">
+			<div class="popup-option">
 	            <div class="popup-text">옵션선택</div>
-	            <button id="popup-option-btn">[유효기간 ~ ${performance.end_date}]</button>
+	            <input type="text" id="popup-option-btn" name="booking_date" value="[유효기간 ~ ${performance.end_date}]" form="payment_proceed_form" readonly />
 	        </div>
             <div class="popup-qty">
                 <!-- 권종/수량 -->
-                <div class="popup-text">권종/수량선택</div>                
+                <div class="popup-text">권종/수량선택</div>                             
                 <c:forEach items="${discountRates}" var="discount">
                 	<div class="popup-qty-parent">
-	                    <div class="popup-qty-age">${discount.generation}</div>
+	                    <c:choose>
+			                <c:when test="${discount.generation eq 'adult'}">성인</c:when>
+			                <c:when test="${discount.generation eq 'youth'}">청소년</c:when>
+			                <c:when test="${discount.generation eq 'child'}">어린이</c:when>
+			            </c:choose>
 	                   		 <fmt:parseNumber var="price" value="${performance.performance_price - (performance.performance_price * discount.discount_rate)})" integerOnly="true" />
-	                    <input type="text" class="popup-qty-price" name="${discount.generation}-price" value="${price}" form="payment_proceed" readonly/>
+	                    <input type="text" class="popup-qty-price" name="${discount.generation}_price" value="${price}" form="payment_proceed_form" readonly/>
 	                    <div>원</div>
 	                    <button class="qty-minus">-</button>
-	                    <input type="text" class="qty-value" name="${discount.generation}-qty" value="0" form="payment_proceed" readonly/>
+	                    <input type="text" class="qty-value" name="${discount.generation}_qty" value="0" form="payment_proceed_form" readonly/>
 	                    <button class="qty-plus">+</button>
                 	</div>
                 </c:forEach>
@@ -83,20 +87,17 @@
             <div class="popup-totalPrice">
                 <!-- 총 금액 -->
                 <div>총 결제금액</div>
-                <input type="text" name="total_price" value="" id="popup-totalPrice-value" form="payment_proceed" readonly />
+                <input type="text" name="total_price" value="" id="popup-totalPrice-value" form="payment_proceed_form" readonly />
                 <div>원</div>
             </div>
             <!-- 결제하기 버튼 -->
-            <button id="popup-payment-btn" disabled="disabled">결제하기</button>
+            <input type="submit" id="popup-payment-btn" value="결제하기" disabled="disabled" form="payment_proceed_form"/>
         </div>
     </div>
     
-    <input type="hidden" name="performance_code" value="${performance.performance_code}" form="payment_proceed" />
-   
-    <!-- 사용자 아이디 ...  -->
-    <input type="hidden" name="user_id" value="51" form="payment_proceed" />
+    <input type="hidden" name="performance_code" value="${performance.performance_code}" form="payment_proceed_form" />
     
-    <form id="payment_proceed"></form>
+    <form action="/payment/proceed" id="payment_proceed_form" method="POST"></form>
 
 	<script>
 		const totalQty = '${performance.performance_qty}';

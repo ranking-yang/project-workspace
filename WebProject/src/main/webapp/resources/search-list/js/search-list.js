@@ -1,29 +1,40 @@
-/**
- * 
- */
-
 function toggleLike(event, buttonId) {
     event.stopPropagation();
-    var button = document.getElementById(buttonId);
-    button.classList.toggle('liked');
 
-    var icon = button.querySelector('i.fa-heart');
-    if (button.classList.contains('liked')) {
-      icon.classList.add('fa-solid');
-      icon.classList.remove('fa-regular');
-      icon.style.color = '#e41b1b';
-    } else {
-      icon.classList.remove('fa-solid');
-      icon.classList.add('fa-regular');
-      icon.style.color = '#000000';
+    let $button = $('#'+buttonId);
+    $button.toggleClass('liked');
+    
+    let $icon = $button.find('i.fa-heart');
+    
+    if ($button.hasClass('liked')) {
+      $icon.removeClass('fa-regular').addClass('fa-solid').css('color','#e41b1b');
+      console.log("button",$button.attr('id'));
+
+      $.ajax({
+			url: "addwishlist",
+			type:"POST",
+			data: {
+				member_code : 51,
+				performance_code : buttonId 
+				},
+			success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+            console.log("찜 추가 성공:", response);
+            }
+		});
+	} else {
+      $icon.removeClass('fa-solid').addClass('fa-regular').css('color','#000000');
+      $.ajax({
+		  url : "delewishlist",
+		  type: "POST",
+		  data: {
+			  member_code : 51,
+			  performance_code : buttonId 
+		  },
+		  success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+           console.log("찜 삭제 성공:", response);
+           }
+	  });
     }
-  }
-  
-const products = document.querySelectorAll('.product-module');
-	products.forEach(product => {
-		product.addEventListener('click', (e) => {
-	    	console.log(product.dataset.pk);
-	    	location.href = '../product/product-detail?performance_code=' + product.dataset.pk;
-	 });
- });
- 
+  };

@@ -17,5 +17,5 @@ public class PerformanceDTO {
 	private String place;
 	private char kid_state;
 	private String poster;
-
+	private Integer wish_code;
 }

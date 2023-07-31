@@ -1,10 +1,20 @@
 package com.team.webproject.controller;
 
+import java.net.Authenticator.RequestorType;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.webproject.dto.ShowDTO;
+import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
@@ -13,13 +23,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminController {
 	
+	@Autowired
+	AddPerformance addPerformance;
+	
 	private final LoginService exService;
 	
 	// 관리자 페이지
-	@GetMapping("/admin")
+	@GetMapping("/admin/api")
 	public String adminGET() {
 		
-		return "admin/admin";
+		return "admin/adminPage";
 	}
 	
 	@PostMapping("/admin")
@@ -34,5 +47,18 @@ public class AdminController {
 		
 		return "admin/adminPage";
 	}
+	
+	// 관리자 페이지 전체 공연 DB조회
+	@RequestMapping(value="/admin/api/select", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ShowDTO> adminSelect(){
+		
+		List<ShowDTO> show = addPerformance.selectShow();
+		System.out.println(show.toString());
+		
+		return show;
+	}
+	
+	
 
 }

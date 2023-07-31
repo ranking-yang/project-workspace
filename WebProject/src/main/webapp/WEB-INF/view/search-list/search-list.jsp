@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +9,8 @@
 <title>검색 상세페이지</title>
 <link rel="stylesheet" href="/resources/search-list/css/search-list.css">
 <%@ include file="../common/commonCss.jsp" %>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<script src="https://kit.fontawesome.com/ad03eb7935.js"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://kit.fontawesome.com/ad03eb7935.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -37,11 +31,22 @@
 				                <img class="product-module-poster" src="${product.poster }" alt="포스터">
 				                <div class="product-module-top">
 				                    <div class="place">
-				                        <span>서울/종로구</span>
+				                        <span>
+				                        	<c:set var="test" value="${product.address}"/>${fn:substring(test,0,2)}
+				                        </span>
 				                    </div>
-				                    <button class="likeBtn" data-like="${product.performance_code }" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-				                        <i class="fa-regular fa-heart" style="color: #000000;"></i>
-				                    </button>
+				                    <c:choose>
+					                    <c:when test="${empty product.wish_code}">
+					                    	<button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
+					                        <i class="fa-regular fa-heart" style="color: #000000;"></i> 
+					                    </button>
+					                    </c:when>
+					                    <c:otherwise>
+						                    <button class="likeBtn liked" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
+						                        <i class="fa-solid fa-heart" style="color: #e41b1b;"></i>
+						                    </button>
+					                    </c:otherwise>
+				                    </c:choose>
 				                </div>
 				                <div class="product-module-title">${product.performance_name }</div>
 				                <div class="product-module-bottom">

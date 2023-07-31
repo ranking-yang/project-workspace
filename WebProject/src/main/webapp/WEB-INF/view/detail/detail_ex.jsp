@@ -14,9 +14,9 @@
 	<!-- detail -->
 	<div style="background-color: rgb(244, 244, 244); padding-bottom: 20px">
 	
-		<jsp:include page="./detailTop-ex.jsp" />
+		<jsp:include page="./detailTop_ex.jsp" />
 		
-		<jsp:include page="./detail_bottom.jsp" />		
+		<jsp:include page="./detail_bottom_ex.jsp" />		
 		
 	</div>
 	

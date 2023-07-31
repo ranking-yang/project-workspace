@@ -259,9 +259,9 @@
         border: 0;
         cursor: pointer;
         border-radius: 10px;
-        background-color: #46c8b4;
+        background-color: #b0b0b0;
     }
 	
-    #popup-payment-btn:disabled {
-        background-color: #b0b0b0;
+    #popup-payment-btn:enabled {
+        background-color: #46c8b4;
     }

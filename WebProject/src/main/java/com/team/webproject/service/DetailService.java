@@ -18,4 +18,6 @@ public interface DetailService {
 	String[] expandDayRange(String dayRange);
 	
 	JSONObject getKopisInfo(String performance_code);
+	
+	void getPublicDataInfo(String performance_code);
 }

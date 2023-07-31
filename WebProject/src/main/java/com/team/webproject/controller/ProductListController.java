@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.team.webproject.mapper.PerformanceMapper;
+import com.team.webproject.service.ProductListService;
 
 
 @Controller
@@ -14,12 +14,12 @@ import com.team.webproject.mapper.PerformanceMapper;
 public class ProductListController {
 	
 	@Autowired
-	PerformanceMapper performanceMapper;	
-	
+	ProductListService productListService;
+
 	@GetMapping("/performance")
-	String getProduckList(Model model, String main_category) {
-		
-		model.addAttribute("performances", performanceMapper.getPerformances(main_category));
+	String getProduckList(Model model, String main_category, Integer member_code, String area) {
+		member_code = 51;
+		model.addAttribute("performances", productListService.getProductList(main_category,member_code, area));
 		model.addAttribute("main_category", main_category);
 		
 		return "/product-list/product-list";
