@@ -1,11 +1,14 @@
 package com.team.webproject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +20,7 @@ import com.team.webproject.service.PaymentService;
 public class PaymentController {
 	
 	@Autowired
-	PaymentService paymentService;
+	PaymentService paymentService;	
 	
 	@PostMapping("/payment/request")
 	String getProceedPayment(Model model, @ModelAttribute OrderDTO order,
@@ -37,6 +40,15 @@ public class PaymentController {
 		return "payment/payment";
 	}
 	
+	@ResponseBody
+	@PostMapping("/payment/success")
+	String paymentSuccess(@RequestBody List<OrderDTO> orderDTOList) {
+		
+		System.out.println(orderDTOList.size());
+		System.out.println("들어옴");
+		
+		return "들어옴";
+	}
 	
 	
 }

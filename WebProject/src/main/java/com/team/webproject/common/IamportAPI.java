@@ -11,6 +11,9 @@ public class IamportAPI {
 	
 	@Value("${IAMPORT-API-RESTKEY}")
 	private String import_api_restkey;
+	
+	@Value("${IAMPORT-API-SECRET}")
+	private String import_api_secret;
 
 	public String getImport_api_marketkey() {
 		return import_api_marketkey;
@@ -18,6 +21,10 @@ public class IamportAPI {
 
 	public String getImport_api_restkey() {
 		return import_api_restkey;
+	}
+	
+	public String getimport_api_secret() {
+		return import_api_secret;
 	}
 	
 }

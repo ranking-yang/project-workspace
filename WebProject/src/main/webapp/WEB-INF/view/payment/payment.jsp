@@ -37,7 +37,7 @@
 
 			<!-- 예매 정보 -->
 			<div>
-				<div class="payment-selected-subtitle">예매정보</div>
+				<div class="payment-selected-subtitle" id="payment-orders" data-orders="${orders}">예매정보</div>
 
 				<c:forEach items="${orders}" var="order">
 					<div class="payment-selected-box">

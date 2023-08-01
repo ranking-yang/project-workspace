@@ -1,3 +1,5 @@
+ const ordersData = $('#myDiv').data('orders');
+ 
  $(document).ready(function() {
     $('#policy-refund-btn').click(function() {
       $('#policy-refund-txt').toggleClass('show');
@@ -19,7 +21,7 @@
     });
  });
 
-// 결제 진행 - 회원인지 체크하는 것 필요
+// 결제 진행 - ★ 회원인지 체크하는 것 필요
 function requestPay() {
 	var IMP = window.IMP; 
     IMP.init(market); // 가맹점 식별코드
@@ -45,29 +47,21 @@ function requestPay() {
 	      buyer_name: "김도도",
 	      buyer_tel: "010-4595-3498",
 	      buyer_addr: "",
-	    }, function (rsp) {
-			
-		   // callback
-	      //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-	      
-	      if (rsp.success) {
-		     $.ajax({
-			      url: "https://api.iamport.kr/payments/prepare",
-			      type: "post",
-			      headers: { "Content-Type": "application/json" },
-			      data: JSON.stringify(requestData),
-			      dataType: "json",
-			      success: function (response) {
-			        // 성공적으로 처리된 경우에 실행할 코드
-			        console.log("결제 준비 성공", response);
-			      },
-			      error: function (error) {
-			        // 요청이 실패한 경우에 실행할 코드
-			        console.error("결제 준비 실패", error);
-			      },
-			 });   
-	      }
-	               
+	    }, function (rsp) {			
+		//rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+		
+			if (rsp.success) {   
+		     // 웹훅 연동은 일단 추후에 ... 
+		     console.log(rsp);
+		     
+		     // Ajax로 DB에 값 저장 후 (주문 DB, 결제 DB, performance 좌석 수 마이너스)
+		     
+		     // 결제 완료 페이지로 리턴
+		     
+		     
+		    } else {
+		      alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+		    }	               
 	   });
     }
 }
