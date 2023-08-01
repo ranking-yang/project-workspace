@@ -31,10 +31,10 @@ public class DetailController {
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
 		
-	    JSONArray lijs = new JSONArray();
-	    lijs.add(jsonob.get("styurls"));
+	     JSONArray lijs = new JSONArray();
+	     lijs.add(jsonob.get("styurls"));
 	         
-	    model.addAttribute("image", lijs); // 소개이미지
+	     model.addAttribute("image", lijs); // 소개이미지
 		
 		return "/detail/detail";
 	}
