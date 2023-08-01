@@ -77,13 +77,30 @@ function showOriginalRatio(selected) {
     }
   }
 
+// 댓글이 등록될 때마다 숫자를 업데이트하는 함수
+function updateReviewCount1() {
+  var reviewCount = document.querySelectorAll(".review_wrap").length;
+  var reviewCountSpan = document.getElementById("reviewCount");
+  if (reviewCountSpan) {
+    reviewCountSpan.innerText = "(" + reviewCount + ")";
+  }
+}
+
+function updateReviewCountpeople() {
+  var reviewCount = document.querySelectorAll(".review_wrap").length;
+  var reviewCountSpan = document.getElementById("reviewCountpeople");
+  if (reviewCountSpan) {
+    reviewCountSpan.innerText = "(" + reviewCount + "명)";
+  }
+}
+
 let reviewIdCounter = 0; // 리뷰 ID 카운터 변수
 
 function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
   var star_rating = parseFloat(document.getElementById("star_rating").value);
   var image_upload = document.getElementById("image_upload").files[0]; // 첨부한 이미지 파일 가져오기
-	
+  
   // 별점이 0.5부터 5 사이가 아니라면 입력을 강제로 요구
   if (star_rating < 0.5 || star_rating > 5) {
     alert("별점은 0.5부터 5까지 입력해주세요.");
@@ -98,7 +115,7 @@ function submitForm() {
     alert("리뷰 내용을 입력해주세요.");
     return false;
   }
-	
+  	
   // 새로운 리뷰를 추가하는 경우
   var reviewTextContainer = document.getElementById("review_text_container");
   var newReviewDiv = document.createElement("div");
@@ -106,7 +123,18 @@ function submitForm() {
   var reviewId = String(reviewIdCounter).padStart(6, '0'); // 리뷰 ID 생성 (6자리 숫자)
 
   newReviewDiv.className = "review_wrap user_review_" + reviewId; // 리뷰 래핑 요소 클래스에 리뷰 ID 추가
-
+  // 리뷰 내용의 최대 길이를 설정
+  var maxReviewLength = 100; // 원하는 최대 길이로 설정
+  
+  var seeMoreLink = `
+    <div class="review_text_seemore" id="seemore_${reviewId}" onclick="showFullReview('${reviewId}')">
+      ... 더보기
+    </div>
+  `;
+  
+  if (content_comment.length <= maxReviewLength) {
+  	  seeMoreLink = ""; // 최대 길이보다 작으면 "더보기" 링크를 숨김
+  }
   // 리뷰 타이틀과 리뷰 텍스트를 변수에 묶어서 생성
   var reviewTitle = `
     <div class="review_title">
@@ -129,9 +157,7 @@ function submitForm() {
     <div class="review_text_area" id="text_${reviewId}">
       ${content_comment} <!-- 작성한 리뷰 내용 -->
       <br>
-      <div class="review_text_seemore" id="seemore_${reviewId}" onclick="showFullReview('${reviewId}')"> <!-- 리뷰 ID 전달 -->
-        ... 더보기
-      </div>
+      ${seeMoreLink}
     </div>
     <br>
     <div style="margin-top: 10px;">
@@ -166,6 +192,11 @@ function submitForm() {
   document.getElementById("star_rating").value = "0";
   document.getElementById("image_upload").value = "";
   
+  // (새 리뷰가 추가되었으므로) 후기 숫자 업데이트
+  updateReviewCount1();
+  updateReviewCountpeople();
+  
+  
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
 
@@ -182,6 +213,15 @@ function generateRandomNumber() {
   return Math.floor(Math.random() * 10000000000).toString().padStart(10, "0"); // 0 이상 10억 미만의 무작위 정수 생성
 }
 
+// 댓글이 등록될 때마다 숫자를 업데이트하는 함수
+function updateCommentCount2() {
+  var commentCount = document.querySelectorAll(".QnA_text_area").length;
+  var commentCountSpan = document.getElementById("commentCount");
+  if (commentCountSpan) {
+    commentCountSpan.innerText = "(" + commentCount + ")";
+  }
+}
+
 // Q&A에서 문의사항 작성하는 함수
 function submitForm2() {
       var content_comment = document.getElementById("content_comment2").value;
@@ -190,64 +230,68 @@ function submitForm2() {
       alert("리뷰 내용을 입력해주세요.");
       return false;
       }
-	  var randomNum = generateRandomNumber();
-      var reviewTextContainer = document.getElementById("Q&A_text_container");
-      var newReviewDiv = document.createElement("div");
-      newReviewDiv.id = "Q&A_text_container_" + randomNum;
-      newReviewDiv.className = "Q&A_text_area";
-      newReviewDiv.innerHTML = `
-        <table style="width:100%; border:1px solid #e6e6e6; padding-top:10px; background:#fff;">
-          <tbody>
-            <tr>
-              <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
-                <span style="font-size:15px; color:#555; font-weight:400;">
-                  <img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;">
-                  kakao_${randomNum}
-                </span>&nbsp;&nbsp;${getCurrentDate()}&nbsp;&nbsp;&nbsp;
-                <a href="#reply" onclick="toggleReplyForm('habuReply_${randomNum}')"> <!-- 토글 함수 호출 -->
-                  <img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기">
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td style="font-size:15px; padding:5px 15px 15px 15px; line-height:160%;" align="left">${content_comment}</td>
-            </tr>
-            <tr id="habuReply_${randomNum}" style="display:none;"> <!-- 답글 창 숨김 -->
-              <td>
-                <table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
-                  <tbody>
-                    <tr>
-                      <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
-                        <img src="https://timeticket.co.kr/img/reply_icon.png">
-                      </td>
-                      <td style="font-size:12px; color:#555; padding-top:5px" align="left">
-                        <span style="font-size:15px; font-weight:400; color:darkblue">관리자</span>&nbsp;&nbsp;(${getCurrentDate()})&nbsp;&nbsp;
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" style="font-size:15px; padding:0px 10px 15px 36px; line-height:160%;">
-                        <textarea id="reply_content_${randomNum}" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea>
-                        <br>
-                        <button onclick="submitReplyForm('${randomNum}')">등록</button> <!-- 답글 등록 버튼 -->
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      `;
-      // 새 리뷰를 컨테이너의 맨 위에 삽입
-    if (reviewTextContainer.firstChild) {
-      reviewTextContainer.insertBefore(newReviewDiv, reviewTextContainer.firstChild);
-    } else {
-      reviewTextContainer.appendChild(newReviewDiv);
-    }
-
-      document.getElementById("content_comment2").value = ""; // 입력창 초기화
-      return true;
-    }
+		  var randomNum = generateRandomNumber();
+	      var reviewTextContainer = document.getElementById("QnA_text_container");
+	      var newReviewDiv = document.createElement("div");
+	      newReviewDiv.id = "QnA_text_container_" + randomNum;
+	      newReviewDiv.className = "QnA_text_area";
+	      newReviewDiv.innerHTML = `
+	        <table style="width:100%; border:1px solid #e6e6e6; padding-top:10px; background:#fff;">
+	          <tbody>
+	            <tr>
+	              <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
+	                <span style="font-size:15px; color:#555; font-weight:400;">
+	                  <img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;">
+	                  kakao_${randomNum}
+	                </span>&nbsp;&nbsp;${getCurrentDate()}&nbsp;&nbsp;&nbsp;
+	                <a href="#reply" onclick="toggleReplyForm('habuReply_${randomNum}')"> <!-- 토글 함수 호출 -->
+	                  <img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기">
+	                </a>
+	              </td>
+	            </tr>
+	            <tr>
+	              <td style="font-size:15px; padding:5px 15px 15px 15px; line-height:160%;" align="left">${content_comment}</td>
+	            </tr>
+	            <tr id="habuReply_${randomNum}" style="display:none;"> <!-- 답글 창 숨김 -->
+	              <td>
+	                <table style="width:100%; background:#fafafa; border-top:1px solid #e6e6e6;">
+	                  <tbody>
+	                    <tr>
+	                      <td style="padding:20px 10px 10px 10px;" valign="top" width="15" align="right">
+	                        <img src="https://timeticket.co.kr/img/reply_icon.png">
+	                      </td>
+	                      <td style="font-size:12px; color:#555; padding-top:5px" align="left">
+	                        <span style="font-size:15px; font-weight:400; color:darkblue">관리자</span>&nbsp;&nbsp;(${getCurrentDate()})&nbsp;&nbsp;
+	                      </td>
+	                    </tr>
+	                    <tr>
+	                      <td colspan="2" style="font-size:15px; padding:0px 10px 15px 36px; line-height:160%;">
+	                        <textarea id="reply_content_${randomNum}" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea>
+	                        <br>
+	                        <button onclick="submitReplyForm('${randomNum}')">등록</button> <!-- 답글 등록 버튼 -->
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	              </td>
+	            </tr>
+	          </tbody>
+	        </table>
+	      `;
+	      // 새 리뷰를 컨테이너의 맨 위에 삽입
+	    if (reviewTextContainer.firstChild) {
+	      reviewTextContainer.insertBefore(newReviewDiv, reviewTextContainer.firstChild);
+	    } else {
+	      reviewTextContainer.appendChild(newReviewDiv);
+	    }
+	
+	      document.getElementById("content_comment2").value = ""; // 입력창 초기화
+	      
+	      // 댓글 수 업데이트
+  		  updateCommentCount2();
+  		  
+	      return true;
+}
 
 function toggleReplyForm(replyDivId) {
       var replyDiv = document.getElementById(replyDivId);

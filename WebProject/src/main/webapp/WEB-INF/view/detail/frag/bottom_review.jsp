@@ -11,7 +11,7 @@
           <div class="score_section_left_star_filled" style="width: calc(0 * 24px);"></div>
         </div>
       </div>
-      <div class="score_section_left_total">(0명)</div>
+      <div id="reviewCountpeople" class="score_section_left_total">(0명)</div>
     </div>
     <div class="score_section_right">
       <div class="progress_section">
@@ -51,7 +51,7 @@
 
 		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
 
-<form name="reply_write_frm" onsubmit="return reply_check()" target="h_blank" style="margin:0;">
+<form id="reply_write_frm1" name="reply_write_frm" onsubmit="return reply_check()" target="h_blank" style="margin:0; display:none;">
     <div style="float:left;">
       <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
       <br>
@@ -76,3 +76,16 @@
   </div>
 </div>
 </div>
+<script>
+//페이지가 로드될 때 폼의 가시성 설정
+function setFormVisibility1() {
+  var userId = "${sessionScope.userId}";
+  var form = document.getElementById("reply_write_frm1");
+
+  if (!userId) {
+    form.style.display = "none"; // 폼 숨김
+  } else {
+    form.style.display = "block"; // 폼 보이기
+  }
+}
+</script>

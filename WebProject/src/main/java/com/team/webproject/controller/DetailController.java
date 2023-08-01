@@ -1,11 +1,14 @@
 package com.team.webproject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team.webproject.service.DetailService;
@@ -20,7 +23,7 @@ public class DetailController {
 	DetailService detailService;
 	
 	@GetMapping("/product/product-detail")
-	String callKopisAPI(Model model, String performance_code) throws JsonProcessingException {		
+	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
 
@@ -30,7 +33,10 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-		
+		System.out.println("userid: "+session.getAttribute("userId"));
+		// HttpSession에서 userId를 가져와서 세션에 저장
+		String userId = (String) session.getAttribute("userId");
+		session.setAttribute("userId", userId);
 	     JSONArray lijs = new JSONArray();
 	     lijs.add(jsonob.get("styurls"));
 	         

@@ -9,8 +9,8 @@
     <!-- 메뉴영역, js/ajaxtabs.css -->
     <ul id="maintab" class="shadetabs FixedTopMenu" style="border-radius:10px 10px 0 0;">
       <li id="tab_01_notice" class="selected"><a onclick="loadTab('content_1', this)" class="tabLink" href="#default" rel="ajaxcontentarea"><span>안내</span></a></li>
-      <li id="tab_02_review" class=""><a onclick="loadTab('content_2', this)"><span>후기<span style="letter-spacing:-1px;">(0)</span></span></a></li>
-      <li class=""><a onclick="loadTab('content_3', this)"><span>Q&amp;A<span style="letter-spacing:-1px;">(0)</span></span></a></li>
+      <li id="tab_02_review" class=""><a onclick="loadTab('content_2', this); setFormVisibility1();"><span>후기<span id="reviewCount" style="letter-spacing:-1px;">(0)</span></span></a></li>
+      <li class=""><a onclick="loadTab('content_3', this); setFormVisibility2();"><span>Q&amp;A<span id="commentCount" style="letter-spacing:-1px;">(0)</span></span></a></li>
       <li class=""><a onclick="loadTab('content_4', this)"><span>장소</span></a></li>
       <li class=""><a id="tab_05_refund" onclick="loadTab('content_5', this)"><span>환불규정</span></a></li>
     </ul>
@@ -19,7 +19,7 @@
     <div id="ajaxcontentarea" class="contentstyle" style="border-radius:0 0 10px 10px">
 	    <!-- 안내탭 시작 -->
 	    <%@ include file="./frag/bottom_info.jsp" %>
-	  	<!-- 후기탭 시작 -->
+	  	<!-- 후기탭 시작 -->	
 	  	<%@ include file="./frag/bottom_review.jsp" %>
 	  	<!-- Q&A탭 시작 -->
 	  	<%@ include file="./frag/bottom_qna.jsp" %>

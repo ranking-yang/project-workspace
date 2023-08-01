@@ -19,7 +19,7 @@
 	<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
-<form name="reply_write_frm"  onsubmit="return reply_check()" target="h_blank" style="margin:0;">
+<form id="reply_write_frm2" name="reply_write_frm"  onsubmit="return reply_check()" target="h_blank" style="margin:0; display:none;">
 
   <div style="float:left;">
     <textarea id="content_comment2" name="content_comment2" style="font-size:15px; color:#000; font-weight:300; width:520px; 
@@ -35,16 +35,24 @@
     </button>
   </div>
 </form>
-
-<!-- 로그인개선 : NeoHero 2009.07.30 -->
-<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden">
-</iframe>
 </div>
 </div>
 <div>
-<span id="replyViewLabel" name="replyView">
-<div id="Q&A_text_container" style="width:100%; border:1px solid #e6e6e6; background:#fff;">
-</div>
-</span>
+<div id="QnA_text_container" style="width:100%; border:1px solid #e6e6e6; background:#fff;">
 </div>
 </div>
+</div>
+</div>
+<script>
+//페이지가 로드될 때 폼의 가시성 설정
+function setFormVisibility2() {
+  var userId = "${sessionScope.userId}";
+  var form = document.getElementById("reply_write_frm2");
+
+  if (!userId) {
+    form.style.display = "none"; // 폼 숨김
+  } else {
+    form.style.display = "block"; // 폼 보이기
+  }
+}
+</script>
