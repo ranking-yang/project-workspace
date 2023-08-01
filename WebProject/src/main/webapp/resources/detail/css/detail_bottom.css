@@ -222,13 +222,13 @@
 
 
 /* Links */
-a,
-a.underline {
+.Topclass,
+.Topclass.underline {
   color: #000;
   text-decoration: none;
 }
 
-a.underline:hover {
+.Topclass.underline:hover {
   text-decoration: underline;
 }
 
@@ -295,7 +295,7 @@ object {
 
 .shadetabs{ width:818px; cursor:pointer; padding:0; background:#fff; height:61px; border:1px solid #eee; border-bottom:1px solid #eee;}
 
-.shadetabs li a{
+.shadetabs li .Topclass{
 text-decoration: none; float:left; width:20%; padding-top:20px;
 text-align:center;
 font-size: 18px;
@@ -303,7 +303,7 @@ font-weight: 600;
 color:#777;
 }
 
-.shadetabs li.selected a{
+.shadetabs li.selected .Topclass{
 color:#ff4b4b;
 font-weight: 800;
 }
@@ -311,7 +311,7 @@ font-weight: 800;
 .shadetabs li.selected span{ border-bottom:4px solid #ff4b4b; padding-bottom:11px; }
 
 
-.shadetabs li.selected a:hover{
+.shadetabs li.selected .Topclass:hover{
 text-decoration: none;
 }
 
@@ -380,7 +380,7 @@ height:auto;
 .viewpage_flex div:nth-child(2) {
     color: #000;
 }
-.viewpage_flex a {
+.viewpage_flex .Topclass {
     text-decoration: underline;
 }
 .border_box {

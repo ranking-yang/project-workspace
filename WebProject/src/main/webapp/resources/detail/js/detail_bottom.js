@@ -86,6 +86,7 @@ function updateReviewCount1() {
   }
 }
 
+// 댓글이 등록될 때마다 명수를 업데이트하는 함수
 function updateReviewCountpeople() {
   var reviewCount = document.querySelectorAll(".review_wrap").length;
   var reviewCountSpan = document.getElementById("reviewCountpeople");
@@ -96,17 +97,42 @@ function updateReviewCountpeople() {
 
 let reviewIdCounter = 0; // 리뷰 ID 카운터 변수
 
+var reviewCount = 0; // 총 댓글 수
+var totalRating = 0; // 댓글들의 별점 합계
+
+// 리뷰를 추가할 때마다 점수에 해당하는 바의 비율 업데이트
+function updateProgressBars() {
+  var totalReviews = reviewCount; // 전체 리뷰 개수
+  var progressBars = document.querySelectorAll('.progress_section_value');
+  var totalRatings = [0, 0, 0, 0, 0]; // 1점부터 5점까지 리뷰 개수를 담을 배열
+
+  // 각 점수별 리뷰 개수를 세어서 totalRatings 배열에 저장
+  for (var i = 0; i < totalReviews; i++) {
+    var reviewRating = star_rating; // 해당 리뷰의 별점 가져오기 (예를 들어, 3점인 경우 star_rating이 3일 것입니다.)
+    totalRatings[5 - reviewRating]++; // 배열은 0부터 시작하므로, 3점인 경우 totalRatings[2]를 증가시킵니다.
+  }
+
+  // progressBars 배열의 요소들의 style.width 속성을 갱신하여 점수에 해당하는 바의 비율 조절
+  for (var i = 0; i < progressBars.length; i++) {
+    var progressBar = progressBars[i];
+
+    // 해당 점수에 해당하는 바의 비율 계산 (예를 들어, 3점인 경우 3점 리뷰 개수 / 전체 리뷰 개수)
+    var ratio = totalRatings[i] / totalReviews * 100;
+    progressBar.style.width = `${ratio}%`;
+  }
+}
+
 function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
   var star_rating = parseFloat(document.getElementById("star_rating").value);
   var image_upload = document.getElementById("image_upload").files[0]; // 첨부한 이미지 파일 가져오기
   
-  // 별점이 0.5부터 5 사이가 아니라면 입력을 강제로 요구
-  if (star_rating < 0.5 || star_rating > 5) {
+  // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
+  if (star_rating < 1 || star_rating > 5) {
     alert("별점은 0.5부터 5까지 입력해주세요.");
     return false;
-  }else if(star_rating % 0.5 !=0){
-	  alert("별점은 0.5단위로 입력할 수 있습니다.")
+  }else if(star_rating % 1 !=0){
+	  alert("별점은 1단위로 입력할 수 있습니다.")
 	  return false;
   }
   
@@ -145,7 +171,7 @@ function submitForm() {
           </div>
         </div>
         <div class="review_title_left_name" style="padding-left: 10px;">
-          박정준
+          ${userId}
         </div>
       </div>
       <div class="review_title_right" style="padding-right:8px;">
@@ -196,6 +222,23 @@ function submitForm() {
   updateReviewCount1();
   updateReviewCountpeople();
   
+  // 새로운 리뷰의 별점을 totalRating에 더함
+  totalRating += star_rating;
+  // 새로운 리뷰를 등록했으므로 reviewCount를 증가시킴
+  reviewCount++;
+  
+  // 새로운 리뷰를 추가했으므로 progress bar 업데이트
+  updateProgressBars(star_rating);
+  // 평균 계산
+  var averageRating = totalRating / reviewCount;
+
+  // 평균 별점을 화면에 표시
+  var averageElement = document.querySelector(".score_section_left_average");
+  averageElement.textContent = averageRating.toFixed(1); // 소수점 한 자리까지 표시
+  
+  // .score_section_left_star_filled 요소의 width 속성에 averageRating 값을 적용
+  var filledStarElement = document.querySelector('.score_section_left_star_filled');
+  filledStarElement.style.width = `calc(${averageRating} * 24px)`;
   
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
@@ -242,7 +285,7 @@ function submitForm2() {
 	              <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
 	                <span style="font-size:15px; color:#555; font-weight:400;">
 	                  <img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;">
-	                  kakao_${randomNum}
+	                  ${userId}
 	                </span>&nbsp;&nbsp;${getCurrentDate()}&nbsp;&nbsp;&nbsp;
 	                <a href="#reply" onclick="toggleReplyForm('habuReply_${randomNum}')"> <!-- 토글 함수 호출 -->
 	                  <img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기">

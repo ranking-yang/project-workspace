@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/resources/detail/css/detail_bottom.css"/>
-<script src="/resources/detail/js/detail_bottom.js" defer></script>
+<script src="/resources/detail/js/detail_bottom.js"></script>
 
 	<section style="width:820px; margin:0 auto; padding-top:20px;">
 
-    <!-- 메뉴영역, js/ajaxtabs.css -->
+    <!-- 메뉴영역 -->
     <ul id="maintab" class="shadetabs FixedTopMenu" style="border-radius:10px 10px 0 0;">
-      <li id="tab_01_notice" class="selected"><a onclick="loadTab('content_1', this)" class="tabLink" href="#default" rel="ajaxcontentarea"><span>안내</span></a></li>
-      <li id="tab_02_review" class=""><a onclick="loadTab('content_2', this); setFormVisibility1();"><span>후기<span id="reviewCount" style="letter-spacing:-1px;">(0)</span></span></a></li>
-      <li class=""><a onclick="loadTab('content_3', this); setFormVisibility2();"><span>Q&amp;A<span id="commentCount" style="letter-spacing:-1px;">(0)</span></span></a></li>
-      <li class=""><a onclick="loadTab('content_4', this)"><span>장소</span></a></li>
-      <li class=""><a id="tab_05_refund" onclick="loadTab('content_5', this)"><span>환불규정</span></a></li>
+      <li id="tab_01_notice" class="selected"><span onclick="loadTab('content_1', this)" class="Topclass">안내</span></li>
+      <li id="tab_02_review" class=""><span onclick="loadTab('content_2', this); setFormVisibility1();" class="Topclass">후기<span id="reviewCount" style="letter-spacing:-1px;">(0)</span></span></li>
+      <li class=""><span onclick="loadTab('content_3', this); setFormVisibility2();" class="Topclass">Q&amp;A<span id="commentCount" style="letter-spacing:-1px;">(0)</span></span></li>
+      <li class=""><span onclick="loadTab('content_4', this)" class="Topclass">장소</span></li>
+      <li class=""><span id="tab_05_refund" onclick="loadTab('content_5', this)" class="Topclass">환불규정</span></li>
     </ul>
 
     <!---------------------- 탭 영역 시작 ----------------------->
@@ -30,3 +30,9 @@
   	</div>
   	
 </section>
+<%
+  String userId = (String) session.getAttribute("userId");
+%>
+<script>
+  var userId = "${userId}";
+</script>

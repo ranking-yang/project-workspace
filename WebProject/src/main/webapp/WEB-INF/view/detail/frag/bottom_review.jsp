@@ -51,11 +51,11 @@
 
 		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
 
-<form id="reply_write_frm1" name="reply_write_frm" onsubmit="return reply_check()" target="h_blank" style="margin:0; display:none;">
+<div id="reply_write_frm1" name="reply_write_frm" style="margin:0; display:none;">
     <div style="float:left;">
       <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
       <br>
-      <input type="number" id="star_rating" min="0" max="5" step="0.5" value="0">
+      <input type="number" id="star_rating" min="1" max="5" step="1" value="5">
       <br>
       <input type="file" id="image_upload" accept="image/*">
       <br>
@@ -63,9 +63,7 @@
     <div style="float:right;">
       <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록</button>
     </div>
-  </form>
-<!-- 로그인개선 : NeoHero 2009.07.30 -->
-<iframe name="h_blank" id="h_blank" src="" width="0" height="0" style="visibility:hidden"></iframe>
+  </div>
 </div>
 </div>
   
