@@ -13,8 +13,6 @@ public interface PaymentService {
 	
 	public String getApiRestkey();
 	
-	public String getPaymentId();
-	
 	public List<OrderDTO> getOrders(OrderDTO order, String[] bookingTypes, int[] bookingPrices, int[] bookingQtys);
 
 }

@@ -19,9 +19,6 @@ public class PaymentServiceImpl implements PaymentService {
 	PerformanceMapper performanceMapper;
 	
 	@Autowired
-	PaymentMapper paymentMapper;
-	
-	@Autowired
 	IamportAPI imaportAPI;
 	
 	// 쿠폰 조회
@@ -41,11 +38,6 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public String getApiRestkey() {
 		return imaportAPI.getImport_api_restkey();
-	}
-
-	@Override
-	public String getPaymentId() {
-		return paymentMapper.getPaymentId();
 	}
 	
 	// Order 리스트 만들어서 리턴
