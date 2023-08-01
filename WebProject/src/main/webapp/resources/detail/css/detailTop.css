@@ -166,6 +166,12 @@
         row-gap: 10px;
         padding: 10px 15px 15px 10px;
     }
+    
+    	.popup-qty-parent > input {
+			border: 0;
+			text-align: center;
+			font-size: 16px;
+		}
 
         .popup-text {
             color: black;
