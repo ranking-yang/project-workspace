@@ -5,9 +5,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Errors;
 
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.repository.MemberDao;
 
 public interface LoginService {
 	
@@ -17,7 +20,7 @@ public interface LoginService {
 	
 	boolean login(MembersDTO member);
 	
-	int add(MembersDTO login);
+	int add(MembersDTO member);
 	
 	public Map<String, String> validateHandling(Errors errors);
 	

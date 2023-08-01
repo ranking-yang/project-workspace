@@ -1,8 +1,13 @@
 package com.team.webproject.dto;
 
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import com.team.webproject.domain.Member;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -44,16 +49,22 @@ public class MembersDTO {
 	@Email(message = "이메일 형식에 맞지 않습니다.")
 	private String member_email;
 	
-	@Builder
-    public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone,String member_email) {
-        this.member_id=member_id;
-        this.member_code = member_code;
-        this.member_name= member_name;
-        this.member_pwd= member_pwd;
-        this.member_birth = member_pwd;
-        this.member_phone= member_phone;
-        this.member_email=member_email;
-    }
+	private String member_role;
 	
 	
+//	@Builder
+//    public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone, String member_birth ,String member_email, String member_role) {
+//        this.member_id=member_id;
+//        this.member_code = member_code;
+//        this.member_name= member_name;
+//        this.member_pwd= member_pwd;
+//        this.member_birth = member_birth;
+//        this.member_phone= member_phone;
+//        this.member_email=member_email;
+//        this.member_role = member_role;
+//    }
+	
+	public Member toEntity(String roles) {
+		return Member.builder().member_code(member_code).member_pwd(member_pwd).member_id(member_id).member_name(member_name).member_phone(member_phone).member_birth(member_birth).member_email(member_email).member_role(roles).build();
+	}
 }

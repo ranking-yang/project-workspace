@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,20 +48,36 @@ public class LoginController {
 	}
 	
 	// 회원가입 성공 후 로그인 페이지로
-		@PostMapping("/login")
-		public String loginPOST(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-	        
-	        httpServletRequest.getSession().invalidate();
-	        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-	        
-			if (exService.login(member)) {
-				// 세션에 userId를 넣어줌
-				session.setAttribute("userId", member.getMember_id());
-				return "redirect:/main";
-			} else {
-				return "redirect:/login";
-			}
+	@PostMapping("/login")
+	public String loginPOST(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
+        
+        httpServletRequest.getSession().invalidate();
+        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
+        
+		if (exService.login(member)) {
+			// 세션에 userId를 넣어줌
+			
+			session.setAttribute("userId", member.getMember_id());
+			
+			return "redirect:/main";
+			
+			
+		} else {
+			return "redirect:/login";
 		}
+	}
+	
+	@PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/login")
+    public String userInfoView() {
+        return "redirect:/main";
+    }
+//
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/login")
+    public String adminView() {
+        return "admin/adminPage";
+    }
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logoutGET(HttpServletRequest httpServletRequest) {
@@ -83,7 +100,7 @@ public class LoginController {
 	
 	// 회원가입
 	@PostMapping("/user/newJoin")
-	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model, String member_pwd_verify){
+	public String newJoinPOST(@ModelAttribute("member") @Valid MembersDTO member, Errors errors, Model model, String member_pwd_verify){
 //		, String member_pwd_verify
 //		return "/newJoin";
 		System.out.println(member.getMember_id());
