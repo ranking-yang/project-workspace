@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -22,9 +19,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
+
 //	private final Password password;
+
 	private final LoginMapper loginMapper;
-	
+
 //	// 회원가입 및 로그인 서비스 시작
 //	@Override
 //	public String checkId(MembersDTO member, String member_pwd_verify) {
@@ -41,6 +40,7 @@ public class LoginServiceImpl implements LoginService {
 //		return "redirect:/new-join";
 //	}
 	
+
 	@Override
 	public Integer checkId(String id) {
 		
@@ -64,10 +64,11 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public boolean login(MembersDTO member, HttpServletRequest httpServletRequest) {
 		List<MembersDTO> allMembers =  loginMapper.getAll();
+		
 		for (MembersDTO mem : allMembers) {
 			if (member.getMember_id().equals(mem.getMember_id())
 					&& member.getMember_pwd().equals(mem.getMember_pwd())) {
-				
+
 				System.out.println("로그인 성공");
 //				httpServletRequest.getSession().invalidate();
 //			    HttpSession session = httpServletRequest.getSession(true);
@@ -79,7 +80,6 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println("로그인 실패");
 		return false;
 	}
-	
 
 	@Override
 	public int add(MembersDTO login) {
@@ -87,22 +87,24 @@ public class LoginServiceImpl implements LoginService {
 		loginMapper.add(login);
 		return 0;
 	}
-	
+
 	@Override
 	public Map<String, String> validateHandling(Errors errors) {
-        Map<String, String> validatorResult = new HashMap<>();
+		Map<String, String> validatorResult = new HashMap<>();
 
-        for (FieldError error : errors.getFieldErrors()) {
-            String validKeyName = String.format("valid_%s", error.getField());
-            validatorResult.put(validKeyName, error.getDefaultMessage());
-        }
+		for (FieldError error : errors.getFieldErrors()) {
+			String validKeyName = String.format("valid_%s", error.getField());
+			validatorResult.put(validKeyName, error.getDefaultMessage());
+		}
 
-        return validatorResult;
-    }
-	
+		return validatorResult;
+	}
+
 	@Override
 	public List<MembersDTO> getAll() {
 		return loginMapper.getAll();
 	}
 	// 회원가입 및 로그인 서비스 끝
+
 }
+

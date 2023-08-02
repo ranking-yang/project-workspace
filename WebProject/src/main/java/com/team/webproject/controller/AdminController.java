@@ -1,10 +1,8 @@
 package com.team.webproject.controller;
 
-import java.net.Authenticator.RequestorType;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
-import com.team.webproject.service.LoginService;
-
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -26,7 +22,6 @@ public class AdminController {
 	@Autowired
 	AddPerformance addPerformance;
 	
-	private final LoginService exService;
 	
 	// 관리자 페이지
 	@GetMapping("/admin/api")

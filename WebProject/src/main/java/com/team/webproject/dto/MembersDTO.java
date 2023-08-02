@@ -5,15 +5,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
 @NoArgsConstructor
+@Data
+@Builder
 public class MembersDTO {
 	
 	private Integer member_code;
