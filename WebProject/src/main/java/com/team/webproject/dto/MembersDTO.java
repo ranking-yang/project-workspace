@@ -4,9 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class MembersDTO {
 	
 	private Integer member_code;

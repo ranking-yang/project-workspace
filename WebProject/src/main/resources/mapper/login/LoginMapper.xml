@@ -26,14 +26,4 @@
 	<select id="getAll">
 		SELECT member_id, member_pwd FROM members
 	</select>
-	
-	<!-- 카카오 로그인 sql -->
-	<insert id="insertOauthMember" parameterType="TestUserDTO">
-		INSERT INTO
-			test_user(member_id, member_password, member_nickname, member_email)
-		VALUES(#{member_id}, #{member_password}, #{member_nickname}, #{member_email})
-	</insert>
-	<select id="findByMemberEmail" resultType="TestUserDTO" parameterType="string">
-		SELECT * FROM test_user WHERE member_email=#{email}
-	</select>
 </mapper>

@@ -7,7 +7,7 @@
 <title>로그인 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/login/css/login.css" />
-
+<script defer src="/resources/login/js/login.js"></script>
 </head>
 <body style="max-height: 650px;">
 
@@ -47,14 +47,16 @@
 
 		<div class="social-wrap">
 			<div>
-				<img src="/resources/login/images/circle-naver.png" id="login-naver"
-					class="social-join-btn" alt="네이버로그인">
+				<button id="naver-login-btn" class="simple-login-btns">
+					<img src="/resources/login/images/circle-naver.png"
+						id="login-naver" class="social-join-btn" alt="네이버로그인">
+				</button>
 			</div>
 			<div>
-				<a
-					href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d7a60e4c5295cff647529128c70b7348&redirect_uri=http://localhost:8090/auth/kakao/callback"><img
-					src="/resources/login/images/circle-kakao.png" id="login-kakao"
-					class="social-join-btn" alt="카카오로그인"></a>
+				<button id="kakao-login-btn" class="simple-login-btns">
+					<img src="/resources/login/images/circle-kakao.png"
+						id="login-kakao" class="social-join-btn" alt="카카오로그인">
+				</button>
 			</div>
 		</div>
 
@@ -64,7 +66,6 @@
 		</div>
 
 		<br /> <a href="/admin" style="font-size: 20px;">관리자?</a>
-
 	</div>
 
 </body>
