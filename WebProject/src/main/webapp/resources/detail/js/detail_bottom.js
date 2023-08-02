@@ -144,12 +144,16 @@ function submitForm() {
       <div class="review_title_left">
         <div class="review_title_left_stars">
           <div class="review_title_left_star">
-            <div class="review_title_left_star_filled star${star_rating}" style="width: calc(${star_rating} * 19px);"></div>
+            <div class="review_title_left_star_filled star${star_rating} num${reviewId}" style="width: calc(${star_rating} * 19px);"></div>
           </div>
         </div>
         <div class="review_title_left_name" style="padding-left: 10px;">
           ${userId}
         </div>
+      </div>
+      <div class="review_title_button">수정
+      </div>
+      <div class="review_title_button"><button onclick="deleteReview(${reviewId})">삭제</button>
       </div>
       <div class="review_title_right" style="padding-right:8px;">
         ${getCurrentDate()} <!-- 현재 날짜 함수를 호출하여 리뷰 작성일 표시 -->
@@ -253,6 +257,41 @@ function updateProgressBars() {
   }
 }
 
+function deleteReview(reviewId) {
+  // 삭제 확인 팝업 띄우기
+  var confirmDelete = confirm("정말로 리뷰를 삭제하시겠습니까?");
+  reviewId = String(reviewId).padStart(6, '0');
+  
+  if (confirmDelete) {
+    // 리뷰를 화면에서 제거 (예시 코드, 실제로는 데이터베이스에서도 삭제해야 함)
+    var reviewDiv = document.querySelector(".user_review_" + reviewId);
+    reviewDiv.remove();
+
+    // 삭제된 리뷰의 별점을 totalRating에서 빼기
+    // 삭제된 리뷰의 별점을 추출
+    var starRatingElement = reviewDiv.querySelector(".num" + reviewId);
+    var style = window.getComputedStyle(starRatingElement);
+    var widthString = style.getPropertyValue("width");
+    var starRating = parseFloat(widthString) / 19; // 스타 평점으로 변환 (24는 하나의 별이 차지하는 width)
+    totalRating -= starRating;
+
+    // (리뷰가 삭제되었으므로) 후기 숫자 업데이트
+    updateReviewCount1();
+    updateReviewCountpeople();
+	updateProgressBars();
+	
+	var averageRating = totalRating / reviewCount;
+  	// 평균 별점을 화면에 표시
+  	var averageElement = document.querySelector(".score_section_left_average");
+  	averageElement.textContent = averageRating.toFixed(1); // 소수점 한 자리까지 표시
+  
+  	// .score_section_left_star_filled 요소의 width 속성에 averageRating 값을 적용
+  	var filledStarElement = document.querySelector('.score_section_left_star_filled');
+  	filledStarElement.style.width = `calc(${averageRating} * 24px)`;
+    // 삭제 완료 메시지 띄우기 (예시 코드, 실제로는 적절한 방법으로 구현)
+    alert("리뷰가 삭제되었습니다.");
+  }
+}
 
 // 특정 별점에 해당하는 리뷰 개수를 반환하는 함수
 function getTotalRatingsForRating(rating) {
