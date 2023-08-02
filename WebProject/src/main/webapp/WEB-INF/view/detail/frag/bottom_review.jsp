@@ -17,31 +17,31 @@
       <div class="progress_section">
         <div>5점</div>
         <div class="progress_section_bar">
-          <div class="progress_section_value" style="width: 0%;"></div>
+          <div class="progress_section_value progress_section_value_5" style="width: 0%;"></div>
         </div>
       </div>
       <div class="progress_section">
         <div>4점</div>
         <div class="progress_section_bar">
-          <div class="progress_section_value" style="width: 0%;"></div>
+          <div class="progress_section_value progress_section_value_4" style="width: 0%;"></div>
         </div>
       </div>
       <div class="progress_section">
         <div>3점</div>
         <div class="progress_section_bar">
-          <div class="progress_section_value" style="width: 0%;"></div>
+          <div class="progress_section_value progress_section_value_3" style="width: 0%;"></div>
         </div>
       </div>
       <div class="progress_section">
         <div>2점</div>
         <div class="progress_section_bar">
-          <div class="progress_section_value" style="width: 0%;"></div>
+          <div class="progress_section_value progress_section_value_2" style="width: 0%;"></div>
         </div>
       </div>
       <div class="progress_section">
         <div>1점</div>
         <div class="progress_section_bar">
-          <div class="progress_section_value" style="width: 0%;"></div>
+          <div class="progress_section_value progress_section_value_1" style="width: 0%;"></div>
         </div>
       </div>
     </div>

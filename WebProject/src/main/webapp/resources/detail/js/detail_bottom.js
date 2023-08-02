@@ -100,33 +100,10 @@ let reviewIdCounter = 0; // 리뷰 ID 카운터 변수
 var reviewCount = 0; // 총 댓글 수
 var totalRating = 0; // 댓글들의 별점 합계
 
-// 리뷰를 추가할 때마다 점수에 해당하는 바의 비율 업데이트
-function updateProgressBars() {
-  var totalReviews = reviewCount; // 전체 리뷰 개수
-  var progressBars = document.querySelectorAll('.progress_section_value');
-  var totalRatings = [0, 0, 0, 0, 0]; // 1점부터 5점까지 리뷰 개수를 담을 배열
-
-  // 각 점수별 리뷰 개수를 세어서 totalRatings 배열에 저장
-  for (var i = 0; i < totalReviews; i++) {
-    var reviewRating = star_rating; // 해당 리뷰의 별점 가져오기 (예를 들어, 3점인 경우 star_rating이 3일 것입니다.)
-    totalRatings[5 - reviewRating]++; // 배열은 0부터 시작하므로, 3점인 경우 totalRatings[2]를 증가시킵니다.
-  }
-
-  // progressBars 배열의 요소들의 style.width 속성을 갱신하여 점수에 해당하는 바의 비율 조절
-  for (var i = 0; i < progressBars.length; i++) {
-    var progressBar = progressBars[i];
-
-    // 해당 점수에 해당하는 바의 비율 계산 (예를 들어, 3점인 경우 3점 리뷰 개수 / 전체 리뷰 개수)
-    var ratio = totalRatings[i] / totalReviews * 100;
-    progressBar.style.width = `${ratio}%`;
-  }
-}
-
 function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
-  var star_rating = parseFloat(document.getElementById("star_rating").value);
   var image_upload = document.getElementById("image_upload").files[0]; // 첨부한 이미지 파일 가져오기
-  
+  var star_rating = parseFloat(document.getElementById("star_rating").value);
   // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
   if (star_rating < 1 || star_rating > 5) {
     alert("별점은 0.5부터 5까지 입력해주세요.");
@@ -150,7 +127,7 @@ function submitForm() {
 
   newReviewDiv.className = "review_wrap user_review_" + reviewId; // 리뷰 래핑 요소 클래스에 리뷰 ID 추가
   // 리뷰 내용의 최대 길이를 설정
-  var maxReviewLength = 100; // 원하는 최대 길이로 설정
+  var maxReviewLength = 300; // 원하는 최대 길이로 설정
   
   var seeMoreLink = `
     <div class="review_text_seemore" id="seemore_${reviewId}" onclick="showFullReview('${reviewId}')">
@@ -167,7 +144,7 @@ function submitForm() {
       <div class="review_title_left">
         <div class="review_title_left_stars">
           <div class="review_title_left_star">
-            <div class="review_title_left_star_filled" style="width: calc(${star_rating} * 19px);"></div>
+            <div class="review_title_left_star_filled star${star_rating}" style="width: calc(${star_rating} * 19px);"></div>
           </div>
         </div>
         <div class="review_title_left_name" style="padding-left: 10px;">
@@ -228,7 +205,7 @@ function submitForm() {
   reviewCount++;
   
   // 새로운 리뷰를 추가했으므로 progress bar 업데이트
-  updateProgressBars(star_rating);
+  updateProgressBars();
   // 평균 계산
   var averageRating = totalRating / reviewCount;
 
@@ -240,9 +217,56 @@ function submitForm() {
   var filledStarElement = document.querySelector('.score_section_left_star_filled');
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
   
+  
+  
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
 
+// 리뷰를 추가할 때마다 점수에 해당하는 바의 비율 업데이트
+function updateProgressBars() {
+  var totalReviews = document.querySelectorAll(".review_wrap").length; // 전체 리뷰 개수
+  var progressBars = document.querySelectorAll('.progress_section_value');
+
+  var totalRatingsSum = 0; // 모든 별점 바의 비율 합계
+
+  // 모든 별점 바의 비율 합계를 계산
+  for (var i = 1; i <= 5; i++) {
+    var ratingRatio = getTotalRatingsForRating(i);
+    totalRatingsSum += ratingRatio;
+  }
+
+  // 모든 별점 바의 비율을 조정하여 합계가 100%가 되도록 설정
+  for (var i = 1; i <= 5; i++) {
+	var progressBar = 0;    
+	if(i == 1){
+		progressBar = progressBars[4];
+	}else if(i == 2){
+		progressBar = progressBars[3];
+	}else if(i == 3){
+		progressBar = progressBars[2];
+	}else if(i == 4){
+		progressBar = progressBars[1];
+	}else if(i == 5){
+		progressBar = progressBars[0];
+	}
+    progressBar.style.width = `${(getTotalRatingsForRating(i) / totalRatingsSum) * 100}%`;
+  }
+}
+
+
+// 특정 별점에 해당하는 리뷰 개수를 반환하는 함수
+function getTotalRatingsForRating(rating) {
+  var className = `star${rating}`;
+  var ratingBars = document.getElementsByClassName(className);
+
+  var totalRatingsCount = ratingBars.length;
+  var totalReviews = document.querySelectorAll(".review_wrap").length;
+  
+  // 해당 별점에 해당하는 리뷰 개수를 전체 리뷰 개수로 나누어서 비율을 계산
+  var ratingRatio = totalRatingsCount / totalReviews;
+
+  return ratingRatio;
+}
     // 현재 날짜를 반환하는 함수
     function getCurrentDate() {
       var today = new Date();
@@ -311,7 +335,7 @@ function submitForm2() {
 	                      <td colspan="2" style="font-size:15px; padding:0px 10px 15px 36px; line-height:160%;">
 	                        <textarea id="reply_content_${randomNum}" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea>
 	                        <br>
-	                        <button onclick="submitReplyForm('${randomNum}')">등록</button> <!-- 답글 등록 버튼 -->
+	                        <button onclick="submitReplyForm(${randomNum})">등록</button> <!-- 답글 등록 버튼 -->
 	                      </td>
 	                    </tr>
 	                  </tbody>
@@ -345,11 +369,10 @@ function toggleReplyForm(replyDivId) {
       }
     }
 function submitReplyForm(replyDivId) {
-    //var randomNum = generateRandomNumber();
     var replyContent = document.getElementById("reply_content_" + replyDivId).value;
 
     // 등록된 답글을 화면에 보여주기
-    var reviewTextContainer = document.getElementById("Q&A_text_container_" + replyDivId);
+    var reviewTextContainer = document.getElementById("QnA_text_container_" + replyDivId);
     var newReplyTable = document.createElement("table");
     newReplyTable.style = "width:100%; background:#fafafa; border-top:1px solid #e6e6e6;";
     newReplyTable.innerHTML = `
