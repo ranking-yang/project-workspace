@@ -86,6 +86,7 @@ function updateReviewCount1() {
   }
 }
 
+// 댓글이 등록될 때마다 명수를 업데이트하는 함수
 function updateReviewCountpeople() {
   var reviewCount = document.querySelectorAll(".review_wrap").length;
   var reviewCountSpan = document.getElementById("reviewCountpeople");
@@ -96,17 +97,19 @@ function updateReviewCountpeople() {
 
 let reviewIdCounter = 0; // 리뷰 ID 카운터 변수
 
+var reviewCount = 0; // 총 댓글 수
+var totalRating = 0; // 댓글들의 별점 합계
+
 function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
-  var star_rating = parseFloat(document.getElementById("star_rating").value);
   var image_upload = document.getElementById("image_upload").files[0]; // 첨부한 이미지 파일 가져오기
-  
-  // 별점이 0.5부터 5 사이가 아니라면 입력을 강제로 요구
-  if (star_rating < 0.5 || star_rating > 5) {
+  var star_rating = parseFloat(document.getElementById("star_rating").value);
+  // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
+  if (star_rating < 1 || star_rating > 5) {
     alert("별점은 0.5부터 5까지 입력해주세요.");
     return false;
-  }else if(star_rating % 0.5 !=0){
-	  alert("별점은 0.5단위로 입력할 수 있습니다.")
+  }else if(star_rating % 1 !=0){
+	  alert("별점은 1단위로 입력할 수 있습니다.")
 	  return false;
   }
   
@@ -124,7 +127,7 @@ function submitForm() {
 
   newReviewDiv.className = "review_wrap user_review_" + reviewId; // 리뷰 래핑 요소 클래스에 리뷰 ID 추가
   // 리뷰 내용의 최대 길이를 설정
-  var maxReviewLength = 100; // 원하는 최대 길이로 설정
+  var maxReviewLength = 300; // 원하는 최대 길이로 설정
   
   var seeMoreLink = `
     <div class="review_text_seemore" id="seemore_${reviewId}" onclick="showFullReview('${reviewId}')">
@@ -141,11 +144,11 @@ function submitForm() {
       <div class="review_title_left">
         <div class="review_title_left_stars">
           <div class="review_title_left_star">
-            <div class="review_title_left_star_filled" style="width: calc(${star_rating} * 19px);"></div>
+            <div class="review_title_left_star_filled star${star_rating}" style="width: calc(${star_rating} * 19px);"></div>
           </div>
         </div>
         <div class="review_title_left_name" style="padding-left: 10px;">
-          박정준
+          ${userId}
         </div>
       </div>
       <div class="review_title_right" style="padding-right:8px;">
@@ -196,10 +199,74 @@ function submitForm() {
   updateReviewCount1();
   updateReviewCountpeople();
   
+  // 새로운 리뷰의 별점을 totalRating에 더함
+  totalRating += star_rating;
+  // 새로운 리뷰를 등록했으므로 reviewCount를 증가시킴
+  reviewCount++;
+  
+  // 새로운 리뷰를 추가했으므로 progress bar 업데이트
+  updateProgressBars();
+  // 평균 계산
+  var averageRating = totalRating / reviewCount;
+
+  // 평균 별점을 화면에 표시
+  var averageElement = document.querySelector(".score_section_left_average");
+  averageElement.textContent = averageRating.toFixed(1); // 소수점 한 자리까지 표시
+  
+  // .score_section_left_star_filled 요소의 width 속성에 averageRating 값을 적용
+  var filledStarElement = document.querySelector('.score_section_left_star_filled');
+  filledStarElement.style.width = `calc(${averageRating} * 24px)`;
+  
+  
   
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
 
+// 리뷰를 추가할 때마다 점수에 해당하는 바의 비율 업데이트
+function updateProgressBars() {
+  var totalReviews = document.querySelectorAll(".review_wrap").length; // 전체 리뷰 개수
+  var progressBars = document.querySelectorAll('.progress_section_value');
+
+  var totalRatingsSum = 0; // 모든 별점 바의 비율 합계
+
+  // 모든 별점 바의 비율 합계를 계산
+  for (var i = 1; i <= 5; i++) {
+    var ratingRatio = getTotalRatingsForRating(i);
+    totalRatingsSum += ratingRatio;
+  }
+
+  // 모든 별점 바의 비율을 조정하여 합계가 100%가 되도록 설정
+  for (var i = 1; i <= 5; i++) {
+	var progressBar = 0;    
+	if(i == 1){
+		progressBar = progressBars[4];
+	}else if(i == 2){
+		progressBar = progressBars[3];
+	}else if(i == 3){
+		progressBar = progressBars[2];
+	}else if(i == 4){
+		progressBar = progressBars[1];
+	}else if(i == 5){
+		progressBar = progressBars[0];
+	}
+    progressBar.style.width = `${(getTotalRatingsForRating(i) / totalRatingsSum) * 100}%`;
+  }
+}
+
+
+// 특정 별점에 해당하는 리뷰 개수를 반환하는 함수
+function getTotalRatingsForRating(rating) {
+  var className = `star${rating}`;
+  var ratingBars = document.getElementsByClassName(className);
+
+  var totalRatingsCount = ratingBars.length;
+  var totalReviews = document.querySelectorAll(".review_wrap").length;
+  
+  // 해당 별점에 해당하는 리뷰 개수를 전체 리뷰 개수로 나누어서 비율을 계산
+  var ratingRatio = totalRatingsCount / totalReviews;
+
+  return ratingRatio;
+}
     // 현재 날짜를 반환하는 함수
     function getCurrentDate() {
       var today = new Date();
@@ -242,7 +309,7 @@ function submitForm2() {
 	              <td style="font-size:12px; color:#555; padding:15px 15px 10px 15px;">
 	                <span style="font-size:15px; color:#555; font-weight:400;">
 	                  <img src="https://timeticket.co.kr/img/sns_icon/icon_conn_kakao.gif" style="padding-right:3px;">
-	                  kakao_${randomNum}
+	                  ${userId}
 	                </span>&nbsp;&nbsp;${getCurrentDate()}&nbsp;&nbsp;&nbsp;
 	                <a href="#reply" onclick="toggleReplyForm('habuReply_${randomNum}')"> <!-- 토글 함수 호출 -->
 	                  <img src="https://timeticket.co.kr/img/viewpage/btn_write_reply.png" style="vertical-align:0px;" border="0" alt="의견쓰기">
@@ -268,7 +335,7 @@ function submitForm2() {
 	                      <td colspan="2" style="font-size:15px; padding:0px 10px 15px 36px; line-height:160%;">
 	                        <textarea id="reply_content_${randomNum}" style="font-size:15px; color:#000; width:96%; padding:5px 2%; border:1px solid #e6e6e6;"></textarea>
 	                        <br>
-	                        <button onclick="submitReplyForm('${randomNum}')">등록</button> <!-- 답글 등록 버튼 -->
+	                        <button onclick="submitReplyForm(${randomNum})">등록</button> <!-- 답글 등록 버튼 -->
 	                      </td>
 	                    </tr>
 	                  </tbody>
@@ -302,11 +369,10 @@ function toggleReplyForm(replyDivId) {
       }
     }
 function submitReplyForm(replyDivId) {
-    //var randomNum = generateRandomNumber();
     var replyContent = document.getElementById("reply_content_" + replyDivId).value;
 
     // 등록된 답글을 화면에 보여주기
-    var reviewTextContainer = document.getElementById("Q&A_text_container_" + replyDivId);
+    var reviewTextContainer = document.getElementById("QnA_text_container_" + replyDivId);
     var newReplyTable = document.createElement("table");
     newReplyTable.style = "width:100%; background:#fafafa; border-top:1px solid #e6e6e6;";
     newReplyTable.innerHTML = `
