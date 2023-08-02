@@ -122,13 +122,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
     
 //    // 예외처리로 resources 파일 예외
-    public void configure(WebSecurity web) throws Exception {
-    	try {
-    		web.ignoring().antMatchers("/status","/resources/**", "/user/newJoin","/logout", "/login","/join/idcheck","/main", "/sms/test","/search", "/product/performance", "/detail", "/product/product-detail");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-    }       
+//    public void configure(WebSecurity web) throws Exception {
+//    	try {
+//    		web.ignoring().antMatchers("/status","/resources/**", "/user/newJoin","/logout", "/login","/join/idcheck","/main", "/sms/test","/search", "/product/performance", "/detail", "/product/product-detail");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//    }       
 }
 //    }
     
