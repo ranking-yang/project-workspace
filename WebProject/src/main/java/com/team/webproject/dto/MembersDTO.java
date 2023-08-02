@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 //import com.team.webproject.domain.Member;
 
@@ -25,7 +26,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MembersDTO {
+public class MembersDTO implements UserDetails {
 	
 	private Integer member_code;
 	
@@ -55,6 +56,7 @@ public class MembersDTO {
 	@Email(message = "이메일 형식에 맞지 않습니다.")
 	private String member_email;
 	
+	
 	private String member_role;
 	
 	
@@ -69,6 +71,55 @@ public class MembersDTO {
         this.member_email=member_email;
         this.member_role = member_role;
     }
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 //	public Member toEntity(String roles) {
 //		return Member.builder().member_code(member_code).member_pwd(member_pwd).member_id(member_id).member_name(member_name).member_phone(member_phone).member_birth(member_birth).member_email(member_email).member_role(roles).build();

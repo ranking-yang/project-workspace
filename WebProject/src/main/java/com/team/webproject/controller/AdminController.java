@@ -34,21 +34,20 @@ public class AdminController {
 	
 	// 관리자 페이지
 	@GetMapping("/admin/api")
-	public String adminGET(HttpSession session){
-		try {
-			String user = (String)session.getAttribute("userId");
-			MembersDTO member = exService.getMember(user);
-			if(!user.isEmpty()) {
-				if(member.getMember_role().equals("admin")) {
+	public String adminGET(){
+//		try {
+//			String user = (String)session.getAttribute("userId");
+//			MembersDTO member = exService.getMember(user);
+//			if(!user.isEmpty()) {
+//				if(member.getMember_role().equals("admin")) {
 					return "admin/adminPage";
-				}
-			}
-			return "redirect:/login";
-		}catch(Exception e) {
 			
-			return "redirect:/login";
-			
-		}
+//			return "redirect:/login";
+//		}catch(Exception e) {
+//			
+//			return "redirect:/login";
+//			
+//		}
 		
 		
 	}

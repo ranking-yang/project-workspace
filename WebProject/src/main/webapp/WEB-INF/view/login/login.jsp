@@ -17,7 +17,7 @@
 				style="width: 150px; height: 102px;">
 		</div>
 
-		<form action="/login" method="post" autocomplete="off">
+		<form action="/loginProc" method="post" autocomplete="off">
 			<input type="hidden" name="r" value="/">
 
 			<div style="margin-top: 50px;">

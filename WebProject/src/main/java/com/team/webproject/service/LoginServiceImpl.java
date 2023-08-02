@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class LoginServiceImpl implements LoginService{
+public class LoginServiceImpl implements LoginService, UserDetailsService{
 
 	private final LoginMapper loginMapper;
 	private final PasswordEncoder passwordEncoder;
@@ -51,7 +51,7 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 	 
-	
+	/*
 	@Override
 	public MembersDTO login(MembersDTO member, HttpServletRequest request) {
 		System.out.println("member check?:"+ member);
@@ -71,7 +71,7 @@ public class LoginServiceImpl implements LoginService{
 		System.out.println("로그인 실패");
 		return null;
 	}
-	
+	*/
 	
 	
 	@Override
@@ -131,19 +131,32 @@ public class LoginServiceImpl implements LoginService{
 		MembersDTO member = loginMapper.FindPwd(id, name, c_birth, Phone);
 		return member;
 	}
+
+
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
-	
-	
-	
-//    @Override
-//    public MembersDTO loadUserByUsername(String userId) throws UsernameNotFoundException {
-//        //여기서 받은 유저 패스워드와 비교하여 로그인 인증
-//    	MembersDTO member = loginMapper.checklogin(userId);
-//        if (member == null){
-//            throw new UsernameNotFoundException("User not authorized.");
-//        }
-//        return member;
-//    }
+
+    @Override
+    public UserDetails loadUserByUsername(String member_id) throws UsernameNotFoundException {
+        //여기서 받은 유저 패스워드와 비교하여 로그인 인증
+    	MembersDTO member = loginMapper.checklogin(member_id);
+    	System.out.println("load >>>>>>>>>>>>>>>>>> "+member.toString());
+        if (member == null){
+            throw new UsernameNotFoundException("User not authorized.");
+        }
+        String pw = member.getMember_pwd();
+        String roles = member.getMember_role();
+
+        return User.builder()
+                .username(member_id)
+                .password(pw)
+                .roles(roles)
+                .build();
+    }
 	
 
 	// 회원가입 및 로그인 서비스 끝

@@ -7,12 +7,16 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -41,45 +45,63 @@ public class LoginController {
 	
 	private final LoginService exService;
 	
-//	// 로그인 페이지
-	@GetMapping("/login")
+	// 로그인 페이지
+//	@GetMapping("/login")
+//	public String loginGET(Model model) {
+//        model.addAttribute("loginRequest", new MembersDTO());
+//         Object o = SecurityContextHolder.getContext().getAuthentication();
+//         System.out.println("o :" + o.toString());
+//		return "login/login";
+//	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET(Model model) {
         model.addAttribute("loginRequest", new MembersDTO());
-        
+         Object o = SecurityContextHolder.getContext().getAuthentication();
+         System.out.println("o :" + o.toString());
 		return "login/login";
 	}
+//	
+
 //	
 	// 회원가입 성공 후 로그인 페이지로
 	
 //	@PreAuthorize("hasRole('user')")
-	@PostMapping("/login")
-    public String userInfoView(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-		System.out.println("member:?"+ member.toString());
-        MembersDTO mem = exService.login(member, httpServletRequest);
-        System.out.println(mem.toString());
-		if (!mem.getMember_id().isEmpty()) {
-			// 세션에 userId를 넣어줌
+//	@PostMapping("/login")
+//    public String userInfoView() {
+//		System.out.println("member:?"+ member.toString());
+//		@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model
+        //MembersDTO mem = exService.login(member, httpServletRequest);
+//        System.out.println(mem.toString());
+//		if (!mem.getMember_id().isEmpty()) {
+//			// 세션에 userId를 넣어줌
+//			
+//			
+//			System.out.println(mem.getMember_role().equals("user"));
+//			if(mem.getMember_role().equals("user")) {
+//				return "redirect:/main";
+//			}else {
+//				return "redirect:/admin/api";
+//			}
 			
-			
-			System.out.println(mem.getMember_role().equals("user"));
-			if(mem.getMember_role().equals("user")) {
-				return "redirect:/main";
-			}else {
-				return "redirect:/admin/api";
-			}
-			
-		} else {
-			return "redirect:/login";
-		}
-    }
-
+//		} else {
+//			return "redirect:/login";
+//		}
+//		return "main/main";
+//    }
+	
 	// 로그아웃
+//	@GetMapping("/logout")
+//	public String logoutGET(HttpServletRequest httpServletRequest) {
+//		SecurityContextHolder.clearContext();
+//		httpServletRequest.getSession().invalidate();
+//		return "redirect:/login";
+//	}	
+	
 	@GetMapping("/logout")
-	public String logoutGET(HttpServletRequest httpServletRequest) {
-		
-		httpServletRequest.getSession().invalidate();
-		return "redirect:/login";
-	}	
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/main";
+    }
 //	// 타임티켓/간편 회원가입 선택 페이지
 //	@GetMapping("/join")
 //	public String joinGET() {
