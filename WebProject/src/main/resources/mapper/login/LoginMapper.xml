@@ -23,4 +23,12 @@
 			#{member_email})
 	</insert>
 	
+	<select id="getAll">
+		SELECT member_id, member_pwd FROM members
+	</select>
+	
+	<select id="getSingleUser" >
+		SELECT * FROM members WHERE member_id = #{member_id}
+	</select>
+	
 </mapper>

@@ -13,6 +13,12 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <!-- iamport.payment.js -->
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script>
+    // 결제 객체 초기화
+	const market = ${api_market};
+	var IMP = window.IMP; 
+    IMP.init(market);
+</script>
 <link rel="stylesheet" href="${payment_css}">
 </head>
 <body>
@@ -37,21 +43,51 @@
 
 			<!-- 예매 정보 -->
 			<div>
-				<div class="payment-selected-subtitle" id="payment-orders" data-orders="${orders}">예매정보</div>
+				<div class="payment-selected-subtitle" id="payment-orders">예매정보</div>
 
-				<c:forEach items="${orders}" var="order">
+				<c:forEach items="${orders}" var="ticket">
 					<div class="payment-selected-box">
 						<div class="payment-selected-box-title">선택옵션</div>
-						<div>${order.booking_date}
-							<c:if test="${!empty order.booking_time}">${order.booking_time}</c:if>
-							${order.booking_type}
+						<div>
+							<c:choose>
+								<c:when test="${!empty ticket.booking_time}">
+									<input type="text" name="booking_date" value="${ticket.booking_date}"
+									form="payment_success_form" style="width:90px" readonly />
+									<input type="text" name="booking_time" value="${ticket.booking_time}"
+									form="payment_success_form" style="width:90px" readonly />
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="booking_date" value="${ticket.booking_date}"
+									form="payment_success_form" readonly />
+								</c:otherwise>
+							</c:choose>
 						</div>
+						
+						<!--
+						<div>
+							<div>${ticket.booking_date}
+							<c:if test="${!empty ticket.booking_time}">${ticket.booking_time}</c:if>
+							</div>		
+						</div>
+						  -->
+						
+						<div class="payment-selected-box-title">권종</div>
+						<div>
+						<input type="text" name="booking_type" value="${ticket.booking_type}"
+								form="payment_success_form" readonly />
+					    </div>
 						<div class="payment-selected-box-title">티켓가격</div>
-						<div>${order.booking_price}원</div>
+						<div>
+						<input type="text" class="popup-qty-price" name="booking_price"
+						value="${ticket.booking_price}" form="payment_success_form" readonly />
+						</div>
 						<div class="payment-selected-box-title">수량</div>
-						<div>${order.booking_qty}매</div>
+						<div>
+						<input type="text" class="qty-value" name="booking_qty" value="${ticket.booking_qty}"
+						form="payment_success_form" readonly />
+						</div>
 						<div class="payment-selected-box-title">총 가격</div>
-						<div>${order.booking_price * order.booking_qty}원</div>
+						<div>${ticket.booking_price * ticket.booking_qty}</div>
 					</div>
 				</c:forEach>
 
@@ -60,9 +96,9 @@
 					<div class="payment-selected-subtitle">이용자정보</div>
 					<div class="payment-selected-box">
 						<div class="payment-selected-box-title">이름</div>
-						<div>이름</div>
+						<div id="user_name">${user.member_name}</div>
 						<div class="payment-selected-box-title">핸드폰</div>
-						<div>핸드폰</div>
+						<div id="user_ph">${user.member_phone}</div>
 					</div>
 				</div>
 
@@ -115,7 +151,6 @@
 					</div>
 				</div>
 				<!-- 결제하기 -->
-				<!-- 체크박스 체크하면 결제 정보 넘어가게 / JSON으로 결제정보 넘어가게 등등.. -->
 				<div class="payment-chkBox">
 					<div>
 						<input type="checkbox" id="payment-chk"> 상단의 환불규정 / 주의사항 /
@@ -128,14 +163,18 @@
 			</div>
 		</div>
 	</div>
+	
+	<input type="hidden" name="booker_code"
+	value="${user.member_code}" form="payment_success_form" />
+	
+	<input type="hidden" name="performance_code"
+	value="${performance.performance_code}" form="payment_success_form" />
+	
+	<form action="/payment/success" method="POST" id="payment_success_form" ></form>
 
 	<%@ include file="../common/footer.jsp"%>
 
 	<%@ include file="../common/commonJs.jsp"%>
-
-	<script>		
-		const market = ${api_market};
-	</script>
 
 	<script src="${payment_js}"></script>
 

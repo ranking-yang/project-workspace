@@ -190,10 +190,11 @@
             cursor: pointer;
         }
 
-        .popup-time > input {
+        .popup-time > input, #popup-option-btn > input {
             background: none;
             border: 0;
             padding-left: 8px;
+            text-align: left;
         }
         
         .popup-qty-sub {

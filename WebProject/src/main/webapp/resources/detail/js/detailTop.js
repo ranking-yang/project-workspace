@@ -56,7 +56,7 @@ calendar.flatpickr({
 // 전시 - 옵션 선택
 if (optionBtn) {
 	optionBtn.addEventListener('click', (e) => {
-		e.target.style.backgroundColor = '#46c8b4';
+		e.currentTarget.style.backgroundColor = '#46c8b4';
 		openQtyDiv();
 		resetQty();
 	});

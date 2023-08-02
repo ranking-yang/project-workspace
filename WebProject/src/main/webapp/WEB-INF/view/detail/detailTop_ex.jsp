@@ -89,9 +89,13 @@
 	<div class="detail-top-right">
 		<div class="popup-option">
 			<div class="popup-text">옵션선택</div>
-			<input type="text" id="popup-option-btn" name="booking_date"
-				value="[유효기간 ~ ${performance.end_date}]" form="payment_proceed_form"
+			<div id="popup-option-btn">
+			[유효기간 ~
+			<input type="text" name="booking_date"
+				value="${performance.end_date}" form="payment_proceed_form" style="width: 80px;"
 				readonly />
+			]
+			</div>
 		</div>
 		<div class="popup-qty">
 			<!-- 권종/수량 -->

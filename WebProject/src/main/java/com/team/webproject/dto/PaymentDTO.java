@@ -8,7 +8,6 @@ import lombok.Data;
 public class PaymentDTO {
 	
 	String payment_code;
-	Integer ticket_code;
 	Integer related_coupon;
 	String payment_way;
 	Date payment_date;
