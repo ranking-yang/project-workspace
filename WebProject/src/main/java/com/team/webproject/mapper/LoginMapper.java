@@ -16,4 +16,6 @@ public interface LoginMapper {
 
 	public boolean equalPwd(MembersDTO member);
 	
+	MembersDTO getSingleUser(String user_id);
+	
 }

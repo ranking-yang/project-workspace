@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team.webproject.service.DetailService;
@@ -36,9 +35,7 @@ public class DetailController {
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
 		model.addAttribute("la", jsonob1.get("la"));
-		model.addAttribute("lo", jsonob1.get("lo"));
-
-		
+		model.addAttribute("lo", jsonob1.get("lo"));		
 		
 		System.out.println("userid: "+session.getAttribute("userId"));
 		
