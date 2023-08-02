@@ -91,9 +91,10 @@
 	 $(document).ready(function() {
 	    $(document).on("click","#check-id-btn", function() {
 			console.log("test");	
-		
+			
 			var userid = $("#user-id").val();
-			 $.ajax({
+			console.log(userid);
+			$.ajax({
 	            url : "/join/idcheck", 
 	            type: "POST",
 	            data: {id:userid},

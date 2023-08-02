@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class MainController {
 	
 	@GetMapping(value={"/", ""})
-	String main(@SessionAttribute(name = "userId", required = false) String userId, Model model, HttpServletRequest request) {
+	String main(@SessionAttribute(name = "userId", required = false) String userId,@SessionAttribute(name = "userCode", required = false) String userCode, Model model, HttpServletRequest request) {
 		
-		model.addAttribute("user", userId);
-		System.out.println(userId);
 		return "main/main";
 	}
 

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -41,25 +42,29 @@ public class LoginServiceImpl implements LoginService{
 	private final LoginMapper loginMapper;
 	private final PasswordEncoder passwordEncoder;
 
- 
+	// 중복체크
 	@Override
 	public Integer checkId(String id) {
-		
+		System.out.println("check?:"+ id);
 		Integer num = loginMapper.checkId(id);
 		return num;
 		
 	}
 	 
-	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public MembersDTO login(MembersDTO member) {
+	public MembersDTO login(MembersDTO member, HttpServletRequest request) {
+		System.out.println("member check?:"+ member);
 		MembersDTO Members =  loginMapper.checklogin(member.getMember_id());
-		
+		request.getSession().invalidate();
+        HttpSession session = request.getSession(true);  // Session이 없으면 생성
 		if (member.getMember_id().equals(Members.getMember_id())
 				&& passwordEncoder.matches(member.getMember_pwd(), Members.getMember_pwd())){
 				System.out.println(Members.toString());
 				System.out.println("로그인 성공");
+				
+				session.setAttribute("userId", Members.getMember_id());
+				session.setAttribute("userCode", Members.getMember_code());
 				return Members;
 			
 		}

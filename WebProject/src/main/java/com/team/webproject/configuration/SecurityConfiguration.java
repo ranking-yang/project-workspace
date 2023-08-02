@@ -119,18 +119,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             	.exceptionHandling()
         		.accessDeniedPage("/login"); //권한 없으면
-    }
+	}
     
 //    // 예외처리로 resources 파일 예외
-//    public void configure(WebSecurity web) throws Exception {
-//    	try {
-//    		web.ignoring().antMatchers("/status","/resources/**", "/user/newJoin","/logout", "/login","/join/idcheck","/main", "/sms/test","/search", "/product/performance", "/detail", "/product/product-detail**", "/product/product-detail?performance_code=*");
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//        
+    public void configure(WebSecurity web) throws Exception {
+    	try {
+    		web.ignoring().antMatchers("/status","/resources/**", "/user/newJoin","/logout", "/login","/join/idcheck","/main", "/sms/test","/search", "/product/performance", "/detail", "/product/product-detail");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    }       
+}
 //    }
     
 //    // login check
     
-}
+

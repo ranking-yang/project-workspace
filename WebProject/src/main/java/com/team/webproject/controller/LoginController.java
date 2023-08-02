@@ -54,15 +54,13 @@ public class LoginController {
 //	@PreAuthorize("hasRole('user')")
 	@PostMapping("/login")
     public String userInfoView(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-		httpServletRequest.getSession().invalidate();
-        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-        MembersDTO mem = exService.login(member);
+		System.out.println("member:?"+ member.toString());
+        MembersDTO mem = exService.login(member, httpServletRequest);
         System.out.println(mem.toString());
 		if (!mem.getMember_id().isEmpty()) {
 			// 세션에 userId를 넣어줌
 			
-			session.setAttribute("userId", mem.getMember_id());
-			session.setAttribute("userCode", mem.getMember_code());
+			
 			System.out.println(mem.getMember_role().equals("user"));
 			if(mem.getMember_role().equals("user")) {
 				return "redirect:/main";
@@ -74,26 +72,7 @@ public class LoginController {
 			return "redirect:/login";
 		}
     }
-////
-//    @PreAuthorize("hasRole('admin')")
-//    @PostMapping("/login")
-//    public String adminView(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-//        
-//        httpServletRequest.getSession().invalidate();
-//        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-//        MembersDTO mem = exService.login(member);
-//        System.out.println(mem.toString());
-//		if (!mem.getMember_id().isEmpty()) {
-//			// 세션에 userId를 넣어줌
-//			
-//			session.setAttribute("userId", mem.getMember_id());
-//			System.out.println(mem.getMember_role().equals("user"));
-//			
-//			return "redirect:/main";
-//		} else {
-//			return "redirect:/login";
-//		}
-//    }
+
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logoutGET(HttpServletRequest httpServletRequest) {

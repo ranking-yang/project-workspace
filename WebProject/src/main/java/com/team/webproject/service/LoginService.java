@@ -18,7 +18,7 @@ public interface LoginService {
 //	String checkId(MembersDTO member, String member_pwd_verify);
 	Integer checkId(String id);
 	
-	MembersDTO login(MembersDTO member);
+	MembersDTO login(MembersDTO member, HttpServletRequest request);
 	
 	int add(MembersDTO member);
 	
