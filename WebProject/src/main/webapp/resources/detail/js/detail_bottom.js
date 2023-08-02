@@ -328,3 +328,39 @@ function submitReplyForm(replyDivId) {
     var replyDiv = document.getElementById("habuReply_" + replyDivId);
     replyDiv.style.display = "none";
 }
+
+
+// 지도 가져오기
+var mapContainer1 = document.getElementById('map1'); //지도를 담을 영역의 DOM 레퍼런스
+var mapContainer2 = document.getElementById('map2'); //지도를 담을 영역의 DOM 레퍼런스
+
+let la = mapContainer1.dataset.la;
+let lo = mapContainer1.dataset.lo;
+
+
+var options = { //지도를 생성할 때 필요한 기본 옵션
+	center: new kakao.maps.LatLng(la, lo), //지도의 중심좌표.
+	level: 3 //지도의 레벨(확대, 축소 정도)
+};
+
+var map1 = new kakao.maps.Map(mapContainer1, options); //지도 생성 및 객체 리턴
+var map2 = new kakao.maps.Map(mapContainer2, options); //지도 생성 및 객체 리턴
+
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(la, lo); 
+
+// 마커를 생성합니다
+var marker1 = new kakao.maps.Marker({
+    position: markerPosition
+}); 
+var marker2 = new kakao.maps.Marker({
+    position: markerPosition
+}); 
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker1.setMap(map1);
+marker2.setMap(map2);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);   

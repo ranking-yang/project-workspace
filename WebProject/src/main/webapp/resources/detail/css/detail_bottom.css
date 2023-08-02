@@ -404,3 +404,13 @@ height:auto;
 .contentstyle1{
 	background-color: #fff;	
 }
+
+#map1{
+	width: 96%;
+	height: 400px;
+}
+
+#map2{
+	width: 96%;
+	height: 400px;
+}
