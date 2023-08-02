@@ -19,20 +19,7 @@ public class MypageController {
 	private final LoginService exService;
 	
 	@GetMapping("/mypage")
-	String main(HttpSession session) {
-		try {
-			String user = (String)session.getAttribute("userId");
-			MembersDTO member = exService.getMember(user);
-			if(!user.isEmpty()) {
-				if(member.getMember_role().equals("user")) {
-					return "/mypage/MyPageMain";
-				}
-			}
-			return "redirect:/login";
-		
-		}catch (Exception e) {
-			return "redirect:/login";
-		} 
-		
+	String main() {
+		return "/mypage/MyPageMain";
 	}
 }
