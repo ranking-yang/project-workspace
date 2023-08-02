@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.MessageDTO;
 import com.team.webproject.dto.SmsResponseDTO;
+import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.SmsService;
 
@@ -39,45 +41,59 @@ public class LoginController {
 	
 	private final LoginService exService;
 	
-	// 로그인 페이지
+//	// 로그인 페이지
 	@GetMapping("/login")
 	public String loginGET(Model model) {
         model.addAttribute("loginRequest", new MembersDTO());
         
 		return "login/login";
 	}
-	
+//	
 	// 회원가입 성공 후 로그인 페이지로
+	
+//	@PreAuthorize("hasRole('user')")
 	@PostMapping("/login")
-	public String loginPOST(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-        
-        httpServletRequest.getSession().invalidate();
+    public String userInfoView(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
+		httpServletRequest.getSession().invalidate();
         HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-        
-		if (exService.login(member)) {
+        MembersDTO mem = exService.login(member);
+        System.out.println(mem.toString());
+		if (!mem.getMember_id().isEmpty()) {
 			// 세션에 userId를 넣어줌
 			
-			session.setAttribute("userId", member.getMember_id());
-			
-			return "redirect:/main";
-			
+			session.setAttribute("userId", mem.getMember_id());
+			session.setAttribute("userCode", mem.getMember_code());
+			System.out.println(mem.getMember_role().equals("user"));
+			if(mem.getMember_role().equals("user")) {
+				return "redirect:/main";
+			}else {
+				return "redirect:/admin/api";
+			}
 			
 		} else {
 			return "redirect:/login";
 		}
-	}
-	
-	@PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/login")
-    public String userInfoView() {
-        return "redirect:/main";
     }
-//
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/login")
-    public String adminView() {
-        return "admin/adminPage";
-    }
+////
+//    @PreAuthorize("hasRole('admin')")
+//    @PostMapping("/login")
+//    public String adminView(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
+//        
+//        httpServletRequest.getSession().invalidate();
+//        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
+//        MembersDTO mem = exService.login(member);
+//        System.out.println(mem.toString());
+//		if (!mem.getMember_id().isEmpty()) {
+//			// 세션에 userId를 넣어줌
+//			
+//			session.setAttribute("userId", mem.getMember_id());
+//			System.out.println(mem.getMember_role().equals("user"));
+//			
+//			return "redirect:/main";
+//		} else {
+//			return "redirect:/login";
+//		}
+//    }
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logoutGET(HttpServletRequest httpServletRequest) {
@@ -177,12 +193,29 @@ public class LoginController {
 		
 		return "join/findId";
 	}
+	
+	@PostMapping("/findId/find")
+	public String findIdPost(String member_name, String member_birth, String member_phone, Model model) {
+		System.out.println(member_name);
+		System.out.println(member_birth);
+		System.out.println(member_phone);
+		
+		MembersDTO member = exService.findId(member_name, member_birth, member_phone);
+		model.addAttribute("findid", member.getMember_id());
+		System.out.println(member.toString());
+		return "join/findIdResult";
+	}
 
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPassword")
 	public String findPasswordGET() {
-		
 		return "join/findPassword";
 	}
 	
+	@GetMapping("/findPassword/find")
+	public String findPasswordPost(String member_id, String member_name, String member_birth, String member_phone) {
+		MembersDTO member = exService.findPw(member_id,member_name, member_birth, member_phone);
+		System.out.println(member.toString());
+		return "join/findPassword";
+	}
 }

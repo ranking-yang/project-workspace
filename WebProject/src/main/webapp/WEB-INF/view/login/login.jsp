@@ -12,9 +12,8 @@
 <body style="max-height: 650px;">
 
 	<div class="login-wrap">
-
 		<div>
-			<img src="/resources/login/images/logo2.jpg"
+			<img src="/resources/common/image/logo.png"
 				style="width: 150px; height: 102px;">
 		</div>
 
@@ -61,9 +60,6 @@
 			<a href="/bbs-detail.php?bbs-num=65&amp;tb=board-faq" target="-blank"
 				alt="불편사항"> ※ 회원가입/로그인에 문제가 있어요! &gt; </a>
 		</div>
-		
-		<br />
-		<a href="/admin" style="font-size: 20px;">관리자?</a>
 
 	</div>
 

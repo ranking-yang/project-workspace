@@ -116,14 +116,12 @@
 	<div class="join-wrap">
 
 		<div>
-			<img src="/resources/join/images/logo.jpg"
+			<img src="/resources/common/image/logo.png"
 				style="width: 150px; height: 102px;">
 		</div>
 
-		<div style="color: gray;">
-			<div>(제약조건은 MembersDTO 확인)</div>
-			<div>(휴대폰 인증 안됨)</div>
-			<div>(오류 메세지 안 뜸..)</div>
+		<div style="color: gray;" class="section-title">
+			<div>회원가입</div>
 		</div>
 
 		<form th:action="@{/user/newJoin}" method="post">
@@ -237,6 +235,12 @@
 			<input type="submit" id="submitComplete" class="btn-submit"
 				value="회원가입" alt="회원가입">
 			<!-- <button>등록</button> -->
+			
+			<div class="join-submenu">
+				<a href="/login">로그인</a> <span>|</span> 
+				<a href="/findId">아이디 찾기</a> <span>|</span>
+				<a href="/findPassword">비밀번호 찾기</a> 
+			</div>
 		</form>
 		
 	</div>

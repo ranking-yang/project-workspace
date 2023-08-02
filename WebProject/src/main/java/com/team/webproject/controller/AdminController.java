@@ -1,7 +1,10 @@
 package com.team.webproject.controller;
 
 import java.net.Authenticator.RequestorType;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.service.LoginService;
@@ -30,9 +34,23 @@ public class AdminController {
 	
 	// 관리자 페이지
 	@GetMapping("/admin/api")
-	public String adminGET() {
+	public String adminGET(HttpSession session){
+		try {
+			String user = (String)session.getAttribute("userId");
+			MembersDTO member = exService.getMember(user);
+			if(!user.isEmpty()) {
+				if(member.getMember_role().equals("admin")) {
+					return "admin/adminPage";
+				}
+			}
+			return "redirect:/login";
+		}catch(Exception e) {
+			
+			return "redirect:/login";
+			
+		}
 		
-		return "admin/adminPage";
+		
 	}
 	
 	@PostMapping("/admin")

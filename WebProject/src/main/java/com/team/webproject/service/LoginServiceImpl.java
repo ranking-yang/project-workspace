@@ -1,12 +1,16 @@
 
 package com.team.webproject.service;
 
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,36 +26,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.team.webproject.domain.Member;
+//import com.team.webproject.domain.Member;
 import com.team.webproject.dto.MembersDTO;
+
 import com.team.webproject.mapper.LoginMapper;
-import com.team.webproject.repository.MemberDao;
+//import com.team.webproject.repository.MemberDao;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService{
-//	private final Password password;
+
 	private final LoginMapper loginMapper;
 	private final PasswordEncoder passwordEncoder;
-	@Autowired
-    private MemberDao memberDao;
-//	// 회원가입 및 로그인 서비스 시작
-//	@Override
-//	public String checkId(MembersDTO member, String member_pwd_verify) {
-//		
-//		if (loginMapper.checkId(member) > 0) {
-//			System.out.println("아이디 중복, 회원가입 실패");
-//			return "redirect:/new-Join";
-//		} else if (member.getMember_pwd().equals(member_pwd_verify)) {
-//			add(member);
-//			System.out.println("회원가입 성공");
-//			return "redirect:/login";
-//		}
-//		System.out.println("실패");
-//		return "redirect:/new-join";
-//	}
+
  
 	@Override
 	public Integer checkId(String id) {
@@ -60,61 +49,33 @@ public class LoginServiceImpl implements LoginService{
 		return num;
 		
 	}
-//		
-//		if (loginMapper.checkId(member) > 0) {
-//			System.out.println("아이디 중복, 회원가입 실패");
-//			return "redirect:/new-Join";
-//		} else if (member.getMember_pwd().equals(member_pwd_verify)) {
-//			add(member);
-//			System.out.println("회원가입 성공");
-//			return "redirect:/login";
-//		}
-//		System.out.println("실패");
-//		return "redirect:/new-join";
-//	}
-	
-//	@Override
-//	@Transactional(readOnly = true)
-//	public UserDetails loadUserByUsername(String id) {
-// 
-//		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-// 
-//		Member member = memberDao.findOneById(id);
-//		
-//		if (member != null) {
-//			grantedAuthorities.add(new SimpleGrantedAuthority("USER")); // USER 라는 역할을 넣어준다.
-//			return MemberDTO(member.getMember_id(), member.getMember_pwd(), grantedAuthorities);
-//		} else {
-//			throw new UsernameNotFoundException("can not find User : " + id);
-//		}
-//	}
-	private final MemberDao userRepository;
 	 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public boolean login(MembersDTO member) {
-		List<MembersDTO> allMembers =  loginMapper.getAll();
-		for (MembersDTO mem : allMembers) {
-			if (member.getMember_id().equals(mem.getMember_id())
-					&& passwordEncoder.matches(member.getMember_pwd(), mem.getMember_pwd())){
-				
-				
+	public MembersDTO login(MembersDTO member) {
+		MembersDTO Members =  loginMapper.checklogin(member.getMember_id());
+		
+		if (member.getMember_id().equals(Members.getMember_id())
+				&& passwordEncoder.matches(member.getMember_pwd(), Members.getMember_pwd())){
+				System.out.println(Members.toString());
 				System.out.println("로그인 성공");
-				return true;
-			}
+				return Members;
+			
 		}
 		System.out.println("로그인 실패");
-		return false;
+		return null;
 	}
 	
-
+	
+	
 	@Override
 	public int add(MembersDTO member) {
-//		member.setMember_pwd(passwordEncoder.encode(member.getMember_pwd()));
-		
-		member.setMember_pwd(bCryptPasswordEncoder.encode(member.getMember_pwd()));
-		userRepository.save(member.toEntity("ROLE_USER"));
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		member.setMember_pwd(passwordEncoder.encode(member.getMember_pwd()));
+		member.setMember_role("user");
+		System.out.println(member.toString());
 		loginMapper.add(member);
 		return 0;
 	}
@@ -136,6 +97,49 @@ public class LoginServiceImpl implements LoginService{
 	public List<MembersDTO> getAll() {
 		return loginMapper.getAll();
 	}
+
+	@Override
+	public MembersDTO getMember(String id) {
+		MembersDTO member = loginMapper.checklogin(id);
+		return member;
+	}
+
+
+
+	@Override
+	public MembersDTO findId(String name, String birth, String Phone) {
+		System.out.println("id???");
+		DateChange dateChange = new DateChange();
+		Date c_birth = dateChange.transformDate3(birth);
+		MembersDTO member = loginMapper.FindId(name, c_birth, Phone);
+		System.out.println("이게 안됨.");
+		return member;
+	}
+
+
+
+	@Override
+	public MembersDTO findPw(String id, String name, String birth, String Phone) {
+		System.out.println("pw???");
+		DateChange dateChange = new DateChange();
+		Date c_birth = dateChange.transformDate3(birth);
+		MembersDTO member = loginMapper.FindPwd(id, name, c_birth, Phone);
+		return member;
+	}
+	
+	
+	
+	
+//    @Override
+//    public MembersDTO loadUserByUsername(String userId) throws UsernameNotFoundException {
+//        //여기서 받은 유저 패스워드와 비교하여 로그인 인증
+//    	MembersDTO member = loginMapper.checklogin(userId);
+//        if (member == null){
+//            throw new UsernameNotFoundException("User not authorized.");
+//        }
+//        return member;
+//    }
+	
 
 	// 회원가입 및 로그인 서비스 끝
 }

@@ -5,12 +5,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Errors;
 
 import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.repository.MemberDao;
 
 public interface LoginService {
 	
@@ -18,7 +18,7 @@ public interface LoginService {
 //	String checkId(MembersDTO member, String member_pwd_verify);
 	Integer checkId(String id);
 	
-	boolean login(MembersDTO member);
+	MembersDTO login(MembersDTO member);
 	
 	int add(MembersDTO member);
 	
@@ -26,5 +26,11 @@ public interface LoginService {
 	
 	List<MembersDTO> getAll();
 	// 회원가입 및 로그인 서비스 끝
+	
+	MembersDTO getMember(String id);
+	
+	MembersDTO findId(String name, String birth, String Phone);
+	
+	MembersDTO findPw(String id, String name, String birth, String Phone);
 	
 }
