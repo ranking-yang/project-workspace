@@ -35,7 +35,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LoginController {
 	
-	private final LoginService exService;
+	private final LoginService loginService;
 	
 	// 로그인 페이지
 	@GetMapping("/login")
@@ -52,7 +52,7 @@ public class LoginController {
 	        httpServletRequest.getSession().invalidate();
 	        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
 	        
-			if (exService.login(member, httpServletRequest)) {
+			if (loginService.login(member, httpServletRequest)) {
 				// 세션에 userId를 넣어줌
 				session.setAttribute("userId", member.getMember_id());
 				return "redirect:/main";
@@ -98,7 +98,7 @@ public class LoginController {
 			}
 			
 			// 유효성 통과 못한 필드와 메시지를 핸들링
-			Map<String, String> validatorResult = exService.validateHandling(errors);
+			Map<String, String> validatorResult = loginService.validateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				System.out.println(key);
 				System.out.println(validatorResult.get(key));
@@ -106,19 +106,21 @@ public class LoginController {
 			}
 			return "join/newJoin";
 		} else {
+
 //			exService.checkId(member, member_pwd_verify);
 //			return exService.checkId(member, member_pwd_verify);
-			exService.add(member);
+			loginService.add(member);
+
 			return "redirect:/login";
 		}
 	}
-	
+
 	@RequestMapping(value="/join/idcheck", method=RequestMethod.POST)
 	@ResponseBody
 	public String checkid(@RequestParam("id") String id) {
 		System.out.println("id:"+id);
-		System.out.println(exService.checkId(id));
-		if (exService.checkId(id) == 0) {
+		System.out.println(loginService.checkId(id));
+		if (loginService.checkId(id) == 0) {
 			return "사용가능한 id 입니다.";
 		}else {
 			System.out.println("있음.");
@@ -166,5 +168,6 @@ public class LoginController {
 		
 		return "join/findPassword";
 	}
-	
+
 }
+

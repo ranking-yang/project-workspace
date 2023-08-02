@@ -1,7 +1,7 @@
 /* 헤더 */
 const asBtn = document.querySelector('#as');
 asBtn.addEventListener('click', () => {
-	location.href='../as/notice'
+	location.href='/as/notice'
 });
 
 const logoBtn = document.querySelector('#main-logo');

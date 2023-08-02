@@ -1,6 +1,4 @@
 
-element.style {
-}
 a, a.underline {
     color: #000;
     text-decoration: none;
@@ -132,4 +130,9 @@ body, table {
 .join-noti a {
 	color: #2F80ED;
 	font-size: 16px;
+}
+
+.simple-login-btns {
+	border: none;
+	background-color: #f6f6f6;
 }

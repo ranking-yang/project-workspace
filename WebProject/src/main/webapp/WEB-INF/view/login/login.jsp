@@ -7,7 +7,7 @@
 <title>로그인 - 티켓킹</title>
 
 <link rel="stylesheet" href="/resources/login/css/login.css" />
-
+<script defer src="/resources/login/js/login.js"></script>
 </head>
 <body style="max-height: 650px;">
 
@@ -37,6 +37,7 @@
 				<a href="/findId">아이디 찾기</a> <span>|</span> <a
 					href="/findPassword">비밀번호 찾기</a> <span>|</span>
 				<a id="join-btn" href="/user/newJoin">회원가입</a>
+
 			</div>
 		</form>
 
@@ -48,23 +49,25 @@
 
 		<div class="social-wrap">
 			<div>
-				<img src="/resources/login/images/circle-naver.png" id="login-naver"
-					class="social-join-btn" alt="네이버로그인">
+				<button id="naver-login-btn" class="simple-login-btns">
+					<img src="/resources/login/images/circle-naver.png"
+						id="login-naver" class="social-join-btn" alt="네이버로그인">
+				</button>
 			</div>
 			<div>
-				<img src="/resources/login/images/circle-kakao.png" id="login-kakao"
-					class="social-join-btn" alt="카카오로그인">
+				<button id="kakao-login-btn" class="simple-login-btns">
+					<img src="/resources/login/images/circle-kakao.png"
+						id="login-kakao" class="social-join-btn" alt="카카오로그인">
+				</button>
 			</div>
 		</div>
-		
+
 		<div class="join-noti">
 			<a href="/bbs-detail.php?bbs-num=65&amp;tb=board-faq" target="-blank"
 				alt="불편사항"> ※ 회원가입/로그인에 문제가 있어요! &gt; </a>
 		</div>
-		
-		<br />
-		<a href="/admin" style="font-size: 20px;">관리자?</a>
 
+		<br /> <a href="/admin" style="font-size: 20px;">관리자?</a>
 	</div>
 
 </body>

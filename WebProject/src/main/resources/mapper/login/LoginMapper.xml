@@ -26,5 +26,4 @@
 	<select id="getAll">
 		SELECT member_id, member_pwd FROM members
 	</select>
-	
 </mapper>
