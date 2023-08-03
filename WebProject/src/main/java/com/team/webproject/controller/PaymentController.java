@@ -33,14 +33,16 @@ public class PaymentController {
 			@RequestParam("booking_price") int[] bookingPrices,
 			@RequestParam("booking_qty") int[] bookingQtys,
 			@RequestParam("total_price") int totalPrice) {
-
+		
+		// 스프링 시큐리티에서 user 값 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // holder 불러오기
 		
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("notice", new Message("로그인 후 이용 가능합니다.", "../login"));
 			return "common/redirect";
-		} else {
+		} else {			
 			String userID = ((UserDetails) principal).getUsername();
+			model.addAttribute("userId", userID);
 			model.addAttribute("user", paymentService.getSingleUser(userID));
 			model.addAttribute("performance", paymentService.getPerformance(ticket.getPerformance_code()));
 			model.addAttribute("orders", paymentService.getOrders(ticket, bookingTypes, bookingPrices, bookingQtys));

@@ -19,14 +19,14 @@ import com.team.webproject.dto.MembersDTO;
 public class MainController {
 
 	@GetMapping(value = { "/", "" })
-	String main(@SessionAttribute(name = "userId", required = false) String userId,
-			@SessionAttribute(name = "userCode", required = false) String userCode, Model model,
-			HttpServletRequest request) {
+	String main(Model model, HttpServletRequest request) {
 		
 		// 전체 securityholder 내용
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
 		System.out.println("main principal : " + principal.toString());
+		
 		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("userId", null);
