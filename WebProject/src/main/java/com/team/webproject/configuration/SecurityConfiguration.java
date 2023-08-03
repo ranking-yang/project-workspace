@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		        .antMatchers("/admin/api").permitAll()    // 설정한 리소스의 접근을 인증절차 없이 허용
 //		        .hasAuthority("ROLE_ADMIN")
 		    	.antMatchers("/admin/api").hasRole("admin") // 관리자 페이지 admin 권한있으면.
-		    	.antMatchers("/mypage").hasRole("user") // 마이페이지 user 권한 있으면.
+		    	.antMatchers("/mypage").hasRole("member") // 마이페이지 user 권한 있으면.
 		    	.antMatchers("/**").permitAll()
 		    .and()
 		        .formLogin()

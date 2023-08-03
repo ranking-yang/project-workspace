@@ -33,17 +33,19 @@ public class MainController {
 		}
 		String username = null;
 		// 권한이 User 이면
-		if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_user]")) {
+		if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("username : " + username);
 			model.addAttribute("userId", username);
+			return "main/main";
 		// 권한이 admin 이면
 		} else {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("username : " + username);
 			model.addAttribute("userId", username);
+			return "admin/api";
 		}
-		return "main/main";
+		
 	}
 
 }

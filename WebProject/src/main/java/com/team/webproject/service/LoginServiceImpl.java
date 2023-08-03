@@ -27,12 +27,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-
 import com.team.webproject.dto.MembersDTO;
-
 import com.team.webproject.mapper.LoginMapper;
-//import com.team.webproject.repository.MemberDao;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -50,36 +46,13 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 		return num;
 		
 	}
-	 
-	/*
-	@Override
-	public MembersDTO login(MembersDTO member, HttpServletRequest request) {
-		System.out.println("member check?:"+ member);
-		MembersDTO Members =  loginMapper.checklogin(member.getMember_id());
-		request.getSession().invalidate();
-        HttpSession session = request.getSession(true);  // Session이 없으면 생성
-		if (member.getMember_id().equals(Members.getMember_id())
-				&& passwordEncoder.matches(member.getMember_pwd(), Members.getMember_pwd())){
-				System.out.println(Members.toString());
-				System.out.println("로그인 성공");
-				
-				session.setAttribute("userId", Members.getMember_id());
-				session.setAttribute("userCode", Members.getMember_code());
-				return Members;
-			
-		}
-		System.out.println("로그인 실패");
-		return null;
-	}
-	*/
-	
 	
 	@Override
 	public int add(MembersDTO member) {
 
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		member.setMember_pwd(passwordEncoder.encode(member.getMember_pwd()));
-		member.setMember_role("user");
+		member.setMember_role("member");
 		System.out.println(member.toString());
 		loginMapper.add(member);
 		return 0;
@@ -113,11 +86,9 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 
 	@Override
 	public MembersDTO findId(String name, String birth, String Phone) {
-		System.out.println("id???");
 		DateChange dateChange = new DateChange();
 		Date c_birth = dateChange.transformDate3(birth);
 		MembersDTO member = loginMapper.FindId(name, c_birth, Phone);
-		System.out.println("이게 안됨.");
 		return member;
 	}
 
@@ -125,20 +96,12 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 
 	@Override
 	public MembersDTO findPw(String id, String name, String birth, String Phone) {
-		System.out.println("pw???");
 		DateChange dateChange = new DateChange();
 		Date c_birth = dateChange.transformDate3(birth);
 		MembersDTO member = loginMapper.FindPwd(id, name, c_birth, Phone);
 		return member;
 	}
 
-
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
 
     @Override
     public UserDetails loadUserByUsername(String member_id) throws UsernameNotFoundException {

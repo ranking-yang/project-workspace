@@ -197,7 +197,7 @@
 				</div>
 				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
 			</section>
-			
+			<!--  
 			<section class="section-wrap" style="margin-top: 30px;">
 				<div class="section-title">이용약관 동의</div>
 
@@ -234,24 +234,18 @@
 					</div>
 				</div>
 			</section>
-			
+			-->
 			<input type="submit" id="submitComplete" class="btn-submit"
 				value="회원가입" alt="회원가입">
 			<!-- <button>등록</button> -->
-<<<<<<< Updated upstream
-			
-			<div class="join-submenu">
-				<a href="/login">로그인</a> <span>|</span> 
-				<a href="/findId">아이디 찾기</a> <span>|</span>
-				<a href="/findPassword">비밀번호 찾기</a> 
-=======
+
 			<div class="join-submenu">
 			<a href="/login">로그인</a> 
 			<span>|</span> 
 			<a href="/findId">아이디 찾기</a> 
 			<span>|</span>
 			<a href="/findPassword">비밀번호 찾기</a>
->>>>>>> Stashed changes
+
 			</div>
 		</form>
 		
