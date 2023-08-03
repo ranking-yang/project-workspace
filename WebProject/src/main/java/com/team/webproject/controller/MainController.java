@@ -29,7 +29,7 @@ public class MainController {
 		System.out.println("main principal : " + principal.toString());
 		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
-			model.addAttribute("main userId", null);
+			model.addAttribute("userId", null);
 			return "main/main";
 		}
 		String username = null;
@@ -37,13 +37,13 @@ public class MainController {
 		if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
-			model.addAttribute("main userId", username);
+			model.addAttribute("userId", username);
 			return "main/main";
 		// 권한이 admin 이면
 		} else {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
-			model.addAttribute("main userId", username);
+			model.addAttribute("userId", username);
 			return "admin/api";
 		}
 		
