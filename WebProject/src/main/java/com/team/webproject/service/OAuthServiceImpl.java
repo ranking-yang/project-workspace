@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team.webproject.common.OAuthTemplate;
 import com.team.webproject.dto.KakaoOauthTokenDTO;
 import com.team.webproject.dto.KakaoProfileDTO;
 import com.team.webproject.dto.MembersDTO;
@@ -30,6 +31,7 @@ public class OAuthServiceImpl implements OAuthService {
 
 	private final OAuthMapper oauthMapper;
 	private final OAuthPropertiesDTO oauthProperties;
+	private final OAuthTemplate oauthTemplate;
 	
 	// 카카오 로그인 관련 로직
 	@Override
@@ -37,21 +39,21 @@ public class OAuthServiceImpl implements OAuthService {
 		
 		// POST방식으로key=value 데이터를 요청(카카오쪽으로)
 		// Retrofit2, OkHttp, RestTemplate
-		RestTemplate rt = new RestTemplate();
+		RestTemplate rt = oauthTemplate.getRestTemplate();
 
 		// HttpHeader 객체 생성
-		HttpHeaders headers = new HttpHeaders();
+		HttpHeaders headers = oauthTemplate.getHttpHeaders();
 		headers.add("Content-type", oauthProperties.getKakaoContentType());
 
 		// HttpBody 객체 생성
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		MultiValueMap<String, String> params = oauthTemplate.getMultiValueMap();
 		params.add("grant_type", oauthProperties.getKakaoGrantType());
 		params.add("client_id", oauthProperties.getKakaoClientId());
 		params.add("redirect_uri", oauthProperties.getKakaoRedirectUri());
 		params.add("code", code);
 
 		// HttpHeader와 HttpBody를 하나의 객체 담기
-		HttpEntity<MultiValueMap<String, String>> kakaoTokenReq = new HttpEntity<>(params, headers);
+		HttpEntity<MultiValueMap<String, String>> kakaoTokenReq = oauthTemplate.getHttpEntity(params, headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
 		return rt.exchange(
@@ -65,7 +67,7 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public KakaoOauthTokenDTO getKakaoTokenObject(ResponseEntity<String> kakaoResponseEntity) {
 		// Gson, Json simple, ObjectMapper
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = oauthTemplate.getObjectMapper();
 
 		KakaoOauthTokenDTO kakaoOauthToken = null;
 
@@ -81,14 +83,14 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public ResponseEntity<String> getKakaoMemberInfoEntity(String accessToken) {
 
-		RestTemplate rt = new RestTemplate();
+		RestTemplate rt = oauthTemplate.getRestTemplate();
 
 		// HttpHeader 객체 생성
-		HttpHeaders headers = new HttpHeaders();
+		HttpHeaders headers = oauthTemplate.getHttpHeaders();
 		headers.add("Authorization", oauthProperties.getKakaoAuthorization() + " " + accessToken);
 		headers.add("Content-type", oauthProperties.getKakaoContentType());
 		// HttpHeader와 HttpBody를 하나의 객체 담기
-		HttpEntity<MultiValueMap<String, String>> kakaoProfileReq = new HttpEntity<>(headers);
+		HttpEntity<MultiValueMap<String, String>> kakaoProfileReq = oauthTemplate.getHttpEntity(headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
 		return rt.exchange(
@@ -101,7 +103,7 @@ public class OAuthServiceImpl implements OAuthService {
 
 	@Override
 	public KakaoProfileDTO getKakaoProfileObject(ResponseEntity<String> kakaoMemberInfoEntity) {
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = oauthTemplate.getObjectMapper();
 		KakaoProfileDTO kakaoProfile = null;
 
 		try {
@@ -129,10 +131,10 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public ResponseEntity<String> getNaverIssueTokenEntity(String code, String state) {
 		
-		RestTemplate rt = new RestTemplate();
+		RestTemplate rt = oauthTemplate.getRestTemplate();
 
 		// HttpBody 객체 생성
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		MultiValueMap<String, String> params = oauthTemplate.getMultiValueMap();
 		params.add("grant_type", oauthProperties.getNaverGrantType());
 		params.add("client_id", oauthProperties.getNaverClientId());
 		params.add("client_secret", oauthProperties.getNaverClientSecret());
@@ -140,7 +142,9 @@ public class OAuthServiceImpl implements OAuthService {
 		params.add("state", state);
 
 		// HttpHeader와 HttpBody를 하나의 객체 담기
-		HttpEntity<MultiValueMap<String, String>> naverTokenReq = new HttpEntity<>(params, new HttpHeaders());
+		HttpEntity<MultiValueMap<String, String>> naverTokenReq =
+				oauthTemplate.getHttpEntity(params,
+											oauthTemplate.getHttpHeaders());
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
 		return rt.exchange(
@@ -154,7 +158,7 @@ public class OAuthServiceImpl implements OAuthService {
 
 	@Override
 	public NaverOauthTokenDTO getNaverTokenObject(ResponseEntity<String> naverIssueTokenEntity) {
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = oauthTemplate.getObjectMapper();
 
 		NaverOauthTokenDTO NaverOauthToken = null;
 
@@ -170,13 +174,13 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public ResponseEntity<String> getNaverMemberInfoEntity(String accessToken) {
 
-		RestTemplate rt = new RestTemplate();
+		RestTemplate rt = oauthTemplate.getRestTemplate();
 
 		// HttpHeader 객체 생성
-		HttpHeaders headers = new HttpHeaders();
+		HttpHeaders headers = oauthTemplate.getHttpHeaders();
 		headers.add("Authorization", oauthProperties.getNaverAuthorization() + " " + accessToken);
 		// HttpHeader와 HttpBody를 하나의 객체 담기
-		HttpEntity<MultiValueMap<String, String>> naverProfileReq = new HttpEntity<>(headers);
+		HttpEntity<MultiValueMap<String, String>> naverProfileReq = oauthTemplate.getHttpEntity(headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
 		return rt.exchange(
@@ -190,7 +194,7 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public NaverProfileDTO getNaverProfileObject(ResponseEntity<String> naverMemberInfoEntity) {
 
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = oauthTemplate.getObjectMapper();
 
 		NaverProfileDTO naverProfile = null;
 

@@ -117,22 +117,25 @@ public class OAuthController {
 	}
 	
 	// 아직 구현 중
+//	@GetMapping("/test/logout")
+//	@ResponseBody
+//	public String oauthLogout() {
+//		RestTemplate rt = new RestTemplate();
+//		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+//		params.add("client_id", "d7a60e4c5295cff647529128c70b7348");
+//		params.add("logout_redirect_uri", "http://localhost:8090/login");
+//		
+//		HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, new HttpHeaders());
+//		
+//		return rt.exchange("https://kauth.kakao.com/oauth/logout",
+//							HttpMethod.GET,
+//							httpEntity, 
+//							String.class).getBody();
+//	}
 	@GetMapping("/test/logout")
-	@ResponseBody
 	public String oauthLogout() {
-		RestTemplate rt = new RestTemplate();
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("client_id", "d7a60e4c5295cff647529128c70b7348");
-		params.add("logout_redirect_uri", "http://localhost:8090/login");
-		
-		HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, new HttpHeaders());
-		
-		return rt.exchange("https://kauth.kakao.com/oauth/logout",
-							HttpMethod.GET,
-							httpEntity, 
-							String.class).getBody();
+		return "test/logout";
 	}
-	
 	
 	@GetMapping("/test")
 	@ResponseBody
