@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> <!-- 시큐리티 -->
 <div class="header-container">
 
 	<!-- 상단 로고, 로그인 / 회원가입 / 고객센터 -->
@@ -14,17 +15,18 @@
 			<!-- 로그인 성공시 로그아웃, 마이페이지, 고객센터로 바뀌어야함 -->
 			<ul id="user-nav">
 				<li class="user-nav-item">
-					<c:choose>
-						<c:when test="${not empty userId}">
-
-							<button class="user-nav-btn" id="mypage" onclick="location.href='/mypage'">마이페이지</button>
-							<button class="user-nav-btn" id="logout" onclick="location.href='/logout'">로그아웃</button>
-						</c:when>
-						<c:otherwise>
-							<button class="user-nav-btn" id="login" onclick="location.href='/login'">로그인</button>
-							<button class="user-nav-btn" id="join" onclick="location.href='/user/newJoin'">회원가입</button>
-						</c:otherwise>
-					</c:choose>
+				
+					<!-- 권한이 있는 사용자 (로그인) / 권한별로 멤버, 관리자로 나눌수도 있음 : hasRole('admin') -->					 
+					 <sec:authorize access="isAnonymous()">
+					    <button class="user-nav-btn" id="login" onclick="location.href='/login'">로그인</button>
+						<button class="user-nav-btn" id="join" onclick="location.href='/user/newJoin'">회원가입</button>
+					</sec:authorize>
+					<!-- 권한이 없는 사용자 (비로그인) -->
+					<sec:authorize access="isAuthenticated()">
+					    <button class="user-nav-btn" id="mypage" onclick="location.href='/mypage'">마이페이지</button>
+					    <button class="user-nav-btn" id="logout" onclick="location.href='/logout'">로그아웃</button>
+					</sec:authorize>
+					
 				</li>
 				
 				<li class="user-nav-item">
