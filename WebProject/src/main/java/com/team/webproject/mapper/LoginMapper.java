@@ -1,5 +1,6 @@
 package com.team.webproject.mapper;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.team.webproject.dto.MembersDTO;
@@ -7,8 +8,8 @@ import com.team.webproject.dto.MembersDTO;
 public interface LoginMapper {
 	
 	public Integer checkId(String id);
-	
-	public void login(MembersDTO member);
+
+	public MembersDTO checklogin(String id);
 	
 	int add(MembersDTO login);
 
@@ -16,6 +17,8 @@ public interface LoginMapper {
 
 	public boolean equalPwd(MembersDTO member);
 	
-	MembersDTO getSingleUser(String user_id);
+	public MembersDTO FindId(String name, Date c_birth, String phone);
+	
+	public MembersDTO FindPwd(String Id, String name, Date birth, String phone);
 	
 }

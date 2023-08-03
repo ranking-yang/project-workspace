@@ -20,15 +20,26 @@
 			#{member_name},
 			#{member_birth},
 			#{member_phone},
-			#{member_email})
+			#{member_email},
+			#{member_role})
 	</insert>
-	
+	<select id="checklogin">
+		SELECT * FROM members WHERE member_id = #{member_id}
+	</select>
 	<select id="getAll">
 		SELECT member_id, member_pwd FROM members
 	</select>
 	
-	<select id="getSingleUser" >
-		SELECT * FROM members WHERE member_id = #{member_id}
+	<select id="getId">
+		SELECT * FROM members WHERE member_id= #{id};
+	</select>
+	
+	<select id="FindId">
+		SELECT * FROM members WHERE member_name = #{name} AND member_birth = #{birth} AND member_phone = #{phone}
+	</select>
+	
+	<select id="FindPwd">
+		SELECT * FROM members WHERE member_id = #{id} AND member_name = #{name} AND member_birth = #{birth} AND member_phone = #{phone}
 	</select>
 	
 </mapper>

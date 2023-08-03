@@ -214,3 +214,19 @@
 	font-weight: 600;
 	cursor: pointer;
 }
+.join-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.join-submenu a {
+	color: #777;
+}
+
+.join-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
+}
