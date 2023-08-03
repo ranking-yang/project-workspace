@@ -1,12 +1,8 @@
 package com.team.webproject.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +20,7 @@ public class DetailController {
 	DetailService detailService;
 	
 	@GetMapping("/product/product-detail")
-	String callKopisAPI(Model model, String performance_code) throws JsonProcessingException {		
-		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if (principal.equals("anonymousUser")) {
-			model.addAttribute("userId", null);
-		} else {			
-			String username = ((UserDetails) principal).getUsername();
-			model.addAttribute("userId", username);
-		}
+	String callKopisAPI(Model model, String performance_code) throws JsonProcessingException {
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
 		String place_id = jsonob.get("mt10id").toString();
@@ -58,16 +45,6 @@ public class DetailController {
 	
 	@GetMapping("/product/product-detail-ex")
 	String callGovernmentAPI(Model model, String performance_code) throws JsonProcessingException {
-		
-		// 스프링 시큐리티에서 user 값 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		if (principal.equals("anonymousUser")) {
-			model.addAttribute("userId", null);
-		} else {			
-			String username = ((UserDetails) principal).getUsername();
-			model.addAttribute("userId", username);
-		}
 		
 		JSONObject jsonob = detailService.getPublicDataInfo(performance_code);
 		

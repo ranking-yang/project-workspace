@@ -42,7 +42,6 @@ public class PaymentController {
 			return "common/redirect";
 		} else {			
 			String userID = ((UserDetails) principal).getUsername();
-			model.addAttribute("userId", userID);
 			model.addAttribute("user", paymentService.getSingleUser(userID));
 			model.addAttribute("performance", paymentService.getPerformance(ticket.getPerformance_code()));
 			model.addAttribute("orders", paymentService.getOrders(ticket, bookingTypes, bookingPrices, bookingQtys));
