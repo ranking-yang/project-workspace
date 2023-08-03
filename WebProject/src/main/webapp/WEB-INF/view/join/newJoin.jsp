@@ -117,19 +117,13 @@
 	<div class="join-wrap">
 
 		<div>
-			<img src="/resources/common/image/logo.png"
-<<<<<<< Updated upstream
-				style="width: 150px; height: 102px;">
-		</div>
-
-		<div style="color: gray;" class="section-title">
-=======
+			<img src="/resources/common/image/logo.png" 
 				style="width: 150px; height: 102px;"
 				onclick="location.href='/main'">
 		</div>
 
 		<div style="color: gray; font-size: 25px;">
->>>>>>> Stashed changes
+
 			<div>회원가입</div>
 		</div>
 

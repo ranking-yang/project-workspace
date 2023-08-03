@@ -95,10 +95,8 @@
 	            	
 	            } 
 	    });*/
-<<<<<<< Updated upstream
 		});
-=======
->>>>>>> Stashed changes
+
 	    
 	});
     </script>
@@ -110,7 +108,7 @@
 
 		<div>
 			<img src="/resources/common/image/logo.png"
-<<<<<<< Updated upstream
+
 				style="width: 150px; height: 102px;">
 		</div>
 
@@ -119,16 +117,8 @@
 		</div>
 
 		<form th:action="@{/findId/find}" method="post">
-=======
-				style="width: 150px; height: 102px;"
-				onclick="location.href='/main'">
-		</div>
-		<div style="color: gray; font-size: 25px;">
-			<div>아이디 찾기</div>
-		</div><br>
-		
-		<form th:action="@{/findId}" method="post">
->>>>>>> Stashed changes
+
+
 			
 			<!-- 이름 -->
 			<section class="section-wrap">
@@ -137,10 +127,6 @@
 				<div class="input-alret-name"><span>${valid_member_name}</span></div>
 			</section>
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 			<!-- 생년월일 -->
 			<section class="section-wrap">
 				<input type="text" id="user-birth-date" name="member_birth"
@@ -151,11 +137,9 @@
 
 			<!-- 휴대폰 인증 -->
 			<section class="section-wrap" id="smsArea">
-<<<<<<< Updated upstream
+
 				<div class="section-title">휴대폰 인증</div>
-=======
-				<!-- <div class="section-title">휴대폰 인증</div> -->
->>>>>>> Stashed changes
+
 				<div class="flex-between">
 					<div>
 						<input type="tel" id="user-hphone" name="member_phone" 

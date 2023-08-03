@@ -14,12 +14,9 @@
 	<div class="login-wrap">
 		<div>
 			<img src="/resources/common/image/logo.png"
-<<<<<<< Updated upstream
-				style="width: 150px; height: 102px;">
-=======
 				style="width: 150px; height: 102px;"
 				onclick="location.href='/main'">
->>>>>>> Stashed changes
+
 		</div>
 
 		<form action="/loginProc" method="post" autocomplete="off">

@@ -9,13 +9,10 @@ import com.team.webproject.dto.MembersDTO_findId;
 public interface LoginMapper {
 	
 	public Integer checkId(String id);
-<<<<<<< Updated upstream
+
 
 	public MembersDTO checklogin(String id);
-=======
-	
-	public void login(MembersDTO_findId member);
->>>>>>> Stashed changes
+
 	
 	int add(MembersDTO login);
 
@@ -23,12 +20,15 @@ public interface LoginMapper {
 
 	public boolean equalPwd(MembersDTO_findId member);
 	
-<<<<<<< Updated upstream
+
 	public MembersDTO FindId(String name, Date c_birth, String phone);
 	
 	public MembersDTO FindPwd(String Id, String name, Date birth, String phone);
 	
-=======
+
 	String getId(MembersDTO_findId member);
->>>>>>> Stashed changes
+
+
+	public MembersDTO getSingleUser(String user_id);
+
 }

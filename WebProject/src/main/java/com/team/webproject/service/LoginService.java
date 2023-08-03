@@ -28,14 +28,11 @@ public interface LoginService {
 	List<MembersDTO> getAll();
 	// 회원가입 및 로그인 서비스 끝
 	
-<<<<<<< Updated upstream
 	MembersDTO getMember(String id);
 	
 	MembersDTO findId(String name, String birth, String Phone);
 	
 	MembersDTO findPw(String id, String name, String birth, String Phone);
-=======
-	String getId(MembersDTO_findId member);
->>>>>>> Stashed changes
+
 	
 }

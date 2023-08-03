@@ -56,14 +56,11 @@ public class LoginController {
 //	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET(Model model) {
-<<<<<<< Updated upstream
+
         model.addAttribute("loginRequest", new MembersDTO());
          Object o = SecurityContextHolder.getContext().getAuthentication();
          System.out.println("o :" + o.toString());
-=======
-        model.addAttribute("loginRequest", new MembersDTO_findId());
-        
->>>>>>> Stashed changes
+
 		return "login/login";
 	}
 //	
@@ -200,8 +197,7 @@ public class LoginController {
 		
 		return "join/findId";
 	}
-	
-<<<<<<< Updated upstream
+
 	@PostMapping("/findId/find")
 	public String findIdPost(String member_name, String member_birth, String member_phone, Model model) {
 		System.out.println(member_name);
@@ -214,53 +210,19 @@ public class LoginController {
 		return "join/findIdResult";
 	}
 
-=======
-	
-	// 아이디 찾기
-	@PostMapping("/findId")
-	public String findIdPost(@Valid MembersDTO_findId member, Model model, Errors errors) {
-		
-		if (errors.hasErrors()) {
-			// 회원가입 실패시 입력 데이터 값을 유지
-			model.addAttribute("member", member);
-			// 유효성 통과 못한 필드와 메시지를 핸들링
-			Map<String, String> validatorResult = exService.validateHandling(errors);
-			for (String key : validatorResult.keySet()) {
-				System.out.println(key);
-				System.out.println(validatorResult.get(key));
-				model.addAttribute(key, validatorResult.get(key));
-			}
-			return "join/findId";
-		}else {
-			
-			model.addAttribute("user_id", exService.getId(member));
-			
-			return "join/findIdprint";
-		}
-		
-	}
-	
->>>>>>> Stashed changes
+
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPassword")
 	public String findPasswordGET() {
 		return "join/findPassword";
 	}
 	
-<<<<<<< Updated upstream
+
 	@GetMapping("/findPassword/find")
 	public String findPasswordPost(String member_id, String member_name, String member_birth, String member_phone) {
 		MembersDTO member = exService.findPw(member_id,member_name, member_birth, member_phone);
 		System.out.println(member.toString());
 		return "join/findPassword";
 	}
-=======
-	// 비밀번호 찾기 페이지
-	@GetMapping("/passwordChange")
-	public String passwordChange() {
-		
-		return "join/passwordChange";
-	}
-		
->>>>>>> Stashed changes
+
 }

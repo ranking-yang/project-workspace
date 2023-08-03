@@ -30,7 +30,7 @@
 		SELECT member_id, member_pwd FROM members
 	</select>
 	
-<<<<<<< Updated upstream
+
 	<select id="getId">
 		SELECT * FROM members WHERE member_id= #{id};
 	</select>
@@ -43,10 +43,5 @@
 		SELECT * FROM members WHERE member_id = #{id} AND member_name = #{name} AND member_birth = #{birth} AND member_phone = #{phone}
 	</select>
 	
-=======
-	
-	<select id="getId">
-		SELECT member_id FROM members WHERE member_name = #{member_name} AND member_birth = #{member_birth} AND member_phone = #{member_phone}
-	</select>
->>>>>>> Stashed changes
+
 </mapper>
