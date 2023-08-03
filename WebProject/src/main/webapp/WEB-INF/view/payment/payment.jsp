@@ -63,14 +63,6 @@
 							</c:choose>
 						</div>
 						
-						<!--
-						<div>
-							<div>${ticket.booking_date}
-							<c:if test="${!empty ticket.booking_time}">${ticket.booking_time}</c:if>
-							</div>		
-						</div>
-						  -->
-						
 						<div class="payment-selected-box-title">권종</div>
 						<div>
 						<input type="text" name="booking_type" value="${ticket.booking_type}"

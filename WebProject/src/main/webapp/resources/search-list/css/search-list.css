@@ -31,7 +31,7 @@ button{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 25px;
-    row-gap: 10px;
+    row-gap: 20px;
     margin: auto;
 }
 .product-module{
@@ -50,8 +50,8 @@ button{
 }
 .product-module-poster{
     border-radius: 15px;
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 312.5px;
 }
 .product-module-top{
     margin-top: 10px;
@@ -105,7 +105,12 @@ button{
 .star{
     font-weight: bold;
 }
-
+.price{
+	font-size: 1.3rem;
+	text-align: right;
+	font-weight: 600;
+	padding-right: 20px;
+}
 .place > span{
     background-color: #EEEEEE;
     border-radius: 15px;
