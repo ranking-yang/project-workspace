@@ -16,14 +16,15 @@ public class SearchListSeriviceImpl implements SearchListService{
 	private final SearchMapper searchMapper;
 	
 	@Override
-	public List<PerformanceDTO> getSearchList(String keyword, Integer member_code) {
-		if(member_code == null) {
+	public List<PerformanceDTO> getSearchList(String keyword) {
 			return searchMapper.getSearchList(keyword);
-			
-		}else {
-			return searchMapper.getUserSearchList(keyword);
-			
-		}
+
+
+	}
+
+	@Override
+	public List<PerformanceDTO> getUserSearchList(String keyword) {
+		return searchMapper.getUserSearchList(keyword);
 	}
 
 }

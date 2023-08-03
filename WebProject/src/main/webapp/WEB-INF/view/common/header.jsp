@@ -15,7 +15,6 @@
 			<!-- 로그인 성공시 로그아웃, 마이페이지, 고객센터로 바뀌어야함 -->
 			<ul id="user-nav">
 				<li class="user-nav-item">
-				
 					<!-- 권한이 있는 사용자 (로그인) / 권한별로 멤버, 관리자로 나눌수도 있음 : hasRole('admin') -->					 
 					 <sec:authorize access="isAnonymous()">
 					    <button class="user-nav-btn" id="login" onclick="location.href='/login'">로그인</button>

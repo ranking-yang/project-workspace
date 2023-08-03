@@ -52,6 +52,7 @@ button{
     border-radius: 15px;
     width: 250px;
     height: 312.5px;
+    margin: auto;
 }
 .product-module-top{
     margin-top: 10px;
