@@ -32,7 +32,7 @@ public class PaymentServiceImpl implements PaymentService {
 	// 유저 아이디 조회
 	@Override
 	public MembersDTO getSingleUser(String user_id) {
-		return loginMapper.getSingleUser(user_id);
+		return loginMapper.checklogin(user_id);
 	}
 	
 	// 선택한 공연정보 조회

@@ -35,15 +35,15 @@ public class DetailController {
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
 		model.addAttribute("la", jsonob1.get("la"));
-		model.addAttribute("lo", jsonob1.get("lo"));		
-		
-		System.out.println("userid: "+session.getAttribute("userId"));
+		model.addAttribute("lo", jsonob1.get("lo"));				
 		
 		// HttpSession에서 userId를 가져와서 세션에 저장
+		System.out.println("detail userid: "+session.getAttribute("userId"));
 		String userId = (String) session.getAttribute("userId");
 		session.setAttribute("userId", userId);
-	     JSONArray lijs = new JSONArray();
-	     lijs.add(jsonob.get("styurls"));
+		
+	    JSONArray lijs = new JSONArray();
+	    lijs.add(jsonob.get("styurls"));
 	         
 	     model.addAttribute("image", lijs); // 소개이미지
 		

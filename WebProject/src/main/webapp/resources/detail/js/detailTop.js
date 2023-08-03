@@ -221,9 +221,11 @@ function resetQty() {
 
 // 시작 날짜 계산
 function chkStartDate(startdate) {
-	const date = new Date(startdate);	
-	if (date < "today") {
-		date = "today";
+	let date = new Date(startdate);	
+	const today = new Date();
+
+	if (date < today) {
+		date = today;
 	}
 	return date;
 }
