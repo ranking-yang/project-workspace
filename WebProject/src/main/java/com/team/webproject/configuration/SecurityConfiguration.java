@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -67,16 +69,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		            .defaultSuccessUrl("/main", true)
 		            .usernameParameter("member_id") // 로그인시 사용된 계정 아이디 의 필드명
 		            .passwordParameter("member_pwd") // 로그인시 사용된 계정 패스워드의 필드명
+		            .successHandler(successHandler())
 		            .permitAll()
 		    .and()
-		        .logout()
-		        	
+		        .logout()		        	
 		        	.logoutUrl("/logout") // 로그아웃 처리 를 요청할 매핑 URL
 			        .logoutSuccessUrl("/main") //로그아웃 성공했을때 이동할 매핑 URL
 			        .invalidateHttpSession(true).deleteCookies("JSESSIONID")// 세션 초기화
 	        .and()
 		    	.exceptionHandling()
 				.accessDeniedPage("/main"); //권한 없으면
+	}
+	// 성공 핸들러
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+	    return new CustomLoginSuccessHandler("/defaultUrl");
 	}
        
 }
