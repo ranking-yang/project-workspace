@@ -20,7 +20,9 @@ public class ProductListController {
 
 	@GetMapping("/performance")
 	String getProduckList(Model model, String main_category, Integer member_code, String area) {
-		
+
+		model.addAttribute("performances", productListService.getProductList(main_category,member_code, area));
+
 		// 스프링 시큐리티에서 user 값 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
