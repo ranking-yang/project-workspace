@@ -404,3 +404,9 @@ height:auto;
 .contentstyle1{
 	background-color: #fff;	
 }
+
+/* 수정 삭제 버튼 CSS*/
+.review_title_button{
+	cursor: pointer;
+}
+
