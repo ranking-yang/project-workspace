@@ -12,6 +12,23 @@
 	background-size: 60px 60px;
 }
 
+.join-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.join-submenu a {
+	color: #777;
+}
+
+
+.join-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
+}
 .join-wrap {
 	width: 500px;
 	margin: 50px auto;

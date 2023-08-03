@@ -27,7 +27,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+<<<<<<< Updated upstream
 //import com.team.webproject.domain.Member;
+=======
+import com.team.webproject.dto.MembersDTO_findId;
+>>>>>>> Stashed changes
 import com.team.webproject.dto.MembersDTO;
 
 import com.team.webproject.mapper.LoginMapper;
@@ -104,6 +108,7 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 	}
 
 	@Override
+<<<<<<< Updated upstream
 	public MembersDTO getMember(String id) {
 		MembersDTO member = loginMapper.checklogin(id);
 		return member;
@@ -159,5 +164,11 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
     }
 	
 
+=======
+	public String getId(MembersDTO_findId member) {
+		
+		return loginMapper.getId(member);
+	}
+>>>>>>> Stashed changes
 	// 회원가입 및 로그인 서비스 끝
 }

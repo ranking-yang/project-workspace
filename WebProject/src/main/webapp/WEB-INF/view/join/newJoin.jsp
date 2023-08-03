@@ -118,10 +118,18 @@
 
 		<div>
 			<img src="/resources/common/image/logo.png"
+<<<<<<< Updated upstream
 				style="width: 150px; height: 102px;">
 		</div>
 
 		<div style="color: gray;" class="section-title">
+=======
+				style="width: 150px; height: 102px;"
+				onclick="location.href='/main'">
+		</div>
+
+		<div style="color: gray; font-size: 25px;">
+>>>>>>> Stashed changes
 			<div>회원가입</div>
 		</div>
 
@@ -196,7 +204,7 @@
 				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
 			</section>
 			
-			<!-- <section class="section-wrap" style="margin-top: 30px;">
+			<section class="section-wrap" style="margin-top: 30px;">
 				<div class="section-title">이용약관 동의</div>
 
 				<div class="checkbox-group" style="margin-top: 0;">
@@ -231,16 +239,25 @@
 						</div>
 					</div>
 				</div>
-			</section> -->
+			</section>
 			
 			<input type="submit" id="submitComplete" class="btn-submit"
 				value="회원가입" alt="회원가입">
 			<!-- <button>등록</button> -->
+<<<<<<< Updated upstream
 			
 			<div class="join-submenu">
 				<a href="/login">로그인</a> <span>|</span> 
 				<a href="/findId">아이디 찾기</a> <span>|</span>
 				<a href="/findPassword">비밀번호 찾기</a> 
+=======
+			<div class="join-submenu">
+			<a href="/login">로그인</a> 
+			<span>|</span> 
+			<a href="/findId">아이디 찾기</a> 
+			<span>|</span>
+			<a href="/findPassword">비밀번호 찾기</a>
+>>>>>>> Stashed changes
 			</div>
 		</form>
 		

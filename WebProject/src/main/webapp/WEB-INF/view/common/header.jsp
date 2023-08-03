@@ -16,6 +16,7 @@
 				<li class="user-nav-item">
 					<c:choose>
 						<c:when test="${not empty userId}">
+<<<<<<< Updated upstream
 							<button class="user-nav-btn" id="mypage" onclick="location.href='/mypage'">마이페이지</button>
 							<button class="user-nav-btn" id="logout" onclick="location.href='/logout'">로그아웃</button>
 						</c:when>
@@ -26,6 +27,21 @@
 					</c:choose>
 				</li>
 				
+=======
+							<button class="user-nav-btn" id="logout" onclick="location.href='/logout'">로그아웃</a></button>
+						</c:when>
+						<c:otherwise>
+							<button class="user-nav-btn" id="login" onclick="location.href='/login'">로그인</a></button>
+							</li>
+							<li>&nbsp;&nbsp;</li>
+							<li class="user-nav-item">
+							<button class="user-nav-btn" id="join" onclick="location.href='/user/newJoin'">회원가입</a></button>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</li>
+				<li>&nbsp;&nbsp;</li>
+>>>>>>> Stashed changes
 				<li class="user-nav-item">
 					<button class="user-nav-btn" id="as">고객센터</button>
 				</li>

@@ -47,7 +47,7 @@ body, table {
 	border: 1px solid #ddd;
 	background-repeat: no-repeat;
 	background-size: 27px;
-	background-position: 20px 15px; /* 오른쪽, 아래 */
+	background-position: 20px 15px; /* �삤瑜몄そ, �븘�옒 */
 }
 
 .icon-id {
@@ -76,11 +76,42 @@ body, table {
 	text-decoration: none;
 }
 
+.findid-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.findpw-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
 .login-submenu a {
+	color: #777;
+}
+.findid-submenu a {
+	color: #777;
+}
+
+.findpw-submenu a {
 	color: #777;
 }
 
 .login-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
+}
+.findid-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
+}
+.findpw-submenu span {
 	color: #777;
 	font-size: 14px;
 	vertical-align: 0px;

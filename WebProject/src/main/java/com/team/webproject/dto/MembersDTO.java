@@ -61,7 +61,11 @@ public class MembersDTO implements UserDetails {
 	
 	
 	@Builder
+<<<<<<< Updated upstream
     public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone, String member_birth ,String member_email, String member_role) {
+=======
+    public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone,String member_birth, String member_email) {
+>>>>>>> Stashed changes
         this.member_id=member_id;
         this.member_code = member_code;
         this.member_name= member_name;

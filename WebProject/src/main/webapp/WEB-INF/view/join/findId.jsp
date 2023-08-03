@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<<<<<<< Updated upstream
 <title>회원가입 작성 - 티켓킹</title>
+=======
+<title>아이디 찾기 - 티켓킹</title>
+>>>>>>> Stashed changes
 
 <link rel="stylesheet" href="/resources/join/css/findId.css" />
 <script
@@ -39,7 +43,11 @@
 								+"<div>"
 								+"<input type='button' id='checkBtn' class='btn-hphone-on'"
 								+" value=확인>"
+<<<<<<< Updated upstream
 								+"</div></div>");
+=======
+								+"</div></div><br>");
+>>>>>>> Stashed changes
 	            		check = true;
 	            	}else{
 	            		console.log("이미 누름");
@@ -87,7 +95,10 @@
 	            	
 	            } 
 	    });*/
+<<<<<<< Updated upstream
 		});
+=======
+>>>>>>> Stashed changes
 	    
 	});
     </script>
@@ -99,6 +110,7 @@
 
 		<div>
 			<img src="/resources/common/image/logo.png"
+<<<<<<< Updated upstream
 				style="width: 150px; height: 102px;">
 		</div>
 
@@ -107,6 +119,16 @@
 		</div>
 
 		<form th:action="@{/findId/find}" method="post">
+=======
+				style="width: 150px; height: 102px;"
+				onclick="location.href='/main'">
+		</div>
+		<div style="color: gray; font-size: 25px;">
+			<div>아이디 찾기</div>
+		</div><br>
+		
+		<form th:action="@{/findId}" method="post">
+>>>>>>> Stashed changes
 			
 			<!-- 이름 -->
 			<section class="section-wrap">
@@ -115,6 +137,10 @@
 				<div class="input-alret-name"><span>${valid_member_name}</span></div>
 			</section>
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 			<!-- 생년월일 -->
 			<section class="section-wrap">
 				<input type="text" id="user-birth-date" name="member_birth"
@@ -125,7 +151,11 @@
 
 			<!-- 휴대폰 인증 -->
 			<section class="section-wrap" id="smsArea">
+<<<<<<< Updated upstream
 				<div class="section-title">휴대폰 인증</div>
+=======
+				<!-- <div class="section-title">휴대폰 인증</div> -->
+>>>>>>> Stashed changes
 				<div class="flex-between">
 					<div>
 						<input type="tel" id="user-hphone" name="member_phone" 
@@ -141,6 +171,7 @@
 				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
 			</section>
 			
+<<<<<<< Updated upstream
 			
 			<input type="submit" id="submitComplete" class="findid-submit"
 				value="아이디 찾기" alt="아이디 찾기">
@@ -153,6 +184,19 @@
 			</div>
 		</form>
 		
+=======
+			<input type="submit" id="submitComplete" class="btn-submit"
+				value="아이디 찾기" alt="아이디찾기">
+			<!-- <button>등록</button> -->
+			<div class="findid-submenu">
+			<a href="/login">로그인</a> <span>|</span> <a
+				href="/findPassword">비밀번호 찾기</a> <span>|</span>
+			<a id="join-btn" href="/user/newJoin">회원가입</a>
+		</div>
+		</form>
+		
+		
+>>>>>>> Stashed changes
 	</div>
 
 </body>
