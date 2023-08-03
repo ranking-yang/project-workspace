@@ -93,7 +93,9 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentMapper.insertPayment(payment);
 		
 		for (TicketDTO ticket : tickets) {
-			paymentMapper.insertTicket(ticket);	
+			for (int i = 0; i < ticket.getBooking_qty(); ++i) {
+				paymentMapper.insertTicket(ticket);				
+			}
 		}
 		
 		paymentMapper.updatePerformaceQty(performance_code, getTotalQty(tickets));

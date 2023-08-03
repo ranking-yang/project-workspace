@@ -47,7 +47,12 @@
 						</c:otherwise>
 					</c:choose>              
                     </div>
-                    <div class="afterpay-value-qty">총 ${fn:length(tickets)}매 / ${payment.total_price}원</div>
+                    <div class="afterpay-value-qty">총 
+                   	    <c:set var= "sum" value = "0" />
+	                    <c:forEach items="${tickets}" var="ticket">
+	                    	<c:set var= "sum" value="${sum + ticket.booking_qty}"/>
+	                    </c:forEach>
+	                    <c:out value="${sum}"/>매 / ${payment.total_price}원</div>
                 </div>
                 <div></div>
             </div>
