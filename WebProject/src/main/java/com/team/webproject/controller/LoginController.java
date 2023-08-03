@@ -55,11 +55,14 @@ public class LoginController {
 //		return "login/login";
 //	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginGET(Model model) {
+	public String loginGET(Model model, HttpServletRequest request) {
 
         model.addAttribute("loginRequest", new MembersDTO());
          Object o = SecurityContextHolder.getContext().getAuthentication();
          System.out.println("o :" + o.toString());
+         
+         String referrer = request.getHeader("Referer");
+         request.getSession().setAttribute("prevPage", referrer);
 
 		return "login/login";
 	}
