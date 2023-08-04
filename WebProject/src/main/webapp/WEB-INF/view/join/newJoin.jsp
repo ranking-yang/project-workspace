@@ -91,9 +91,10 @@
 	 $(document).ready(function() {
 	    $(document).on("click","#check-id-btn", function() {
 			console.log("test");	
-		
+			
 			var userid = $("#user-id").val();
-			 $.ajax({
+			console.log(userid);
+			$.ajax({
 	            url : "/join/idcheck", 
 	            type: "POST",
 	            data: {id:userid},
@@ -116,14 +117,14 @@
 	<div class="join-wrap">
 
 		<div>
-			<img  src="/resources/common/image/logo.png"
-				style="width: 150px; height: 102px;">
+			<img src="/resources/common/image/logo.png" 
+				style="width: 150px; height: 102px;"
+				onclick="location.href='/main'">
 		</div>
 
-		<div style="color: gray;">
-			<div>(제약조건은 MembersDTO 확인)</div>
-			<div>(휴대폰 인증 안됨)</div>
-			<div>(오류 메세지 안 뜸..)</div>
+		<div style="color: gray; font-size: 25px;">
+
+			<div>회원가입</div>
 		</div>
 
 		<form th:action="@{/user/newJoin}" method="post">
@@ -196,8 +197,8 @@
 				</div>
 				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
 			</section>
-			
-			<!-- <section class="section-wrap" style="margin-top: 30px;">
+			<!--  
+			<section class="section-wrap" style="margin-top: 30px;">
 				<div class="section-title">이용약관 동의</div>
 
 				<div class="checkbox-group" style="margin-top: 0;">
@@ -232,11 +233,20 @@
 						</div>
 					</div>
 				</div>
-			</section> -->
-			
+			</section>
+			-->
 			<input type="submit" id="submitComplete" class="btn-submit"
 				value="회원가입" alt="회원가입">
 			<!-- <button>등록</button> -->
+
+			<div class="join-submenu">
+			<a href="/login">로그인</a> 
+			<span>|</span> 
+			<a href="/findId">아이디 찾기</a> 
+			<span>|</span>
+			<a href="/findPassword">비밀번호 찾기</a>
+
+			</div>
 		</form>
 		
 	</div>
