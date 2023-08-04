@@ -109,3 +109,13 @@ function makePaymentDTO(rsp) {
     $("#payment_success_form").append(payment_date);
     $("#payment_success_form").append(total_price);
 }
+
+const couponBtn = document.getElementsByClassName('payment-chkcoupon-btn')[0];
+
+couponBtn.addEventListener('click', () => {
+	let options = 'top=300, left=660, height=900, width=600, location=no';
+	window.open('./mycoupon', '보유쿠폰', options);
+})
+
+
+

@@ -7,12 +7,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.webproject.common.IamportAPI;
-import com.team.webproject.common.Message;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.TicketDTO;
 import com.team.webproject.service.PaymentService;
@@ -77,7 +77,14 @@ public class PaymentController {
 		} else {
 			return null;
 		}
+		
 
 	}	
+	
+	// 보유쿠폰 확인창
+	@GetMapping("/payment/mycoupon")
+	public String myCoupon() {
+		return "payment/coupon-popup";
+	}
 
 }

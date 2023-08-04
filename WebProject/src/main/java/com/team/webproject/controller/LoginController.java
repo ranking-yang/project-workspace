@@ -8,18 +8,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,11 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.team.webproject.dto.MembersDTO_findId;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.MessageDTO;
 import com.team.webproject.dto.SmsResponseDTO;
-import com.team.webproject.mapper.LoginMapper;
+import com.team.webproject.service.CouponService;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.SmsService;
 
@@ -45,6 +38,7 @@ import lombok.AllArgsConstructor;
 public class LoginController {
 	
 	private final LoginService exService;
+	private final CouponService couponService;
 	
 	// 로그인 페이지
 //	@GetMapping("/login")
@@ -150,6 +144,9 @@ public class LoginController {
 //			exService.checkId(member, member_pwd_verify);
 //			return exService.checkId(member, member_pwd_verify);
 			exService.add(member);
+			
+			// 회원가입시 기본쿠폰 추가로직
+			couponService.saveCouponIntoNewUser();
 			return "redirect:/login";
 		}
 	}
