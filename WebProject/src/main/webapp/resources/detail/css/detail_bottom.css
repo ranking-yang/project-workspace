@@ -405,6 +405,7 @@ height:auto;
 	background-color: #fff;	
 }
 
+<<<<<<< HEAD
 #map1{
 	width: 96%;
 	height: 400px;
@@ -414,3 +415,10 @@ height:auto;
 	width: 96%;
 	height: 400px;
 }
+=======
+/* 수정 삭제 버튼 CSS*/
+.review_title_button{
+	cursor: pointer;
+}
+
+>>>>>>> refs/heads/developing_detail_bottom_jungjun
