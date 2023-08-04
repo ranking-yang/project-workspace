@@ -12,13 +12,14 @@
 <body style="max-height: 650px;">
 
 	<div class="login-wrap">
-
 		<div>
 			<img src="/resources/common/image/logo.png"
-				style="width: 150px; height: 102px;">
+				style="width: 150px; height: 102px;"
+				onclick="location.href='/main'">
+
 		</div>
 
-		<form action="/login" method="post" autocomplete="off">
+		<form action="/loginProc" method="post" autocomplete="off">
 			<input type="hidden" name="r" value="/">
 
 			<div style="margin-top: 50px;">

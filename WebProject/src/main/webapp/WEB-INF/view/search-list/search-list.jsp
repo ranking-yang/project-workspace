@@ -36,17 +36,24 @@
 				                        </span>
 				                    </div>
 				                    <c:choose>
-					                    <c:when test="${empty product.wish_code}">
-					                    	<button class="likeBtn" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-					                        <i class="fa-regular fa-heart" style="color: #000000;"></i> 
-					                    </button>
-					                    </c:when>
-					                    <c:otherwise>
-						                    <button class="likeBtn liked" id="${product.performance_code }" onclick="toggleLike(event, '${product.performance_code }')">
-						                        <i class="fa-solid fa-heart" style="color: #e41b1b;"></i>
-						                    </button>
-					                    </c:otherwise>
-				                    </c:choose>
+									    <c:when test="${member_id eq null}">
+									       <div></div>
+									    </c:when>
+									    <c:otherwise>
+									        <c:choose>
+									            <c:when test="${empty product.wish_code}">
+									                <button class="likeBtn" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+									                    <i class="fa-regular fa-heart" style="color: #000000;"></i> 
+									                </button>
+									            </c:when>
+									            <c:otherwise>
+									                <button class="likeBtn liked" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+									                    <i class="fa-solid fa-heart" style="color: #e41b1b;"></i>
+									                </button>
+									            </c:otherwise>
+									        </c:choose>
+									    </c:otherwise>
+									</c:choose>
 				                </div>
 				                <div class="product-module-title">${product.performance_name }</div>
 				                <div class="product-module-bottom">

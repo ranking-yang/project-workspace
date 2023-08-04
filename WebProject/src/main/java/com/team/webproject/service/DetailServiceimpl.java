@@ -2,6 +2,7 @@ package com.team.webproject.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -13,6 +14,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +26,19 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.team.webproject.dto.GenerationDiscountDTO;
 import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.mapper.GenerationDiscountMapper;
@@ -154,6 +164,7 @@ public class DetailServiceimpl implements DetailService {
 			result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
 			result.put("header", resultMap.getHeaders()); //헤더 정보 확인
 			result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
+			
 
 			//데이터를 제대로 전달 받았는지 확인 string형태로 파싱해줌
 			ObjectMapper mapper = new ObjectMapper();
@@ -161,7 +172,8 @@ public class DetailServiceimpl implements DetailService {
 			jsonInString = mapper.writeValueAsString(resultMap.getBody().get("db"));
 			JSONParser parser = new JSONParser();
 			jsonob = (JSONObject) parser.parse(jsonInString);
-
+			
+			
 		} catch (HttpClientErrorException | HttpServerErrorException e) {
 			result.put("statusCode", e.getRawStatusCode());
 			result.put("body"  , e.getStatusText());
@@ -177,10 +189,11 @@ public class DetailServiceimpl implements DetailService {
 	}
 
 	// 공공데이터 요청
-	public void getPublicDataInfo(String performance_code) {
+	public JSONObject getPublicDataInfo(String performance_code) {
 
 		StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/d/"); /*URL*/
-		
+		String xml;
+		JSONObject jsonob = null;
 		try {
 
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
@@ -189,6 +202,7 @@ public class DetailServiceimpl implements DetailService {
             urlBuilder.append("&" + URLEncoder.encode("CallBackURI","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*Optional 필드*/
             urlBuilder.append("&" + URLEncoder.encode("MsgBody","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
             urlBuilder.append("&" + URLEncoder.encode("seq","UTF-8") + "=" + URLEncoder.encode(performance_code, "UTF-8")); /* 시퀀스로 공연 조회 */
+            
             
 			URL url = new URL(urlBuilder.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -210,11 +224,80 @@ public class DetailServiceimpl implements DetailService {
 			conn.disconnect();
 			
 			System.out.println(sb.toString());
+
+			xml = sb.toString();
+			
+			 // XML 문자열을 파싱하여 Document 객체 생성
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new InputSource(new StringReader(xml)));
+
+            Element root = document.getDocumentElement();
+
+            String gpsX = root.getElementsByTagName("gpsX").item(0).getTextContent();
+            String gpsY = root.getElementsByTagName("gpsY").item(0).getTextContent();
+                
+                
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectNode jsonNode = objectMapper.createObjectNode();
+            jsonNode.put("la", gpsY);
+            jsonNode.put("lo", gpsX);
+            
+            String jsonStr = jsonNode.toString();
+            System.out.println(jsonNode.toString());
+            
+            JSONParser parser = new JSONParser();
+			jsonob = (JSONObject) parser.parse(jsonStr);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
+		
+		
+		return jsonob;
 
 	}
+	
+	
+	@Override
+	public JSONObject getLocationforMap(String place_id) {
+		
+		String jsonInString = "";
+		JSONObject jsonob = null;
+
+		try {
+
+			HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+			factory.setConnectTimeout(5000); //타임아웃 설정 5초
+			factory.setReadTimeout(5000);//타임아웃 설정 5초
+			RestTemplate restTemplate = new RestTemplate(factory);
+
+			HttpHeaders header = new HttpHeaders();
+			HttpEntity<?> entity = new HttpEntity<>(header);
+
+			String url = "http://www.kopis.or.kr/openApi/restful/prfplc/"+place_id; // 공연장 위치(경도, 위도) => 지도를 불러올때 사용
+			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
+			ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
+
+
+			//데이터를 제대로 전달 받았는지 확인 string형태로 파싱해줌
+			ObjectMapper mapper = new ObjectMapper();
+			System.out.println(mapper.writeValueAsString(resultMap.getBody().get("db")));
+			jsonInString = mapper.writeValueAsString(resultMap.getBody().get("db"));
+			JSONParser parser = new JSONParser();
+			jsonob = (JSONObject) parser.parse(jsonInString);
+			
+
+		} catch (HttpClientErrorException | HttpServerErrorException e) {
+			System.out.println(e.toString());
+
+		} catch (Exception e) {
+			System.out.println(e.toString()); 
+		}		
+
+		return jsonob;
+	}
+	
+	
 
 }

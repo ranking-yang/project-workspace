@@ -12,9 +12,7 @@
   </div>
   <!-- 지도가 위치할 곳 -->
           <div align="center" style="margin-top:10px;">
-            <div style="z-index:-1;" id="daum_map">
-            	<img src="../resources/common/image/question-mark.png"> 
-            </div>
+				<div id="map2"></div>
           </div>
 </div>
 </div>

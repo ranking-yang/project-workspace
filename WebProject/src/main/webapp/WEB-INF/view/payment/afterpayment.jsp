@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/resources/payment/css/afterpayment.css" var="afterpayment_css"/>
 <!DOCTYPE html>
@@ -7,10 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>결제완료</title>
+<%@ include file="../common/commonCss.jsp"%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="${afterpayment_css}">
 </head>
 <body>
+
+	<%@ include file="../common/header.jsp"%>
 
     <div class="afterpay-con">
         <div class="afterpay-title">예매완료</div>
@@ -24,25 +28,45 @@
             <div class="afterpay-value-top">
                 <div style="color: rgb(120,86,184)">결제내역</div>
                 <div></div>
-                <div style="color: gray">(날짜)</div>                
+                <div style="color: gray">${payment.payment_date}</div>                
             </div>
             <div class="afterpay-value-middle">
                 <div>
-                    <img class="afterpay-value-poster" src="https://timeticket.co.kr/wys2/file_attach_thumb/2022/01/27/1643271898-98-0_N_7_255x357_70_2.jpg" alt="공연포스터">
+                    <img class="afterpay-value-poster" src="${performance.poster}" alt="공연포스터">
                 </div>
+                <!-- 결제정보 total -->
                 <div class="afterpay-value-text">
-                    <div class="afterpay-value-title">(제목)</div>
-                    <div class="afterpay-value-date">(예매날짜)</div>
-                    <div class="afterpay-value-qty">총 (갯수)매 / (가격)원</div>
+                    <div class="afterpay-value-title">${performance.performance_name}</div>
+                    <div class="afterpay-value-date">
+                    <c:choose>
+						<c:when test="${!empty tickets[0].booking_time}">
+							${tickets[0].booking_date} / ${tickets[0].booking_time}
+						</c:when>
+						<c:otherwise>
+							[유효기간 ~ ${tickets[0].booking_date}]
+						</c:otherwise>
+					</c:choose>              
+                    </div>
+                    <div class="afterpay-value-qty">총 
+                   	    <c:set var= "sum" value = "0" />
+	                    <c:forEach items="${tickets}" var="ticket">
+	                    	<c:set var= "sum" value="${sum + ticket.booking_qty}"/>
+	                    </c:forEach>
+	                    <c:out value="${sum}"/>매 / ${payment.total_price}원</div>
                 </div>
                 <div></div>
             </div>
         </div>
         <div class="afterpay-value-bottom">
-            <button id="afterpay-goHome">홈으로</button>
+        	<!-- 클릭 이벤트 달아야함 -->
+            <button id="afterpay-goHome" onclick ="location.href='../main'">홈으로</button>
             <button id="afterpay-checkReserve">예매내역 확인</button>
         </div>
     </div>
+    
+    <%@ include file="../common/footer.jsp"%>
+
+	<%@ include file="../common/commonJs.jsp"%>
 
 </body>
 </html>

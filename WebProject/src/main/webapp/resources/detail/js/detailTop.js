@@ -56,7 +56,7 @@ calendar.flatpickr({
 // 전시 - 옵션 선택
 if (optionBtn) {
 	optionBtn.addEventListener('click', (e) => {
-		e.target.style.backgroundColor = '#46c8b4';
+		e.currentTarget.style.backgroundColor = '#46c8b4';
 		openQtyDiv();
 		resetQty();
 	});
@@ -221,9 +221,11 @@ function resetQty() {
 
 // 시작 날짜 계산
 function chkStartDate(startdate) {
-	const date = new Date(startdate);	
-	if (date < "today") {
-		date = "today";
+	let date = new Date(startdate);	
+	const today = new Date();
+
+	if (date < today) {
+		date = today;
 	}
 	return date;
 }

@@ -1,4 +1,4 @@
-function toggleLike(event, buttonId) {
+function toggleLike(event, buttonId, member_code) {
     event.stopPropagation();
 
     let $button = $('#'+buttonId);
@@ -14,7 +14,7 @@ function toggleLike(event, buttonId) {
 			url: "addwishlist",
 			type:"POST",
 			data: {
-				member_code : 51,
+				member_code: member_code,
 				performance_code : buttonId 
 				},
 			success: function (response) {
@@ -28,7 +28,7 @@ function toggleLike(event, buttonId) {
 		  url : "delewishlist",
 		  type: "POST",
 		  data: {
-				member_code : 51,
+			 	member_code: member_code,
 				performance_code : buttonId 
 				},
 		  success: function (response) {
@@ -71,3 +71,10 @@ $(document).ready(function(){
 		
 	})
 });
+
+
+$('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기
+		  var price = $(this).text();
+		  let result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		  $(this).html(result);
+	});

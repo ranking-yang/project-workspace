@@ -1,8 +1,13 @@
 package com.team.webproject.controller;
 
+import java.net.Authenticator.RequestorType;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
+import com.team.webproject.service.LoginService;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -22,12 +30,13 @@ public class AdminController {
 	@Autowired
 	AddPerformance addPerformance;
 	
+	private final LoginService exService;
 	
 	// 관리자 페이지
 	@GetMapping("/admin/api")
-	public String adminGET() {
-		
+	public String adminGET(){
 		return "admin/adminPage";
+		
 	}
 	
 	@PostMapping("/admin")

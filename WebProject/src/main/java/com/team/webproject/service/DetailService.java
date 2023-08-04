@@ -19,5 +19,7 @@ public interface DetailService {
 	
 	JSONObject getKopisInfo(String performance_code);
 	
-	void getPublicDataInfo(String performance_code);
+	JSONObject getPublicDataInfo(String performance_code);
+	
+	JSONObject getLocationforMap(String place_id);
 }
