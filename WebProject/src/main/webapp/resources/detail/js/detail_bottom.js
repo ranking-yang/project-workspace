@@ -1,5 +1,5 @@
 /* 처음에 안내탭만 보이고 다른 탭은 안보이게 하기*/
-document.addEventListener('DOMContentLoaded', function () {
+	document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('content_1').style.display = 'block';
     document.getElementById('content_2').style.display = 'none';
     document.getElementById('content_3').style.display = 'none';
@@ -100,6 +100,8 @@ let reviewIdCounter = 0; // 리뷰 ID 카운터 변수
 
 var reviewCount = 0; // 총 댓글 수
 var totalRating = 0; // 댓글들의 별점 합계
+var beforeStar = 0; // 수정 전 별점
+let reviewTitle = null;
 
 function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
@@ -139,7 +141,7 @@ function submitForm() {
   if (content_comment.length <= maxReviewLength) {
   	  seeMoreLink = ""; // 최대 길이보다 작으면 "더보기" 링크를 숨김
   }
-  var reviewTitle = `
+  reviewTitle = `
     <div class="review_title">
       <div class="review_title_left">
         <div class="review_title_left_stars">
@@ -159,17 +161,7 @@ function submitForm() {
         ${getCurrentDate()} <!-- 현재 날짜 함수를 호출하여 리뷰 작성일 표시 -->
       </div>
     </div>`;
-    
-    
-    // 누나가 컴터 꺼서 내일 할려고 함
-    var starRatingElement = reviewTitle.querySelector(`.num${reviewId}`);
-	var style = window.getComputedStyle(starRatingElement);
-	var widthString = style.getPropertyValue("width");
-	var star_rating2 = parseFloat(widthString.replace("px", "")) / 19;
-	console.log("star_rating2: " + star_rating2);
-    
-    
-    
+    //console.log(reviewTitle);
     
 	var reviewText = `
     <div class="review_text_area" id="text_${reviewId}">
@@ -192,7 +184,7 @@ function submitForm() {
     <br>
     <input type="file" class="edit_image_upload" id="edit_image_upload_${reviewId}" accept="image/*">
     <br>
-    <button onclick="saveEditedReview('${reviewId}',${star_rating2})">저장</button>
+    <button onclick="saveEditedReview('${reviewId}')">저장</button>
     </div>
     </div>`;
 
@@ -353,10 +345,10 @@ function getCurrentDate() {
 
 // 수정 버튼 클릭시 수정 div가 보이게 하는 함수
 function editReview(reviewId) {
+  
   var reviewTextElement = document.getElementById("text_" + reviewId);
-  console.log("reviewTextElement " + reviewTextElement);
   var currentContent = reviewTextElement.textContent.trim();
-  console.log("currentContent" + currentContent);
+  //console.log(reviewTitle);
   // 기존 리뷰 별점 가져오기
   var starRatingElement = document.querySelector(`.user_review_${reviewId} .num${reviewId}`);
   var currentStarRating = 0;
@@ -372,9 +364,9 @@ function editReview(reviewId) {
   var editStarRatingInput = document.getElementById(`edit_star_rating_${reviewId}`);
 
   editContentInput.value = currentContent;
-  console.log("editContentInput.value " + editContentInput.value);
+  //console.log("editContentInput.value " + editContentInput.value);
   editStarRatingInput.value = currentStarRating;
-  console.log("editStarRatingInput.value " + editStarRatingInput.value);
+  //console.log("editStarRatingInput.value " + editStarRatingInput.value);
   // 수정 폼을 보여줌
   var editDiv = document.getElementById(`edit_${reviewId}`);
   editDiv.style.display = "block";
@@ -382,12 +374,12 @@ function editReview(reviewId) {
 }
 
 // 수정하는 함수
-function saveEditedReview(reviewId, star_rating) {
+function saveEditedReview(reviewId) {
   // 수정된 내용 가져오기
   var editedContent = document.getElementById(`edit_content_${reviewId}`).value;
   var editedStarRating = parseFloat(document.getElementById(`edit_star_rating_${reviewId}`).value);
   var editedImageUpload = document.getElementById(`edit_image_upload_${reviewId}`).files[0];
-
+  console.log("editedImageUpload" + editedImageUpload);
   // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
   if (editedStarRating < 1 || editedStarRating > 5) {
     alert("별점은 1부터 5까지 입력해주세요.");
@@ -406,10 +398,10 @@ function saveEditedReview(reviewId, star_rating) {
   // 수정 대상 리뷰의 별점 요소를 찾아옴
   var reviewTitle = document.querySelector(`.user_review_${reviewId}`);
   var starRatingElement = reviewTitle.querySelector(`.num${reviewId}`);
-  console.log("starRatingElement" + starRatingElement);
+  //console.log("starRatingElement" + starRatingElement);
   // 별점 업데이트
   starRatingElement.style.width = `calc(${editedStarRating} * 19px)`;
-  console.log("editedContent" + editedContent);
+  //console.log("editedContent" + editedContent);
   // 수정된 리뷰 텍스트 업데이트
   var reviewTextElement = document.getElementById(`text_${reviewId}`);
   var maxReviewLength = 45; // 원하는 최대 길이로 설정
@@ -429,26 +421,26 @@ function saveEditedReview(reviewId, star_rating) {
     <br>
     ${seeMoreLink}
   `;
-  console.log("reviewTextElement" + reviewTextElement);
+  //console.log("reviewTextElement" + reviewTextElement);
   // 새 이미지 첨부된 경우 이미지 업데이트
   if (editedImageUpload) {
     var imageURL = URL.createObjectURL(editedImageUpload);
-    var imgLabel = reviewTextElement.querySelector(`.img_label.${reviewId}`);
+    var imgLabel = reviewTextElement.querySelector(`.img_label`);
     imgLabel.setAttribute("style", `background-image: url(${imageURL})`);
     imgLabel.setAttribute("name", imageURL);
   }
 
-  // 수정된 리뷰의 별점을 totalRating에 반영
-  var previousStarRating = parseFloat(star_rating);
-  console.log("previousStarRating " + previousStarRating);
-  console.log("editedStarRating " + editedStarRating);
+  // 수정된 리뷰의 별점을 totalRating에 반영 (수정전 별점은 데이터베이스에서 가져오기 그 외 방법은 답없음)
+  var previousStarRating = parseFloat(5);
+  //console.log("previousStarRating " + previousStarRating);
+  //console.log("editedStarRating " + editedStarRating);
   totalRating += editedStarRating - previousStarRating;
 
   // 평균 계산
   averageRating = totalRating / reviewCount;
-  console.log("averageRating" + averageRating);
-  console.log("totalRating" + totalRating);
-  console.log("reviewCount" + reviewCount);
+  //console.log("averageRating" + averageRating);
+  //console.log("totalRating" + totalRating);
+  //console.log("reviewCount" + reviewCount);
   // 평균 별점을 화면에 표시
   var averageElement = document.querySelector(".score_section_left_average");
   averageElement.textContent = averageRating.toFixed(1); // 소수점 한 자리까지 표시
