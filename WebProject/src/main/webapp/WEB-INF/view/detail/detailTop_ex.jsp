@@ -119,6 +119,7 @@
 					<fmt:parseNumber var="price"
 						value="${performance.performance_price - (performance.performance_price * discount.discount_rate)})"
 						integerOnly="true" />
+				    
 					<input type="text" class="popup-qty-price" name="booking_price"
 						value="${price}" form="payment_proceed_form" readonly />
 					<div>원</div>
