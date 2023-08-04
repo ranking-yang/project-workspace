@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		        .formLogin()
 		            .loginPage("/login")                         // 로그인으로 사용된 페이지의 매핑 URL
 		            .loginProcessingUrl("/loginProc")                // 로그인을 처리할 매핑 URL
-		            .defaultSuccessUrl("/main", true)
+		            //.defaultSuccessUrl("/main", true)
 		            .usernameParameter("member_id") // 로그인시 사용된 계정 아이디 의 필드명
 		            .passwordParameter("member_pwd") // 로그인시 사용된 계정 패스워드의 필드명
 		            .successHandler(successHandler())

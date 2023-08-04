@@ -23,5 +23,6 @@ public interface LoginMapper {
 	public MembersDTO FindPwd(String Id, String name, Date birth, String phone);
 	
 	String getId(MembersDTO_findId member);
+	
 
 }

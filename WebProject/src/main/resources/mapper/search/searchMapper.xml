@@ -5,15 +5,19 @@
 <mapper namespace="com.team.webproject.mapper.SearchMapper">
 	<select id="getSearchList">
 		SELECT * FROM performance 
-		WHERE performance_name LiKE '%' || #{keyword} || '%'
+		WHERE end_date > sysdate 
+		AND (performance_name LiKE '%' || #{keyword} || '%'
 			OR address LiKE '%' || #{keyword} || '%'
-			OR place LiKE '%' || #{keyword} || '%'
+			OR place LiKE '%' || #{keyword} || '%')
+		ORDER BY rownum
 	</select>
 	<select id="getUserSearchList">
 		SELECT * FROM performance 
 		LEFT OUTER JOIN wish_list USING(performance_code) 
-		WHERE performance_name LiKE '%' || #{keyword} || '%'
+		WHERE end_date > sysdate 
+		AND (performance_name LiKE '%' || #{keyword} || '%'
 			OR address LiKE '%' || #{keyword} || '%'
-			OR place LiKE '%' || #{keyword} || '%'
+			OR place LiKE '%' || #{keyword} || '%')
+		ORDER BY rownum
 	</select>
 </mapper>
