@@ -19,7 +19,7 @@
 	<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
-<form id="reply_write_frm2" name="reply_write_frm"  onsubmit="return reply_check()" target="h_blank" style="margin:0; display:none;">
+<div id="reply_write_frm2" name="reply_write_frm" style="margin:0; display:none;">
 
   <div style="float:left;">
     <textarea id="content_comment2" name="content_comment2" style="font-size:15px; color:#000; font-weight:300; width:520px; 
@@ -34,7 +34,7 @@
       margin-top:; text-align:center; cursor:pointer;" onclick="submitForm2()">등록
     </button>
   </div>
-</form>
+</div>
 </div>
 </div>
 <div>

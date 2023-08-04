@@ -38,7 +38,20 @@ function toggleLike(event, buttonId, member_code) {
 	  });
     }
   };
-  
+$(document).ready(function(){
+	$('.product-module').on('click', function(){
+		console.log($(this).data('pk'));
+		
+		if ($(this).data('category') !== "전시") {
+	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
+			} else {
+				location.href = '../product-detail-ex?performance_code=' + $(this).data('pk');				
+			}
+		
+	})
+});
+
+
 $('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기
 		  var price = $(this).text();
 		  let result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

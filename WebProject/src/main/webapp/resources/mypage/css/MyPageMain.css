@@ -1,25 +1,132 @@
-@charset "EUC-KR";
 
 
-.mypage_top { width:1100px; height:130px; margin:auto; margin-top:30px; border:1px solid #46c8b4; border-radius:10px; }
-.mypage_top_left { float:left; background:#46c8b4; width:240px; height:130px; border-radius:8px 0 0 8px;}
-.mypage_top_left img { position:relative; }
-.mypage_top_right { float:left; width:860px; height:110px; padding:10px 0; background:#fff; border-radius:0 10px 10px 0; line-height: 200%; }
-.mypage_top_contents { float:left; width:160px; height:65px; padding:22px 20px; border-right:1px solid #ddd; }
-.mypage_top_title { font-size:18px; color:#555; font-weight:bold; }
-.mypage_top_name { font-size:18px; color:#555; font-weight:bold; text-decoration:underline; }
-.mypage_top_name_nim { font-size:18px; color:#777; font-weight:normal; }
-.mypage_top_number { margin-top:3px; font-size:22px; font-weight:bold; color:#ff4b4b; }
-.arrow_gt { font-weight:normal; font-size:12px; vertical-align:2px; }
+.mypage_top {
+	width: 1100px;
+	height: 130px;
+	margin: auto;
+	margin-top: 30px;
+	border: 1px solid #46c8b4;
+	border-radius: 10px;
+}
 
-.mypage_wrap {width:1100px;  margin:auto; margin-top:30px;}
+.mypage_top_left {
+	float: left;
+	background: #46c8b4;
+	width: 240px;
+	height: 130px;
+	border-radius: 8px 0 0 8px;
+}
 
-.mypage_left_wrap { float:left; width:180px; min-height:640px; padding:40px 30px 0 30px; background:#fff; border-radius:10px;}
-.mypage_left_wrap ul { list-style:none; border-top:1px solid #dddddd; margin-top:20px; padding-top:10px; }
-.mypage_left_title { font-size:24px; font-weight:700; color:#555; }
-.mypage_left_sub { font-size:18px; font-weight:700; padding:10px 0; cursor:pointer; }
-.mypage_left_sub_on { color:#ff4b4b; font-weight:700; }
-.mypage_left_sub_off { color:#333; font-weight: 400;}
+.mypage_top_left img {
+	position: relative;
+}
 
-.mypage_right_wrap { float:right; width:780px; min-height:640px; padding:40px 30px 0 30px; background:#fff; border-radius: 10px; }
-.mypage_right_title { font-size:24px; font-weight:700; color:#555; }
+.mypage_top_right {
+	float: left;
+	width: 860px;
+	height: 110px;
+	padding: 10px 0;
+	background: #fff;
+	border-radius: 0 10px 10px 0;
+	line-height: 200%;
+}
+
+.mypage_top_contents {
+	float: left;
+	width: 160px;
+	height: 65px;
+	padding: 22px 20px;
+	border-right: 1px solid #ddd;
+}
+
+.mypage_top_title {
+	font-size: 18px;
+	color: #555;
+	font-weight: bold;
+}
+
+.mypage_top_name {
+	font-size: 18px;
+	color: #555;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.mypage_top_name_nim {
+	font-size: 18px;
+	color: #777;
+	font-weight: normal;
+}
+
+.mypage_top_number {
+	margin-top: 3px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #ff4b4b;
+}
+
+.arrow_gt {
+	font-weight: normal;
+	font-asize: 12px;
+	vertical-align: 2px;
+}
+
+.mypage_wrap {
+	width: 1100px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.mypage_left_wrap {
+	float: left;
+	width: 180px;
+	min-height: 640px;
+	padding: 40px 30px 0 30px;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.mypage_left_wrap ul {
+	list-style: none;
+	border-top: 1px solid #dddddd;
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
+.mypage_left_title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #555;
+}
+
+.mypage_left_sub {
+	font-size: 18px;
+	font-weight: 700;
+	padding: 10px 0;
+	cursor: pointer;
+}
+
+.mypage_left_sub_on {
+	color: #ff4b4b;
+	font-weight: 700;
+}
+
+.mypage_left_sub_off {
+	color: #333;
+	font-weight: 400;
+}
+
+.mypage_right_wrap {
+	float: right;
+	width: 780px;
+	min-height: 640px;
+	padding: 40px 30px 0 30px;
+	background: #fff;
+	border-radius: 10px;
+}
+
+.mypage_right_title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #555;
+}

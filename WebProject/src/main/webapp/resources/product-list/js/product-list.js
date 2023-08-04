@@ -44,9 +44,9 @@ $(document).ready(function(){
 		console.log($(this).data('pk'));
 		
 		if ($(this).data('category') !== "전시") {
-	    		location.href = '/product/product-detail?performance_code=' + $(this).data('pk');				
+	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
 			} else {
-				location.href = '/product/product-detail-ex?performance_code=' + $(this).data('pk');				
+				location.href = '../product-detail-ex?performance_code=' + $(this).data('pk');				
 			}
 		
 	})

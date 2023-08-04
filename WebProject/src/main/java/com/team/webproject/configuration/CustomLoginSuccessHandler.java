@@ -48,4 +48,5 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
 	}
+
 }

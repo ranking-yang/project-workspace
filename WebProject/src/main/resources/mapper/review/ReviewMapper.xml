@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.ReviewMapper">
+	<insert id="insertReview" parameterType="com.team.webproject.dto.ReviewDTO">
+        INSERT INTO review_table
+        (review_writer_code, performance_code, review_star, review_content, review_date, review_like)
+        VALUES
+        (#{reviewWriterCode}, #{performanceCode}, #{reviewStar}, #{reviewContent}, #{reviewDate}, #{reviewLike})
+    </insert>
+
+    <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
+        SELECT * FROM review_table WHERE review_code = #{value}
+    </select>
+
+    <update id="updateReview" parameterType="com.team.webproject.dto.ReviewDTO">
+        UPDATE review_table
+        SET review_star = #{reviewStar},
+            review_content = #{reviewContent},
+            review_date = #{reviewDate},
+            review_like = #{reviewLike}
+        WHERE review_code = #{reviewCode}
+    </update>
+
+    <delete id="deleteReview" parameterType="java.lang.Integer">
+        DELETE FROM review_table WHERE review_code = #{value}
+    </delete>
+</mapper>

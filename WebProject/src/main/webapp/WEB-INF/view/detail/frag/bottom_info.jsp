@@ -77,6 +77,5 @@
 				<div id="map1" data-la="${la }" data-lo="${lo }"></div>
 			</div>
 		</div>
-
 	</div>
 </div>

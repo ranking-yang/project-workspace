@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>test</title>
 <link href="${maincss}" rel="stylesheet">
-
 </head>
+
 <body style="background:#f4f4f4; overflow:hidden; height:auto; ">
-	<h3> test main mypage</h3>
+	
 	<div class="mypage_top">
 
     <div class="mypage_top_left">
@@ -129,8 +129,8 @@
 
   </div>
 </div>
-  <div style="clear:both;"></div>
-  <div class="footer_pd"></div>
+
+</div>
 	
 </body>
 </html>

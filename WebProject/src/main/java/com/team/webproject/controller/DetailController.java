@@ -19,7 +19,7 @@ public class DetailController {
 	@Autowired
 	DetailService detailService;
 	
-	@GetMapping("/product/product-detail")
+	@GetMapping("/product-detail")
 	String callKopisAPI(Model model, String performance_code) throws JsonProcessingException {
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
@@ -43,7 +43,7 @@ public class DetailController {
 		return "/detail/detail";
 	}
 	
-	@GetMapping("/product/product-detail-ex")
+	@GetMapping("/product-detail-ex")
 	String callGovernmentAPI(Model model, String performance_code) throws JsonProcessingException {
 		
 		JSONObject jsonob = detailService.getPublicDataInfo(performance_code);
