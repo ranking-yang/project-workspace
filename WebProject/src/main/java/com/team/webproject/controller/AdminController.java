@@ -35,7 +35,7 @@ public class AdminController {
 	// 관리자 페이지
 	@GetMapping("/admin/api")
 	public String adminGET(){
-		return "admin/adminPage";
+		return "admin/admin_main";
 		
 	}
 	

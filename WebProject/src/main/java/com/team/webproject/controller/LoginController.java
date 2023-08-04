@@ -58,11 +58,11 @@ public class LoginController {
 	public String loginGET(Model model, HttpServletRequest request) {
 
         model.addAttribute("loginRequest", new MembersDTO());
-         Object o = SecurityContextHolder.getContext().getAuthentication();
-         System.out.println("o :" + o.toString());
+        Object o = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("o :" + o.toString());
          
-         String referrer = request.getHeader("Referer");
-         request.getSession().setAttribute("prevPage", referrer);
+        String referrer = request.getHeader("Referer");
+        request.getSession().setAttribute("prevPage", referrer);
 
 		return "login/login";
 	}
