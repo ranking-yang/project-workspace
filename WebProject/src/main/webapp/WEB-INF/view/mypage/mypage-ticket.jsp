@@ -22,12 +22,27 @@
 	
 			<div id="mypage_value">
 				<div class="mypage_value_title">예매내역</div>
-					<!-- tickets는 Controller에서 model로 보낸 키 값으로 바꾸세요 -->
+					
 					<c:choose>
-					<c:when test="{!empty tickets}"></c:when>
-					<c:otherwise><div class="noValue">예매 내역이 없습니다.</div></c:otherwise>
-					</c:choose>				
-				</div>
+					<c:when test="${!empty tickets}">
+						<c:forEach items="${tickets}" var="ticket">
+							
+							<div id="mypage_ticket_con">
+								
+								<div>
+									
+									<!-- ticket에서 불러와서 출력하기 -->
+									
+									<!--  추가해야할것 → 상세내역, 환불하기, 후기작성 버튼 하면 경로 잡기 / 보내야할 값도 -->
+									
+								</div>
+								
+							</div>
+							
+						</c:forEach>
+					</c:when>
+						<c:otherwise><div class="noValue">예매 내역이 없습니다.</div></c:otherwise>
+					</c:choose>
 	
 		</div> <!-- 메뉴 /div -->
 	

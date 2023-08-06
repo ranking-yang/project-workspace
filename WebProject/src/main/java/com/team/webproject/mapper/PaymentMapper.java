@@ -12,5 +12,7 @@ public interface PaymentMapper {
 	int insertTicket(TicketDTO orders);
 	
 	int updatePerformaceQty(String performance_code, int qty);
+	
+	PaymentDTO getUserPayment(String payment_code);
 
 }

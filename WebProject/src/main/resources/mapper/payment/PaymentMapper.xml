@@ -28,7 +28,7 @@
 	  		booking_date,
 	  		booking_time,
 	  		booking_type,
-	  		payment_code
+	  		payment_code_fk
   		) VALUES
         (advance_ticket_code_seq.nextval,
   		 #{booker_code},
@@ -44,5 +44,9 @@
 		SET performance_qty = (performance_qty - #{qty})
 		WHERE performance_code = #{performance_code}		
 	</update>
+	
+	<select id="getUserPayment">
+		SELECT * FROM payments WHERE payment_code = #{payment_code}
+	</select>
 	
 </mapper>
