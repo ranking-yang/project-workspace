@@ -45,4 +45,8 @@
 		WHERE performance_code = #{performance_code}		
 	</update>
 	
+	<select id="getPayment" resultType="PaymentDTO">
+		SELECT * FROM payments WHERE payment_code=#{payment_code}
+	</select>
+	
 </mapper>
