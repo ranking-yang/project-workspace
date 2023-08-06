@@ -21,13 +21,16 @@
 			<!-- 나의 티켓 -->
 	
 			<div id="mypage_value">
-				<div class="mypage_value_title">예매내역</div>
+				<div class="mypage_value_title">나의 쿠폰</div>
+				<div>
 					<!-- tickets는 Controller에서 model로 보낸 키 값으로 바꾸세요 -->
+					<!-- 가져온 값 출력 -->
 					<c:choose>
 					<c:when test="{!empty tickets}"></c:when>
-					<c:otherwise><div class="noValue">예매 내역이 없습니다.</div></c:otherwise>
-					</c:choose>				
+					<c:otherwise><div class="noValue">사용 가능한 쿠폰이 없습니다.</div></c:otherwise>
+					</c:choose>
 				</div>
+			</div>
 	
 		</div> <!-- 메뉴 /div -->
 	
@@ -38,7 +41,7 @@
 	<%@ include file="../common/commonJs.jsp"%>
 	
 	<script>
-		$('.mypage_menu_btn').eq(2).addClass('clicked');
+		$('.mypage_menu_btn').eq(0).addClass('clicked');
 	</script>
 
 </body>

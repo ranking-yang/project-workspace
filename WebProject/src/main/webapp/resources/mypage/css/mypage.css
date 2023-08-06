@@ -1,3 +1,8 @@
+.footer-container {
+	background-color: white;
+}
+
+/* 마이페이지 컨테이너 */
 #mypage_con {
 	width: 1100px;
 	margin: 0 auto; /* 중앙정렬 */
@@ -9,6 +14,7 @@
 	padding-bottom: 30px;
 }
 
+/* 마이페이지 메뉴 css */
 #mypage_con > div {
 	border-radius: 10px;
 	background-color: white;
@@ -85,9 +91,30 @@
 		cursor: pointer;
 	}
 	
-	.mypage_menu_btn:hover {
+	/* 버튼 이벤트 시, 색 변경 */
+	.mypage_menu_btn:hover, .clicked {
 		color:  #46c8b4;
 		font-weight: bold;
 	}
 	
+/* mypage_value 제목 css (페이지 공통) */
+#mypage_value {
+	display: grid;
+	grid-template-rows: 50px 1fr;
+	padding: 20px;
+}
+
+.mypage_value_title {
+	font-size: 24px;
+    font-weight: 700;
+    color: #555;
+}
+
+.noValue {
+	text-align: center;
+	padding-top: 50px;
+}
+
+/* 예매내역 css */
+
 	

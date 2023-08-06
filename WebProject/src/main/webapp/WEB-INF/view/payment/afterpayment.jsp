@@ -58,9 +58,8 @@
             </div>
         </div>
         <div class="afterpay-value-bottom">
-        	<!-- 클릭 이벤트 달아야함 -->
             <button id="afterpay-goHome" onclick ="location.href='../main'">홈으로</button>
-            <button id="afterpay-checkReserve">예매내역 확인</button>
+            <button id="afterpay-checkReserve" onclick="location.href='../mypage'">예매내역 확인</button>
         </div>
     </div>
     

@@ -1,3 +1,7 @@
+.footer-container {
+	background-color: white;
+}
+
 /* 작품 상세페이지 (상단) 부모 div */
 .detail-top-con {
     width: 820px;
@@ -272,3 +276,8 @@
     #popup-payment-btn:enabled {
         background-color: #46c8b4;
     }
+    
+input {
+	border: none;
+    outline: none;
+}
