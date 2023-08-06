@@ -272,3 +272,8 @@
     #popup-payment-btn:enabled {
         background-color: #46c8b4;
     }
+    
+input {
+	border: none;
+    outline: none;
+}

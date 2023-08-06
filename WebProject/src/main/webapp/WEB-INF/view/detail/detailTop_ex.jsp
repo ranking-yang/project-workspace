@@ -23,7 +23,7 @@
 <div class="detail-top-con">
 	<!-- product-list로 돌아감 -->
 	<div class="detail-top-now-category">
-		📁 <a href="/product/performance?main_category=${performance.main_category}">${performance.main_category}> </a>
+		📁 <a href="/product/performance?main_category=${performance.main_category}">${performance.main_category} > </a>
 	</div>
 	<!-- 카테고리 -->
 	<div class="detail-top-left">

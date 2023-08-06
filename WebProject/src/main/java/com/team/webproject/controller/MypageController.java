@@ -1,18 +1,20 @@
 package com.team.webproject.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Controller
 public class MypageController {
 	
 	@GetMapping("/mypage")
-	String main() {
+	String main(Model model, String className) {
+		
+		model.addAttribute("className", className);
+		
 		return "/mypage/mypage";
 	}
+	
 	
 	
 }

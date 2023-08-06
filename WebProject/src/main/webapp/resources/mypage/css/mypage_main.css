@@ -85,9 +85,11 @@
 		cursor: pointer;
 	}
 	
-	.mypage_menu_btn:hover {
+	/* 버튼 이벤트 시, 색 변경 */
+	.mypage_menu_btn:hover, .clicked {
 		color:  #46c8b4;
 		font-weight: bold;
 	}
+
 	
 	
