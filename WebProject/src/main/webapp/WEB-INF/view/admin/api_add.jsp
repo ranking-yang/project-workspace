@@ -5,6 +5,7 @@
 <script>
 $(document).ready(function() {
 	$("#add_theater").click(function() {
+		$("#apiaddtable").empty();
         $.ajax({
             url : "/admin/api/theater_show",
             type: "GET",
@@ -35,6 +36,7 @@ $(document).ready(function() {
         });
     });
 	$("#add_music").click(function() {
+		$("#apiaddtable").empty();
         $.ajax({
             url : "/admin/api/theater_music",
             type: "GET",
@@ -65,6 +67,7 @@ $(document).ready(function() {
         });
     });
 	$("#add_kid").click(function() {
+		$("#apiaddtable").empty();
         $.ajax({
             url : "/admin/api/theater_kids",
             type: "GET",
@@ -95,6 +98,7 @@ $(document).ready(function() {
         });
     });
 	$("#add_showing").click(function() {
+		$("#apiaddtable").empty();
         $.ajax({
             url : "/admin/api/showing",
             type: "GET",
@@ -114,6 +118,8 @@ $(document).ready(function() {
             		+"<td>"+this.place+"</td>"
             		+"<td>"+this.kid_state+"</td>"
             		+"<td>"+this.poster+"</td>"
+            		+"<td>"+this.lat+"</td>"
+            		+"<td>"+this.lon+"</td>"
             		+"</tr>");
     			});
             },
@@ -122,6 +128,9 @@ $(document).ready(function() {
             }
         });
     });
+	$("#add_table_btn").click(function() {
+		
+	});
 });
 
 	</script>
@@ -135,6 +144,7 @@ $(document).ready(function() {
     <button id="add_music">음악 추가</button>
     <button id="add_kid">키즈 추가</button>
     <button id="add_showing">전시 추가</button>
+    <button id="add_table_btn">추가</button>
     <button id="delete">삭제</button>
     <div style="overflow-x:auto; overflow-y:auto;" class="table-box">
       <table class="api-table" id="apiaddtable">

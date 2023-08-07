@@ -101,7 +101,7 @@ public class ListShowAPIController {
 	}
 	@GetMapping("/admin/api/theater_show")
 	@ResponseBody
-	String getShow_Product() {
+	List<ShowDTO> getShow_Product() {
 		List<ShowDTO> showli = new ArrayList<>();
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		HashMap<String, String> category = new HashMap<>();
@@ -171,8 +171,9 @@ public class ListShowAPIController {
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
-        				System.out.println("3번"+show.toString());
-        				addPerformance.addShow(show);
+        				showli.add(show);
+//        				System.out.println("3번"+show.toString());
+//        				addPerformance.addShow(show);
         				
         			}catch(Exception e) {
         				continue;
@@ -196,12 +197,12 @@ public class ListShowAPIController {
             System.out.println(e.toString()); 
         }
         
-        return "/admin/api";
+        return showli;
 
     }
 	@GetMapping("/admin/api/theater_music")
 	@ResponseBody
-	String getMusic_product() {
+	List<ShowDTO> getMusic_product() {
 		List<ShowDTO> showli = new ArrayList<>();
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		HashMap<String, String> category = new HashMap<>();
@@ -266,16 +267,16 @@ public class ListShowAPIController {
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
-        			show.setAddress(detail_map.get("address"));
+        			show.setAddress(detail_map.get("adres"));
         			show.setPlace((String) js.get("fcltynm"));
         			show.setKid_state('N');
         			show.setPoster((String) js.get("poster"));
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
-        				System.out.println("music:"+show.toString());
-        				addPerformance.addShow(show);
-        				
+//        				System.out.println("music:"+show.toString());
+//        				addPerformance.addShow(show);
+        				showli.add(show);
         			}catch(Exception e) {
         				continue;
         			}
@@ -298,12 +299,12 @@ public class ListShowAPIController {
             System.out.println(e.toString()); 
         }
         
-        return "/admin/api";
+        return showli;
 
     }
 	@GetMapping("/admin/api/theater_kids")
 	@ResponseBody
-	String getKid_product() {
+	List<ShowDTO> getKid_product() {
 		List<ShowDTO> showli = new ArrayList<>();
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		HashMap<String, String> category = new HashMap<>();
@@ -370,16 +371,16 @@ public class ListShowAPIController {
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
-        			show.setAddress(detail_map.get("address"));
+        			show.setAddress(detail_map.get("adres"));
         			show.setPlace((String) js.get("fcltynm"));
         			show.setKid_state('Y');
         			show.setPoster((String) js.get("poster"));
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
-        				System.out.println("kid:"+show.toString());
-        				addPerformance.addShow(show);
-        				
+//        				System.out.println("kid:"+show.toString());
+//        				addPerformance.addShow(show);
+        				showli.add(show);
         			}catch(Exception e) {
         				continue;
         			}
@@ -402,7 +403,7 @@ public class ListShowAPIController {
             System.out.println(e.toString()); 
         }
         
-        return "/admin/api";
+        return showli;
 
     }
 }

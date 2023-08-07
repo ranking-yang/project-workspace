@@ -56,9 +56,7 @@ public class MembersDTO implements UserDetails {
 	@Email(message = "이메일 형식에 맞지 않습니다.")
 	private String member_email;
 	
-	
 	private String member_role;
-	
 	
 	@Builder
     public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone, String member_birth ,String member_email, String member_role) {
