@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -12,11 +12,11 @@
 
 <body class="allcss">
 
-    <!-- 상단 메뉴바 -->
+    <!-- 상단 메뉴바
     <div class="topnav">
         <a class="active" href="index.html">티켓킹 관리자</a>
     </div>
-    <!-- 사이드 메뉴바 -->
+     사이드 메뉴바
     <div class="sidenav">
         <div class="stitle">DashBoard</div>
         <a href="index.html">공지사항</a>
@@ -28,11 +28,11 @@
         <div class="stitle">Chart</div>
         <a href="chart.html">통계</a>
         
-    </div>
+    </div>-->
 
     <!-- 본문 -->
     <div class="main">
-        통계 페이지
+        <h3>통계 페이지</h3>
     </div>
 
 </body>

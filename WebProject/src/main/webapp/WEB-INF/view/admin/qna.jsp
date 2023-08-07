@@ -12,11 +12,12 @@
 
 <body class="allcss">
 
-    <!-- 상단 메뉴바 -->
+   <!--  
+   상단 메뉴바
     <div class="topnav">
         <a class="active" href="index.html">티켓킹 관리자</a>
     </div>
-    <!-- 사이드 메뉴바 -->
+    사이드 메뉴바 
     <div class="sidenav">
         <div class="stitle">DashBoard</div>
         <a href="index.html">공지사항</a>
@@ -26,7 +27,8 @@
         <a href="qna.html">QnA</a>
         <a href="inquiry.html">1:1 문의</a>
         <div class="stitle">Chart</div>
-        <a href="chart.html">통계</a>
+        <a href="chart.html">통계</a> 
+        -->
         
     </div>
 

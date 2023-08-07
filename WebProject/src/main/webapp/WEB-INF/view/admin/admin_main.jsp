@@ -11,9 +11,64 @@
     <link rel="stylesheet" href="/resources/admin/css/admin_common.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+	 <script>
+	 	// 메뉴 버튼 클릭시 이벤트
+		$(function(){
+	        $("#menuidex_btn").click(function () {
+	        	console.log("test");
+	        	$("#admin_as").show();
+	        	$("#api_list").hide();
+	        	$("#api_edit").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#chart").hide();
+	        });
+	        $("#menuapi_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").show();
+	        	$("#api_edit").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#chart").hide();
+	        });
+	        $("#menuinquiry_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("api_edit").hide();
+	        	$("#inquriy_list").show();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#chart").hide();
+	        });
+	        $("#menuqna_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").show();
+	        	$("#chart").hide();
+	        });
+	        $("#menuchart_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("#api_edit").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#chart").show();
+	        });
+	        
+		});
+		
+	 </script>
 <body class="allcss">
-
+<!--  +"<td><input type='checkbox' name='_selected_all_'/></td>"+-->
     <!-- 상단 메뉴바 -->
     <div class="topnav">
         <a class="active" href="/admin/api">티켓킹 관리자</a>
@@ -32,19 +87,28 @@
         <button id="menuchart_btn" class="indexbtn">통계</button>
 
     </div>
-    <div id="main">
-    	
+    <div id="admin_as">
+    	<%@ include file="admin_as.jsp" %>
     </div>
-    
-    <script>
-		$(function(){
-	        $("#menuapi_btn").click(function () {
-	        	console.log("test");
-	        	$("#main").load("./api_edit.jsp");	
-	        });
-		});
-	 </script>
-
+    <div id="api_list" hidden>
+    	<%@ include file="api_list.jsp" %>
+    </div>
+    <div id="api_edit" hidden>
+    	<%@ include file="api_edit.jsp" %>
+    </div>
+   	<div id="inquriy_list" hidden>
+    	<%@ include file="inquriy_list.jsp" %>
+    </div>
+    <div id="inquriy_detail" hidden>
+    	<%@ include file="inquriy_detail.jsp" %>
+    </div>
+    <div id="qna" hidden>
+    	<%@ include file="qna.jsp" %>
+    </div>
+    <div id="chart" hidden>
+    	<%@ include file="chart.jsp" %>
+    </div>
+	
 </body>
 
 </html>

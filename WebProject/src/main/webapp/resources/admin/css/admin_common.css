@@ -5,14 +5,101 @@
   padding: 0;
 }
 
-/* 상단 네비게이션 바 */
+ /* InquiryBox style */
+.filter {
+        width: 800px;
+    }
+    /* 테이블스타일 */
+    .table-box {
+        width: auto;
+        height: 500px;
+        border: 1px solid #ddd;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 1000px;
+        border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    .inquiry-title {
+        width: 500px;
+    }
+.inquiry-box {
+    display: grid;
+    margin: 5px;
+    border: 2px solid #ddd;
+    width: 1000px;
+    height: 500px;
+}
 .topnav {
   position: relative;
   background-color: #212529;
   overflow: hidden;
 }
+ .table-box {
+      width: auto;
+      height: auto;
+      border: 1px solid #ddd;
+    }
 
-/* 상단 네비 > a */
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 2800px;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+
+        /* 공통 버튼 스타일 */
+        button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* 추가 버튼 스타일 */
+    #add {
+        background-color: #4CAF50;
+        color: white;
+    }
+    #add:hover {
+        background-color: #45a049;
+    }
+
+    /* 삭제 버튼 스타일 */
+    #delete {
+        background-color: #f44336;
+        color: white;
+        margin-left: 10px;
+    }
+    #delete:hover {
+        background-color: #d32f2f;
+    }
+
 .active {
   float: left;
   color: #f2f2f2;
@@ -22,7 +109,7 @@
   font-size: 17px;
 }
 
-/* 상단 네비 > a:hover */
+
 .topnav a:hover {
   background-color: #ddd;
   color: black;
@@ -36,7 +123,7 @@
   color: white;
 }
 
-/* 사이드 메뉴바 */
+
 .sidenav {
   height: 100%;
   width: 200px;
@@ -65,7 +152,7 @@
   color: #f1f1f1;
 }
 
-/* 메인페이지 */
+
 .main {
   margin-left: 200px;
   margin-top: 10px;

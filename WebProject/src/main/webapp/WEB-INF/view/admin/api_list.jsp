@@ -1,127 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>티켓킹 관리자</title>
-  <link rel="stylesheet" href="/resources/admin/css/admin_common.css">
-  <!-- 테이블 스타일 -->
-  <style>
-    .table-box {
-      width: auto;
-      height: auto;
-      border: 1px solid #ddd;
-    }
-
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-      width: 2800px;
-      border: 1px solid #ddd;
-    }
-
-    th,
-    td {
-      text-align: center;
-      padding: 8px;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2
-    }
-
-        /* 공통 버튼 스타일 */
-        button {
-        margin-top: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    /* 추가 버튼 스타일 */
-    #add {
-        background-color: #4CAF50;
-        color: white;
-    }
-    #add:hover {
-        background-color: #45a049;
-    }
-
-    /* 삭제 버튼 스타일 */
-    #delete {
-        background-color: #f44336;
-        color: white;
-        margin-left: 10px;
-    }
-    #delete:hover {
-        background-color: #d32f2f;
-    }
-  </style>
-  
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script>
-	$(document).ready(function() {
-		$("#dbBtn").click(function() {
-	        $.ajax({
-	            url : "/admin/api/select",
-	            type: "POST",
-	            success : function(result) {
-	            	$(result).each(function(){
-	            		console.log(this.poster);
-	            		$("#apitable").append("<tr>"
-	            		+"<td><input type='checkbox' name='_selected_all_'/></td>"+
-	            		+"<td><a href='api-edit.html'>수정</a></td>"
-	            		+"<td>"+this.performance_code+"</td>"		
-	            		+"<td>"+this.performance_name+"</td>"
-	            		+"<td>"+this.performance_qty+"</td>"
-	            		+"<td>"+this.main_category+"</td>"
-	            		+"<td>"+this.sub_category+"</td>"
-	            		+"<td>"+this.performance_price+"</td>"
-	            		+"<td>"+this.start_date+"</td>"
-	            		+"<td>"+this.end_date+"</td>"
-	            		+"<td>"+this.address+"</td>"
-	            		+"<td>"+this.place+"</td>"
-	            		+"<td>"+this.kid_state+"</td>"
-	            		+"<td>"+this.poster+"</td>"
-	            		+"</tr>");
-	    			});
-	            },
-	            error: function(e){
-	            	console.log(e);
-	            }
-	        	
-	        });
-	    });
-	});
-    </script>
-</head>
-
-<body class="allcss">
-
-  <!-- 상단 메뉴바 -->
-  <div class="topnav">
-    <a class="active" href="index.html">티켓킹 관리자</a>
-    <input class="active" type="button" value="로그아웃" onclick="location.href='/logout'">
-  </div>
-
-  <!-- 사이드 메뉴바 -->
-  <div class="sidenav">
-    <div class="stitle">DashBoard</div>
-    <a href="index.html">공지사항</a>
-    <div class="stitle">API</div>
-    <a href="api-list.html">API List</a>
-    <div class="stitle">CS</div>
-    <a href="qna.html">QnA</a>
-    <a href="inquiry.html">1:1 문의</a>
-    <div class="stitle">Chart</div>
-    <a href="chart.html">통계</a>
-  </div>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#dbBtn").click(function() {
+        $.ajax({
+            url : "/admin/api/select",
+            type: "POST",
+            success : function(result) {
+            	$(result).each(function(){
+            		$("#apitable").append("<tr>"		
+            		+"<td><button id='api_btn'>수정</button></td>"
+            		+"<td>"+this.performance_code+"</td>"		
+            		+"<td>"+this.performance_name+"</td>"
+            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td>"+this.main_category+"</td>"
+            		+"<td>"+this.sub_category+"</td>"
+            		+"<td>"+this.performance_price+"</td>"
+            		+"<td>"+this.start_date+"</td>"
+            		+"<td>"+this.end_date+"</td>"
+            		+"<td>"+this.address+"</td>"
+            		+"<td>"+this.place+"</td>"
+            		+"<td>"+this.kid_state+"</td>"
+            		+"<td>"+this.poster+"</td>"
+            		+"</tr>");
+    			});
+            },
+            error: function(e){
+            	console.log(e);
+            }
+        	
+        });
+    });
+});
+$(document).on("click", "#api_btn", function(){
+			$("#api_list").hide();
+			$("#api_edit").show();
+			var index = $(this).parent().parent().index();
+			var tr = $(this).parent().parent();
+			var td = tr.children();
+		   	// 선택한 정보 edit jsp에 넣기
+		   	$("#api_edit").ready(function(){
+		   		console.log(td.eq(1).text());
+		   		$("#edit_code").val(td.eq(1).text());
+			    $("#edit_title").val(td.eq(2).text());
+			    $("#edit_qty").val(td.eq(3).text());
+			    $("#cat1").val(td.eq(4).text()).prop("selected", true);
+			    $("#cat2").val(td.eq(5).text()).prop("selected", true);
+			    $("#edit_price").val(td.eq(6).text());
+			    $("#stdate").val(td.eq(7).text());
+			    $("#endate").val(td.eq(8).text());
+			    $("#edit_address").val(td.eq(9).text());
+			    $("#edit_place").val(td.eq(10).text());
+			    $("#catkids").val(td.eq(11).text()).prop("selected", true);
+			    $("#edit_Thumbnail").val(td.eq(12).text());
+		   	});
+			
+		});
+		</script>
 
   <!-- 본문 -->
   <div class="main">
@@ -153,6 +90,3 @@
     
   </div>
 
-</body>
-
-</html>

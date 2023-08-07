@@ -10,6 +10,8 @@ joinBtn.addEventListener('click', () =>{
 	location.href='../join'
 });
 */
+
+
 const asBtn = document.querySelector('#as');
 asBtn.addEventListener('click', () => {
 	location.href='../as/notice'
@@ -23,6 +25,7 @@ logoBtn.addEventListener('click', () => {
 const menuBtns = document.querySelectorAll('.menu-btn');
 	menuBtns.forEach(menuBtn => {
 		menuBtn.addEventListener('click', (e) => {
+			console.log(e.target);
 	    	location.href = '/product/performance?main_category=' + e.target.textContent;
 	    	
 	 });
