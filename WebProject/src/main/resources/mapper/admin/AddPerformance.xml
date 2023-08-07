@@ -8,6 +8,9 @@
 	</select>
 	
 	<insert id="addShow" parameterType="com.team.webproject.dto.ShowDTO">
-		INSERT INTO performance values(#{performance_code}, #{performance_name} ,#{performance_qty}, #{main_category}, #{sub_category}, #{performance_price}, #{start_date}, #{end_date}, #{address} , #{place}, #{kid_state}, #{poster})
+		INSERT INTO performance
+		values(#{performance_code}, #{performance_name} ,#{performance_qty}, #{main_category}, 
+		#{sub_category}, #{performance_price}, #{start_date}, #{end_date}, #{address} , #{place}, 
+		#{kid_state}, #{poster}, #{lat}, #{lon})
 	</insert>
 </mapper>

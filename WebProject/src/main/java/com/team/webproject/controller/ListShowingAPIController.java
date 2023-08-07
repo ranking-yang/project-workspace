@@ -143,7 +143,7 @@ public class ListShowingAPIController {
 		        	show.setPerformance_code((String)js.get("seq"));
 		        	show.setPerformance_name((String)js.get("title"));
 		        	show.setPerformance_qty(50);
-		        	show.setMain_category("전시");
+		        	show.setMain_category("art");
 		        	show.setSub_category((String)js.get("realmName"));
 		        	show.setPerformance_price(300);
 
@@ -154,6 +154,8 @@ public class ListShowingAPIController {
 		        	show.setPlace((String) js.get("place"));
 		        	show.setKid_state('N');
 		        	show.setPoster((String) js.get("thumbnail"));
+		        	show.setLat(Double.parseDouble((String)js.get("gpsY")));
+		        	show.setLon(Double.parseDouble((String)js.get("gpsX")));
 		        	try {
 		        		addPerformance.addShow(show);
 		        		

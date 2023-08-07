@@ -18,50 +18,84 @@
 	        	console.log("test");
 	        	$("#admin_as").show();
 	        	$("#api_list").hide();
+	        	$("#api_add").hide();
 	        	$("#api_edit").hide();
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
 	        $("#menuapi_btn").click(function () {
 	        	console.log("test2");
 	        	$("#admin_as").hide();
 	        	$("#api_list").show();
+	        	$("#api_add").hide();
 	        	$("#api_edit").hide();
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#md_recom").hide();
+	        	$("#chart").hide();
+	        });
+	        $("#menuapi_add_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("#api_add").show();
+	        	$("#api_edit").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
 	        $("#menuinquiry_btn").click(function () {
 	        	console.log("test2");
 	        	$("#admin_as").hide();
 	        	$("#api_list").hide();
+	        	$("#api_add").hide();
 	        	$("api_edit").hide();
 	        	$("#inquriy_list").show();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
 	        $("#menuqna_btn").click(function () {
 	        	console.log("test2");
 	        	$("#admin_as").hide();
 	        	$("#api_list").hide();
+	        	$("#api_add").hide();
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").show();
+	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
 	        $("#menuchart_btn").click(function () {
 	        	console.log("test2");
 	        	$("#admin_as").hide();
 	        	$("#api_list").hide();
+	        	$("#api_add").hide();
 	        	$("#api_edit").hide();
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#md_recom").hide();
 	        	$("#chart").show();
+	        });
+	        $("#menumd_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("#api_add").hide();
+	        	$("#api_edit").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#md_recom").show();
+	        	$("#chart").hide();
 	        });
 	        
 		});
@@ -79,12 +113,15 @@
         <div class="stitle">DashBoard</div>
         <button id="menuidex_btn" class="indexbtn">공지사항</button>
         <div class="stitle">API</div>
-        <button id="menuapi_btn" class="indexbtn">API List</button>
+        <button id="menuapi_btn" class="indexbtn">API 조회</button>
+        <button id="menuapi_add_btn" class="indexbtn">API 추가</button>
         <div class="stitle">CS</div>
         <button id="menuqna_btn" class="indexbtn">QnA</button>
         <button id="menuinquiry_btn" class="indexbtn">1:1 문의</button>
         <div class="stitle">Chart</div>
         <button id="menuchart_btn" class="indexbtn">통계</button>
+        <div class="stitle">recommend</div>
+        <button id="menumd_btn" class="indexbtn">MD 추천</button>
 
     </div>
     <div id="admin_as">
@@ -92,6 +129,9 @@
     </div>
     <div id="api_list" hidden>
     	<%@ include file="api_list.jsp" %>
+    </div>
+    <div id="api_add" hidden>
+    	<%@ include file="api_add.jsp" %>
     </div>
     <div id="api_edit" hidden>
     	<%@ include file="api_edit.jsp" %>
@@ -104,6 +144,9 @@
     </div>
     <div id="qna" hidden>
     	<%@ include file="qna.jsp" %>
+    </div>
+    <div id="md_recom" hidden>
+    	<%@ include file="md_recom.jsp" %>
     </div>
     <div id="chart" hidden>
     	<%@ include file="chart.jsp" %>

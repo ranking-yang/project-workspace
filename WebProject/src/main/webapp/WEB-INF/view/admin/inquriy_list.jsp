@@ -94,5 +94,7 @@ $(document).on("click", "#inquriy_title", function(){
                     <td>2023-07-31</td>
                     <td>미완료</td>
                 </tr>
+                </table>
         </div>
+   </div>
     

@@ -59,7 +59,7 @@ public class AdminController {
 		
 		List<ShowDTO> show = addPerformance.selectShow();
 		System.out.println(show.toString());
-		
+		System.out.println(show.size());
 		return show;
 	}
 	
