@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.PaymentMapper">
+
+	<insert id="insertPayment" parameterType="PaymentDTO">
+		INSERT INTO payments(
+	  		payment_code,
+	  		related_coupon,
+	  		payment_way,
+	  		payment_date,
+	  		total_price
+  		) VALUES (
+	  		#{payment_code},
+	  		#{related_coupon, jdbcType=VARCHAR},
+	  		#{payment_way},
+	  		#{payment_date},
+	  		#{total_price}
+  		)
+	</insert>
+	
+	<insert id="insertTicket" parameterType="TicketDTO">
+		INSERT INTO advance_tickets(
+	  		advance_ticket_code,
+	  		booker_code,
+	  		performance_code,
+	  		booking_date,
+	  		booking_time,
+	  		booking_type,
+	  		payment_code
+  		) VALUES
+        (advance_ticket_code_seq.nextval,
+  		 #{booker_code},
+  		 #{performance_code},
+  		 TO_DATE(#{booking_date}, 'YYYY-MM-DD'),
+  		 #{booking_time, jdbcType=VARCHAR},
+  		 #{booking_type},
+  		 #{payment_code_fk})
+	</insert>
+	
+	<update id="updatePerformaceQty">
+		UPDATE performance		
+		SET performance_qty = (performance_qty - #{qty})
+		WHERE performance_code = #{performance_code}		
+	</update>
+	
+	<select id="getPayment" resultType="PaymentDTO">
+		SELECT * FROM payments WHERE payment_code=#{payment_code}
+	</select>
+	
+</mapper>

@@ -1,3 +1,7 @@
+.footer-container {
+	background-color: white;
+}
+
 /* 작품 상세페이지 (상단) 부모 div */
 .detail-top-con {
     width: 820px;
@@ -166,6 +170,12 @@
         row-gap: 10px;
         padding: 10px 15px 15px 10px;
     }
+    
+    	.popup-qty-parent > input {
+			border: 0;
+			text-align: center;
+			font-size: 16px;
+		}
 
         .popup-text {
             color: black;
@@ -184,10 +194,11 @@
             cursor: pointer;
         }
 
-        .popup-time > input {
+        .popup-time > input, #popup-option-btn > input {
             background: none;
             border: 0;
             padding-left: 8px;
+            text-align: left;
         }
         
         .popup-qty-sub {
@@ -265,3 +276,8 @@
     #popup-payment-btn:enabled {
         background-color: #46c8b4;
     }
+    
+input {
+	border: none;
+    outline: none;
+}

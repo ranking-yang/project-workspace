@@ -7,12 +7,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.MessageDTO;
 import com.team.webproject.dto.SmsResponseDTO;
+import com.team.webproject.service.CouponService;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.SmsService;
 
@@ -36,37 +38,70 @@ import lombok.AllArgsConstructor;
 public class LoginController {
 	
 	private final LoginService exService;
+	private final CouponService couponService;
 	
 	// 로그인 페이지
-	@GetMapping("/login")
-	public String loginGET(Model model) {
+//	@GetMapping("/login")
+//	public String loginGET(Model model) {
+//        model.addAttribute("loginRequest", new MembersDTO());
+//         Object o = SecurityContextHolder.getContext().getAuthentication();
+//         System.out.println("o :" + o.toString());
+//		return "login/login";
+//	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginGET(Model model, HttpServletRequest request) {
+
         model.addAttribute("loginRequest", new MembersDTO());
-        
+         Object o = SecurityContextHolder.getContext().getAuthentication();
+         System.out.println("o :" + o.toString());
+         
+         String referrer = request.getHeader("Referer");
+         request.getSession().setAttribute("prevPage", referrer);
+
 		return "login/login";
 	}
-	
+//	
+
+//	
 	// 회원가입 성공 후 로그인 페이지로
-		@PostMapping("/login")
-		public String loginPOST(@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model) {
-	        
-	        httpServletRequest.getSession().invalidate();
-	        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-	        
-			if (exService.login(member, httpServletRequest)) {
-				// 세션에 userId를 넣어줌
-				session.setAttribute("userId", member.getMember_id());
-				return "redirect:/main";
-			} else {
-				return "redirect:/login";
-			}
-		}
+	
+//	@PreAuthorize("hasRole('user')")
+//	@PostMapping("/login")
+//    public String userInfoView() {
+//		System.out.println("member:?"+ member.toString());
+//		@ModelAttribute MembersDTO member, HttpServletRequest httpServletRequest, Model model
+        //MembersDTO mem = exService.login(member, httpServletRequest);
+//        System.out.println(mem.toString());
+//		if (!mem.getMember_id().isEmpty()) {
+//			// 세션에 userId를 넣어줌
+//			
+//			
+//			System.out.println(mem.getMember_role().equals("user"));
+//			if(mem.getMember_role().equals("user")) {
+//				return "redirect:/main";
+//			}else {
+//				return "redirect:/admin/api";
+//			}
+			
+//		} else {
+//			return "redirect:/login";
+//		}
+//		return "main/main";
+//    }
+	
 	// 로그아웃
+//	@GetMapping("/logout")
+//	public String logoutGET(HttpServletRequest httpServletRequest) {
+//		SecurityContextHolder.clearContext();
+//		httpServletRequest.getSession().invalidate();
+//		return "redirect:/login";
+//	}	
+	
 	@GetMapping("/logout")
-	public String logoutGET(HttpServletRequest httpServletRequest) {
-		
-		httpServletRequest.getSession().invalidate();
-		return "redirect:/login";
-	}	
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/main";
+    }
 //	// 타임티켓/간편 회원가입 선택 페이지
 //	@GetMapping("/join")
 //	public String joinGET() {
@@ -82,7 +117,7 @@ public class LoginController {
 	
 	// 회원가입
 	@PostMapping("/user/newJoin")
-	public String newJoinPOST(@Valid MembersDTO member, Errors errors, Model model, String member_pwd_verify){
+	public String newJoinPOST(@ModelAttribute("member") @Valid MembersDTO member, Errors errors, Model model, String member_pwd_verify){
 //		, String member_pwd_verify
 //		return "/newJoin";
 		System.out.println(member.getMember_id());
@@ -109,6 +144,9 @@ public class LoginController {
 //			exService.checkId(member, member_pwd_verify);
 //			return exService.checkId(member, member_pwd_verify);
 			exService.add(member);
+			
+			// 회원가입시 기본쿠폰 추가로직
+			couponService.saveCouponIntoNewUser();
 			return "redirect:/login";
 		}
 	}
@@ -160,11 +198,31 @@ public class LoginController {
 		return "join/findId";
 	}
 
+	@PostMapping("/findId/find")
+	public String findIdPost(String member_name, String member_birth, String member_phone, Model model) {
+		System.out.println(member_name);
+		System.out.println(member_birth);
+		System.out.println(member_phone);
+		
+		MembersDTO member = exService.findId(member_name, member_birth, member_phone);
+		model.addAttribute("findid", member.getMember_id());
+		System.out.println(member.toString());
+		return "join/findIdResult";
+	}
+
+
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPassword")
 	public String findPasswordGET() {
-		
 		return "join/findPassword";
 	}
 	
+
+	@GetMapping("/findPassword/find")
+	public String findPasswordPost(String member_id, String member_name, String member_birth, String member_phone) {
+		MembersDTO member = exService.findPw(member_id,member_name, member_birth, member_phone);
+		System.out.println(member.toString());
+		return "join/findPassword";
+	}
+
 }

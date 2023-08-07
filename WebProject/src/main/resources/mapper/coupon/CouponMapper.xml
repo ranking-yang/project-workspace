@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.CouponMapper">
+	
+	<select id="getMemberCode">
+		SELECT 
+			member_code
+		FROM
+			members
+		WHERE
+			rownum = 1
+		ORDER BY
+			member_code DESC
+	</select>
+	
+	<insert id="insertCoupon" parameterType="MemberCouponDTO">
+		INSERT INTO
+			member_coupon(
+				member_coupon_code,
+				user_code,
+				coupon_code,
+				coupon_state,
+				expiry_date
+			)
+		VALUES
+			(
+				member_coupon_code_seq.nextval,
+				#{user_code},
+				#{coupon_code},
+				#{coupon_state},
+				#{expiry_date}
+			)
+	</insert>
+	
+</mapper>

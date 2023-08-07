@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="../common/commonCss.jsp" %>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41addc1fbc1c78ebaa3d3a97b6469d30"></script>
 <title>상세페이지</title>
 </head>
 <body>

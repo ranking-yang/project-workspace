@@ -74,9 +74,7 @@
 
 			<!-- 지도가 위치할 곳 -->
 			<div align="center" style="margin-top: 10px;">
-				<div style="z-index: -1;" id="daum_map">
-					<img src="../resources/common/image/question-mark.png">
-				</div>
+				<div id="map1" data-la="${la }" data-lo="${lo }"></div>
 			</div>
 		</div>
 	</div>
