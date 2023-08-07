@@ -238,7 +238,29 @@ function submitForm() {
   // .score_section_left_star_filled 요소의 width 속성에 averageRating 값을 적용
   var filledStarElement = document.querySelector('.score_section_left_star_filled');
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
-    
+  
+  // AJAX를 사용하여 리뷰 생성 요청 보내기
+  fetch("/product/reviews", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // 서버로부터의 응답 처리
+      console.log(data); // 서버가 리뷰 생성 성공 여부 등의 정보를 응답할 수 있음
+      if (data.success) {
+        // 리뷰가 성공적으로 생성된 경우, 페이지를 새로고침하거나 적절한 처리를 수행합니다.
+        location.reload();
+      } else {
+        alert("리뷰 생성에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      // 오류 처리
+      console.error("Error:", error);
+      alert("서버와의 통신 중 오류가 발생했습니다.");
+    });
+  
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
 
