@@ -35,42 +35,39 @@
         </div>
         <div id="page-title">${main_category }</div>
         <div id="product">
-        <c:forEach var="product" items="${performances }">
-            <div class="product-module" data-category="${main_category}" data-pk="${product.performance_code}">
-                <img class="product-module-poster" src="${product.poster }" alt="포스터">
-                <div class="product-module-top">
-                    <div class="place">
-                        <span>
-                        	<c:set var="test" value="${product.address}"/>${fn:substring(test,0,2)}
-                        </span>
-                    </div>
-                    <c:choose>
-					    <c:when test="${member_id eq null}">
-					       <div></div>
-					    </c:when>
-					    <c:otherwise>
-					        <c:choose>
-					            <c:when test="${empty product.wish_code}">
-					                <button class="likeBtn" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
-					                    <i class="fa-regular fa-heart" style="color: #000000;"></i> 
-					                </button>
-					            </c:when>
-					            <c:otherwise>
-					                <button class="likeBtn liked" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
-					                    <i class="fa-solid fa-heart" style="color: #e41b1b;"></i>
-					                </button>
-					            </c:otherwise>
-					        </c:choose>
-					    </c:otherwise>
-					</c:choose>
-                </div>
-                <div class="product-module-title">${product.performance_name }</div>
-                <div class="product-module-bottom">
-                    <div class="star"><i class="fa-solid fa-star" style="color: #ffcb0f;"></i>4.8(828)</div>
-                    <div class="price">${product.performance_price }원</div>
-                </div>
-           </div>
-        </c:forEach>
+        	<c:forEach var="product" items="${performances}">
+			    <div class="product-module" data-category="${main_category}" data-pk="${product.performance_code}">
+			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
+			        <div class="product-module-top">
+			            <div class="place">
+			                <span>
+			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
+			                </span>
+			            </div>
+			            <c:choose>
+			                <c:when test="${empty member_id}">
+			                    <div></div>
+			                </c:when>
+			                <c:otherwise>
+			                    <c:set var="liked" value="false" />
+			                    <c:forEach var="wish" items="${wishlist}">
+			                        <c:if test="${product.performance_code eq wish.performance_code}">
+			                            <c:set var="liked" value="true" />
+			                        </c:if>
+			                    </c:forEach>
+			                    <button class="likeBtn ${liked ? 'liked' : ''}" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+			                        <i class="fa-${liked ? 'solid' : 'regular'} fa-heart" style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
+			                    </button>
+			                </c:otherwise>
+			            </c:choose>
+			        </div>
+			        <div class="product-module-title">${product.performance_name}</div>
+			        <div class="product-module-bottom">
+			            <div class="star"><i class="fa-solid fa-star" style="color: #ffcb0f;"></i>4.8(828)</div>
+			            <div class="price">${product.performance_price}원</div>
+			        </div>
+			    </div>
+			</c:forEach>
         </div>
 		<%@ include file="../common/scroll.jsp" %>
     </div>

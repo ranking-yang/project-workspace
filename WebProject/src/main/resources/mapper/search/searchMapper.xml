@@ -11,13 +11,11 @@
 			OR place LiKE '%' || #{keyword} || '%')
 		ORDER BY rownum
 	</select>
-	<select id="getUserSearchList">
-		SELECT * FROM performance 
-		LEFT OUTER JOIN wish_list USING(performance_code) 
+	<select id="countSearchList">
+		SELECT count(*) FROM performance 
 		WHERE end_date > sysdate 
 		AND (performance_name LiKE '%' || #{keyword} || '%'
 			OR address LiKE '%' || #{keyword} || '%'
 			OR place LiKE '%' || #{keyword} || '%')
-		ORDER BY rownum
 	</select>
 </mapper>
