@@ -33,7 +33,9 @@ public class DetailController {
 	
 	@Autowired
 	ReviewService reviewService;
-	@GetMapping("/product/product-detail")
+	
+	
+	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
 
 		
