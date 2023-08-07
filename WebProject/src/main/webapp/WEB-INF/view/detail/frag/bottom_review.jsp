@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    <div class="contentstyle1" id="content_2" style=";">
+<form action="/product/reviews">
+ <div class="contentstyle1" id="content_2" style=";">
   <div class="main_tab_wrap">
   <div class="score_section" style="padding-top:10px">
     <div class="score_section_left" style="margin-top:10px;">
@@ -65,25 +66,25 @@
     </div>
   </div>
 </div>
-</div>
-  
-  
-  <div class="review_start" style=";">
+</div>  
+    <div class="review_start" style=";">
   	<div class="review_text" id="review_text_container">
     </div>
+   </div>
   </div>
-</div>
-</div>
-<script>
+ </div>
+ <script>
+ var member_id = '${member_id}';
+ 
 //페이지가 로드될 때 폼의 가시성 설정
-function setFormVisibility1() {
-  var userId = "${sessionScope.userId}";
-  var form = document.getElementById("reply_write_frm1");
-
-  if (!userId) {
-    form.style.display = "none"; // 폼 숨김
-  } else {
-    form.style.display = "block"; // 폼 보이기
-  }
-}
-</script>
+ function setFormVisibility1() {
+   var form = document.getElementById("reply_write_frm1");
+   console.log(member_id);
+   if (!member_id) {
+     form.style.display = "none"; // 폼 숨김
+   } else {
+     form.style.display = "block"; // 폼 보이기
+   }
+ }
+ </script>
+</form>

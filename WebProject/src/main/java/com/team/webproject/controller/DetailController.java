@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +25,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.ReviewDTO;
+import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
+import com.team.webproject.service.ProductListService;
 import com.team.webproject.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,7 +41,8 @@ public class DetailController {
 	
 	@Autowired
 	ReviewService reviewService;
-	
+	@Autowired
+	LoginMapper loginMapper;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
@@ -81,17 +86,23 @@ public class DetailController {
 	
 	@GetMapping("/product/reviews")
     public String getAllReviews(Model model) {
-        List<ReviewDTO> reviews = reviewService.getAllReviews();
-        model.addAttribute("reviews", reviews);
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String member_id = ((UserDetails) principal).getUsername();
+		System.out.println("detail_member_id: "+ member_id);
+		MembersDTO member = loginMapper.checklogin(member_id);
+		System.out.println("detail_member_code: "+ member.getMember_code());
+//        List<ReviewDTO> reviews = reviewService.getAllReviews();
+//        model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
-    @GetMapping("/product/reviews/{reviewCode}")
-    public String getReviewByCode(@PathVariable Integer reviewCode, Model model) {
-        ReviewDTO review = reviewService.getReviewByCode(reviewCode);
-        model.addAttribute("review", review);
-        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
-    }
+	
+	 @GetMapping("/product/reviews/{reviewCode}") public String
+	 getReviewByCode(@PathVariable Integer reviewCode, Model model) { ReviewDTO
+	 review = reviewService.getReviewByCode(reviewCode);
+	 model.addAttribute("review", review); return "/detail/detail"; // 리뷰 정보를 상세페이지로 전달하고 해당 뷰를 반환 
+	 }
+	 
 
     // 다른 REST 엔드포인트와 메서드 구현
     // ...

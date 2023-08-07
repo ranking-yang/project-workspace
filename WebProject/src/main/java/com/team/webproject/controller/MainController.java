@@ -24,6 +24,8 @@ public class MainController {
 		// 전체 securityholder 내용
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
+		
+		
 		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
 		System.out.println("main principal : " + principal.toString());
 		

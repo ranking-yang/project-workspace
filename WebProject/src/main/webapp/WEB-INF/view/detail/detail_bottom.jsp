@@ -30,9 +30,3 @@
   	</div>
   	
 </section>
-<%
-  String userId = (String) session.getAttribute("userId");
-%>
-<script>
-  var userId = "${userId}";
-</script>
