@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.service.DetailService;
 import com.team.webproject.service.ReviewService;
@@ -107,5 +111,18 @@ public class DetailController {
         //return "redirect:/product/product-detail"; // 리뷰를 삭제하고 상세 페이지로 리다이렉트
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
+    
+    @GetMapping("/product/reviews/MembersDTO")
+    public ResponseEntity<MembersDTO> getMembers() {
+        // MembersDTO 객체 생성 및 데이터 설정
+        MembersDTO membersDTO = new MembersDTO();
+        membersDTO.getMember_code();
+        membersDTO.getMember_id();
+        // ... 필요한 데이터 설정 ...
 
+        // JSON 변환 및 반환
+        return ResponseEntity.ok(membersDTO);
+    }
+
+    
 }
