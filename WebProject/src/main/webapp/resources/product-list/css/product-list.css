@@ -10,47 +10,46 @@ button{
 #product-container{
     width: 1100px;
     display: grid;
-    grid-template-rows: 50px 200px 1fr;
-    margin: 50px auto;
+    grid-template-rows: 160px 70px 1fr;
+    margin: 0 auto 30px auto;
 }
 #page-title{
     font-size: 40px;
-    font-weight: bold;
+    font-weight: 600;
     background: rgb(70,200,180);
     background: linear-gradient(90deg, rgba(70,200,180,1) 0%, rgba(208,231,227,1) 100%);
     color: white;
-    margin: 20px 0;
     padding: 50px;
-
 }
 #navmenu{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    padding-top: 15px;
-    font-weight: 500px;
+    padding: 20px 0;
+    font-weight: 500;
 }
-
 #navmenu span{
-    padding: 0 3px;
-    color: rgb(131, 131, 131);
-}
-#area span:hover{
-    color: rgb(70,200,180);
+	margin: 0 5px;
+	padding: 0 3px;
     cursor: pointer;
 }
-#filters span:hover{
-    color: rgb(236, 36, 220);
-    cursor: pointer;
+#areaBtns{
+	color: rgb(131, 131, 131);
 }
-.submenu.selected{
-    color: rgb(70,200,180);
+.areaBtn:hover{
+	color: rgb(70,200,180);
 }
-.filterselected{
-    color: rgb(236, 36, 220);
+.areaBtn.selected{
+	color: rgb(70,200,180);
+	font-weight: 500;
 }
 #filters{
+	color: rgb(131, 131, 131);
     text-align: right;
 }
+.filter:hover, .filterBtn.selected{
+    color: rgb(236, 36, 220);
+}
+
 
 #product{
     display: grid;
@@ -63,7 +62,7 @@ button{
     column-gap: 10px;
     text-align: center;
     display: grid;
-    grid-template-rows: 4fr 40px 80px 30px;
+    grid-template-rows: 320px 40px 1fr 30px;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -93,7 +92,7 @@ button{
 }
 
 .product-module-title{
-    font-weight: bold;
+    font-weight: 600;
     font-size: 20px;
     padding-top: 5px;
     color: black;
@@ -106,7 +105,7 @@ button{
 .price{
 	font-size: 1.3rem;
 	text-align: right;
-	font-weight: 600;
+	font-weight: 500;
 	padding-right: 20px;
 }
 
@@ -119,7 +118,7 @@ button{
     font-weight: bold;
 }
 
-.place > span{
+.tag > span{
     background-color: #EEEEEE;
     border-radius: 15px;
     margin: 0;

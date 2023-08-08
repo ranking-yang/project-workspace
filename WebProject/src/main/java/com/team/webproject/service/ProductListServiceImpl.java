@@ -1,5 +1,4 @@
 package com.team.webproject.service;
-
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,10 +21,14 @@ public class ProductListServiceImpl implements ProductListService {
 	private final WishlistMapper wishMapper;
 
 	@Override	
-	public List<PerformanceDTO> getProductList(String main_category, String area) {
-			return performanceMapper.getPerformances(main_category);
+	public List<PerformanceDTO> getProductList(String main_category) {
+		if(main_category.equals("area")) {
+			return performanceMapper.getAllPerformances();
+		}else {
+			return performanceMapper.getPerformances(main_category);						
+		}
 	}
-
+	
 	@Override
 	public int getMember_code(String member_id) {
 		return loginMapper.checklogin(member_id).getMember_code();
@@ -35,6 +38,14 @@ public class ProductListServiceImpl implements ProductListService {
 	public List<WishlistDTO> getUserWish_list(int member_code) {
 		return wishMapper.getUserWishlist(member_code);
 	}
+
+	 @Override
+	    public List<PerformanceDTO> getAreaProductList(String area_code) {
+	        String areaName = AreaEnum.getAreaNameByCode(area_code);
+            return performanceMapper.getAreaPerformances(areaName);
+
+	    }
+
 	
 	
 

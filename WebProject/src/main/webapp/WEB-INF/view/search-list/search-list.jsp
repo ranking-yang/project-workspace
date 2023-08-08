@@ -33,7 +33,7 @@
 						<div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">
 			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
 			        <div class="product-module-top">
-			            <div class="place">
+			            <div class="tag">
 			                <span>
 			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
 			                </span>

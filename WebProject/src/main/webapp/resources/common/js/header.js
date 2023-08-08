@@ -40,6 +40,10 @@ const menuBtns = document.querySelectorAll('.menu-btn');
 		    	case '키즈':
 					location.href = '/product/performance?main_category=kid';
 		    		break;
+		    	case '지역별':
+					location.href = '/product/performance?main_category=area';
+		    		break;
+		    	
 			}
 
 	    	

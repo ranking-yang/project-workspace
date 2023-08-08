@@ -52,26 +52,21 @@ $(document).ready(function(){
 	})
 });
 
-
 $(document).ready(function(){
-	$('.submenu').on('click', function(){
-		const urlParams = new URLSearchParams(window.location.search);
-        const textContent = $(this).text();
-        //console.log(textContent);
-        // 파라미터 중 'area'를 바꾸기
-        urlParams.set('area',textContent);
-        
-        // 새로운 URL 생성
-        const newUrl = window.location.pathname + '?' + urlParams.toString();
-        //console.log(newUrl);
-        //console.log(urlParams);
-        //console.log(window.location.pathname);
-        // 새로운 URL로 리다이렉트
-        window.location.href = newUrl;
-		
-	})
-});
+    // 페이지 로드 시 실행
+    let urlParams = new URLSearchParams(window.location.search);
+    let areaCode = urlParams.get('area_code');
+    
+    if (areaCode) {
+        $('.areaBtn[data-area="' + areaCode + '"]').addClass('selected');
+    }
 
+    // 버튼 클릭 시 페이지 리다이렉트만 처리
+    $('.areaBtn').on('click', function(){
+        let area = $(this).data('area');
+        location.href = '../product/area?area_code=' + area;
+    });
+});
 
 $('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기
 		  var price = $(this).text();

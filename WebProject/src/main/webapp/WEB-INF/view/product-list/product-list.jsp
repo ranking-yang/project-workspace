@@ -15,47 +15,75 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<div id="product-container">
-        <div id="navmenu">
-            <div id="area">
-                <span class="submenu selected" id="all">전체</span>
-                <span class="submenu" id="seoul">서울</span>
-                <span class="submenu" id="gyeong-in">경기·인천</span>
-                <span class="submenu" id="chung-dae">충청·대전</span>
-                <span class="submenu" id="gyeong-dae-bu">경상·대구·부산</span>
-                <span class="submenu" id="jeon-kwang">전라·광주</span>
-                <span class="submenu" id="Gangwon">강원</span>
-                <span class="submenu" id="jeju">제주</span>
-            </div>
-            <div id="filters">
-                <span class="filter">인기순</span>
-                <span class="filter">별점순</span>
-                <span class="filter">최저가순</span>
-                <span class="filter">최고가순</span>
-            </div>
-        </div>
-        <c:choose>
+        <c:choose><%--페이지 제목처리 --%>
         	<c:when test="${main_category eq 'show'}">
         		<div id="page-title">공연</div>
-			</c:when>      
-        	<c:when test="${main_category eq 'art'}">
-        		<div id="page-title">전시</div>
+			</c:when>
+			<c:when test="${main_category eq 'art'}">
+      			<div id="page-title">전시</div>
 			</c:when>      
         	<c:when test="${main_category eq 'music'}">
         		<div id="page-title">음악</div>
 			</c:when>      
         	<c:when test="${main_category eq 'kid'}">
         		<div id="page-title">키즈</div>
-			</c:when>      
+			</c:when>     
+        	<c:when test="${main_category eq 'area' or not empty area_code}">
+        		<div id="page-title">지역별</div>
+			</c:when>
         </c:choose>
+        		<div id="navmenu">
+        		<c:choose><%--페이지 서브메뉴 처리 --%>
+	        		<c:when test="${main_category eq 'area' or not empty area_code}">
+		        		<div id="areaBtns">
+		        			<span class="areaBtn" data-area="a01">서울</span>
+		        			<span class="areaBtn" data-area="a02">경기</span>
+		        			<span class="areaBtn" data-area="a03">강원</span>
+		        			<span class="areaBtn" data-area="a04">인천</span>
+		        			<span class="areaBtn" data-area="a05">충청</span>
+		        			<span class="areaBtn" data-area="a06">세종</span>
+		        			<span class="areaBtn" data-area="a07">대전</span>
+		        			<span class="areaBtn" data-area="a08">전라</span>
+		        			<span class="areaBtn" data-area="a09">광주</span>
+		        			<span class="areaBtn" data-area="a10">경상</span>
+		        			<span class="areaBtn" data-area="a11">부산</span>
+		        			<span class="areaBtn" data-area="a12">대구</span>
+		        			<span class="areaBtn" data-area="a13">울산</span>
+		        			<span class="areaBtn" data-area="a14">제주</span>
+		        		</div>
+        			</c:when>
+        			<c:otherwise>
+        				<div></div>
+        			</c:otherwise>
+		        </c:choose>
+		            <div id="filters">
+		                <span class="filter">인기순</span>
+		                <span class="filter">별점순</span>
+		                <span class="filter">최저가순</span>
+		                <span class="filter">최고가순</span>
+		            </div>
+          		</div>
         <div id="product">
         	<c:forEach var="product" items="${performances}">
-			    <div class="product-module" data-category="${main_category}" data-pk="${product.performance_code}">
+			    <div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">
 			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
 			        <div class="product-module-top">
-			            <div class="place">
-			                <span>
-			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
-			                </span>
+			            <div class="tag">
+			                <c:choose><%--태그에 대한 처리 --%>
+			                	<c:when test="${main_category eq 'area' and empty area_code}">
+			                		<span>
+					                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
+					                </span>
+					                <span>
+					                    ${product.sub_category}
+					                </span>
+				                </c:when>
+				                <c:otherwise>
+				                	<span>
+					                    ${product.sub_category}
+					                </span>
+				                </c:otherwise>
+			                </c:choose>
 			            </div>
 			            <c:choose>
 			                <c:when test="${empty member_id}">

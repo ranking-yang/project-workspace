@@ -10,6 +10,11 @@
 		SELECT * FROM performance 
 		WHERE main_category=#{main_category} AND end_date > sysdate ORDER BY rownum
 	</select>
+	<select id="getAreaPerformances">
+		SELECT * FROM performance 
+		WHERE address LIKE '' || #{area_code} || '%'
+		AND end_date > sysdate ORDER BY rownum
+	</select>
 	<select id="getPerformance" resultType="PerformanceDTO">
 		SELECT * FROM performance WHERE performance_code=#{performance_code}
 	</select>
