@@ -33,5 +33,41 @@
 				#{expiry_date}
 			)
 	</insert>
+	<select id="getAllRecords" parameterType="string" resultType="MemberCouponDTO">
+		SELECT
+			mc.member_coupon_code,
+			mc.user_code,
+			mc.coupon_code,
+			mc.expiry_date,
+			cp.coupon_name,
+			cp.discount_rate,
+			cp.discount_money,
+			cp.coupon_qty
+		FROM
+			member_coupon mc,
+			coupon cp,
+			(SELECT member_code FROM members
+			 WHERE member_id = #{user_id}) id
+		WHERE
+			mc.user_code = id.member_code
+			AND mc.coupon_code = cp.coupon_code
+			AND mc.coupon_state = 0
+			AND TO_CHAR(mc.expiry_date, 'YYYYMMDD') >= TO_CHAR(sysdate, 'YYYYMMDD')
+	</select>
+	
+	<select id="getCount" parameterType="string" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			member_coupon mc
+		WHERE
+			mc.user_code IN
+				(SELECT
+					member_code
+				 FROM
+				 	members
+				 WHERE
+				 	member_id=#{user_id})
+	</select>
 	
 </mapper>

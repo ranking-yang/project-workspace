@@ -2,6 +2,7 @@ package com.team.webproject.service;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,16 @@ public class CouponServiceImpl implements CouponService {
 		
 		return couponMapper.insertCoupon(memberCoupon);
 		
+	}
+
+	@Override
+	public List<MemberCouponDTO> getAllCoupon(String user_id) {
+		return couponMapper.getAllRecords(user_id);
+	}
+
+	@Override
+	public int getTheNumberOfCoupon(String user_id) {
+		return couponMapper.getCount(user_id);
 	}
 
 }

@@ -7,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.team.webproject.common.IamportAPI;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.TicketDTO;
+import com.team.webproject.service.CouponService;
 import com.team.webproject.service.PaymentService;
 
 @Controller
@@ -25,7 +25,11 @@ public class PaymentController {
 
 	@Autowired
 	IamportAPI imaportAPI;
-
+	
+	//쿠폰 보유장수 표기관련 로직
+	@Autowired
+	CouponService couponService;
+	
 	@PostMapping("/payment/request")
 	String getProceedPayment(Model model,
 			@ModelAttribute TicketDTO ticket,
@@ -46,7 +50,10 @@ public class PaymentController {
 			model.addAttribute("orders", paymentService.getOrders(ticket, bookingTypes, bookingPrices, bookingQtys));
 			model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("api_market", imaportAPI.getImport_api_marketkey());
-
+			
+			// 해당 유저 쿠폰 보유장수 파악
+			model.addAttribute("coupon_count", couponService.getTheNumberOfCoupon(userID));
+			
 			return "payment/payment";
 		}
 
@@ -81,10 +88,5 @@ public class PaymentController {
 
 	}	
 	
-	// 보유쿠폰 확인창
-	@GetMapping("/payment/mycoupon")
-	public String myCoupon() {
-		return "payment/coupon-popup";
-	}
 
 }
