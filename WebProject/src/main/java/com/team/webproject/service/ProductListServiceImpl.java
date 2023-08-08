@@ -22,10 +22,13 @@ public class ProductListServiceImpl implements ProductListService {
 
 	@Override	
 	public List<PerformanceDTO> getProductList(String main_category) {
-		return performanceMapper.getPerformances(main_category);			
-	
+		if(main_category.equals("area")) {
+			return performanceMapper.getAllPerformances();
+		}else {
+			return performanceMapper.getPerformances(main_category);						
+		}
 	}
-
+	
 	@Override
 	public int getMember_code(String member_id) {
 		return loginMapper.checklogin(member_id).getMember_code();

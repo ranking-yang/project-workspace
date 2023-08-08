@@ -62,8 +62,11 @@ public class ProductListController {
 			model.addAttribute("wishlist", productListService.getUserWish_list(member_code));
 
 		}
-
+		model.addAttribute("area_code", area_code);
+		System.out.println(area_code);
 		model.addAttribute("performances", productListService.getAreaProductList(area_code));
+		
+		
 		System.out.println(productListService.getAreaProductList(area_code));
 		return "/product-list/product-list";
 	}

@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<div id="product-container">
-        <c:choose>
+        <c:choose><%--페이지 제목처리 --%>
         	<c:when test="${main_category eq 'show'}">
         		<div id="page-title">공연</div>
 			</c:when>
@@ -28,12 +28,12 @@
         	<c:when test="${main_category eq 'kid'}">
         		<div id="page-title">키즈</div>
 			</c:when>     
-        	<c:when test="${main_category eq 'area'}">
+        	<c:when test="${main_category eq 'area' or not empty area_code}">
         		<div id="page-title">지역별</div>
 			</c:when>
         </c:choose>
-        <c:choose>
-        	<c:when test="${main_category eq 'area'}">
+        <c:choose><%--페이지 서브메뉴 처리 --%>
+        	<c:when test="${main_category eq 'area' or not empty area_code}">
         		<div id="navmenu">
 	        		<div id="areaBtns">
 	        			<span class="areaBtn" data-area="a01">서울</span>
