@@ -22,6 +22,6 @@ public class MypageTicketDTO {
 	Integer total_price;
 	
 	// 리뷰 여부
-	Integer review_check;
+	Integer review_num;
 
 }
