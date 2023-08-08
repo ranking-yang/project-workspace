@@ -4,27 +4,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+	var columntitle = "<tr><th>코드</th><th>제목</th><th>발행개수</th><th>대분류</th><th>소분류</th><th>가격</th><th>시작일</th><th>종료일</th><th>주소</th><th>장소</th><th>썸네일</th><th>위도</th><th>경도</th></tr>";
 	$("#add_theater").click(function() {
 		$("#apiaddtable").empty();
+		$("#apiaddtable").append(columntitle);
         $.ajax({
             url : "/admin/api/theater_show",
             type: "GET",
             success : function(result) {
             	$(result).each(function(){
-            		$("#apiaddtable").append("<tr>"		
-            		+"<td><button id='api_btn'>수정</button></td>"
+            		$("#apiaddtable").append("<tr>"	
             		+"<td>"+this.performance_code+"</td>"		
-            		+"<td>"+this.performance_name+"</td>"
-            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td width='300'><input type='text' value='"+this.performance_name+"'/></td>"
+            		+"<td width='50'><input type='text' value='"+this.performance_qty+"'/></td>"
             		+"<td>"+this.main_category+"</td>"
             		+"<td>"+this.sub_category+"</td>"
-            		+"<td>"+this.performance_price+"</td>"
-            		+"<td>"+this.start_date+"</td>"
-            		+"<td>"+this.end_date+"</td>"
-            		+"<td>"+this.address+"</td>"
-            		+"<td>"+this.place+"</td>"
-            		+"<td>"+this.kid_state+"</td>"
-            		+"<td>"+this.poster+"</td>"
+            		+"<td width='100'><input type='text' value='"+this.performance_price+"'/></td>"
+            		+"<td width='100'>"+this.start_date+"</td>"
+            		+"<td width='100'>"+this.end_date+"</td>"
+            		+"<td width='200'>"+this.address+"</td>"
+            		+"<td width='150'>"+this.place+"</td>"
+            		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
             		+"<td>"+this.lat+"</td>"
             		+"<td>"+this.lon+"</td>"
             		+"</tr>");
@@ -37,25 +37,24 @@ $(document).ready(function() {
     });
 	$("#add_music").click(function() {
 		$("#apiaddtable").empty();
+		$("#apiaddtable").append(columntitle);
         $.ajax({
             url : "/admin/api/theater_music",
             type: "GET",
             success : function(result) {
             	$(result).each(function(){
-            		$("#apiaddtable").append("<tr>"		
-            		+"<td><button id='api_btn'>수정</button></td>"
+            		$("#apiaddtable").append("<tr>"	
             		+"<td>"+this.performance_code+"</td>"		
-            		+"<td>"+this.performance_name+"</td>"
-            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td width='300'><input type='text' value='"+this.performance_name+"'/></td>"
+            		+"<td width='50'><input type='text' value='"+this.performance_qty+"'/></td>"
             		+"<td>"+this.main_category+"</td>"
             		+"<td>"+this.sub_category+"</td>"
-            		+"<td>"+this.performance_price+"</td>"
-            		+"<td>"+this.start_date+"</td>"
-            		+"<td>"+this.end_date+"</td>"
-            		+"<td>"+this.address+"</td>"
-            		+"<td>"+this.place+"</td>"
-            		+"<td>"+this.kid_state+"</td>"
-            		+"<td>"+this.poster+"</td>"
+            		+"<td width='100'><input type='text' value='"+this.performance_price+"'/></td>"
+            		+"<td width='100'>"+this.start_date+"</td>"
+            		+"<td width='100'>"+this.end_date+"</td>"
+            		+"<td width='200'>"+this.address+"</td>"
+            		+"<td width='150'>"+this.place+"</td>"
+            		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
             		+"<td>"+this.lat+"</td>"
             		+"<td>"+this.lon+"</td>"
             		+"</tr>");
@@ -68,25 +67,24 @@ $(document).ready(function() {
     });
 	$("#add_kid").click(function() {
 		$("#apiaddtable").empty();
+		$("#apiaddtable").append(columntitle);
         $.ajax({
             url : "/admin/api/theater_kids",
             type: "GET",
             success : function(result) {
             	$(result).each(function(){
-            		$("#apiaddtable").append("<tr>"		
-            		+"<td><button id='api_btn'>수정</button></td>"
+            		$("#apiaddtable").append("<tr>"	
             		+"<td>"+this.performance_code+"</td>"		
-            		+"<td>"+this.performance_name+"</td>"
-            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td width='300'><input type='text' value='"+this.performance_name+"'/></td>"
+            		+"<td width='50'><input type='text' value='"+this.performance_qty+"'/></td>"
             		+"<td>"+this.main_category+"</td>"
             		+"<td>"+this.sub_category+"</td>"
-            		+"<td>"+this.performance_price+"</td>"
-            		+"<td>"+this.start_date+"</td>"
-            		+"<td>"+this.end_date+"</td>"
-            		+"<td>"+this.address+"</td>"
-            		+"<td>"+this.place+"</td>"
-            		+"<td>"+this.kid_state+"</td>"
-            		+"<td>"+this.poster+"</td>"
+            		+"<td width='100'><input type='text' value='"+this.performance_price+"'/></td>"
+            		+"<td width='100'>"+this.start_date+"</td>"
+            		+"<td width='100'>"+this.end_date+"</td>"
+            		+"<td width='200'>"+this.address+"</td>"
+            		+"<td width='150'>"+this.place+"</td>"
+            		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
             		+"<td>"+this.lat+"</td>"
             		+"<td>"+this.lon+"</td>"
             		+"</tr>");
@@ -99,25 +97,25 @@ $(document).ready(function() {
     });
 	$("#add_showing").click(function() {
 		$("#apiaddtable").empty();
+		$("#apiaddtable").append(columntitle);
         $.ajax({
             url : "/admin/api/showing",
             type: "GET",
             success : function(result) {
+            	console.log(result);
             	$(result).each(function(){
-            		$("#apiaddtable").append("<tr>"		
-            		+"<td><button id='api_btn'>수정</button></td>"
+            		$("#apiaddtable").append("<tr>"	
             		+"<td>"+this.performance_code+"</td>"		
-            		+"<td>"+this.performance_name+"</td>"
-            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td width='300'><input type='text' value='"+this.performance_name+"'/></td>"
+            		+"<td width='50'><input type='text' value='"+this.performance_qty+"'/></td>"
             		+"<td>"+this.main_category+"</td>"
             		+"<td>"+this.sub_category+"</td>"
-            		+"<td>"+this.performance_price+"</td>"
-            		+"<td>"+this.start_date+"</td>"
-            		+"<td>"+this.end_date+"</td>"
-            		+"<td>"+this.address+"</td>"
-            		+"<td>"+this.place+"</td>"
-            		+"<td>"+this.kid_state+"</td>"
-            		+"<td>"+this.poster+"</td>"
+            		+"<td width='100'><input type='text' value='"+this.performance_price+"'/></td>"
+            		+"<td width='100'>"+this.start_date+"</td>"
+            		+"<td width='100'>"+this.end_date+"</td>"
+            		+"<td width='200'>"+this.address+"</td>"
+            		+"<td width='150'>"+this.place+"</td>"
+            		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
             		+"<td>"+this.lat+"</td>"
             		+"<td>"+this.lon+"</td>"
             		+"</tr>");
@@ -128,8 +126,44 @@ $(document).ready(function() {
             }
         });
     });
-	$("#add_table_btn").click(function() {
+$("#add_table_btn").click(function() {
 		
+		var dataArrayToSend1 = new List();
+		$("#apiaddtable tr").each(function(){
+			var len = $(this).find("td").length;
+			console.log(len);
+			var show = new Object();
+			for(var i=1; i< len; i++)
+			{
+				show.performance_code= $(this).find("td").eq(1).text();
+				show.performance_name= $(this).find("td").eq(2).text();
+				show.performance_qty= $(this).find("td").eq(3).text();
+				show.main_category= $(this).find("td").eq(4).text();
+				show.sub_category= $(this).find("td").eq(5).text();
+				show.performance_price= $(this).find("td").eq(6).text();	
+				show.start_date= $(this).find("td").eq(7).text();	
+				show.end_date= $(this).find("td").eq(8).text();	
+				show.address= $(this).find("td").eq(9).text();	
+				show.place= $(this).find("td").eq(10).text();
+				show.poster= $(this).find("td").eq(11).text();	
+				show.lat= $(this).find("td").eq(12).text();	
+				show.lon= $(this).find("td").eq(13).text();	
+			
+			}
+			dataArrayToSend1.push(show);
+			
+		});
+		console.log(dataArrayToSend1);
+		$.ajax({
+			contentType: "application/json",
+			type: "POST",
+			data: JSON.stringify(dataArrayToSend1),
+			url: "/admin/api/add",
+			success: function(data) {
+				console.log('done');
+			},
+			
+		});
 	});
 });
 
@@ -146,25 +180,9 @@ $(document).ready(function() {
     <button id="add_showing">전시 추가</button>
     <button id="add_table_btn">추가</button>
     <button id="delete">삭제</button>
-    <div style="overflow-x:auto; overflow-y:auto;" class="table-box">
+    <div class="table-box">
       <table class="api-table" id="apiaddtable">
-        <tr>
-          <th>옵션</th>
-          <th>코드</th>
-          <th>제목</th>
-          <th>발행개수</th>
-          <th>대분류</th>
-          <th>소분류</th>
-          <th>가격</th>
-          <th>시작일</th>
-          <th>종료일</th>
-          <th>주소</th>
-          <th>장소</th>
-          <th>키즈</th>
-          <th>썸네일</th>
-          <th>위도</th>
-          <th>경도</th>
-        </tr>
+        
       </table>
     </div>
     

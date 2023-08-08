@@ -143,11 +143,9 @@ public class ListShowAPIController {
             	String json = jsonMapper.writeValueAsString(dataInstance); // json to String 변환
             	JSONParser parser = new JSONParser();
             	JSONObject json2 = (JSONObject) parser.parse(json);
-            	System.out.println("1번"+json2.toString());
             	datech = new DateChange();
             	// api에서 가져오는 데이터 json list로
             	List<JSONObject> lijson = (List<JSONObject>) json2.get("db");
-            	System.out.println("2번"+lijson.toString());
             	// DB에 들어가있는 값중 코드가 겹치는 코드 검사
             	
             	
@@ -166,14 +164,13 @@ public class ListShowAPIController {
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
         			show.setAddress(detail_map.get("adres"));
         			show.setPlace((String) js.get("fcltynm"));
-        			show.setKid_state('N');
         			show.setPoster((String) js.get("poster"));
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
         				showli.add(show);
 //        				System.out.println("3번"+show.toString());
-//        				addPerformance.addShow(show);
+        				addPerformance.addShow(show);
         				
         			}catch(Exception e) {
         				continue;
@@ -229,8 +226,6 @@ public class ListShowAPIController {
             String now = date.format(formatter);
             String plusnow = plusdate.format(formatter);
             for(String key: category.keySet()) {
-            	System.out.println(key);
-            	System.out.println(category.get(key));
             	String searchUrl = url+"&stdate="+now+"&eddate="+plusnow+"&cpage=1&rows=100&shcate="+category.get(key)+"&kidstate=N";
             	
             	UriComponents uri = UriComponentsBuilder.fromHttpUrl(searchUrl).build();
@@ -249,7 +244,6 @@ public class ListShowAPIController {
             	datech = new DateChange();
             	// api에서 가져오는 데이터 json list로
             	List<JSONObject> lijson = (List<JSONObject>) json2.get("db");
-            	System.out.println("json"+lijson.toString());
             	// DB에 들어가있는 값중 코드가 겹치는 코드 검사
             	
             	
@@ -262,20 +256,18 @@ public class ListShowAPIController {
         			show.setPerformance_qty(50);
         			show.setMain_category("music");
         			show.setSub_category((String)js.get("genrenm"));
-        			System.out.println("sub_"+ (String)js.get("genrenm"));
         			show.setPerformance_price(300);
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
         			show.setAddress(detail_map.get("adres"));
         			show.setPlace((String) js.get("fcltynm"));
-        			show.setKid_state('N');
         			show.setPoster((String) js.get("poster"));
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
 //        				System.out.println("music:"+show.toString());
-//        				addPerformance.addShow(show);
+        				addPerformance.addShow(show);
         				showli.add(show);
         			}catch(Exception e) {
         				continue;
@@ -366,20 +358,18 @@ public class ListShowAPIController {
         			show.setPerformance_qty(50);
         			show.setMain_category("kid");
         			show.setSub_category((String)js.get("genrenm"));
-        			System.out.println((String)js.get("genrenm"));
         			show.setPerformance_price(300);
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
         			show.setAddress(detail_map.get("adres"));
         			show.setPlace((String) js.get("fcltynm"));
-        			show.setKid_state('Y');
         			show.setPoster((String) js.get("poster"));
         			show.setLat(Double.parseDouble(detail_map.get("lat")));
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
 //        				System.out.println("kid:"+show.toString());
-//        				addPerformance.addShow(show);
+        				addPerformance.addShow(show);
         				showli.add(show);
         			}catch(Exception e) {
         				continue;

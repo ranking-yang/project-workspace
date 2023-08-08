@@ -48,6 +48,13 @@
   background-color: #212529;
   overflow: hidden;
 }
+
+#mdtable{
+	width: auto;
+      height: auto;
+      border: 1px solid #ddd;
+}
+
  .table-box {
       width: auto;
       height: auto;

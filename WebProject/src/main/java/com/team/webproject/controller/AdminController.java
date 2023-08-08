@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,11 +59,23 @@ public class AdminController {
 	public List<ShowDTO> adminSelect(){
 		
 		List<ShowDTO> show = addPerformance.selectShow();
-		System.out.println(show.toString());
+		for(ShowDTO data : show) {
+			System.out.println(data.toString());
+		}
 		System.out.println(show.size());
 		return show;
 	}
 	
-	
+	@RequestMapping(value = "/admin/api/add", method = RequestMethod.POST)
+	@ResponseBody
+	public void tableList(@RequestBody List<ShowDTO> dataArrayToSend) throws Exception {
+		
+		System.out.println(dataArrayToSend);
+		System.out.println(dataArrayToSend.size());
+		for(ShowDTO show : dataArrayToSend) {
+			addPerformance.addShow(show);
+			System.out.println(show);
+		}
+	}
 
 }

@@ -10,20 +10,22 @@ $(document).ready(function() {
             type: "POST",
             success : function(result) {
             	$(result).each(function(){
+            		console.log(result);
             		$("#apitable").append("<tr>"		
             		+"<td><button id='api_btn'>수정</button></td>"
             		+"<td>"+this.performance_code+"</td>"		
-            		+"<td>"+this.performance_name+"</td>"
-            		+"<td>"+this.performance_qty+"</td>"
+            		+"<td width='300'><input type='text' value='"+this.performance_name+"'/></td>"
+            		+"<td width='50'><input type='text' value='"+this.performance_qty+"'/></td>"
             		+"<td>"+this.main_category+"</td>"
             		+"<td>"+this.sub_category+"</td>"
-            		+"<td>"+this.performance_price+"</td>"
-            		+"<td>"+this.start_date+"</td>"
-            		+"<td>"+this.end_date+"</td>"
-            		+"<td>"+this.address+"</td>"
-            		+"<td>"+this.place+"</td>"
-            		+"<td>"+this.kid_state+"</td>"
-            		+"<td>"+this.poster+"</td>"
+            		+"<td width='100'><input type='text' value='"+this.performance_price+"'/></td>"
+            		+"<td width='100'>"+this.start_date+"</td>"
+            		+"<td width='100'>"+this.end_date+"</td>"
+            		+"<td width='200'>"+this.address+"</td>"
+            		+"<td width='150'>"+this.place+"</td>"
+            		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
+            		+"<td>"+this.lat+"</td>"
+            		+"<td>"+this.lon+"</td>"
             		+"</tr>");
     			});
             },
@@ -33,6 +35,7 @@ $(document).ready(function() {
         	
         });
     });
+	
 });
 $(document).on("click", "#api_btn", function(){
 			$("#api_list").hide();
@@ -53,10 +56,9 @@ $(document).on("click", "#api_btn", function(){
 			    $("#endate").val(td.eq(8).text());
 			    $("#edit_address").val(td.eq(9).text());
 			    $("#edit_place").val(td.eq(10).text());
-			    $("#catkids").val(td.eq(11).text()).prop("selected", true);
-			    $("#edit_Thumbnail").val(td.eq(12).text());
+			    $("#edit_Thumbnail").val(td.eq(11).text());
 		   	});
-			
+		   		
 		});
 		</script>
 
@@ -66,9 +68,9 @@ $(document).on("click", "#api_btn", function(){
     <hr>
     <!-- API데이터 테이블 -->
     <button id="dbBtn">DB 확인</button>
-    <button id="add">추가</button>
+    <button id="add_table_btn">추가</button>
     <button id="delete">삭제</button>
-    <div style="overflow-x:auto; overflow-y:auto;" class="table-box">
+    <div class="table-box">
       <table class="api-table" id="apitable">
         <tr>
           <th>옵션</th>
@@ -82,8 +84,9 @@ $(document).on("click", "#api_btn", function(){
           <th>종료일</th>
           <th>주소</th>
           <th>장소</th>
-          <th>키즈</th>
           <th>썸네일</th>
+          <th>위도</th>
+          <th>경도</th>
         </tr>
       </table>
     </div>
