@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/resources/detail/css/detail_bottom.css"/>
-<script src="/resources/detail/js/detail_bottom.js"></script>
+
 
 	<section style="width:820px; margin:0 auto; padding-top:20px;">
 
@@ -33,6 +33,7 @@
 <%
   String userId = (String) session.getAttribute("userId");
 %>
+<script src="/resources/detail/js/detail_bottom.js"></script>
 <script>
   var userId = "${userId}";
 </script>

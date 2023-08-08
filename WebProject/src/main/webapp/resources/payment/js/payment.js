@@ -86,7 +86,7 @@ function makePaymentDTO(rsp) {
      let payment_way = $('<input>', {
         type: 'hidden',
         name: 'payment_way',
-        value: rsp.card_name
+        value: rsp.pay_method
     });
     
     let payment_date = $('<input>', {

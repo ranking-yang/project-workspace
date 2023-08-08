@@ -43,7 +43,7 @@ $(document).ready(function(){
 	$('.product-module').on('click', function(){
 		console.log($(this).data('pk'));
 		
-		if ($(this).data('category') !== "전시") {
+		if ($(this).data('category') !== "art") {
 	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
 			} else {
 				location.href = '../product-detail-ex?performance_code=' + $(this).data('pk');				

@@ -23,7 +23,7 @@
 <div class="detail-top-con">
 	<!-- product-list로 돌아감 -->
 	<div class="detail-top-now-category">
-		📁 <a href="/product/performance?main_category=${performance.main_category}">${performance.main_category}> </a>
+		📁 <a href="/product/performance?main_category=${performance.main_category}">${performance.main_category} > </a>
 	</div>
 	<!-- 카테고리 -->
 	<div class="detail-top-left">
@@ -94,7 +94,7 @@
 			<!-- 시간 JS에서 생성 -->
 		</div>
 		<div class="popup-qty">
-			<!-- 권종/수량 -->
+			<!-- 권종/수량 : 가격은 10원 단위 기준으로 올림함 -->
 			<div class="popup-text">권종/수량선택</div>
 			<c:forEach items="${discountRates}" var="discount">
 				<div class="popup-qty-parent">
@@ -112,9 +112,20 @@
 								form="payment_proceed_form" readonly />
 						</c:when>
 					</c:choose>
+					
 					<fmt:parseNumber var="price"
-						value="${performance.performance_price - (performance.performance_price * discount.discount_rate)})"
+						value="${(performance.performance_price - (performance.performance_price * discount.discount_rate)) / 10})"
 						integerOnly="true" />
+					 
+					<c:choose>						
+						<c:when test="${price % 10 ge 1}">
+							<fmt:parseNumber var="price" value="${(price + 10 - (price % 10)) * 10}"/>
+						</c:when>
+					<c:otherwise>
+						    <fmt:parseNumber var="price" value="${price * 10}"/>
+			        </c:otherwise>
+					</c:choose>						
+						
 					<input type="text" class="popup-qty-price" name="booking_price"
 						value="${price}" form="payment_proceed_form" readonly />
 					<div>원</div>

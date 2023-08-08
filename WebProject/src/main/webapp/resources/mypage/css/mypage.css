@@ -1,0 +1,197 @@
+.footer-container {
+	background-color: white;
+}
+
+/* 마이페이지 컨테이너 */
+#mypage_con {
+	width: 1100px;
+	margin: 0 auto; /* 중앙정렬 */
+	display: grid;
+	grid-template-columns: 250px 1fr;
+	row-gap: 30px;
+	column-gap: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+/* 마이페이지 메뉴 css */
+#mypage_con > div {
+	border-radius: 10px;
+	background-color: white;
+}
+	/* 상단 메뉴 css */
+	#mypage_top {
+		grid-column: 1 / -1;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		height: 130px;
+		font-weight: bold;
+		font-size: 18px;
+	}
+	
+	#mypage_top > div:first-child {
+		background-color: #46c8b4;
+		display: flex;
+	    align-items: center;
+	    padding-left: 30px;
+	    border-radius: 8px 0 0 8px;
+	}
+	
+	.mypage_top_contents {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		padding: 30px 30px;
+	}
+	
+	#my_info, #my_coupon, #my_wishList {
+		border-right: 1px solid #ddd;
+	}
+	
+	#my_coupon > div, #my_wishList > div {
+		cursor: pointer;
+	}
+	
+	#my_coupon > div:last-child, #my_wishList > div:last-child {
+		padding-left: 8px;
+	}
+
+	/* 왼쪽 메뉴 css */
+	#mypage_menu {
+		display: grid;
+		grid-template-rows: 50px 250px 250px;
+		min-height: 550px;
+		padding: 40px 20px 0 30px;
+	}
+	
+	#mypage_menu_txt {
+		font-size: 25px;
+	    font-weight: 700;
+	    color: #555;
+	    border-bottom: 1px solid #ddd;
+	}
+	
+	#mypage_menu_user {
+		display: grid;
+		grid-template-rows: repeat(5, 40px);
+		padding-top: 30px;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	#mypage_menu_as {
+		display: grid;
+		grid-template-rows: repeat(3, 40px);
+		padding-top: 20px;
+	}
+	
+	.mypage_menu_btn {
+		background-color: white;
+		color: black;
+		font-size: 18px;
+		border: 0;
+		cursor: pointer;
+	}
+	
+	/* 버튼 이벤트 시, 색 변경 */
+	.mypage_menu_btn:hover, .clicked {
+		color:  #46c8b4;
+		font-weight: bold;
+	}
+	
+/* mypage_value 제목 css (페이지 공통) */
+#mypage_value {
+	display: grid;
+	grid-template-rows: 50px 1fr;
+	padding: 20px;
+}
+
+.mypage_value_title {
+	font-size: 24px;
+    font-weight: 700;
+    color: #555;
+}
+
+.noValue {
+	text-align: center;
+	padding-top: 50px;
+}
+
+/* 예매내역 css */
+#mypage_ticket_con > div {
+	border: solid 1px yellowgreen;
+}
+
+#mypage-ticket-con {
+        display: grid;
+        grid-template-rows: 50px 200px;
+        border: 2px solid #f5f5f5;
+        border-radius: 15px;
+        margin-top: 20px;
+        height: 250px;
+    }
+    
+    #mypage-ticket-top {
+		display: grid;
+		grid-template-columns: 150px 1fr 150px;
+		border-bottom: 2px solid #f5f5f5;
+		text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 1%;
+	}
+	
+	#mypage-ticket-middle {
+		display: grid;
+        grid-template-columns: 150px 1fr 125px;
+	}
+		/* 포스터 */
+		#mypage-ticket-middle > div:first-child {
+            text-align: center;
+            padding-top: 15px;
+        }
+	
+		#mypage-ticket-poster {
+	        width: 120px;
+	        height: 160px;
+	        border-radius: 10px;
+	     }
+	     
+	     /* 공연 내역 */
+	     #mypage-ticket-middle > div:nth-child(2) {
+			 padding: 10px;
+			 display: grid;
+			 grid-template-rows: 1fr 1fr 1fr 70px;
+		 }
+		 
+		 #mypage-ticket-middle > div:nth-child(2) > div:last-child {
+			 width: 400px;
+			 background-color: #f5f5f5;
+			 font-weight: 500;
+			 border-radius: 10px;
+			 padding: 10px;
+		 }
+	     
+	     
+	     /* 버튼들 */
+	     #mypage-ticket-middle > div:last-child {
+			 display: flex;
+			 flex-direction: column;
+			 justify-content: space-evenly;			 			 
+		 }
+		 
+	     .mypage-ticket-btn {
+			 width: 90px;
+			 height: 35px;
+			 background-color: #7856b8;
+			 border: 0;
+			 border-radius: 10px;
+			 color: white;
+			 font-weight: 600;
+			 font-size: 15px;
+		 }
+		 
+		 .mypage-ticket-btn:hover {
+			 background-color: rgb(182, 163, 216);
+			 cursor: pointer;
+		 }
+
+	

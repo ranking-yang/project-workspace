@@ -28,12 +28,12 @@
 	  		booking_date,
 	  		booking_time,
 	  		booking_type,
-	  		payment_code
+	  		payment_code_fk
   		) VALUES
         (advance_ticket_code_seq.nextval,
   		 #{booker_code},
   		 #{performance_code},
-  		 TO_DATE(#{booking_date}, 'YYYY-MM-DD'),
+  		 #{booking_date},
   		 #{booking_time, jdbcType=VARCHAR},
   		 #{booking_type},
   		 #{payment_code_fk})
@@ -44,5 +44,9 @@
 		SET performance_qty = (performance_qty - #{qty})
 		WHERE performance_code = #{performance_code}		
 	</update>
+	
+	<select id="getUserPayment">
+		SELECT * FROM payments WHERE payment_code = #{payment_code}
+	</select>
 	
 </mapper>
