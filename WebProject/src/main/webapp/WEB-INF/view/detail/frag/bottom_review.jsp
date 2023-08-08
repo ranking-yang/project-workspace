@@ -74,13 +74,13 @@
   </div>
  </div>
  <script>
- var member_id = '${member_id}';
+ var member_id2 = `${member_id}`;
  
 //페이지가 로드될 때 폼의 가시성 설정
  function setFormVisibility1() {
    var form = document.getElementById("reply_write_frm1");
-   console.log(member_id);
-   if (!member_id) {
+   console.log(member_id2);
+   if (!member_id2) {
      form.style.display = "none"; // 폼 숨김
    } else {
      form.style.display = "block"; // 폼 보이기

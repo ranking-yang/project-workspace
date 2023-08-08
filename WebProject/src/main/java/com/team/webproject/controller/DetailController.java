@@ -91,6 +91,9 @@ public class DetailController {
 		System.out.println("detail_member_id: "+ member_id);
 		MembersDTO member = loginMapper.checklogin(member_id);
 		System.out.println("detail_member_code: "+ member.getMember_code());
+		
+		model.addAttribute("member_id", member_id);
+		
 //        List<ReviewDTO> reviews = reviewService.getAllReviews();
 //        model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
