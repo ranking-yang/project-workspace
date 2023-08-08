@@ -10,6 +10,8 @@ joinBtn.addEventListener('click', () =>{
 	location.href='../join'
 });
 */
+
+
 const asBtn = document.querySelector('#as');
 asBtn.addEventListener('click', () => {
 	location.href='../as/notice'
@@ -23,6 +25,7 @@ logoBtn.addEventListener('click', () => {
 const menuBtns = document.querySelectorAll('.menu-btn');
 	menuBtns.forEach(menuBtn => {
 		menuBtn.addEventListener('click', (e) => {
+
 			
 			switch(e.target.textContent){
 		    	case '공연':
@@ -38,6 +41,7 @@ const menuBtns = document.querySelectorAll('.menu-btn');
 					location.href = '/product/performance?main_category=kid';
 		    		break;
 			}
+
 	    	
 	 });
  });

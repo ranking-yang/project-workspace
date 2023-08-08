@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 
@@ -17,6 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.team.webproject.dto.ShowDTO;
@@ -68,7 +73,6 @@ public class ListShowingAPIController {
 	            JSONObject json2 = (JSONObject) parser.parse(json);
 	            JSONObject json3 = (JSONObject)json2.get("msgBody");
 	            JSONObject json4 = (JSONObject)json3.get("perforInfo");
-	            System.out.println(json4);
 	            String adres =(String) json4.get("placeAddr");
 		        return adres;
 		        
@@ -78,9 +82,10 @@ public class ListShowingAPIController {
 		 }
 	 }
 	 @GetMapping("/admin/api/showing")
+	 @ResponseBody
 	 //@RequestMapping(value="/api", produces = MediaType.APPLICATION_JSON_VALUE)
-	    public String callAPI() {
-
+	    public List<ShowDTO> callAPI() {
+		 List<ShowDTO> showli = new ArrayList<>();
 		 long start = System.currentTimeMillis();
 		 LocalDate date = LocalDate.now();
         LocalDate plusdate = date.plusMonths(1);
@@ -139,24 +144,24 @@ public class ListShowingAPIController {
 		        	ShowDTO show = new ShowDTO();
 
 		        	JSONObject js = (JSONObject) json4.get(i);
-		        	System.out.println(js);
 		        	show.setPerformance_code((String)js.get("seq"));
 		        	show.setPerformance_name((String)js.get("title"));
 		        	show.setPerformance_qty(50);
-		        	show.setMain_category("전시");
+		        	show.setMain_category("art");
 		        	show.setSub_category((String)js.get("realmName"));
 		        	show.setPerformance_price(300);
-
 		        	show.setStart_date(datech.transformDate2((String)js.get("startDate")));
 		        	show.setEnd_date(datech.transformDate2((String)js.get("endDate")));
 		        	String adres = address((String)js.get("seq"));
 		        	show.setAddress(adres);
 		        	show.setPlace((String) js.get("place"));
-		        	show.setKid_state('N');
 		        	show.setPoster((String) js.get("thumbnail"));
+		        	show.setLat(Double.parseDouble((String)js.get("gpsY")));
+		        	show.setLon(Double.parseDouble((String)js.get("gpsX")));
 		        	try {
 		        		addPerformance.addShow(show);
-		        		
+		        		System.out.println(show);
+		        		showli.add(show);
 		        	}catch(Exception e) {
 		        		continue;
 		        	}
@@ -168,8 +173,7 @@ public class ListShowingAPIController {
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 } 
-
-		 return "/admin/Admin_PageApi";
+		 return showli;
 	 	}
 	
 }

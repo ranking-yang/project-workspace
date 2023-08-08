@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.http.cookie.Cookie;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.mapper.LoginMapper;
 
 @Controller
 @RequestMapping("/main")
 public class MainController {
-
+	@Autowired
+	LoginMapper loginMapper;
+	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
 		
 		// 전체 securityholder 내용
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails)principal;
 		
-		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
-		System.out.println("main principal : " + principal.toString());
+		System.out.println("username : "+user.getUsername());
 		
+		MembersDTO member = loginMapper.checklogin(user.getUsername());
+		System.out.println("member code: "+ member.getMember_code());
+		
+//		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
+//		System.out.println("main principal : " + principal.toString());
+//		System.out.println("user name: "+ (UserDetails)principal);
 		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("userId", null);
