@@ -36,7 +36,7 @@
 			            <div class="place">
 			                <span>
 			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
-			                </span> 
+			                </span>
 			                <span>
 			                    ${product.sub_category }
 			                </span>

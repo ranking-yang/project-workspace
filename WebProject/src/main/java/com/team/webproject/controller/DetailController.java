@@ -40,8 +40,6 @@ public class DetailController {
 
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
-		String place_id = jsonob.get("mt10id").toString();
-		JSONObject jsonob1 = detailService.getLocationforMap(place_id);
 		
 		model.addAttribute("timetable", new JSONObject(detailService.getTimeTable(jsonob.get("dtguidance")))); // 공연 일 - JSON으로 변환
 		model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
@@ -49,10 +47,6 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-//		model.addAttribute("la", jsonob1.get("la"));
-//		model.addAttribute("lo", jsonob1.get("lo"));
-		//System.out.println(detailService.getPerformance(performance_code).getLatitude());
-		//System.out.println(detailService.getPerformance(performance_code).getLongitude());
 		
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
@@ -69,8 +63,6 @@ public class DetailController {
 		
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code));
-		model.addAttribute("la", jsonob.get("la"));
-		model.addAttribute("lo", jsonob.get("lo"));
 		return "/detail/detail_ex";
 	}
 	

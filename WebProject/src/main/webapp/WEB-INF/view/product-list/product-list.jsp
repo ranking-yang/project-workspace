@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공연, 전시, 체험, 키즈 상세페이지</title>
+<title>공연, 전시, 음악, 키즈 상세페이지</title>
 	<%@ include file="../common/commonCss.jsp" %>
     <link rel="stylesheet" href="/resources/product-list/css/product-list.css">
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -33,7 +33,20 @@
                 <span class="filter">최고가순</span>
             </div>
         </div>
-        <div id="page-title">${main_category }</div>
+        <c:choose>
+        	<c:when test="${main_category eq 'show'}">
+        		<div id="page-title">공연</div>
+			</c:when>      
+        	<c:when test="${main_category eq 'art'}">
+        		<div id="page-title">전시</div>
+			</c:when>      
+        	<c:when test="${main_category eq 'music'}">
+        		<div id="page-title">음악</div>
+			</c:when>      
+        	<c:when test="${main_category eq 'kid'}">
+        		<div id="page-title">키즈</div>
+			</c:when>      
+        </c:choose>
         <div id="product">
         	<c:forEach var="product" items="${performances}">
 			    <div class="product-module" data-category="${main_category}" data-pk="${product.performance_code}">

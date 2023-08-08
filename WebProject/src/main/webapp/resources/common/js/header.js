@@ -23,7 +23,21 @@ logoBtn.addEventListener('click', () => {
 const menuBtns = document.querySelectorAll('.menu-btn');
 	menuBtns.forEach(menuBtn => {
 		menuBtn.addEventListener('click', (e) => {
-	    	location.href = '/product/performance?main_category=' + e.target.textContent;
+			
+			switch(e.target.textContent){
+		    	case '공연':
+					location.href = '/product/performance?main_category=show';
+		    		break;
+		    	case '전시':
+					location.href = '/product/performance?main_category=art';
+		    		break;
+		    	case '음악':
+					location.href = '/product/performance?main_category=music';
+		    		break;
+		    	case '키즈':
+					location.href = '/product/performance?main_category=kid';
+		    		break;
+			}
 	    	
 	 });
  });
