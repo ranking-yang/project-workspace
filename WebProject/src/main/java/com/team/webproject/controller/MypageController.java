@@ -27,9 +27,13 @@ public class MypageController {
 		
 //		List<TicketsListDTO> tickets = mapageService.getMemberTickets(userID);
 //		model.addAttribute("tickets", tickets);
-		model.addAttribute("tickets", "test");
 		
-		return "/mypage/mypage-ticket";
+//		model.addAttribute("tickets", mapageService.getMemberTickets(userID));
+		
+//		return "/mypage/mypage-ticket";
+		
+		System.out.println(mapageService.getMemberTickets(userID));
+		return null;
 	}
 	
 	// 쿠폰

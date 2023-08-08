@@ -2,10 +2,10 @@ package com.team.webproject.mapper;
 
 import java.util.List;
 
-import com.team.webproject.dto.TicketDTO;
+import com.team.webproject.dto.MypageTicketDTO;
 
 public interface TicketMapper {
 	
-	List<TicketDTO> getMemberTicket(Integer booker_code);
+	List<MypageTicketDTO> getMemberTicket(Integer booker_code);
 
 }

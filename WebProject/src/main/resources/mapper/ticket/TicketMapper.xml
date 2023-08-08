@@ -5,7 +5,9 @@
 <mapper namespace="com.team.webproject.mapper.TicketMapper">
 
 	<select id="getMemberTicket">
-		SELECT * FROM advance_tickets WHERE booker_code = #{booker_code}
+		
+		
+		
 	</select>
 
 </mapper>

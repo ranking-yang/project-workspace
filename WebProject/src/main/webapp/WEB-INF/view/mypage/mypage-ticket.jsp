@@ -26,35 +26,46 @@
 
 		<c:choose>
 			<c:when test="${!empty tickets}">
-
-				<div id="mypage-ticket-con">
-					<!-- ticket에서 불러와서 출력하기 -->
-					<!--  추가해야할것 → 상세내역, 환불하기, 후기작성 버튼 하면 경로 잡기 / 보내야할 값도 -->
-					<div class="mypage_ticket-top">
-						<div style="color: rgb(120, 86, 184)">결제완료</div>
-						<div></div>
-						<div style="color: gray">(결제일)</div>
-					</div>
-					<div class="mypage_ticket-middle">
-						<div>
-							<img class="mypage_ticket-poster" src=""
-								alt="공연포스터">
+				<c:forEach items="${tickets}" var="ticket">
+					<div id="mypage-ticket-con">
+						<div id="mypage-ticket-top">
+							<div style="color: #7856b8">결제완료</div>
+							<div></div>
+							<div>${ticket.payment_date }</div>
 						</div>
-						<!-- 결제정보 total -->
-						<div class="mypage_ticket-middle">
-							<div class="mypage_ticket-middle-title">${performance.performance_name}</div>
-							<div class="mypage_ticket-middle-date">
-								(날짜 / 시간)
+						<div id="mypage-ticket-middle">
+							<!-- 포스터 -->
+							<div>
+			                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
+			                </div>
+			                <!-- 공연 내역 -->
+							<div>
+								<div>${ticket.performance_name }</div>
+								<div>${ticket.booking_date } / 
+									<c:if test="${!empty ticket.booking_time }">${ticket.booking_time }</c:if>
+								</div>
+								<div>총 ${ticket.booking_total_qty }매 / ${ticket.total_price }원</div>
+								<div>
+									※ 공연 - 관람 당일에는 환불이 불가합니다 <br>
+									※ 전시, 음악 - 유효기간 이후에는 환불이 불가합니다
+								</div>
 							</div>
-							<div class="mypage_ticket-middle-qty">
-								총 () 매 / ${payment.total_price}원
+							<!-- 버튼들 -->
+							<div>
+								<div><button class="mypage-ticket-btn">상세내역</button></div>
+								<c:choose>
+									<c:when test="${!empty review_check}">
+										<div><button class="mypage-ticket-btn">후기작성</button></div>	
+									</c:when>
+									<c:otherwise>
+										<div><button class="mypage-ticket-btn">후기확인</button></div>	
+									</c:otherwise>
+								</c:choose>
+								<div><button class="mypage-ticket-btn">취소/환불</button></div>
 							</div>
-						</div>
-						<div></div>
+						</div>			
 					</div>
-
-				</div>
-
+				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<div class="noValue">예매 내역이 없습니다.</div>
