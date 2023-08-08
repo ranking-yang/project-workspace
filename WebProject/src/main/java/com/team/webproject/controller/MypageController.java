@@ -1,7 +1,5 @@
 package com.team.webproject.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.team.webproject.dto.TicketsListDTO;
 import com.team.webproject.service.MypageService;
 
 @Controller
@@ -24,16 +21,8 @@ public class MypageController {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String userID = ((UserDetails) principal).getUsername();
-		
-//		List<TicketsListDTO> tickets = mapageService.getMemberTickets(userID);
-//		model.addAttribute("tickets", tickets);
-		
-//		model.addAttribute("tickets", mapageService.getMemberTickets(userID));
-		
-//		return "/mypage/mypage-ticket";
-		
-		System.out.println(mapageService.getMemberTickets(userID));
-		return null;
+		model.addAttribute("tickets", mapageService.getMemberTickets(userID));		
+		return "/mypage/mypage-ticket";
 	}
 	
 	// 쿠폰

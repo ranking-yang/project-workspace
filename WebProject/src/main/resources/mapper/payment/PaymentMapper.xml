@@ -33,7 +33,7 @@
         (advance_ticket_code_seq.nextval,
   		 #{booker_code},
   		 #{performance_code},
-  		 TO_DATE(#{booking_date}, 'YYYY-MM-DD'),
+  		 #{booking_date},
   		 #{booking_time, jdbcType=VARCHAR},
   		 #{booking_type},
   		 #{payment_code_fk})

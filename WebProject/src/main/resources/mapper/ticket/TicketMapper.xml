@@ -4,9 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.webproject.mapper.TicketMapper">
 
-	<select id="getMemberTicket">
+	<select id="getMemberTicket" resultType="MypageTicketDTO">
 		
-		
+	SELECT 
+	    DISTINCT ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
+	    p.performance_name, p.poster,
+	    payment_code_fk, pay.payment_date, pay.total_price
+	FROM advance_tickets ticket
+	INNER JOIN
+	(SELECT payment_code_fk, COUNT(payment_code_fk) as booking_total_qty FROM advance_tickets GROUP BY payment_code_fk) count_ticket USING(payment_code_fk)
+	INNER JOIN performance p ON ticket.performance_code = p.performance_code
+	INNER JOIN payments pay ON payment_code_fk = pay.payment_code
+	WHERE ticket.booker_code = #{booker_code}
+	ORDER BY ticket.booking_date DESC
 		
 	</select>
 
