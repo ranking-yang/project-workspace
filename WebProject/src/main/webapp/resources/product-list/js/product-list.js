@@ -53,16 +53,20 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-			$('.areaBtn').on('click', function(){
-				
-				$('.areaBtn').removeClass('selected');
-				$(this).addClass('selected');
-				
-				location.href = '../product/area?area_code=' + $(this).data('area');
-			});
-		});
+    // 페이지 로드 시 실행
+    let urlParams = new URLSearchParams(window.location.search);
+    let areaCode = urlParams.get('area_code');
+    
+    if (areaCode) {
+        $('.areaBtn[data-area="' + areaCode + '"]').addClass('selected');
+    }
 
-
+    // 버튼 클릭 시 페이지 리다이렉트만 처리
+    $('.areaBtn').on('click', function(){
+        let area = $(this).data('area');
+        location.href = '../product/area?area_code=' + area;
+    });
+});
 
 $('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기
 		  var price = $(this).text();

@@ -39,38 +39,12 @@ public class ProductListServiceImpl implements ProductListService {
 		return wishMapper.getUserWishlist(member_code);
 	}
 
-	@Override
-	public List<PerformanceDTO> getAreaProductList(String area_code) {
-		if(area_code.equals("a01")) {
-			return performanceMapper.getAreaPerformances("서울");			
-		}else if(area_code.equals("a02")) {
-			return performanceMapper.getAreaPerformances("경기");			
-		}else if(area_code.equals("a03")) {
-			return performanceMapper.getAreaPerformances("강원");			
-		}else if(area_code.equals("a04")) {
-			return performanceMapper.getAreaPerformances("인천");			
-		}else if(area_code.equals("a05")) {
-			return performanceMapper.getAreaPerformances("충청");			
-		}else if(area_code.equals("a06")) {
-			return performanceMapper.getAreaPerformances("세종");			
-		}else if(area_code.equals("a07")) {
-			return performanceMapper.getAreaPerformances("대전");			
-		}else if(area_code.equals("a08")) {
-			return performanceMapper.getAreaPerformances("전라");			
-		}else if(area_code.equals("a09")) {
-			return performanceMapper.getAreaPerformances("광주");			
-		}else if(area_code.equals("a10")) {
-			return performanceMapper.getAreaPerformances("경상");			
-		}else if(area_code.equals("a11")) {
-			return performanceMapper.getAreaPerformances("부산");			
-		}else if(area_code.equals("a12")) {
-			return performanceMapper.getAreaPerformances("대구");			
-		}else if(area_code.equals("a13")) {
-			return performanceMapper.getAreaPerformances("울산");			
-		}else {
-			return performanceMapper.getAreaPerformances("제주");
-		}
-	}
+	 @Override
+	    public List<PerformanceDTO> getAreaProductList(String area_code) {
+	        String areaName = AreaEnum.getAreaNameByCode(area_code);
+            return performanceMapper.getAreaPerformances(areaName);
+
+	    }
 
 	
 	
