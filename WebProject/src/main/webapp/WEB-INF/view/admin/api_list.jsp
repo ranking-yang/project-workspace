@@ -10,7 +10,6 @@ $(document).ready(function() {
             type: "POST",
             success : function(result) {
             	$(result).each(function(){
-            		console.log(result);
             		$("#apitable").append("<tr>"		
             		+"<td><button id='api_btn'>수정</button></td>"
             		+"<td>"+this.performance_code+"</td>"		
@@ -47,16 +46,20 @@ $(document).on("click", "#api_btn", function(){
 		   	$("#api_edit").ready(function(){
 		   		console.log(td.eq(1).text());
 		   		$("#edit_code").val(td.eq(1).text());
-			    $("#edit_title").val(td.eq(2).text());
-			    $("#edit_qty").val(td.eq(3).text());
+			    $("#edit_title").val(td.eq(2).find("input").val());
+			    $("#edit_qty").val(td.eq(3).find("input").val());
 			    $("#cat1").val(td.eq(4).text()).prop("selected", true);
 			    $("#cat2").val(td.eq(5).text()).prop("selected", true);
-			    $("#edit_price").val(td.eq(6).text());
+			    $("#edit_price").val(td.eq(6).find("input").val());
 			    $("#stdate").val(td.eq(7).text());
 			    $("#endate").val(td.eq(8).text());
 			    $("#edit_address").val(td.eq(9).text());
 			    $("#edit_place").val(td.eq(10).text());
-			    $("#edit_Thumbnail").val(td.eq(11).text());
+			    $("#edit_Thumbnail").val(td.eq(11).find("img").attr("src"));
+			    console.log(td.eq(2).find("input").val());
+			    console.log(td.eq(3).find("input").val());
+			    console.log(td.eq(6).find("input").val());
+			    console.log(td.eq(11).find("img").attr("src"));
 		   	});
 		   		
 		});

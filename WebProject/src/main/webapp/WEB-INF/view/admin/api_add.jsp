@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -126,38 +126,38 @@ $(document).ready(function() {
             }
         });
     });
-$("#add_table_btn").click(function() {
-		
-		var dataArrayToSend1 = new List();
+$(document).on("click", "#add_table_btn", function() {
+		console.log("add");
+		var dataArray = [];
 		$("#apiaddtable tr").each(function(){
 			var len = $(this).find("td").length;
 			console.log(len);
 			var show = new Object();
-			for(var i=1; i< len; i++)
+			for(var i=0; i< len; i++)
 			{
-				show.performance_code= $(this).find("td").eq(1).text();
-				show.performance_name= $(this).find("td").eq(2).text();
-				show.performance_qty= $(this).find("td").eq(3).text();
-				show.main_category= $(this).find("td").eq(4).text();
-				show.sub_category= $(this).find("td").eq(5).text();
-				show.performance_price= $(this).find("td").eq(6).text();	
-				show.start_date= $(this).find("td").eq(7).text();	
-				show.end_date= $(this).find("td").eq(8).text();	
-				show.address= $(this).find("td").eq(9).text();	
-				show.place= $(this).find("td").eq(10).text();
-				show.poster= $(this).find("td").eq(11).text();	
-				show.lat= $(this).find("td").eq(12).text();	
-				show.lon= $(this).find("td").eq(13).text();	
+				show.performance_code= $(this).find("td").eq(0).text();
+				show.performance_name= $(this).find("td").eq(1).find("input").val();
+				show.performance_qty= $(this).find("td").eq(2).find("input").val();
+				show.main_category= $(this).find("td").eq(3).text();
+				show.sub_category= $(this).find("td").eq(4).text();
+				show.performance_price= $(this).find("td").eq(5).find("input").val();	
+				show.start_date= $(this).find("td").eq(6).text();	
+				show.end_date= $(this).find("td").eq(7).text();	
+				show.address= $(this).find("td").eq(8).text();	
+				show.place= $(this).find("td").eq(9).text();
+				show.poster= $(this).find("td").eq(10).find("img").attr("src");
+				show.lat= $(this).find("td").eq(11).text();	
+				show.lon= $(this).find("td").eq(12).text();	
 			
 			}
-			dataArrayToSend1.push(show);
+			dataArray.push(show);
 			
 		});
-		console.log(dataArrayToSend1);
+		console.log(dataArray);
 		$.ajax({
 			contentType: "application/json",
 			type: "POST",
-			data: JSON.stringify(dataArrayToSend1),
+			data: JSON.stringify(dataArray),
 			url: "/admin/api/add",
 			success: function(data) {
 				console.log('done');

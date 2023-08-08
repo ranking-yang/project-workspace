@@ -68,13 +68,21 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/api/add", method = RequestMethod.POST)
 	@ResponseBody
-	public void tableList(@RequestBody List<ShowDTO> dataArrayToSend) throws Exception {
+	public void tableList(@RequestBody List<ShowDTO> dataArrayToSend) {
 		
 		System.out.println(dataArrayToSend);
-		System.out.println(dataArrayToSend.size());
-		for(ShowDTO show : dataArrayToSend) {
-			addPerformance.addShow(show);
-			System.out.println(show);
+		for(ShowDTO show : dataArrayToSend){
+			System.out.println(show.toString());
+			if(show.getPerformance_code() == null || show.getPerformance_code().isEmpty()) {
+				System.out.println(show);
+			}else {
+				try {
+					addPerformance.addShow(show);
+				}catch (Exception e) {
+					continue;
+				}
+			}
+			
 		}
 	}
 

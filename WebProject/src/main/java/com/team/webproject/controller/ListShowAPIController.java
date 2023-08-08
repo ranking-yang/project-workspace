@@ -158,7 +158,7 @@ public class ListShowAPIController {
         			show.setPerformance_qty(50);
         			show.setMain_category("show");
         			show.setSub_category((String)js.get("genrenm"));
-        			show.setPerformance_price(300);
+        			show.setPerformance_price(3000);
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
@@ -170,7 +170,7 @@ public class ListShowAPIController {
         			try {
         				showli.add(show);
 //        				System.out.println("3번"+show.toString());
-        				addPerformance.addShow(show);
+//        				addPerformance.addShow(show);
         				
         			}catch(Exception e) {
         				continue;
@@ -267,7 +267,7 @@ public class ListShowAPIController {
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
 //        				System.out.println("music:"+show.toString());
-        				addPerformance.addShow(show);
+//        				addPerformance.addShow(show);
         				showli.add(show);
         			}catch(Exception e) {
         				continue;
@@ -369,7 +369,7 @@ public class ListShowAPIController {
         			show.setLon(Double.parseDouble(detail_map.get("lon")));
         			try {
 //        				System.out.println("kid:"+show.toString());
-        				addPerformance.addShow(show);
+//        				addPerformance.addShow(show);
         				showli.add(show);
         			}catch(Exception e) {
         				continue;
