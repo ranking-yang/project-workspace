@@ -7,8 +7,8 @@ import com.team.webproject.dto.WishlistDTO;
 
 
 public interface ProductListService {
-	List<PerformanceDTO> getProductList(String main_category, String area);
-	//List<PerformanceDTO> getUserProductList(String main_category, String area);
+	List<PerformanceDTO> getProductList(String main_category);
+	List<PerformanceDTO> getAreaProductList(String area_code);
 	int getMember_code(String member_id);
 	List<WishlistDTO> getUserWish_list(int member_code);
 	

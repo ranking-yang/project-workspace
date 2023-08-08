@@ -69,7 +69,7 @@
 
 	#main-nav-item {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(5, 1fr);
 	}
 	
 	#main-nav-item > div {
@@ -125,12 +125,6 @@
 	    margin-top: 13px;
 		cursor:pointer;
 	}
-
-/* header - nav -dropdown 메뉴*/ 
-.dropdown-content{
-	display: none;
-}
-
 
 
 /* footer */

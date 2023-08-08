@@ -52,6 +52,13 @@ $(document).ready(function(){
 	})
 });
 
+$(document).ready(function(){
+	$('.areaBtn').on('click', function(){
+		location.href = '../product/area?area_code='+$(this).data('area');
+	})
+});
+
+
 
 $(document).ready(function(){
 	$('.submenu').on('click', function(){
