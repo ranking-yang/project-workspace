@@ -116,5 +116,62 @@
 }
 
 /* 예매내역 css */
+#mypage_ticket_con > div {
+	border: solid 1px yellowgreen;
+}
+
+#mypage-ticket-con {
+        border: 2px solid #f5f5f5;
+        border-radius: 15px;
+        margin-top: 20px;
+        display: grid;
+        grid-template-rows: 50px 1fr;
+    }
+
+        .mypage_ticket-top {
+            display: grid;
+            grid-template-columns: 200px 1fr 200px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 1%;
+            border-bottom: 2px solid #f5f5f5;
+        }
+
+        .mypage_ticket-middle {
+            display: grid;
+            grid-template-columns: 200px 1fr 70px;
+        }
+
+        .mypage_ticket-middle > div:first-child {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .mypage_ticket-poster {
+            width: 120px;
+            height: 160px;
+            border-radius: 10px;
+        }
+
+        .mypage_ticket-middle {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            padding-top: 20px;
+            font-size: 17px;
+            text-align: left;
+        }
+
+            .mypage_ticket-middle-title {
+                font-weight: bold;
+            }
+
+            .mypage_ticket-middle-date {
+                color: gray;
+            }
+
+            .mypage_ticket-middle-qty {
+                font-weight: bold;
+            }
 
 	

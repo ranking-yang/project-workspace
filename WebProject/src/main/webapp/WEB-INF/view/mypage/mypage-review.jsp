@@ -26,7 +26,7 @@
 					<!-- tickets는 Controller에서 model로 보낸 키 값으로 바꾸세요 -->
 					<!-- 가져온 값 출력 -->
 					<c:choose>
-					<c:when test="{!empty tickets}"></c:when>
+					<c:when test="${!empty tickets}"></c:when>
 					<c:otherwise><div class="noValue">작성된 후기가 없습니다.</div></c:otherwise>
 					</c:choose>
 				</div>

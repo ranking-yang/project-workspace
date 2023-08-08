@@ -2,13 +2,9 @@ package com.team.webproject.dto;
 
 import java.sql.Date;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class TicketDTO {
 	
 	String advance_ticket_code;

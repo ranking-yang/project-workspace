@@ -1,7 +1,5 @@
 package com.team.webproject.mapper;
 
-import java.util.List;
-
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.TicketDTO;
 
@@ -13,6 +11,6 @@ public interface PaymentMapper {
 	
 	int updatePerformaceQty(String performance_code, int qty);
 	
-	PaymentDTO getPayment(String payment_code);
+	PaymentDTO getUserPayment(String payment_code);
 
 }
