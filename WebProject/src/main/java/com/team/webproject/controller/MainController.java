@@ -1,23 +1,25 @@
 package com.team.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.apache.http.cookie.Cookie;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.service.CouponService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/main")
+@RequiredArgsConstructor
 public class MainController {
 
+	private final CouponService couponService;
+	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
 		
@@ -38,6 +40,9 @@ public class MainController {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
 			model.addAttribute("userId", username);
+			if(!couponService.checkIfBirthDayCouponExists(username)) {
+				couponService.giveBirthDayCoupon(username);
+			}
 			return "main/main";
 		// 권한이 admin 이면
 		} else {

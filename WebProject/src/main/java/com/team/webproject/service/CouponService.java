@@ -12,4 +12,8 @@ public interface CouponService {
 	
 	int getTheNumberOfCoupon(String user_id);
 	
+	boolean checkIfBirthDayCouponExists(String user_id);
+	
+	int giveBirthDayCoupon(String user_id);
+	
 }

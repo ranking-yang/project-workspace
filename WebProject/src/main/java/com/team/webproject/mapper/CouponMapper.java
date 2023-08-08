@@ -10,9 +10,18 @@ public interface CouponMapper {
 	
 	int getMemberCode();
 	
+	int getMemberCodeWithUserId(@Param("user_id") String user_id);
+	
 	int insertCoupon(MemberCouponDTO memberCoupon);
 	
 	List<MemberCouponDTO> getAllRecords(@Param("user_id") String user_id);
 	
 	int getCount(@Param("user_id") String user_id);
+	
+	int getBirthdayCoupon(@Param("user_id") String user_id);
+	
+	int checkBirthday(@Param("user_id") String user_id);
+	
+	int updateCouponState(@Param("member_coupon_code") int memberCouponCode);
+	
 }

@@ -15,6 +15,15 @@
 			member_code DESC
 	</select>
 	
+	<select id="getMemberCodeWithUserId" parameterType="string" resultType="int">
+		SELECT
+			member_code
+		FROM
+			members
+		WHERE
+			member_id=#{user_id}
+	</select>
+	
 	<insert id="insertCoupon" parameterType="MemberCouponDTO">
 		INSERT INTO
 			member_coupon(
@@ -69,5 +78,35 @@
 				 WHERE
 				 	member_id=#{user_id})
 	</select>
+	
+	<select id="getBirthdayCoupon" parameterType="string" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			member_coupon
+		WHERE
+			user_code=(SELECT member_code FROM members WHERE member_id=#{user_id})
+			AND coupon_code=2
+			AND TO_CHAR(expiry_date, 'YY')=TO_CHAR(sysdate, 'YY')
+	</select>
+	
+	<select id="checkBirthday" parameterType="string" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			members
+		WHERE
+			member_id=#{user_id}
+			AND TO_CHAR(member_birth, 'MM')=TO_CHAR(sysdate, 'MM') 
+	</select>
+	
+	<update id="updateCouponState" parameterType="int">
+		UPDATE
+			member_coupon
+		SET
+			coupon_state=1
+		WHERE
+			member_coupon_code=#{member_coupon_code}
+	</update>
 	
 </mapper>
