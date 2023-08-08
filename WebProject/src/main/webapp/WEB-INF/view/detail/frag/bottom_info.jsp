@@ -74,7 +74,7 @@
 
 			<!-- 지도가 위치할 곳 -->
 			<div align="center" style="margin-top: 10px;">
-				<div id="map1" data-la="${la }" data-lo="${lo }"></div>
+				<div id="map1" data-la="${performance.latitude}" data-lo="${performance.longitude }"></div>
 			</div>
 		</div>
 	</div>

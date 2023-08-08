@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<form action="/product/reviews">
  <div class="contentstyle1" id="content_2" style=";">
   <div class="main_tab_wrap">
   <div class="score_section" style="padding-top:10px">
@@ -47,44 +47,39 @@
       </div>
     </div>
   </div>
-  
+
+<div> 
+<!-- 비 로그인시 아무것도 없음 -->
+<sec:authorize access="isAnonymous()">
+</sec:authorize>
+<!-- 로그인 시에만 뜸. -->
+<sec:authorize access="isAuthenticated()">
 <div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin: 15px;">
 
 		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
-
-<div id="reply_write_frm1" name="reply_write_frm" style="margin:0; display:none;">
-    <div style="float:left;">
-      <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
-      <br>
-      <input type="number" id="star_rating" min="1" max="5" step="1" value="5">
-      <br>
-      <input type="file" id="image_upload" accept="image/*">
-      <br>
-    </div>
-    <div style="float:right;">
-      <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록</button>
-    </div>
-  </div>
+	<div id="reply_write_frm1" name="reply_write_frm" style="margin:0;">
+	    <div style="float:left;">
+	      <div class="review_title_left_name" style="padding-left: 10px;">
+          	${userId}
+          </div>
+	      <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
+	      <br>
+	      <input type="number" id="star_rating" min="1" max="5" step="1" value="5">
+	      <br>
+	      <input type="file" id="image_upload" accept="image/*">
+	      <br>
+	    </div>
+	    <div style="float:right;">
+	      <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록</button>
+	    </div>
+	  </div>
 </div>
 </div>  
+</sec:authorize>
+</div>
     <div class="review_start" style=";">
   	<div class="review_text" id="review_text_container">
     </div>
    </div>
   </div>
  </div>
- <script>
- var member_id2 = `${member_id}`;
- 
-//페이지가 로드될 때 폼의 가시성 설정
- function setFormVisibility1() {
-   var form = document.getElementById("reply_write_frm1");
-   console.log(member_id2);
-   if (!member_id2) {
-     form.style.display = "none"; // 폼 숨김
-   } else {
-     form.style.display = "block"; // 폼 보이기
-   }
- }
- </script>
-</form>

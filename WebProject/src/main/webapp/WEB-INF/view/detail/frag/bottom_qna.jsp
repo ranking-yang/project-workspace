@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
     <div class="contentstyle1" id="content_3">
   <div class="main_tab_wrap">
@@ -16,10 +17,17 @@
 		</a>를 이용해주세요.
 	</div>
 
+<!-- 비 로그인시 아무것도 없음 -->
+<sec:authorize access="isAnonymous()">
+</sec:authorize>
+
+<!-- 로그인 시에만 뜸. -->
+<sec:authorize access="isAuthenticated()">
 	<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin:15px;">
 
 		<div style="padding:10px 10px 0 10px; overflow:hidden;">
-<div id="reply_write_frm2" name="reply_write_frm" style="margin:0; display:none;">
+		
+<div id="reply_write_frm2" name="reply_write_frm" style="margin:0;">
 
   <div style="float:left;">
     <textarea id="content_comment2" name="content_comment2" style="font-size:15px; color:#000; font-weight:300; width:520px; 
@@ -37,22 +45,11 @@
 </div>
 </div>
 </div>
+</sec:authorize>
+
 <div>
 <div id="QnA_text_container" style="width:100%; border:1px solid #e6e6e6; background:#fff;">
 </div>
 </div>
 </div>
 </div>
-<script>
-//페이지가 로드될 때 폼의 가시성 설정
-function setFormVisibility2() {
-  var userId = "${sessionScope.userId}";
-  var form = document.getElementById("reply_write_frm2");
-
-  if (!userId) {
-    form.style.display = "none"; // 폼 숨김
-  } else {
-    form.style.display = "block"; // 폼 보이기
-  }
-}
-</script>

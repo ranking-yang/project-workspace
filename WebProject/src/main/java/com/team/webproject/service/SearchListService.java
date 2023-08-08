@@ -6,5 +6,5 @@ import com.team.webproject.dto.PerformanceDTO;
 
 public interface SearchListService {
 	List<PerformanceDTO> getSearchList(String keyword);
-	List<PerformanceDTO> getUserSearchList(String keyword);
+	Integer countSearchList(String keyword);
 }

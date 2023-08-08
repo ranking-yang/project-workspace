@@ -58,8 +58,10 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-		model.addAttribute("la", jsonob1.get("la"));
-		model.addAttribute("lo", jsonob1.get("lo"));
+//		model.addAttribute("la", jsonob1.get("la"));
+//		model.addAttribute("lo", jsonob1.get("lo"));
+		//System.out.println(detailService.getPerformance(performance_code).getLatitude());
+		//System.out.println(detailService.getPerformance(performance_code).getLongitude());
 		
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
@@ -78,7 +80,6 @@ public class DetailController {
 		model.addAttribute("performance", detailService.getPerformance(performance_code));
 		model.addAttribute("la", jsonob.get("la"));
 		model.addAttribute("lo", jsonob.get("lo"));
-
 		return "/detail/detail_ex";
 	}
 	
@@ -92,10 +93,10 @@ public class DetailController {
 		MembersDTO member = loginMapper.checklogin(member_id);
 		System.out.println("detail_member_code: "+ member.getMember_code());
 		
-		model.addAttribute("member_id", member_id);
+		model.addAttribute("userId", member_id);
 		
-//        List<ReviewDTO> reviews = reviewService.getAllReviews();
-//        model.addAttribute("reviews", reviews);
+        List<ReviewDTO> reviews = reviewService.getAllReviews();
+        model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
@@ -113,7 +114,7 @@ public class DetailController {
     @PostMapping("/product/reviews")
     public String insertReview(@RequestBody ReviewDTO review) {
         reviewService.insertReview(review);
-        //return "redirect:/product/product-detail"; // 리뷰를 생성하고 상세 페이지로 리다이렉트
+				
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 

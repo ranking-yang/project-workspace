@@ -18,13 +18,11 @@ public class SearchListSeriviceImpl implements SearchListService{
 	@Override
 	public List<PerformanceDTO> getSearchList(String keyword) {
 			return searchMapper.getSearchList(keyword);
-
-
 	}
 
 	@Override
-	public List<PerformanceDTO> getUserSearchList(String keyword) {
-		return searchMapper.getUserSearchList(keyword);
+	public Integer countSearchList(String keyword) {
+		return searchMapper.countSearchList(keyword);
 	}
 
 }

@@ -115,10 +115,11 @@ button{
 }
 .place > span{
     background-color: #EEEEEE;
-    border-radius: 15px;
-    margin: 0;
+    border-radius: 10px;
+    margin: 0 2px;
     padding: 3px;
     font-size: 0.8rem;
+    font-weight: 500;
     color: rgb(41, 41, 41);
 }
 
@@ -135,4 +136,14 @@ button{
 	font-size: 20px;
 	color: grey;
 	
+}
+
+#infoSearchList{
+	font-size: 30px;
+    background-color: #EEEEEE;
+    margin: 50px 0;
+    padding: 50px;
+	text-align: center;
+	border-radius: 15px;
+    
 }
