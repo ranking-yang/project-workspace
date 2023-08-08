@@ -40,6 +40,7 @@ public class MainController {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
 			model.addAttribute("userId", username);
+			// 생일이 있는 달인지 파악해서 쿠폰을 전달해주는 로직
 			if(!couponService.checkIfBirthDayCouponExists(username)) {
 				couponService.giveBirthDayCoupon(username);
 			}

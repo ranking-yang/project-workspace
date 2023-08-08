@@ -77,6 +77,7 @@
 				 	members
 				 WHERE
 				 	member_id=#{user_id})
+			AND mc.coupon_state=0
 	</select>
 	
 	<select id="getBirthdayCoupon" parameterType="string" resultType="int">
