@@ -30,7 +30,7 @@
 					</div>
 					<div id="product">
 		            	<c:forEach var="product" items="${searchList }">
-						<div class="product-module" data-pk="${product.performance_code}">
+						<div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">
 			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
 			        <div class="product-module-top">
 			            <div class="place">

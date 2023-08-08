@@ -40,7 +40,7 @@ public class SearchListController {
 			model.addAttribute("member_code", member_code);
 			model.addAttribute("wishlist", productListService.getUserWish_list(member_code));
 		}
-		
+
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("count", searchListService.countSearchList(keyword));
 		model.addAttribute("searchList", searchListService.getSearchList(keyword));
