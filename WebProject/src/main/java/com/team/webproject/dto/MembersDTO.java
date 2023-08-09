@@ -1,22 +1,18 @@
 package com.team.webproject.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 //import com.team.webproject.domain.Member;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -59,6 +55,9 @@ public class MembersDTO implements UserDetails {
 	
 	private String member_role;
 	
+	// 추가적으로 필요한 값(UserDetails에 담기 위한 작업)
+	private Integer coupon_count;
+	private Integer wish_list_count;
 	
 	@Builder
     public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone, String member_birth ,String member_email, String member_role) {
@@ -76,7 +75,7 @@ public class MembersDTO implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
+		// null값
 		return null;
 	}
 
