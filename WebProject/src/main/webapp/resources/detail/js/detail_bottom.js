@@ -109,7 +109,7 @@ function submitForm() {
   var star_rating = parseFloat(document.getElementById("star_rating").value);
   var review_like = 0;
   // var review_code;
-  var review_writer_code = document.getElementById("bottom_member_id").value;
+  var review_writer_code = document.getElementsByClassName("review_title_left_name").data('usercode');
   console.log(review_writer_code);
   var performance_code = document.getElementById("bottom_performance_code").value;
     
@@ -133,7 +133,9 @@ function submitForm() {
   var newReviewDiv = document.createElement("div");
   reviewIdCounter++; // 리뷰 ID 카운터 증가
   var reviewId = String(reviewIdCounter).padStart(6, '0'); // 리뷰 ID 생성 (6자리 숫자)
-
+  
+  //var reviewId = `${userId}`;
+  console.log(reviewId);
   newReviewDiv.className = "review_wrap user_review_" + reviewId; // 리뷰 래핑 요소 클래스에 리뷰 ID 추가
   // 리뷰 내용의 최대 길이를 설정
   var maxReviewLength = 300; // 원하는 최대 길이로 설정
@@ -248,7 +250,7 @@ function submitForm() {
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
  
   // 리뷰 데이터를 서버로 전송하기 위해 FormData 객체 생성
-  /* var formData = new Object();
+   var formData = new Object();
   formData.review_content= content_comment;
   formData.review_image= image_upload;
   formData.review_star=star_rating;
@@ -280,30 +282,54 @@ function submitForm() {
       console.error("Error:", error);
       alert("서버와의 통신 중 오류가 발생했습니다.");
     });
-  */
+
   
-  // CHAT-GPT 믿는다
+  
   var formData = {
   review_content: content_comment,
   review_image: image_upload,
   review_star: star_rating,
-  review_code: reviewId,
+  //review_code: reviewId,
   review_writer_code: review_writer_id,
   review_like: review_like,
   performance_code: performance_code
 };
 console.log("review_content " + formData.review_content);
-console.log("review_code " + formData.review_code);
+//console.log("review_code " + formData.review_code);
 console.log("performance_code " + formData.performance_code);
 console.log("review_image " + formData.review_image);
 console.log("review_like " + formData.review_like);
 console.log("review_star " + formData.review_star);
 console.log("review_writer_code " + formData.review_writer_code);
-fetch("/product/reviews", {
-  method: "POST",
+/*
+$.ajax({
+	
+	url: "/product/reviews",
+			type:"POST",
+			contentType: "application/json", // JSON 형식으로 보낸다고 지정
+			data: JSON.stringify({
+				review_content: content_comment,
+				review_image: image_upload ,
+				review_star: star_rating,
+				review_like: review_like,
+				performance_code: performance_code,
+				//review_writer_code: review_writer_id
+				}),
+			success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+            console.log("리뷰 데이터 등록 성공: ", response);
+            },
+            error: function(error) {
+        	// 오류 처리
+        	console.log("리뷰 데이터 등록 실패: " + error);
+    		}
+
+});*/
+/* fetch("/product/reviews", {
+  method: 'POST',
   headers: {
-    "Content-Type": "application/json", // JSON 형식으로 요청을 보낼 것임을 지정
-  },
+    'Content-Type': 'application/json', // JSON 형식으로 요청을 보낼 것임을 지정
+},
   body: JSON.stringify(formData), // JSON 형식으로 데이터를 변환하여 요청 본문에 포함
 })
   .then((response) => response.json())
@@ -321,7 +347,7 @@ fetch("/product/reviews", {
     // 오류 처리
     console.error("Error:", error);
     alert("서버와의 통신 중 오류가 발생했습니다.");
-  });
+  }); */
  
   // 기존에 입력한 내용 초기화
   document.getElementById("content_comment").value = "";

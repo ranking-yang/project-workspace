@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -128,7 +129,10 @@ public class DetailController {
 
     @PostMapping("/product/reviews")
     @ResponseBody
-    public void insertReview(@RequestBody ReviewDTO review) {
+    public void insertReview(@RequestBody ReviewDTO review, @RequestParam Integer userCode, @RequestParam String userId) {
+    	
+    	review.setReview_writer_code(userCode);
+    	
     	System.out.println(review.toString());
     
     	// ReviewDTO에 관련된 작업 수행
