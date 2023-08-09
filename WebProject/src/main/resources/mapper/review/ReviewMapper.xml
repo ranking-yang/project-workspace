@@ -4,18 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.webproject.mapper.ReviewMapper">
 	<insert id="insertReview" parameterType="com.team.webproject.dto.ReviewDTO">
-        INSERT INTO review_table
+        INSERT INTO reviews
         (review_writer_code, performance_code, review_star, review_content, review_date, review_like, review_image, review_code)
         VALUES
-        (#{reviewWriterCode}, #{performanceCode}, #{reviewStar}, #{reviewContent}, sysdate, #{reviewLike}, #{review_image}, #{review_code})
+        (#{review_writer_code}, #{performance_code}, #{review_star}, #{review_content}, sysdate, #{review_like}, #{review_image}, #{review_code})
     </insert>
-
+    <select id="getPerformanceReviews" resultType="ReviewDTO">
+		SELECT * FROM reviews WHERE performance_code=#{performance_code}
+	</select>
     <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
-        SELECT * FROM review_table WHERE review_code = #{value}
+        SELECT * FROM reviews WHERE review_code = #{value}
     </select>
 
     <update id="updateReview" parameterType="com.team.webproject.dto.ReviewDTO">
-        UPDATE review_table
+        UPDATE reviews
         SET review_star = #{reviewStar},
             review_content = #{reviewContent},
             review_date = #{reviewDate},
@@ -24,6 +26,6 @@
     </update>
 
     <delete id="deleteReview" parameterType="java.lang.Integer">
-        DELETE FROM review_table WHERE review_code = #{value}
+        DELETE FROM reviews WHERE review_code = #{value}
     </delete>
 </mapper>

@@ -1,334 +1,43 @@
-/* 상품페이지(main) 영역 */
 
-#ajaxcontentarea {
-  background-color: #fff;
+#detail_bottom_con{
+	width: 820px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border-radius: 15px;
+	display: grid;
+	grid-template-rows: 50px 1fr;
 }
-
-/*후기탭 별점 칸*/
-.score_section {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  height: 150px;
-  background-color: #fff;
-  border-radius: 10px;
+#detailMenuBtns{
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	font-weight: 500;
+	font-size: 1.2rem;
+	cursor: pointer;
 }
-
-.score_section_left {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  border-right: 2px solid #e2e2e2;
-  width: 50%;
+.detailMenuBtn.selected{
+	color: red;
+	border-bottom: 3px solid red;
 }
-
-.score_section_left_average {
-  padding-top: 15px;
-  font-size: 35px;
+.main_tab_wrap{
+	margin:30px;
 }
-
-.score_section_left_stars {
-  width: 120px;
-  padding-top: 2px;
+/* 안내 */
+.viewpage_noti, .main_tab_title{
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin: 15px 0 5px 0;
 }
-
-.score_section_left_star {
-  background-image: url('/resources/common/image/icon_background_stars.png');
-  background-repeat: no-repeat;
-  background-size: 120px;
-  width: 100%;
-  height: 22px;
+.viewpage_text{
+	padding: 20px;
 }
-
-.score_section_left_star_filled {
-  position: absolute;
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
-  background-repeat: no-repeat;
-  background-size: 120px;
-  height: 22px;
+.radius_box{
+	background: #eee;
+	border-radius: 15px;
+	margin: 20px 0;
 }
-
-.score_section_left_total {
-  padding-top: 15px;
-  color: #777;
-}
-
-.score_section_right {
-  text-align: center;
-  align-items: center;
-  width: 50%;
-  transform: translateY(-10%);
-}
-/* 별점 분포 그래프 */
-.progress_section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #777;
-  padding: 3px 0;
-}
-
-.progress_section div {
-  margin-right: 15px;
-}
-
-.progress_section_bar,
-.progress_section_value {
-  height: 6px;
-  border-radius: 10px;
-}
-
-.progress_section_bar {
-  width: 60%;
-  background-color: #e2e2e2;
-}
-
-.progress_section_value {
-  background-color: #FFA515;
-}
-
-
-
-/* 이용후기 : 상세p & 마이p : 이용후기 공통 */
-/* 후기탭 리뷰 칸 */
-.review_wrap {
-  display: flex;
-  flex-direction: column;
-  padding-top: 8px;
-  border-top: 1px solid #e2e2e2;
-}
-
-.review_wrap:after {
-  content: "";
-  display: block;
-  width: 95%;
-  padding: 7px;
-  text-align: center;
-  transform: translateX(-2.5%);
-}
-
-.review_title {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0 7px 0;
-}
-
-.review_title_left {
-  display: flex;
-  align-items: center;
-}
-
-.review_title_left_stars {
-  width: 95px;
-  height: 16px;
-}
-
-.review_title_left_star {
-  background-image: url('/resources/common/image/icon_background_stars.png');
-  background-repeat: no-repeat;
-  background-size: 95px;
-  width: 100%;
-  height: 16px;
-}
-
-.review_title_left_star_filled {
-  position: absolute;
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
-  background-repeat: no-repeat;
-  background-size: 95px;
-  height: 16px;
-}
-
-.review_title_left_name,
-.review_title_right {
-  color: #777;
-  font-size: 14px;
-}
-
-.review_title_left_name {
-  align-items: flex-end;
-}
-
-.review_text {
-  position: relative;
-}
-
-.review_text_area {
-  display: -webkit-box;
-  width: 99%;
-  position: relative;
-  max-height: 38px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  color: #333;
-  text-align: justify;
-  font-size: 15px;
-  line-height: 25px;
-  padding-top: 7px;
-  padding-bottom: 10px;
-}
-
-/* 더보기 */
-.show {
-  display: block;
-  max-height: none;
-  overflow: auto;
-  -webkit-line-clamp: unset;
-}
-
-.review_text_seemore {
-  position: absolute;
-  bottom: 2px;
-  right: 1%;
-  max-height: 18px;
-  padding-left: 20px;
-  font-size: 15px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 10%
-  );
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-/* 리뷰에 쓰이는 사진 */
-.img_label {
-  display: inline-block;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 150px;
-  height: 150px;
-  transition: all 400ms ease;
-  cursor: pointer;
-}
-
-/* 리뷰와 별점 구분하기 위한 마진 */
-.review_start {
-  margin: 20px 0;
-}
-
-/* Q&A 페이지*/
-.main_tab_title { font-size: 20px; font-weight: 700; color: #000; margin: 15px 0 0 15px}
-
-
-/* Links */
-.Topclass,
-.Topclass.underline {
-  color: #000;
-  text-decoration: none;
-}
-
-.Topclass.underline:hover {
-  text-decoration: underline;
-}
-
-/* Tables */
-table {
-  border-collapse: collapse;
-}
-
-/* Images */
-img {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
-object {
-  display: block;
-}
-
-/* Layout */
-.wrap_1100 {
-  margin: auto;
-  width: 1100px;
-  position: relative;
-}
-
-.clear {
-  clear: both;
-}
-
-.footer_pd {
-  clear: both;
-  padding: 15px;
-}
-
-.input_New {
-  font-size: 12px;
-  height: 22px;
-  line-height: 22px;
-}
-/* 텍스트 박스 설정 */
-.radius_box {
-  background: #f8f8f8;
-  padding: 12px 15px;
-  border-radius: 10px;
-  margin-top: 5px;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-/* 환불 규정 */
-.viewpage_text { font-size:15px; font-weight:400; color:#000; line-height:180%; letter-spacing: 0; }
-.viewpage_text p { margin:0px; padding:0px;}
-.viewpage_noti { font-size:20px; font-weight:bold; color:#000; line-height:35px; margin-left: 15px}
-.viewpage_noti_blue { font-size:20px; font-weight:bold; color:#0011ad; line-height:35px; }
-/* 환불 규정 글씨 색*/
-.red{ color:red; }
-.blue{ color:blue; }
-.txt_red {color:red;}
-.txt_blue {color:#000098;}
-
-/* id="maintab"의 클래스 shadetabs*/
-.shadetabs ul, li {list-style:none; margin:0; padding:0;  }
-
-.shadetabs{ width:818px; cursor:pointer; padding:0; background:#fff; height:61px; border:1px solid #eee; border-bottom:1px solid #eee;}
-
-.shadetabs li .Topclass{
-text-decoration: none; float:left; width:20%; padding-top:20px;
-text-align:center;
-font-size: 18px;
-font-weight: 600;
-color:#777;
-}
-
-.shadetabs li.selected .Topclass{
-color:#ff4b4b;
-font-weight: 800;
-}
-
-.shadetabs li.selected span{ border-bottom:4px solid #ff4b4b; padding-bottom:11px; }
-
-
-.shadetabs li.selected .Topclass:hover{
-text-decoration: none;
-}
-
-/* 탭 영역시작 id="ajaxcontentarea"인 클래스*/
-.contentstyle{
-width: 100%;
-height:auto;
-}
-
-/* 환불 규정 탭*/
-.main_tab_wrap {
-	border: 1px solid #eee;
-	border-top: none;
-    padding: 30px 59px;
-    border-radius:0 0 10px 10px;
-}
-
 /* 상세 이미지 펼쳐보기 */
 .info_detail_btn {
    position: absolute;
@@ -345,10 +54,11 @@ height:auto;
     font-weight: 600;
     text-align: center;
     box-shadow:1px 1px 3px 2px #ddd;
+    cursor: pointer;
 }
 .info_detail_poster {
     position: relative;
-    margin-top: 35px;
+    margin: 35px 0;
     width: 100%;
     height: 700px;
     color: #fff;
@@ -368,55 +78,35 @@ height:auto;
 }
 
 /* 상세 이미지 스타일   */
-.main_img { margin-top:35px; width:700px; text-align: center; }
-.main_img img { display:block; width:100%; }
-
-.viewpage_flex {
-  display: flex; justify-content: flex-start;
-}
-.viewpage_flex div:nth-child(1) {
-    padding-left:10px; width: 120px; color: #888;
-}
-.viewpage_flex div:nth-child(2) {
-    color: #000;
-}
-.viewpage_flex .Topclass {
-    text-decoration: underline;
-}
-.border_box {
-  border: 1px solid #eee;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-top: 5px;
-}
-.border_box .viewpage_flex {
-    border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 8px;
-}
-.border_box .viewpage_flex:last-child {
-    border: none; padding-bottom: 0; margin-bottom: 0;
+.main_img {
+	margin: 35px 0;
+	width: 700px;
+	text-align: center;
 }
 
-/* 환불 규정 텍스트*/
-.viewpage_text { line-height:160%; font-size:15px;	}
-.viewpage_text .viewpage_noti { padding:15px 0 0 0; font-weight:700; font-size:16px; }
-
-/* 안내탭같은 탭들 배경색 : 흰색 */
-.contentstyle1{
-	background-color: #fff;	
+.main_img img {
+	display: block;
+	width: 100%;
 }
 
 
+/* 장소 - 지도 */
 #map1{
 	width: 96%;
 	height: 400px;
 }
-
 #map2{
 	width: 96%;
 	height: 400px;
 }
 
-/* 수정 삭제 버튼 CSS*/
-.review_title_button{
-	cursor: pointer;
+/* 환불규정 */
+.txt_blue{
+	color: #000098;
+}
+.txt_red{
+	color: #FF0000;
+}
+.txt_gray{
+	color: #777;
 }

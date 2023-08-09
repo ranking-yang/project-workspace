@@ -67,7 +67,8 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-		
+		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code));
+
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
 	         
@@ -91,8 +92,6 @@ public class DetailController {
 	@GetMapping("/product/reviews")
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//String member_id = ((UserDetails) principal).getUsername();
-		
 
 		
 		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
@@ -103,12 +102,11 @@ public class DetailController {
 			MembersDTO member = loginMapper.checklogin(member_id);
 			
 			model.addAttribute("userId", member_id);
+			System.out.println("아이디 : " + member_id);
 			model.addAttribute("userCode", member_code);
 			System.out.println("detail_member_id: "+ member_id);
 
 		}
-
-		// System.out.println("detail_member_code: "+ member.getMember_code());
 
         List<ReviewDTO> reviews = reviewService.getAllReviews();
         model.addAttribute("reviews", reviews);
@@ -130,7 +128,7 @@ public class DetailController {
     @ResponseBody
     public void insertReview(@RequestBody ReviewDTO review) {
     	System.out.println(review.toString());
-    
+    	
     	// ReviewDTO에 관련된 작업 수행
         reviewService.insertReview(review);
 			
