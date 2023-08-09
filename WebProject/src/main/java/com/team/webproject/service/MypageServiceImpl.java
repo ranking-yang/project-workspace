@@ -1,7 +1,8 @@
 package com.team.webproject.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +12,15 @@ import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.MypageRefundDTO;
 import com.team.webproject.dto.MypageTicketDTO;
 import com.team.webproject.dto.MypageTicketDetailDTO;
+import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.TicketOptionDTO;
 import com.team.webproject.dto.TicketOptionQtyDTO;
+import com.team.webproject.dto.WishlistDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.mapper.PaymentMapper;
+import com.team.webproject.mapper.PerformanceMapper;
 import com.team.webproject.mapper.TicketMapper;
+import com.team.webproject.mapper.WishlistMapper;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -27,6 +32,10 @@ public class MypageServiceImpl implements MypageService {
 	// DTO 해결되면 지우기
 	@Autowired
 	LoginMapper loginMapper;
+	@Autowired
+	WishlistMapper wishMapper;
+	@Autowired
+	PerformanceMapper performanceMapper;
 	
 	// 티켓 리스트 조회
 	@Override
@@ -68,7 +77,25 @@ public class MypageServiceImpl implements MypageService {
 		MembersDTO member = loginMapper.checklogin(user_id);		
 		return ticketMapper.getRefundTickets(member.getMember_code());
 	}
-	
-	
+
+	@Override
+	public List<PerformanceDTO> getUserWishlist(int member_code) {
+		List<WishlistDTO> userWishlist = wishMapper.getUserWishlist(member_code);
+		
+		
+		List<String> userWishPerformanceCodes = userWishlist.stream()
+	            .map(wish -> wish.getPerformance_code())
+	            .collect(Collectors.toList());
+
+		List<PerformanceDTO> userWishPerformances = new ArrayList<>();
+
+		userWishPerformanceCodes.forEach(performance_code -> {
+		    PerformanceDTO performance = performanceMapper.getPerformance(performance_code);
+		    userWishPerformances.add(performance);
+
+		});
+
+	    return userWishPerformances;
+	}
 
 }

@@ -38,13 +38,17 @@ public class ProductListServiceImpl implements ProductListService {
 	public List<WishlistDTO> getUserWish_list(int member_code) {
 		return wishMapper.getUserWishlist(member_code);
 	}
+	@Override
+	public int countUserWish_list(int member_code) {
+		return wishMapper.countUserWishlist(member_code);
+	}
 
-	 @Override
-	    public List<PerformanceDTO> getAreaProductList(String area_code) {
-	        String areaName = AreaEnum.getAreaNameByCode(area_code);
-            return performanceMapper.getAreaPerformances(areaName);
+	@Override
+    public List<PerformanceDTO> getAreaProductList(String area_code) {
+        String areaName = AreaEnum.getAreaNameByCode(area_code);
+        return performanceMapper.getAreaPerformances(areaName);
 
-	    }
+    }
 
 	
 	

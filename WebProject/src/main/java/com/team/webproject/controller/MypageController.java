@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.webproject.service.MypageService;
+import com.team.webproject.service.ProductListService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
 	
 	@Autowired
-	MypageService mapageService;
+	MypageService mypageService;
+	@Autowired
+	ProductListService productListService;
+	
 	
 	// 메인 겸 예매내역
 	@GetMapping("")
@@ -25,7 +29,8 @@ public class MypageController {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String userID = ((UserDetails) principal).getUsername();
-		model.addAttribute("tickets", mapageService.getMemberTickets(userID));		
+		model.addAttribute("tickets", mypageService.getMemberTickets(userID));
+		model.addAttribute("countWish", productListService.countUserWish_list(productListService.getMember_code(userID)));
 		return "/mypage/mypage-ticket";
 	}
 	
@@ -42,9 +47,9 @@ public class MypageController {
 	@PostMapping("/ticket/refund")
 	String refundTicket(Model model, @RequestParam("payment_code") String payment_code) {
 		// 환불 DTO 실어서 보내주기
-		model.addAttribute("ticket", mapageService.getTicketDetail(payment_code));
-		model.addAttribute("options", mapageService.getTicketOptions(payment_code));
-		model.addAttribute("ticketNum", mapageService.getTicketNum(payment_code));		
+		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
 		return "/mypage/mypage-ticket-refund";
 	}
 	
@@ -52,12 +57,12 @@ public class MypageController {
 	@PostMapping("/ticket/refund/request")
 	String refundTicketRequest(Model model, @RequestParam("payment_code") String payment_code) {
 		// 가져온 결제 코드로 DB 변경		
-		if (mapageService.refundTicket(payment_code)) {
+		if (mypageService.refundTicket(payment_code)) {
 			
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String userID = ((UserDetails) principal).getUsername();
 			
-			model.addAttribute("tickets", mapageService.getRefundTickets(userID));
+			model.addAttribute("tickets", mypageService.getRefundTickets(userID));
 			
 			return "/mypage/mypage-refund";
 		} else {
@@ -75,6 +80,17 @@ public class MypageController {
 	// 찜목록
 	@GetMapping("/wishlist")
 	String gotoWishlistPage(Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userID = ((UserDetails) principal).getUsername();
+		
+		int member_code = productListService.getMember_code(userID);
+		
+		model.addAttribute("performances", mypageService.getUserWishlist(member_code));
+		model.addAttribute("wishlist", productListService.getUserWish_list(member_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(member_code));
+		model.addAttribute("member_code", member_code);
+
 		return "/mypage/mypage-wishlist";
 	}
 	
@@ -83,7 +99,7 @@ public class MypageController {
 	String gotoRefundPage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String userID = ((UserDetails) principal).getUsername();		
-		model.addAttribute("tickets", mapageService.getRefundTickets(userID));		
+		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
 		return "/mypage/mypage-refund";
 	}
 	

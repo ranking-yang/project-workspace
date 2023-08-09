@@ -22,6 +22,9 @@
 					<div>🔎 검색어와 일치하는 티켓이 없습니다.</div>
 					<div>지역/작품명 등 다른 검색어를 이용해서 검색해보세요</div>
 				</div>
+				<div id="recommendList">
+				<%--추후 추천리스트 추가 예정입니다 --%>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<div id="search-product-container">
@@ -60,7 +63,7 @@
 			        </div>
 			        <div class="product-module-title">${product.performance_name}</div>
 			        <div class="product-module-bottom">
-			            <div class="star"><i class="fa-solid fa-star" style="color: #ffcb0f;"></i>4.8(828)</div>
+			            <div class="star">⭐ 4.8(828)</div>
 			            <div class="price">${product.performance_price}원</div>
 			        </div>
 			    </div>
