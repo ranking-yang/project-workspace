@@ -63,7 +63,7 @@
 	<div id="reply_write_frm1" name="reply_write_frm" style="margin:0;">
 	    <div style="float:left;">
 	      
-	      <div class="review_title_left_name"  style="padding-left: 10px;"><input type= hidden id="bottom_member_id" value="${prc.username}"></div>
+	      <div class="review_title_left_name" data-usercode="${userCode}" style="padding-left: 10px;">
 	      <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
 	      <br>
 	      <input type="number" id="star_rating" min="1" max="5" step="1" value="5">

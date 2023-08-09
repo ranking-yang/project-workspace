@@ -28,6 +28,7 @@ import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.PaymentService;
+import com.team.webproject.service.ProductListService;
 import com.team.webproject.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,9 @@ public class DetailController {
 	
 	@Autowired
 	LoginService membersService;
+	
+	@Autowired
+	ProductListService productService;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
@@ -87,13 +91,25 @@ public class DetailController {
 	@GetMapping("/product/reviews")
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = ((UserDetails) principal).getUsername();
-		System.out.println("detail_member_id: "+ member_id);
-		MembersDTO member = loginMapper.checklogin(member_id);
-		System.out.println("detail_member_code: "+ member.getMember_code());
+		//String member_id = ((UserDetails) principal).getUsername();
 		
-		model.addAttribute("userId", member_id);
+
 		
+		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
+			model.addAttribute("member_id", null);
+		} else {			
+			String member_id = ((UserDetails) principal).getUsername();
+			Integer member_code = productService.getMember_code(member_id);
+			MembersDTO member = loginMapper.checklogin(member_id);
+			
+			model.addAttribute("userId", member_id);
+			model.addAttribute("userCode", member_code);
+			System.out.println("detail_member_id: "+ member_id);
+
+		}
+
+		// System.out.println("detail_member_code: "+ member.getMember_code());
+
         List<ReviewDTO> reviews = reviewService.getAllReviews();
         model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
