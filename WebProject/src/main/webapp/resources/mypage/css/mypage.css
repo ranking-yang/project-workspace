@@ -195,4 +195,51 @@
 			 cursor: pointer;
 		 }
 
-	
+
+/* 나의 찜목록 css*/
+.wish_product{
+	border: 1px solid #ddd;
+    border-radius: 15px;
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	padding: 15px 30px;
+	margin-bottom: 20px; 
+	cursor: pointer;
+}
+.wish_poster{
+	width: 120px;
+	height: 160px;
+	border-radius: 10px;
+}
+.wish_info{
+	margin: 20px 0;
+}
+.wish_title{
+	font-size: 1.2rem;
+	font-weight: 500;
+	padding: 1px 0;
+}
+.tag > span{
+    background-color: #EEEEEE;
+    border-radius: 15px;
+    margin: 0 1px;
+    padding: 3px;
+    font-size: 0.8rem;
+    color: rgb(41, 41, 41);
+}
+
+.wishBtns{
+	text-align: end;
+}
+.wishBtns button{
+	border: none;
+    background-color: inherit;
+    font-size: 20px;
+}
+.wish_due{
+	font-size: 0.8rem;
+	color: rgb(86, 86, 86);
+}
+.wish_price{
+	font-weight: 500;
+}
