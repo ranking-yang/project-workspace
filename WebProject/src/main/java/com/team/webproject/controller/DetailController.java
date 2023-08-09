@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,19 +14,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
-import com.team.webproject.service.ProductListService;
+import com.team.webproject.service.LoginService;
+import com.team.webproject.service.PaymentService;
 import com.team.webproject.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,8 +41,15 @@ public class DetailController {
 	
 	@Autowired
 	ReviewService reviewService;
+	
 	@Autowired
 	LoginMapper loginMapper;
+	
+	@Autowired
+	PaymentService performanceService;
+	
+	@Autowired
+	LoginService membersService;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
@@ -104,10 +111,14 @@ public class DetailController {
     // ...
 
     @PostMapping("/product/reviews")
-    public String insertReview(@RequestBody ReviewDTO review) {
+    @ResponseBody
+    public void insertReview(@RequestBody ReviewDTO review) {
+    	System.out.println(review.toString());
+    
+    	// ReviewDTO에 관련된 작업 수행
         reviewService.insertReview(review);
-				
-        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
+			
+//        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
     @PutMapping("/product/reviews/{reviewCode}")

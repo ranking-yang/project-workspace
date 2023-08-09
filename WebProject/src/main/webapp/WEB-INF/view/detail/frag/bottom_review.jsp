@@ -54,27 +54,32 @@
 </sec:authorize>
 <!-- 로그인 시에만 뜸. -->
 <sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="prc"/>
+<form action="/product/reviews" method="post">
+<h3>${prc.username}</h3>
 <div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin: 15px;">
 
 		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
 	<div id="reply_write_frm1" name="reply_write_frm" style="margin:0;">
 	    <div style="float:left;">
-	      <div class="review_title_left_name" style="padding-left: 10px;">
-          	${userId}
-          </div>
+	      
+	      <div class="review_title_left_name"  style="padding-left: 10px;"><input type= hidden id="bottom_member_id" value="${prc.username}"></div>
 	      <textarea id="content_comment" name="content_comment" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
 	      <br>
 	      <input type="number" id="star_rating" min="1" max="5" step="1" value="5">
 	      <br>
 	      <input type="file" id="image_upload" accept="image/*">
 	      <br>
+	      <input type="hidden" id="bottom_performance_code" name="code" value="${performance.performance_code}">
 	    </div>
 	    <div style="float:right;">
-	      <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; margin-top:; text-align:center; cursor:pointer;" onclick="submitForm()">등록</button>
+	      <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; text-align:center; 
+	      cursor:pointer;" onclick="submitForm()">등록</button>
 	    </div>
 	  </div>
 </div>
-</div>  
+</div>
+</form>
 </sec:authorize>
 </div>
     <div class="review_start" style=";">

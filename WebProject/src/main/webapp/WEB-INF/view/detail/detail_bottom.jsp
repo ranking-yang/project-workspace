@@ -52,10 +52,5 @@
 <script src="/resources/detail/js/detail_bottom.js"></script>
 
 <script>
-    // 리뷰 작성자 코드를 가져오기 위해 스크립트로 추가
-    var review_writer_code = <%= request.getAttribute("member_code") %>;
-    console.log(review_writer_code);
-    // 공연 코드를 가져오기 위해 스크립트로 추가
-    var performance_code = "<%= request.getAttribute("performance_code") %>";
-    console.log(performance_code);
+
 </script>
