@@ -107,6 +107,11 @@ function submitForm() {
   var content_comment = document.getElementById("content_comment").value;
   var image_upload = document.getElementById("image_upload").files[0]; // 첨부한 이미지 파일 가져오기
   var star_rating = parseFloat(document.getElementById("star_rating").value);
+  var review_like = 0;
+  // var review_code;
+  var review_writer_code;
+  var performance_code;
+    
   // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
   if (star_rating < 1 || star_rating > 5) {
     alert("별점은 1부터 5까지 입력해주세요.");
@@ -201,7 +206,13 @@ function submitForm() {
     var imageURL = URL.createObjectURL(image_upload);
     newReviewDiv.querySelector(".img_label").setAttribute("style", `background-image: url(${imageURL})`);
     newReviewDiv.querySelector(".img_label").setAttribute("name", imageURL);
+  }else if(image_upload = undefined){
+	var imageURL = URL.createObjectURL(image_upload);
+    newReviewDiv.querySelector(".img_label").setAttribute("style", `background-image: url('/resources/common/image/question-mark.png')`);
+    newReviewDiv.querySelector(".img_label").setAttribute("name", '/resources/common/image/question-mark.png');
+    image_upload = "normal";
   }
+  
 
   // 생성된 리뷰 래핑 요소를 리뷰 텍스트 컨테이너에 추가
   reviewTextContainer.appendChild(newReviewDiv);
@@ -209,11 +220,6 @@ function submitForm() {
   // 새로운 리뷰를 리뷰 텍스트 컨테이너의 맨 위에 추가
   var firstReview = reviewTextContainer.firstChild;
   reviewTextContainer.insertBefore(newReviewDiv, firstReview);	
-	
-  // 기존에 입력한 내용 초기화
-  document.getElementById("content_comment").value = "";
-  document.getElementById("star_rating").value = "0";
-  document.getElementById("image_upload").value = "";
   
   // (새 리뷰가 추가되었으므로) 후기 숫자 업데이트
   updateReviewCount1();
@@ -238,7 +244,44 @@ function submitForm() {
   // .score_section_left_star_filled 요소의 width 속성에 averageRating 값을 적용
   var filledStarElement = document.querySelector('.score_section_left_star_filled');
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
-    
+ 
+  // 리뷰 데이터를 서버로 전송하기 위해 FormData 객체 생성
+  var formData = new FormData();
+  formData.append("review_content", content_comment);
+  formData.append("review_image", image_upload);
+  formData.append("review_star", star_rating);
+  formData.append("review_code", reviewId);
+  formData.append("review_writer_code", review_writer_code);
+  formData.append("review_like", review_like);
+  formData.append("performance_code", performance_code);
+  // AJAX를 사용하여 리뷰 생성 요청 보내기
+  fetch("/product/reviews", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // 서버로부터의 응답 처리
+      console.log(data); // 서버가 리뷰 생성 성공 여부 등의 정보를 응답할 수 있음
+      if (data.success) {
+        // 리뷰가 성공적으로 생성된 경우, 페이지를 새로고침하거나 적절한 처리를 수행합니다.
+        location.reload();
+      } else {
+        alert("리뷰 생성에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      // 오류 처리
+      console.error("Error:", error);
+      alert("서버와의 통신 중 오류가 발생했습니다.");
+    });
+
+  
+  // 기존에 입력한 내용 초기화
+  document.getElementById("content_comment").value = "";
+  document.getElementById("star_rating").value = "0";
+  document.getElementById("image_upload").value = "";
+  
   return true; // 정상적으로 리뷰가 추가되었음을 반환
 }
 

@@ -38,6 +38,11 @@ public class MainController {
 //		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
 //		System.out.println("main principal : " + principal.toString());
 //		System.out.println("user name: "+ (UserDetails)principal);
+		
+		
+//		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
+//		System.out.println("main principal : " + principal.toString());
+		
 		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("userId", null);
