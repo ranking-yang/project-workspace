@@ -39,12 +39,16 @@ public class ProductListServiceImpl implements ProductListService {
 		return wishMapper.getUserWishlist(member_code);
 	}
 
-	 @Override
-	    public List<PerformanceDTO> getAreaProductList(String area_code) {
-	        String areaName = AreaEnum.getAreaNameByCode(area_code);
-            return performanceMapper.getAreaPerformances(areaName);
+	@Override
+    public List<PerformanceDTO> getAreaProductList(String area_code) {
+        String areaName = AreaEnum.getAreaNameByCode(area_code);
+        return performanceMapper.getAreaPerformances(areaName);
+    }
 
-	    }
+	@Override
+	public List<PerformanceDTO> getAllProduct() {
+		return performanceMapper.getAllPerformances();
+	}
 
 	
 	

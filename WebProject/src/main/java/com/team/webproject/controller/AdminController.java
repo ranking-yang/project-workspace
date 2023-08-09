@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.service.LoginService;
+import com.team.webproject.service.ProductListService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,11 +34,18 @@ public class AdminController {
 	@Autowired
 	AddPerformance addPerformance;
 	
+	@Autowired
+	ProductListService product;
+	
 	private final LoginService exService;
 	
 	// 관리자 페이지
 	@GetMapping("/admin/api")
-	public String adminGET(){
+	public String adminGET(Model model){
+		
+		List<PerformanceDTO> performance_admin = product.getAllProduct();
+		model.addAttribute("performance", performance_admin);
+		
 		return "admin/admin_main";
 		
 	}
@@ -84,6 +94,12 @@ public class AdminController {
 			}
 			
 		}
+	}
+	
+	@GetMapping("/admin/md/select")
+	@ResponseBody
+	public ShowDTO getShowli(@RequestBody String[] selectli) {
+		return null;
 	}
 
 }
