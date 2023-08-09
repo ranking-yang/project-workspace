@@ -21,7 +21,7 @@
 				</div>
 				<div class="mypage_top_contents" id="my_wishList">
 					<div><button class="mypage_menu_btn" onclick="location.href='/mypage/wishlist'">나의 찜목록 ></button></div>
-					<div style="color: rgb(120,86,184);">0</div>
+					<div><span style="color: rgb(120,86,184);">${countWish } </span>개</div>
 				</div>
 				<div class="mypage_top_contents">
 					<!-- 여분 -->

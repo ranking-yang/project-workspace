@@ -6,6 +6,9 @@
 	<select id="getUserWishlist">
 		SELECT * FROM wish_list where list_writer_code=#{member_code}
 	</select>
+	<select id="countUserWishlist">
+		SELECT COUNT(*) FROM wish_list where list_writer_code=#{member_code}
+	</select>
 	<insert id="insertWishlist">
   		insert into wish_list (wish_code, list_writer_code, performance_code)
   		values (wish_code_seq.nextval, #{member_code}, #{performance_code})

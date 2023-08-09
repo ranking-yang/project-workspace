@@ -28,6 +28,7 @@ public class MainController {
 		// 전체 securityholder 내용
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 //		UserDetails user = (UserDetails)principal;
 //		
 //		System.out.println("username : "+user.getUsername());
@@ -35,6 +36,9 @@ public class MainController {
 //		MembersDTO member = loginMapper.checklogin(user.getUsername());
 //		System.out.println("member code: "+ member.getMember_code());
 		
+
+//		
+
 //		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
 //		System.out.println("main principal : " + principal.toString());
 //		System.out.println("user name: "+ (UserDetails)principal);

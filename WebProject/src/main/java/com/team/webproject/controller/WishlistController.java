@@ -21,7 +21,7 @@ public class WishlistController {
 	@Autowired
 	WishlistMapper wishlistMapper;
 	
-	@PostMapping(value={"/product/addwishlist", "/addwishlist"})
+	@PostMapping(value={"/addwishlist"})
 	@CrossOrigin(origins = "", methods = RequestMethod.POST)
 	void addWishlist(@RequestParam("member_code") int member_code, 
 			@RequestParam("performance_code") String performance_code) {
@@ -30,7 +30,7 @@ public class WishlistController {
 	}
 	
 	
-	@PostMapping(value={"/product/delewishlist", "/delewishlist"})
+	@PostMapping(value={"/delewishlist"})
 	@CrossOrigin(origins = "", methods = RequestMethod.POST)
 	void deleteWishlist(@RequestParam("member_code") int member_code,
 			@RequestParam("performance_code") String performance_code) {

@@ -8,6 +8,7 @@ public interface WishlistMapper {
 	
 	
 	List<WishlistDTO> getUserWishlist(int member_code);
+	int countUserWishlist(int member_code);
 	int insertWishlist(int member_code, String performance_code);
 	int deleteWishlist(int member_code, String performance_code);
 	
