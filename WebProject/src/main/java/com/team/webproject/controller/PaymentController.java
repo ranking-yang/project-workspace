@@ -76,8 +76,7 @@ public class PaymentController {
 			return "payment/afterpayment";		
 		} else {
 			return null;
-		}
-		
+		}		
 
 	}	
 	
@@ -86,5 +85,7 @@ public class PaymentController {
 	public String myCoupon() {
 		return "payment/coupon-popup";
 	}
+	
+	
 
 }

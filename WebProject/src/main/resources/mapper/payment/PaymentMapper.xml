@@ -49,4 +49,17 @@
 		SELECT * FROM payments WHERE payment_code = #{payment_code}
 	</select>
 	
+	<insert id="insertRefundTicket">
+		INSERT INTO refund (
+			refund_code,
+			payment_code,
+			refund_status
+		)
+		VALUES (
+			refund_code_seq.nextval,
+			#{payment_code}, 
+			'환불요청'
+		)	
+	</insert>
+	
 </mapper>
