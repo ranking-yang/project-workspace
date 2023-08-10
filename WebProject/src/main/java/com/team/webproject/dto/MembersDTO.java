@@ -1,22 +1,18 @@
 package com.team.webproject.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 //import com.team.webproject.domain.Member;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MembersDTO implements UserDetails {
 	
+	private static final long serialVersionUID = 1L;
+
 	private Integer member_code;
 	
 	@NotBlank(message = "아이디는 필수 입력 값입니다.")
@@ -74,50 +72,63 @@ public class MembersDTO implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		// null값
+		Collection<GrantedAuthority> collectors = new ArrayList<>();
+		
+		collectors.add(new GrantedAuthority() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getAuthority() {
+				return "ROLE_" + getMember_role();
+			}
+			
+		});
+		
+		return collectors;
 	}
 
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return getMember_pwd();
 	}
 
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return getMember_id();
 	}
 
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 //	public Member toEntity(String roles) {

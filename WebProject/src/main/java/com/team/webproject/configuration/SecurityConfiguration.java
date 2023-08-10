@@ -1,30 +1,22 @@
 package com.team.webproject.configuration;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.mapper.LoginMapper;
-import com.team.webproject.service.LoginService;
 import com.team.webproject.service.LoginServiceImpl;
 
 import lombok.RequiredArgsConstructor;
-import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	AuthSuccessFailHandler authSuccessFailHandler;
 	HttpServletRequest request;
 	
-	private final LoginServiceImpl loginService ;
+	private final LoginServiceImpl loginService;
 	
 	@Bean
 	public static BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -84,5 +76,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public AuthenticationSuccessHandler successHandler() {
 	    return new CustomLoginSuccessHandler("/defaultUrl");
 	}
-       
+	
 }

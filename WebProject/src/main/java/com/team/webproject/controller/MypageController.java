@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team.webproject.service.CouponService;
 import com.team.webproject.service.MypageService;
 import com.team.webproject.service.ProductListService;
 
@@ -22,6 +23,9 @@ public class MypageController {
 	@Autowired
 	ProductListService productListService;
 	
+	
+	@Autowired
+	CouponService couponService;
 	
 	// 메인 겸 예매내역
 	@GetMapping("")
@@ -74,6 +78,12 @@ public class MypageController {
 	// 쿠폰
 	@GetMapping("/coupon")
 	String gotoCouponPage(Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userID = ((UserDetails) principal).getUsername();
+		
+		model.addAttribute("coupons", couponService.getAllCoupon(userID));
+		
 		return "/mypage/mypage-coupon";
 	}
 	

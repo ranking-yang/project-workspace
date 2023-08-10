@@ -97,7 +97,9 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentMapper.insertPayment(payment);
 		
 		// 회원쿠폰코드를 통해 사용한 쿠폰의 상태를 변경한다(미사용->사용)
-		couponMapper.updateCouponState(payment.getRelated_coupon());
+		if (payment.getRelated_coupon() != null) {
+			couponMapper.updateCouponState(payment.getRelated_coupon());
+		}
 		
 		for (TicketDTO ticket : tickets) {
 			for (int i = 0; i < ticket.getBooking_qty(); ++i) {
