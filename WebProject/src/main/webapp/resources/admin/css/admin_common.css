@@ -48,18 +48,27 @@
   overflow: hidden;
 }
 #mdselect{
-	
+	padding: 10px;
 }
 #mdtable{
-	float:right;
-	width: 1200px;
+	width: auto;
     height: auto;
     margin-top: 10px;
     border: 1px solid #ddd;
 }
-
 #mdbtn{
+	padding: 10px;
+	
+}
+#mdbtn_menu{
 	float:left;
+	width: 450px;
+	height:420px;
+	margin-top: 10px;
+	border: 1px solid #ddd;
+}
+#mdmenu{
+	float:right;
 	
 }
 #md_product{

@@ -7,7 +7,7 @@
 	 
 	 	// 메뉴 버튼 클릭시 이벤트
 		$(function(){
-			var checkShowCode = new Array();
+			checkShowCode = new Array();
 			$('input[class="showpost"]').change(function() { // 공연중 포스터를 클릭시
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').find('.product-module').data('pk'); // 선택한 input 가져오기
@@ -24,13 +24,6 @@
 	            	}
 	            }
 	        });
-			/* $.ajax({
-	            url : "/admin/md/select",
-	            type: "POST",
-	            success : function(result) {
-	            
-	            }
-			}); */
 			
 			// 카테고리 부문 선택시 
 			var checkCategory = new Array();
@@ -51,12 +44,13 @@
 	            }
 	        });
 			// 
-			var checkLocal = new Array();
+			checkLocal = new Array();
 			$('input[class="optionlocal"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkLocal.push(labelText);
 	                console.log("Label text:", labelText);
+	                
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkLocal.length; i++) {
@@ -67,7 +61,7 @@
 	            	}
 	            }
 	        });
-			var checkshow = new Array();
+			checkshow = new Array();
 			$('input[class="optionshow"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
@@ -83,7 +77,7 @@
 	            	}
 	            }
 	        });
-			var checkmusic = new Array();
+			checkmusic = new Array();
 			$('input[class="optionmusic"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
@@ -99,12 +93,13 @@
 	            	}
 	            }
 	        });
-			var checkart = new Array();
+			checkart = new Array();
 			$('input[class="optionart"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkart.push(labelText);
 	                console.log("Label text:", labelText);
+	                
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkart.length; i++) {
@@ -115,26 +110,80 @@
 	            	}
 	            }
 	        });
+			$.ajax({
+            	url : "/admin/md/select", 
+	            type: "POST",
+	            data: {
+	            	"category":checkCategory,
+	            	"local":checkLocal,
+	            	"show":checkshow,
+	            	"music":checkmusic,
+	            	"art": checkart
+	            },
+	            cache : false,
+	            dataType: "text",
+	            success : function(result) {
+	            	
+	            }
+            	
+            });
 		});
+		$(document).ready(function() {
+		    var date = new Date();
+
+		    var day = date.getDate();
+		    var month = date.getMonth() + 1;
+		    var year = date.getFullYear();
+			
+		    if (month < 10) month = "0" + month;
+		    if (day < 10) day = "0" + day;
+
+		    var today = year + "-" + month + "-" + day;       
+		    $("#md_stdate").attr("value", today);
+		    $("#md_endate").attr("value", today);
+		
+			$(document).on("click", "#add_mdbtn", function() {
+				/*
+				var title = $("#md_title").text();
+				var stdate = $("#md_stdate").value;
+				var endate = $("#md_endate").value;
+				var*/
+				console.log(checkShowCode);
+			});
+		});
+		
+		
+		
 	 </script>
 <div class="main">
 	<h3> MD 추천(선택한 카테고리에 맞춘 공연 선택 가능 ajax 형식 틀)</h3>
     <hr>
-    	<div id="mdselect">
-    		<h3>MD 추천 사항</h3>
-    		<input type="text" id="md_title"> 
-    		<input type="date" id="md_stdate">
-    		<input type="date" id="md_endate"> 
+    	<div>
+    	<div id="mdbtn_menu">
+	    	<div id="mdselect">
+	    		<h3>MD 추천 사항</h3>
+	    		추천 제목 : <input type="text" id="md_title"><br>
+	    		날짜 : <input type="date" id="md_stdate"> ~
+	    		<input type="date" id="md_endate"> 
+	    	</div>
+	    	<div id="mdbtn">
+	    		<h3>선택 사항</h3>
+	    		장르 : <input type="text" id="md_sub"><br>
+	    		지역 : <input type="text" id="md_local"><br>
+	    		<br>
+	    	</div>
+	    	<div id="mdbtn">
+	    		<button id="add_mdbtn">추가</button>
+	    		<button id="reset_mdbtn">초기화</button>
+	    	</div>
+	    	
     	</div>
-    	<div id="mdbtn">
-    		<button>추가</button>
-    		<button>초기화</button>
-    	</div>
+    	
     	<div id="mdmenu">
-    	<table id="mdtable" style="width:1200px">
+    	<table id="mdtable">
     		<tr>
     			<th>분류</th>
-    			<th colspan="8">선택</th>
+    			<th colspan="8">공연 선택</th>
     		</tr>
     		<tr>
    				<td><label>카테고리 선택</label></td>
@@ -207,6 +256,12 @@
 
    				</tr>
    			
+   				</table>
+   		<table id="mdtable" style="width:1200px">
+    		<tr>
+    			<th>분류</th>
+    			<th colspan="8">장르 추천 선택</th>
+    		</tr>	
    			<tr>
    				<td rowspan="2"><label>연극 장르 선택</label></td>
    				<td><input type="checkbox" class="optionshow" id="show1">
@@ -329,6 +384,7 @@
     	</table>
       	</div>
     </div>
+    </div>
     	<input type="hidden" id="md_pernoteat" value="${performance}">
     	<div id="md_product">
         	<c:forEach var="product" items="${performance}">
@@ -354,3 +410,4 @@
 			    
 			</c:forEach>
 		</div>
+		

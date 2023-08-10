@@ -98,7 +98,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/md/select")
 	@ResponseBody
-	public ShowDTO getShowli(@RequestBody String[] selectli) {
+	public ShowDTO getShowli(@RequestBody String selectli) {
 		return null;
 	}
 
