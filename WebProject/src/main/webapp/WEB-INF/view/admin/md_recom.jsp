@@ -190,6 +190,27 @@
 	            	
 	            });
 			});
+			
+			// 초기화 버튼 클릭시
+		    $("#reset_mdbtn").click(function() {
+		        // 모든 체크박스 해제
+		        $('input[type="checkbox"]').prop("checked", false);
+		        
+		        // 추천 제목과 날짜 입력 필드 초기화
+		        $("#md_title").val("");
+		        $("#md_stdate").attr("value", today);
+			    $("#md_endate").attr("value", today);
+		        
+		        // 선택된 라벨 제거
+		        $(".selected-label").remove();
+		        
+		        // 선택된 항목 배열 초기화
+		        checkShowCode = [];
+		        checkShowTitle = [];
+		        checkCategory = [];
+		        checkLocal = [];
+		        checkshow = [];
+		    });
 		});
 		
 		
@@ -244,6 +265,9 @@
    			</tr>
    			<tr>
    				<td rowspan="2"><label>지역 선택</label></td>
+   				<td><input type="checkbox" class="optionlocal" id="local0">
+   					<label for="local0">전국</label>
+   				</td>
    				<td><input type="checkbox" class="optionlocal" id="local1">
    					<label for="local1">서울</label>
    				</td>
@@ -265,12 +289,11 @@
    				<td><input type="checkbox" class="optionlocal" id="local7">
    					<label for="local7">세종</label>
    				</td>
+   				</tr>
+   			<tr>
    				<td><input type="checkbox" class="optionlocal" id="local8">
    					<label for="local8">제주</label>
    				</td>
-   				</tr>
-   			<tr>
-   				
    				<td><input type="checkbox" class="optionlocal" id="local9">
    					<label for="local9">강원</label>
    				</td>
@@ -423,7 +446,7 @@
     	</table>
       	</div>
     </div>
-    </div>
+    
     	<input type="hidden" id="md_pernoteat" value="${performance}">
     	<div id="md_product">
         	<c:forEach var="product" items="${performance}">
@@ -449,4 +472,4 @@
 			    
 			</c:forEach>
 		</div>
-		
+		</div>
