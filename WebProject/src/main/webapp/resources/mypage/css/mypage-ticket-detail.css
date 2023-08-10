@@ -1,6 +1,6 @@
 .mypage-detail-con {
 	display: grid;
-	grid-template-rows: 170px 1fr 170px 100px 100px;
+	grid-template-rows: 150px 1fr 170px 100px 100px;
 	padding: 10px;
 }
 

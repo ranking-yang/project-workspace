@@ -13,6 +13,8 @@ public class TicketRefundDTO {
 	private Integer booking_total_qty;
 
 	// 공연
+	private String main_category;
+	private String performance_code;
 	private String performance_name;
 	private String poster;
 	private String place;

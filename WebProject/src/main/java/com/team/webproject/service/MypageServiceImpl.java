@@ -1,5 +1,6 @@
 package com.team.webproject.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,9 +39,8 @@ public class MypageServiceImpl implements MypageService {
 	
 	// 티켓 리스트 조회
 	@Override
-	public List<TicketDetailDTO> getMemberTickets(String user_id) {
-		MembersDTO member = loginMapper.checklogin(user_id);		
-		return ticketMapper.getMemberTickets(member.getMember_code());
+	public List<TicketDetailDTO> getMemberTickets(Integer user_code) {	
+		return ticketMapper.getMemberTickets(user_code);
 	}
 	
 	// 티켓 상세 관련
@@ -72,9 +72,8 @@ public class MypageServiceImpl implements MypageService {
 	
 	// 환불 티켓 리스트 조회
 	@Override
-	public List<TicketRefundDTO> getRefundTickets(String user_id) {
-		MembersDTO member = loginMapper.checklogin(user_id);		
-		return ticketMapper.getRefundTickets(member.getMember_code());
+	public List<TicketRefundDTO> getRefundTickets(Integer user_code) {		
+		return ticketMapper.getRefundTickets(user_code);
 	}
 	
 	// 환불 티켓 디테일 조회
@@ -101,6 +100,12 @@ public class MypageServiceImpl implements MypageService {
 		});
 
 	    return userWishPerformances;
+	}
+	
+	// 공연 종료일 조회
+	@Override
+	public Date chkEndDate(String performance_code) {		
+		return performanceMapper.getEndDate(performance_code);
 	}
 
 }

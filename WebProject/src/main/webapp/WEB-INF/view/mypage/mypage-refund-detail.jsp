@@ -31,8 +31,16 @@
 			<div class="mypage-detail-ticket mypage-box">
 				<div class="box-title">티켓명</div>
 				<div class="value">${ticket.performance_name }</div>
-				<div class="box-title">예매상태</div>
-				<div class="value" style="color: orange; font-weight: 500;">${ticket.refund_status}</div>
+				<div class="box-title">환불상태</div>
+					<c:choose>
+						<c:when test="${ticket.refund_status eq '환불요청'}">
+							<div class="value" style="color: orange; font-weight: 500;">${ticket.refund_status}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="value" style="color: green; font-weight: 500;">${ticket.refund_status}</div>
+						</c:otherwise>
+					</c:choose>
+				
 				<div class="box-title">장소</div>
 				<div class="value">${ticket.place }</div>
 			</div>
@@ -64,11 +72,11 @@
 			<div class="mypage-detail-user mypage-box">
 				<div class="box-title">이용자</div>
 				<div class="value">				
-					
+					<sec:authentication property="principal.member_name"/>
 				</div>
 				<div class="box-title">결제금액</div>
 				<div class="value">				
-					${ticket.total_price}
+					${ticket.total_price}원
 				</div>
 				<div class="box-title">결제수단</div>
 				<div class="value">				

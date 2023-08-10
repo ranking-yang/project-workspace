@@ -1,5 +1,7 @@
 package com.team.webproject.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.service.CouponService;
 import com.team.webproject.service.MypageService;
 import com.team.webproject.service.ProductListService;
@@ -29,11 +33,11 @@ public class MypageController {
 	
 	// 메인 겸 예매내역
 	@GetMapping("")
-	String gotoMypage(Model model) {		
+	String gotoMypage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String userID = ((UserDetails) principal).getUsername();
-		model.addAttribute("tickets", mypageService.getMemberTickets(userID));
-		model.addAttribute("countWish", productListService.countUserWish_list(productListService.getMember_code(userID)));
+		Integer user_code = ((MembersDTO) principal).getMember_code();		
+		model.addAttribute("tickets", mypageService.getMemberTickets(user_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-ticket";
 	}
 	
@@ -41,9 +45,12 @@ public class MypageController {
 	@PostMapping("/ticket/detail")
 	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {		
 		// 티켓 DTO 실어서 보내주기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
 		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
 		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
-		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-ticket-detail";
 	}
 	
@@ -51,9 +58,12 @@ public class MypageController {
 	@PostMapping("/ticket/refund")
 	String refundTicket(Model model, @RequestParam("payment_code") String payment_code) {
 		// 환불 DTO 실어서 보내주기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
 		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
 		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
-		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));	
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-ticket-refund";
 	}
 	
@@ -64,14 +74,22 @@ public class MypageController {
 		if (mypageService.refundTicket(payment_code)) {
 			
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String userID = ((UserDetails) principal).getUsername();
+			Integer user_code = ((MembersDTO) principal).getMember_code();
 			
-			model.addAttribute("tickets", mypageService.getRefundTickets(userID));
+			model.addAttribute("tickets", mypageService.getRefundTickets(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 			
 			return "/mypage/mypage-refund";
 		} else {
 			return "redirect:/mypage";
 		}		
+	}
+	
+	// 공연 종료날짜 조회
+	@ResponseBody
+	@PostMapping("/checkDate")
+	Date chkPerformanceEndDate(@RequestParam("performance_code") String performance_code) {		
+		return mypageService.chkEndDate(performance_code);
 	}
 	
 	
@@ -108,16 +126,20 @@ public class MypageController {
 	@GetMapping("/refund")
 	String gotoRefundPage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String userID = ((UserDetails) principal).getUsername();		
-		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
+		Integer user_code = ((MembersDTO) principal).getMember_code();	
+		model.addAttribute("tickets", mypageService.getRefundTickets(user_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-refund";
 	}
 	
 	@PostMapping("/refund/detail")
-	String gotoRefundDetailPage(Model model, @RequestParam("payment_code") String payment_code) {		
+	String gotoRefundDetailPage(Model model, @RequestParam("payment_code") String payment_code) {	
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
 		model.addAttribute("ticket", mypageService.getRefundTicketDetail(payment_code));
 		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
-		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));				
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));	
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-refund-detail";
 	}
 	

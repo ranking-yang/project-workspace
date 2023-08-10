@@ -1,3 +1,27 @@
+/* 필터 css */
+.mypage_value_title {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+}
+
+#filter-menus {
+	width: 100%;
+	text-align: right;
+}
+
+.filter-btn {
+	border: 0;
+	background-color: white;
+	color: gray;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.filter-btn:hover {
+	color: #7856b8;
+	font-weight: 700;
+}
+
 /* 예매내역 css */
 #mypage_ticket_con > div {
 	border: solid 1px yellowgreen;
@@ -31,6 +55,15 @@
             text-align: center;
             padding-top: 20px;
         }
+        
+        .ticket-poster-btn, .ticket-performance-name-txt {
+			cursor: pointer;
+		}
+		
+		.ticket-performance-name-txt:hover {
+			text-decoration: underline;
+			font-weight: 500;
+		}
 	
 		#mypage-ticket-poster {
 	        width: 120px;

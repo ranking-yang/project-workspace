@@ -8,7 +8,7 @@
 		
 	SELECT 
 	    DISTINCT ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
-	    p.performance_code, p.performance_name, p.poster,
+	    p.performance_code, p.performance_name, p.poster, p.main_category,
 	    payment_code_fk AS payment_code, pay.payment_date, pay.total_price, ticket.advance_ticket_state
 	FROM advance_tickets ticket
 	INNER JOIN
@@ -87,7 +87,7 @@
 		SELECT 
 	   		DISTINCT
 		    ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
-		    p.performance_name, p.poster,
+		    p.performance_name, p.poster, p.main_category, p.performance_code,
 		    r.refund_code, r.refund_date, r.refund_status,
 		    pay.payment_code, pay.total_price
 		FROM advance_tickets ticket

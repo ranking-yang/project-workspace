@@ -16,6 +16,7 @@ public class TicketDetailDTO {
 	// 공연
 	private String performance_code;
 	private String performance_name;
+	private String main_category;
 	private String poster;
 	private String place;
 	private String address;

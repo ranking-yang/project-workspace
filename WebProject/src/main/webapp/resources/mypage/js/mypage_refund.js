@@ -1,7 +1,14 @@
+$(document).ready(function() {
+			
+	$('.mypage_menu_btn').eq(3).addClass('clicked');		
+			
+});
+		
 function goToDetail(payment_code) {	
+	
 	let detailForm = $('<form></form>').attr({
 	  'id': 'Detailform',
-	  'action': '/mypage/ticket/detail',
+	  'action': '/mypage/refund/detail',
 	  'method': 'post'
 	});
 	
@@ -15,34 +22,6 @@ function goToDetail(payment_code) {
 	$(document.body).append(detailForm);
 	
 	detailForm.submit();
-}
-
-function refundTicket(payment_code, end_date) {
-	const today = new Date();
-	const endDate = new Date(end_date);
-	
-	if (endDate == today) {
-		alert('관람 당일은 환불이 불가합니다.');
-	} else {
-		// 서브밋으로 다음 페이지로 보내기
-		let refundForm = $('<form></form>').attr({
-		 'id': 'Detailform',
-		  'action': '/mypage/ticket/refund',
-		  'method': 'post'
-		});
-		
-		let payment_code_input = $('<input></input>').attr({
-		  'type': 'hidden',
-		  'name': 'payment_code',
-		  'value' : payment_code
-		});
-	
-		refundForm.append(payment_code_input);
-		$(document.body).append(refundForm);
-		
-		refundForm.submit();		
-	}
-
 }
 
 function goToperformance(category, performance_code) {
@@ -67,11 +46,9 @@ function goToperformance(category, performance_code) {
 			alert('판매 기간이 종료된 상품입니다.');
 		}
     },
-    error: function(xhr, status, error) {
-        // 요청이 실패했을 때 실행되는 콜백 함수
-        console.error("Error:", error);
-    }
-});
-	
-
+	    error: function(xhr, status, error) {
+	        // 요청이 실패했을 때 실행되는 콜백 함수
+	        console.error("Error:", error);
+	    }
+	});
 }

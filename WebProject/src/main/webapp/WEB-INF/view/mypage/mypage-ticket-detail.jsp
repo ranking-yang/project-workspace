@@ -69,11 +69,11 @@
 			<div class="mypage-detail-user mypage-box">
 				<div class="box-title">이용자</div>
 				<div class="value">				
-					
+					<sec:authentication property="principal.member_name"/>
 				</div>
 				<div class="box-title">결제금액</div>
 				<div class="value">				
-					${ticket.total_price}
+					${ticket.total_price}원
 				</div>
 				<div class="box-title">결제수단</div>
 				<div class="value">				
@@ -109,7 +109,7 @@
 			
 			 $('.mypage_menu_btn').eq(2).addClass('clicked');
 			 
-			 $('#ticket-address-txt').width(($('#ticket-address-txt').val().length + 1) * 13);
+			 $('#ticket-address-txt').width(($('#ticket-address-txt').val().length + 1) * 12);
 		
 		      $('#back-btn').click(function() {
 		        location.href = '/mypage';

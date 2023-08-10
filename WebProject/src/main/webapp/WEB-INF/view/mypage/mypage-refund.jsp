@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value="/resources/mypage/css/mypage.css" var="mypage_css" />
 <c:url value="/resources/mypage/css/mypage-ticket.css" var="mypage_ticket_css" />
+<c:url value="/resources/mypage/js/mypage_refund.js" var="mypage_refund_js" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,12 @@
 										
 									<div id="mypage-ticket-middle">										
 										<!-- 포스터 -->
-										<div>
+										<div class="ticket-poster-btn" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">
 						                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
 						                </div>
 						                <!-- 공연 내역 -->
 										<div>
-											<div>${ticket.performance_name }</div>
+											<div class="ticket-performance-name-txt" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">${ticket.performance_name }</div>
 											<div> 
 												<c:choose>
 													<c:when test="${!empty ticket.booking_time }">${ticket.booking_date } / ${ticket.booking_time }</c:when>
@@ -83,35 +84,8 @@
 	<%@ include file="../common/footer.jsp"%>
 
 	<%@ include file="../common/commonJs.jsp"%>
-
-	<script>		
-		$(document).ready(function() {
-			
-			$('.mypage_menu_btn').eq(3).addClass('clicked');		
-			
-		});
-		
-		function goToDetail(payment_code) {	
-			
-			let detailForm = $('<form></form>').attr({
-			  'id': 'Detailform',
-			  'action': '/mypage/refund/detail',
-			  'method': 'post'
-			});
-			
-			let payment_code_input = $('<input></input>').attr({
-			  'type': 'hidden',
-			  'name': 'payment_code',
-			  'value' : payment_code
-			});
-			
-			detailForm.append(payment_code_input);
-			$(document.body).append(detailForm);
-			
-			detailForm.submit();
-		}
-		
-	</script>
+	
+	<script src="${mypage_refund_js}"></script>
 
 </body>
 </html>

@@ -26,7 +26,17 @@
 	<!-- 나의 티켓 -->
 
 	<div id="mypage_value">
-		<div class="mypage_value_title">예매내역</div>
+		<div class="mypage_value_title">
+		
+		<div>예매내역</div>
+		
+		<div id="filter-menus">
+				<button class="filter-btn">사용가능</button>
+				<button class="filter-btn">사용완료</button>
+		</div>
+		
+		</div>
+		
 		
 			<c:choose>
 				<c:when test="${!empty tickets}">
@@ -47,14 +57,14 @@
 											<div>${ticket.payment_date }</div>
 										</div>
 											
-										<div id="mypage-ticket-middle">										
+										<div id="mypage-ticket-middle">								
 											<!-- 포스터 -->
-											<div>
+											<div class="ticket-poster-btn" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">
 							                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
 							                </div>
 							                <!-- 공연 내역 -->
 											<div>
-												<div>${ticket.performance_name }</div>
+												<div class="ticket-performance-name-txt" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">${ticket.performance_name }</div>
 												<div> 
 													<c:choose>
 														<c:when test="${!empty ticket.booking_time }">${ticket.booking_date } / ${ticket.booking_time }</c:when>
@@ -87,12 +97,12 @@
 										
 										<div id="mypage-ticket-middle">										
 										<!-- 포스터 -->
-										<div>
+										<div class="ticket-poster-btn" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">
 						                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
 						                </div>
 						                <!-- 공연 내역 -->
 										<div>
-											<div>${ticket.performance_name }</div>
+											<div class="ticket-performance-name-txt" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">${ticket.performance_name }</div>
 											<div><c:choose>
 													<c:when test="${!empty ticket.booking_time }">${ticket.booking_date } / ${ticket.booking_time }</c:when>
 													<c:otherwise>유효기간 : ~ ${ticket.booking_date }</c:otherwise>
