@@ -1,0 +1,107 @@
+/* 환불내역 css */
+#ticket-refund-con {
+	display: grid;
+	grid-template-rows: 250px 100px 200px 150px 100px;
+	row-gap: 20px;
+}
+
+.ticket-refund-box {
+	display: grid;
+	grid-template-rows: 50px 1fr;
+	border: solid 1px #f5f5f5;
+}
+
+.ticket-refund-box-title {
+	background-color: #f5f5f5;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: left;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+	/* 예매내역 확인 */
+	#ticket-value {
+		display: grid;
+		grid-template-columns: 180px 1fr;
+		padding: 20px;
+		grid-row: 10px;
+	}		
+	
+		
+		#ticket-performance {
+			display: grid;
+			grid-template-columns: 70px 1fr;
+		}
+		
+			#ticket-performance-title {
+				grid-column: -1 / 1;
+				font-size: 20px;
+				font-weight: 600;
+				border-bottom: solid 2px #f5f5f5;
+			}
+			
+			#poster > img {
+	            width: 120px;
+	            height: 160px;
+	            border-radius: 10px;
+			}
+			
+			.ticket-performance-subtitle {
+				color: gray;
+				font-size: 15px;
+				padding-top: 10px;
+			}
+			
+			.ticket-performance-txt {
+				font-size: 15px;
+				padding-top: 10px;
+			}
+		
+		
+			.ticket-option-value {
+				padding-top: 11px;
+				font-size: 13px;
+			}
+			
+	.ticket-refund-box:nth-child(2) > div:last-child {
+		color: red;
+		padding: 10px;
+	}
+	
+	/* 환불금액 */
+	#refund-value {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		grid-template-rows: repeat(3, 1fr);
+		padding: 20px;
+		row-gap: 5px;
+	}
+	
+		.refund-value-db {
+			text-align: right;
+		}
+		
+	/* 환불진행 안내 */
+	#ticket-refund-notice {
+		font-size: 15px;
+		padding: 15px;
+	}
+
+/* 버튼들 */
+#ticket-refund-btn {
+	display: grid;
+	grid-template-rows: 30px 70px;
+	row-gap: 10px;
+	text-align: center;
+}
+
+	#refund_btn {
+        width: 250px;
+        padding: 5px;
+        font-size: 22px;
+        background: #46c8b4;
+        border: 1px solid #46c8b4;
+        color: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+	}

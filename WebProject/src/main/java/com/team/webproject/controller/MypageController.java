@@ -34,6 +34,7 @@ public class MypageController {
 		return "/mypage/mypage-ticket";
 	}
 	
+	// 티켓 상세페이지
 	@PostMapping("/ticket/detail")
 	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {
 		
@@ -41,6 +42,34 @@ public class MypageController {
 		
 		return "/mypage/mypage-ticket-detail";
 	}
+	
+	// 환불 상세페이지
+	@PostMapping("/ticket/refund")
+	String refundTicket(Model model, @RequestParam("payment_code") String payment_code) {
+		// 환불 DTO 실어서 보내주기
+		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
+		return "/mypage/mypage-ticket-refund";
+	}
+	
+	// 환불 요청
+	@PostMapping("/ticket/refund/request")
+	String refundTicketRequest(Model model, @RequestParam("payment_code") String payment_code) {
+		// 가져온 결제 코드로 DB 변경		
+		if (mypageService.refundTicket(payment_code)) {
+			
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String userID = ((UserDetails) principal).getUsername();
+			
+			model.addAttribute("tickets", mypageService.getRefundTickets(userID));
+			
+			return "/mypage/mypage-refund";
+		} else {
+			return "redirect:/mypage";
+		}		
+	}
+	
 	
 	// 쿠폰
 	@GetMapping("/coupon")
@@ -68,6 +97,9 @@ public class MypageController {
 	// 환불
 	@GetMapping("/refund")
 	String gotoRefundPage(Model model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userID = ((UserDetails) principal).getUsername();		
+		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
 		return "/mypage/mypage-refund";
 	}
 	

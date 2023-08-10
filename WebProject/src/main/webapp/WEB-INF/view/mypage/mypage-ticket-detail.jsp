@@ -24,6 +24,9 @@
 
 	<div id="mypage_value">
 		<div class="mypage_value_title">예매상세내역</div>
+		
+		
+		
 	</div>
 
 	</div>	<!-- 메뉴 /div -->

@@ -101,7 +101,7 @@
 #mypage_value {
 	display: grid;
 	grid-template-rows: 50px 1fr;
-	padding: 20px;
+	padding: 35px;
 }
 
 .mypage_value_title {
@@ -114,6 +114,9 @@
 	text-align: center;
 	padding-top: 50px;
 }
+<<<<<<< HEAD
+	
+=======
 
 /* 예매내역 css */
 #mypage_ticket_con > div {
@@ -243,3 +246,4 @@
 .wish_price{
 	font-weight: 500;
 }
+>>>>>>> branch 'update' of https://github.com/AmuGeoNaHae/project-workspace.git
