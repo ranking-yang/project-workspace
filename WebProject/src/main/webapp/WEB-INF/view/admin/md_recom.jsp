@@ -91,6 +91,14 @@
 	                checkshow.push(labelText);
 	                console.log("Label text:", labelText);
 	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
+	                /*
+	    			if ($('.selected-label').length < 10) {
+	    	            $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
+	    	        } else {
+	    	            alert("최대 10개까지 선택할 수 있습니다.");
+	    	            // 라벨 추가를 막기 위해 체크박스 선택 해제
+	    	            $(this).prop("checked", false);
+	    	        } 10개까지 선택 가능 하게 하는 코드 */ 
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkshow.length; i++) {
@@ -120,6 +128,7 @@
 	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
+			
 			/*
 			$.ajax({
             	url : "/admin/md/select", 
