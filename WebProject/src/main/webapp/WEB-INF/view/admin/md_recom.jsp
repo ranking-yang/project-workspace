@@ -8,11 +8,14 @@
 	 	// 메뉴 버튼 클릭시 이벤트
 		$(function(){
 			checkShowCode = new Array();
+			checkShowTitle = new Array();
 			$('input[class="showpost"]').change(function() { // 공연중 포스터를 클릭시
 				if ($(this).is(":checked")) {
-	                var labelText = $(this).next('label').find('.product-module').data('pk'); // 선택한 input 가져오기
-	                checkShowCode.push(labelText);
-	                console.log("Label text:", labelText);
+	                var labelcode = $(this).next('label').find('.product-module').data('pk'); // 선택한 input 가져오기
+	                var labeltext = $(this).next('label').find('.product-module-title').text();
+	                checkShowCode.push(labelcode);
+	                checkShowTitle.push(labeltext);
+	                console.log($(this).next('label').find('.product-module-title').text());
 	                
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
@@ -32,7 +35,7 @@
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkCategory.push(labelText);
 	                console.log("Label text:", labelText);
-	                
+	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkCategory.length; i++) {
@@ -41,6 +44,7 @@
 	            		     i--;
 	            		  }
 	            	}
+	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
 			// 
@@ -50,7 +54,7 @@
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkLocal.push(labelText);
 	                console.log("Label text:", labelText);
-	                
+	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkLocal.length; i++) {
@@ -59,6 +63,7 @@
 	            		     i--;
 	            		  }
 	            	}
+	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
 			checkshow = new Array();
@@ -67,6 +72,7 @@
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkshow.push(labelText);
 	                console.log("Label text:", labelText);
+	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
 	            	for(let i = 0; i < checkshow.length; i++) {
@@ -75,50 +81,53 @@
 	            		     i--;
 	            		  }
 	            	}
+	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
-			checkmusic = new Array();
+			
 			$('input[class="optionmusic"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
-	                checkmusic(labelText);
+	                checkshow.push(labelText);
 	                console.log("Label text:", labelText);
+	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
-	            	for(let i = 0; i < checkmusic.length; i++) {
-	            		  if(checkmusic[i] === labelText)  {
-	            			  checkmusic.splice(i, 1);
+	            	for(let i = 0; i < checkshow.length; i++) {
+	            		  if(checkshow[i] === labelText)  {
+	            			  checkshow.splice(i, 1);
 	            		     i--;
 	            		  }
 	            	}
+	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
-			checkart = new Array();
+			
 			$('input[class="optionart"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
-	                checkart.push(labelText);
+	                checkshow.push(labelText);
 	                console.log("Label text:", labelText);
-	                
+	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
-	            	for(let i = 0; i < checkart.length; i++) {
-	            		  if(checkart[i] === labelText)  {
-	            			  checkart.splice(i, 1);
+	            	for(let i = 0; i < checkshow.length; i++) {
+	            		  if(checkshow[i] === labelText)  {
+	            			  checkshow.splice(i, 1);
 	            		     i--;
 	            		  }
 	            	}
+	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
 	            }
 	        });
+			/*
 			$.ajax({
             	url : "/admin/md/select", 
 	            type: "POST",
 	            data: {
 	            	"category":checkCategory,
 	            	"local":checkLocal,
-	            	"show":checkshow,
-	            	"music":checkmusic,
-	            	"art": checkart
+	            	"show":checkshow
 	            },
 	            cache : false,
 	            dataType: "text",
@@ -126,7 +135,7 @@
 	            	
 	            }
             	
-            });
+            });*/
 		});
 		$(document).ready(function() {
 		    var date = new Date();
@@ -143,12 +152,34 @@
 		    $("#md_endate").attr("value", today);
 		
 			$(document).on("click", "#add_mdbtn", function() {
-				/*
-				var title = $("#md_title").text();
-				var stdate = $("#md_stdate").value;
-				var endate = $("#md_endate").value;
-				var*/
-				console.log(checkShowCode);
+				
+				var title = $("#md_title").val();
+				var stdate = $("#md_stdate").val();
+				var endate = $("#md_endate").val();
+				var area = checkLocal;
+				var show = checkshow;
+				//console.log(title, stdate, endate, area, show);
+				//console.log(checkShowCode);
+				//console.log(checkShowTitle);
+				$.ajax({
+	            	url : "/admin/mdreom/add", 
+		            type: "POST",
+		            data:JSON.stringify({
+		            	"md_title" : title,
+		            	"md_stdate" : stdate,
+		            	"md_endate":endate,
+		            	"md_local":checkLocal,
+		            	"md_show":checkshow,
+		            	"md_performance" : checkShowCode,
+		            	"md_perfotitle" : checkShowTitle
+		            }),
+		            contentType: "application/json",
+		            cache : false,
+		            success : function(result) {
+		            	 window.location.href = "/admin/api";
+		            }
+	            	
+	            });
 			});
 		});
 		
@@ -168,13 +199,12 @@
 	    	</div>
 	    	<div id="mdbtn">
 	    		<h3>선택 사항</h3>
-	    		장르 : <input type="text" id="md_sub"><br>
-	    		지역 : <input type="text" id="md_local"><br>
+	    		<div id="select_show_label"></div>
 	    		<br>
 	    	</div>
 	    	<div id="mdbtn">
-	    		<button id="add_mdbtn">추가</button>
-	    		<button id="reset_mdbtn">초기화</button>
+	    		<button id="add_mdbtn" style="background-color: #2acf11;">추가</button>
+	    		<button id="reset_mdbtn" style="background-color: #f44336;">초기화</button>
 	    	</div>
 	    	
     	</div>
@@ -197,7 +227,7 @@
    					<label for="catg2"> 음악 </label>
    				</td>
    				<td><input type="radio" class="optionchk" id="catg3" name="catoption">
-   					<label for="catg3"> 전시 </label>
+   					<label for="catg3"> 전시</label>
    				</td>
    				<td><input type="radio" class="optionchk" id="catg4" name="catoption">
    					<label for="catg4"> 키즈 </label>
@@ -206,52 +236,52 @@
    			<tr>
    				<td rowspan="2"><label>지역 선택</label></td>
    				<td><input type="checkbox" class="optionlocal" id="local1">
-   					<label for="local1"> 서울 </label>
+   					<label for="local1">서울</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local2">
-   					<label for="local2"> 경기 </label>
+   					<label for="local2">경기</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local3">
-   					<label for="local3"> 부산 </label>
+   					<label for="local3">부산</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local4">
-   					<label for="local4"> 광주 </label>
+   					<label for="local4">광주</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local5">
-   					<label for="local5"> 대전 </label>
+   					<label for="local5">대전</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local6">
-   					<label for="local6"> 울산 </label>
+   					<label for="local6">울산</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local7">
-   					<label for="local7"> 세종 </label>
+   					<label for="local7">세종</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local8">
-   					<label for="local8"> 제주 </label>
+   					<label for="local8">제주</label>
    				</td>
    				</tr>
    			<tr>
    				
    				<td><input type="checkbox" class="optionlocal" id="local9">
-   					<label for="local9"> 강원 </label>
+   					<label for="local9">강원</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local10">
-   					<label for="local10"> 충북 </label>
+   					<label for="local10">충북</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local11">
-   					<label for="local11"> 충남 </label>
+   					<label for="local11">충남</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local12">
-   					<label for="local12"> 전북 </label>
+   					<label for="local12">전북</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local13">
-   					<label for="local13"> 전남 </label>
+   					<label for="local13">전남</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local14">
-   					<label for="local14"> 경북 </label>
+   					<label for="local14">경북</label>
    				</td>
    				<td><input type="checkbox" class="optionlocal" id="local15">
-   					<label for="local15"> 경남 </label>
+   					<label for="local15">경남</label>
    				</td>
 
    				</tr>
@@ -265,39 +295,39 @@
    			<tr>
    				<td rowspan="2"><label>연극 장르 선택</label></td>
    				<td><input type="checkbox" class="optionshow" id="show1">
-   					<label for="show1"> 소극 </label>
+   					<label for="show1">소극</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show2">
-   					<label for="show2"> 역사 </label>
+   					<label for="show2">역사</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show3">
-   					<label for="show3"> 뮤지컬 </label>
+   					<label for="show3">뮤지컬</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show4">
-   					<label for="show4"> 로맨스 </label>
+   					<label for="show4">로맨스</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show5">
-   					<label for="show5"> 코미디 </label>
+   					<label for="show5">코미디</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show6">
-   					<label for="show6"> 블랙코미디 </label>
+   					<label for="show6">블랙코미디</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show7">
-   					<label for="show7"> 신화/판타지 </label>
+   					<label for="show7">신화/판타지</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show8">
-   					<label for="show8"> 발레 </label>
+   					<label for="show8">발레</label>
    				</td>
    				</tr>
    			<tr>
    				<td><input type="checkbox" class="optionshow" id="show9">
-   					<label for="show9"> 드라마 </label>
+   					<label for="show9">드라마</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show10">
-   					<label for="show10"> 인형극 </label>
+   					<label for="show10">인형극</label>
    				</td>
    				<td><input type="checkbox" class="optionshow" id="show11">
-   					<label for="show11"> 풍자 </label>
+   					<label for="show11">풍자</label>
    				</td>
    				
    			</tr>
@@ -305,80 +335,80 @@
    			<tr>
    				<td rowspan="2"><label>음악 장르 선택</label></td>
    				<td><input type="checkbox" class="optionmusic" id="music1">
-   					<label for="music1"> 클래식 </label>
+   					<label for="music1">클래식</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music2">
-   					<label for="music2"> 팝/록 </label>
+   					<label for="music2">팝/록</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music3">
-   					<label for="music3"> 재즈 </label>
+   					<label for="music3">재즈</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music4">
-   					<label for="music4"> 전통음악 </label>
+   					<label for="music4">전통음악</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music5">
-   					<label for="music5"> 전자음악 </label>
+   					<label for="music5">전자음악</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music6">
-   					<label for="music6"> 월드뮤직 </label>
+   					<label for="music6">월드뮤직</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music7">
-   					<label for="music7"> 컨트리/블루그래스 </label>
+   					<label for="music7">컨트리/블루그래스</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music8">
-   					<label for="music8"> 클럽/EDM </label>
+   					<label for="music8">클럽/EDM</label>
    				</td>
    				</tr>
    			<tr>
    				<td><input type="checkbox" class="optionmusic" id="music9">
-   					<label for="music9"> 오페라 </label>
+   					<label for="music9">오페라</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music10">
-   					<label for="music10"> 아카펠라 </label>
+   					<label for="music10">아카펠라</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music11">
-   					<label for="music11"> 페스티벌 </label>
+   					<label for="music11">페스티벌</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music12">
-   					<label for="music12"> 헤비메탈 </label>
+   					<label for="music12">헤비메탈</label>
    				</td>
    				<td><input type="checkbox" class="optionmusic" id="music13">
-   					<label for="music13"> 소울/퓨전 </label>
+   					<label for="music13">소울/퓨전</label>
    				</td>
    			</tr>
    			<tr>
    				<td rowspan="2"><label>전시 장르 선택</label></td>
    				<td><input type="checkbox" class="optionart" id="art1">
-   					<label for="art1"> 미술 </label>
+   					<label for="art1">미술</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art2">
-   					<label for="art2"> 사진 </label>
+   					<label for="art2">사진</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art3">
-   					<label for="art3"> 과학 및 기술 </label>
+   					<label for="art3">과학 및 기술</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art4">
-   					<label for="art4"> 역사 및 문화 </label>
+   					<label for="art4">역사 및 문화</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art5">
-   					<label for="art5"> 패션 </label>
+   					<label for="art5">패션</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art6">
-   					<label for="art6"> 음악 </label>
+   					<label for="art6">음악</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art7">
-   					<label for="art7"> 자동차 및 기술 </label>
+   					<label for="art7">자동차 및 기술</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art8">
-   					<label for="art8"> 디자인 </label>
+   					<label for="art8">디자인</label>
    				</td>
    				</tr>
    			<tr>
    				<td><input type="checkbox" class="optionart" id="art9">
-   					<label for="art9"> 식품 및 요리 </label>
+   					<label for="art9">식품 및 요리</label>
    				</td>
    				<td><input type="checkbox" class="optionart" id="art10">
-   					<label for="art10"> 미디어 아트 </label>
+   					<label for="art10">미디어 아트</label>
    				</td>
    			</tr>
     	</table>

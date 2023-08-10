@@ -31,6 +31,8 @@ public class MembersDTO implements UserDetails {
 	private Integer member_code;
 	
 	@NotBlank(message = "아이디는 필수 입력 값입니다.")
+	@Pattern(regexp="^[a-zA-Z]{1}[a-zA-Z0-9_-]{4,20}$",
+			message = "아이디는 4~20자의 영문, 숫자, 특수기호(_)(-)만 사용가능합니다.")
 	private String member_id;
 	
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")

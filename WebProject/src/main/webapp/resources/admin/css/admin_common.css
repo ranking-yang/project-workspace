@@ -60,6 +60,7 @@
 	padding: 10px;
 	
 }
+
 #mdbtn_menu{
 	float:left;
 	width: 450px;
@@ -81,6 +82,15 @@
 	padding: 0px 10px;
 	float:left;
 }
+.selected-label{
+	margin: 5px;
+    padding: 5px 10px; /* 라벨의 내부 여백 설정 */
+    border-radius: 15px; /* 라벨을 동그랗게 만들기 위한 속성 */
+    background-color: #f2f2f2; /* 라벨의 배경색 지정 */
+    display: inline-block;
+}
+
+
 .product-module{
     column-gap: 10px;
     text-align: center;
