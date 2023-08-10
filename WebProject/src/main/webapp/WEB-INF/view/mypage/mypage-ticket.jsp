@@ -30,14 +30,18 @@
 		
 		<div>예매내역</div>
 		
-		<div id="filter-menus">
-				<button class="filter-btn">사용가능</button>
-				<button class="filter-btn">사용완료</button>
+		<div id="filter-con">		
+			<select id="filter-select" data-val="${val}" onchange="filteringTicket()">
+				<option value="all">전체</option>
+				<option value="available">사용가능</option>
+				<option value="done">사용완료</option>
+				<option value="newest">최신순</option>
+				<option value="old">오래된순</option>
+			</select>
 		</div>
 		
 		</div>
-		
-		
+
 			<c:choose>
 				<c:when test="${!empty tickets}">
 					<c:forEach items="${tickets}" var="ticket">
@@ -52,7 +56,7 @@
 									<c:when test="${ticket.booking_date > today}">
 											
 										<div id="mypage-ticket-top">
-											<div style="color: #7856b8">결제완료</div>
+											<div style="color: #7856b8">사용가능</div>
 													<div></div>
 											<div>${ticket.payment_date }</div>
 										</div>

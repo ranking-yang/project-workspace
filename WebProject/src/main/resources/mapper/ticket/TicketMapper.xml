@@ -20,6 +20,57 @@
 		
 	</select>
 	
+	<select id="getMemberTickets_available" resultType="TicketDetailDTO">
+	<![CDATA[
+	SELECT 
+	    DISTINCT ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
+	    p.performance_code, p.performance_name, p.poster, p.main_category,
+	    payment_code_fk AS payment_code, pay.payment_date, pay.total_price, ticket.advance_ticket_state
+	FROM advance_tickets ticket
+	INNER JOIN
+	(SELECT payment_code_fk, COUNT(payment_code_fk) as booking_total_qty FROM advance_tickets GROUP BY payment_code_fk) count_ticket USING(payment_code_fk)
+	INNER JOIN performance p ON ticket.performance_code = p.performance_code
+	INNER JOIN payments pay ON payment_code_fk = pay.payment_code
+	WHERE ticket.booker_code = #{booker_code} AND advance_ticket_state = 'Y'
+	AND ticket.booking_date >= sysdate
+	ORDER BY ticket.booking_date DESC
+	]]>
+	</select>
+	
+	<select id="getMemberTickets_done" resultType="TicketDetailDTO">
+	<![CDATA[
+	SELECT 
+	    DISTINCT ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
+	    p.performance_code, p.performance_name, p.poster, p.main_category,
+	    payment_code_fk AS payment_code, pay.payment_date, pay.total_price, ticket.advance_ticket_state
+	FROM advance_tickets ticket
+	INNER JOIN
+	(SELECT payment_code_fk, COUNT(payment_code_fk) as booking_total_qty FROM advance_tickets GROUP BY payment_code_fk) count_ticket USING(payment_code_fk)
+	INNER JOIN performance p ON ticket.performance_code = p.performance_code
+	INNER JOIN payments pay ON payment_code_fk = pay.payment_code
+	WHERE ticket.booker_code = #{booker_code} AND advance_ticket_state = 'Y'
+	AND ticket.booking_date < sysdate
+	ORDER BY ticket.booking_date DESC
+	]]>
+	</select>
+	
+	<select id="getMemberTickets_old" resultType="TicketDetailDTO">
+		
+	SELECT 
+	    DISTINCT ticket.booking_date, ticket.booking_time, count_ticket.booking_total_qty,
+	    p.performance_code, p.performance_name, p.poster, p.main_category,
+	    payment_code_fk AS payment_code, pay.payment_date, pay.total_price, ticket.advance_ticket_state
+	FROM advance_tickets ticket
+	INNER JOIN
+	(SELECT payment_code_fk, COUNT(payment_code_fk) as booking_total_qty FROM advance_tickets GROUP BY payment_code_fk) count_ticket USING(payment_code_fk)
+	INNER JOIN performance p ON ticket.performance_code = p.performance_code
+	INNER JOIN payments pay ON payment_code_fk = pay.payment_code
+	WHERE ticket.booker_code = #{booker_code} AND advance_ticket_state = 'Y'
+	ORDER BY ticket.booking_date
+		
+	</select>
+	
+	
 	<select id="getTicketDetail" resultType="TicketDetailDTO">
 		SELECT 
 			DISTINCT

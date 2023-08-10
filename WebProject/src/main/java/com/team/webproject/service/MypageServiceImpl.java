@@ -43,6 +43,21 @@ public class MypageServiceImpl implements MypageService {
 		return ticketMapper.getMemberTickets(user_code);
 	}
 	
+	@Override
+	public List<TicketDetailDTO> getMemberTickets_available(Integer user_code) {
+		return ticketMapper.getMemberTickets_available(user_code);
+	}
+	
+	@Override
+	public List<TicketDetailDTO> getMemberTickets_done(Integer user_code) {
+		return ticketMapper.getMemberTickets_done(user_code);
+	}
+	
+	@Override
+	public List<TicketDetailDTO> getMemberTickets_old(Integer user_code) {
+		return ticketMapper.getMemberTickets_old(user_code);
+	}
+	
 	// 티켓 상세 관련
 	@Override
 	public TicketDetailDTO getTicketDetail(String payment_code) {		

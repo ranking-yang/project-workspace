@@ -1,3 +1,13 @@
+$(document).ready(function() {
+	// 화면이 로드될 때 가져온 val 값으로 select box 선택되어 있음
+	let valName = $("#filter-select").data('val');	
+	$("#filter-select").val(valName).prop("selected", true);
+});
+
+function filteringTicket() {	
+	location.href = "../mypage/" + $("#filter-select").val();
+}
+
 function goToDetail(payment_code) {	
 	let detailForm = $('<form></form>').attr({
 	  'id': 'Detailform',

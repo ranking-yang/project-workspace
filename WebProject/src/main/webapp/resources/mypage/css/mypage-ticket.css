@@ -4,23 +4,17 @@
 	grid-template-columns: 200px 1fr;
 }
 
-#filter-menus {
+#filter-con {
 	width: 100%;
 	text-align: right;
-}
-
-.filter-btn {
-	border: 0;
-	background-color: white;
-	color: gray;
 	font-size: 15px;
-	cursor: pointer;
+	padding-top: 10px;
 }
-
-.filter-btn:hover {
-	color: #7856b8;
-	font-weight: 700;
-}
+	
+	#filter-select {
+		width: 100px;
+	}
+	
 
 /* 예매내역 css */
 #mypage_ticket_con > div {

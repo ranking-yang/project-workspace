@@ -14,6 +14,12 @@ public interface MypageService {
 	
 	List<TicketDetailDTO> getMemberTickets(Integer user_code);
 	
+	List<TicketDetailDTO> getMemberTickets_available(Integer user_code);
+	
+	List<TicketDetailDTO> getMemberTickets_done(Integer user_code);
+	
+	List<TicketDetailDTO> getMemberTickets_old(Integer user_code);
+	
 	TicketDetailDTO getTicketDetail(String payment_code);
 	
 	List<TicketOptionQtyDTO> getTicketOptions(String payment_code);

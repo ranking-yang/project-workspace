@@ -11,6 +11,12 @@ public interface TicketMapper {
 	
 	List<TicketDetailDTO> getMemberTickets(Integer booker_code);
 	
+	List<TicketDetailDTO> getMemberTickets_available(Integer booker_code);
+	
+	List<TicketDetailDTO> getMemberTickets_done(Integer booker_code);
+	
+	List<TicketDetailDTO> getMemberTickets_old(Integer booker_code);
+	
 	TicketDetailDTO getTicketDetail(String payment_code);
 	
 	List<TicketRefundDTO> getRefundTickets(Integer booker_code);
