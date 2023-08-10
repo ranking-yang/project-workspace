@@ -17,7 +17,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.mapper.CustomUserDetailsMapper;
 import com.team.webproject.mapper.LoginMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,6 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 
 	private final LoginMapper loginMapper;
 	private final PasswordEncoder passwordEncoder;
-	private final CustomUserDetailsMapper cudMapper;
 
 	// 중복체크
 	@Override
@@ -113,7 +111,7 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 //                .roles(roles)
 //                .build();
 //       
-    	MembersDTO member = cudMapper.getMemberInfo(member_id);
+    	MembersDTO member = loginMapper.checklogin(member_id);
     	System.out.println("load >>>>>>>>>>>>>>>>>> "+member.toString());
         if (member == null){
             throw new UsernameNotFoundException("User not authorized.");

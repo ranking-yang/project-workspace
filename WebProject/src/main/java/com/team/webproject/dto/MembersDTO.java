@@ -56,10 +56,7 @@ public class MembersDTO implements UserDetails {
 	
 	
 	private String member_role;
-	
-	// 추가적으로 필요한 값(UserDetails에 담기 위한 작업)
-	private Integer coupon_count;
-	private Integer wish_list_count;
+
 	
 	@Builder
     public MembersDTO(Integer member_code, String member_id,  String member_pwd, String member_name, String member_phone, String member_birth ,String member_email, String member_role) {
