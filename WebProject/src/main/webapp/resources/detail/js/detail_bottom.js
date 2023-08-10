@@ -42,35 +42,6 @@ function showMoreDetailImage() {
   document.getElementById('main_img').style.display = 'block';
   document.querySelector('.main_img').scrollIntoView({block: 'start' });
 }
-// 이미지 로드에 사용되는 함수
-function getMeta(url) {
-    const img = new Image();
-    img.addEventListener("load", function() {
-      sessionStorage.setItem('width', this.naturalWidth);
-      sessionStorage.setItem('height', this.naturalHeight);
-    });
-    img.src = url;
-}
-
-//이미지 클릭시 이미지 크기가 커지고 작아지는 함수
-function showOriginalRatio(selected) {
-  let selectedImg = document.getElementsByClassName(selected);
-  let viewMode = selectedImg[0].getAttribute('viewmode');
-  let img_url = selectedImg[0].getAttribute('name');
-    if (viewMode === 'off') {
-      getMeta(img_url);
-      setTimeout(() => {
-        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +'); width: ' + sessionStorage.getItem('width') + 'px; height: '+ sessionStorage.getItem('height') + 'px;');
-        selectedImg[0].setAttribute('viewmode', 'on');
-        sessionStorage.clear();
-      }, 50);
-    } else if (viewMode === 'on') {
-      setTimeout(() => {
-        selectedImg[0].setAttribute('style', 'background-image: url('+ img_url +')');
-        selectedImg[0].setAttribute('viewmode', 'off');
-      }, 50);
-    }
-  }
 
 // 지도 가져오기
 var mapContainer1 = document.getElementById('map1'); //지도를 담을 영역의 DOM 레퍼런스
