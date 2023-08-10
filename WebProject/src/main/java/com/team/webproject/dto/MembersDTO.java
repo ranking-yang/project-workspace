@@ -24,6 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MembersDTO implements UserDetails {
 	
+	private static final long serialVersionUID = 1L;
+
 	private Integer member_code;
 	
 	@NotBlank(message = "아이디는 필수 입력 값입니다.")
@@ -76,49 +78,62 @@ public class MembersDTO implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// null값
-		return null;
+		Collection<GrantedAuthority> collectors = new ArrayList<>();
+		
+		collectors.add(new GrantedAuthority() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getAuthority() {
+				return "ROLE_" + getMember_role();
+			}
+			
+		});
+		
+		return collectors;
 	}
 
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return getMember_pwd();
 	}
 
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return getMember_id();
 	}
 
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 //	public Member toEntity(String roles) {

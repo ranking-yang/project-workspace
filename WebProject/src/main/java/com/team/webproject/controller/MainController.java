@@ -1,7 +1,11 @@
 package com.team.webproject.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -9,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.service.CouponService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,8 +40,11 @@ public class MainController {
 			return "main/main";
 		}
 		String username = null;
+		
+		List<GrantedAuthority> authority = (List<GrantedAuthority>)((MembersDTO) principal).getAuthorities();
 		// 권한이 User 이면
-		if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
+		//if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
+		if (authority.get(0).getAuthority().equals("ROLE_member")) {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
 			model.addAttribute("userId", username);
