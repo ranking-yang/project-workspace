@@ -64,7 +64,7 @@
 										</div>
 										<!-- 버튼들 -->
 										<div>
-											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.refund_code}')">환불내역</button></div>
+											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">환불내역</button></div>
 										</div>
 									</div>			
 								</div>
@@ -84,8 +84,33 @@
 
 	<%@ include file="../common/commonJs.jsp"%>
 
-	<script>
-		$('.mypage_menu_btn').eq(3).addClass('clicked');
+	<script>		
+		$(document).ready(function() {
+			
+			$('.mypage_menu_btn').eq(3).addClass('clicked');		
+			
+		});
+		
+		function goToDetail(payment_code) {	
+			
+			let detailForm = $('<form></form>').attr({
+			  'id': 'Detailform',
+			  'action': '/mypage/refund/detail',
+			  'method': 'post'
+			});
+			
+			let payment_code_input = $('<input></input>').attr({
+			  'type': 'hidden',
+			  'name': 'payment_code',
+			  'value' : payment_code
+			});
+			
+			detailForm.append(payment_code_input);
+			$(document.body).append(detailForm);
+			
+			detailForm.submit();
+		}
+		
 	</script>
 
 </body>

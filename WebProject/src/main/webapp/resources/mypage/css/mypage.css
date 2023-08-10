@@ -114,89 +114,6 @@
 	text-align: center;
 	padding-top: 50px;
 }
-<<<<<<< HEAD
-	
-=======
-
-/* 예매내역 css */
-#mypage_ticket_con > div {
-	border: solid 1px yellowgreen;
-}
-
-#mypage-ticket-con {
-        display: grid;
-        grid-template-rows: 50px 200px;
-        border: 2px solid #f5f5f5;
-        border-radius: 15px;
-        margin-top: 20px;
-        height: 250px;
-    }
-    
-    #mypage-ticket-top {
-		display: grid;
-		grid-template-columns: 150px 1fr 150px;
-		border-bottom: 2px solid #f5f5f5;
-		text-align: center;
-        font-size: 18px;
-        font-weight: 500;
-        padding-top: 10px;
-	}
-	
-	#mypage-ticket-middle {
-		display: grid;
-        grid-template-columns: 150px 1fr 125px;
-	}
-		/* 포스터 */
-		#mypage-ticket-middle > div:first-child {
-            text-align: center;
-            padding-top: 20px;
-        }
-	
-		#mypage-ticket-poster {
-	        width: 120px;
-	        height: 160px;
-	        border-radius: 10px;
-	     }
-	     
-	     /* 공연 내역 */
-	     #mypage-ticket-middle > div:nth-child(2) {
-			 padding: 10px;
-			 display: grid;
-			 grid-template-rows: 1fr 1fr 1fr 70px;
-		 }
-		 
-		 #mypage-ticket-middle > div:nth-child(2) > div:last-child {
-			 width: 400px;
-			 background-color: #f5f5f5;
-			 font-weight: 400;
-			 border-radius: 10px;
-			 padding: 10px;
-		 }	     
-	     
-	     /* 버튼들 */
-	     #mypage-ticket-middle > div:last-child {
-			 display: flex;
-			 flex-direction: column;
-			 justify-content: start;
-			 gap: 10px;
-			 padding-top: 15px;	 
-		 }
-		 
-	     .mypage-ticket-btn {
-			 width: 90px;
-			 height: 35px;
-			 background-color: #7856b8;
-			 border: 0;
-			 border-radius: 10px;
-			 color: white;
-			 font-weight: 600;
-			 font-size: 15px;
-		 }
-		 
-		 .mypage-ticket-btn:hover {
-			 background-color: rgb(182, 163, 216);
-			 cursor: pointer;
-		 }
 
 
 /* 나의 찜목록 css*/
@@ -246,4 +163,3 @@
 .wish_price{
 	font-weight: 500;
 }
->>>>>>> branch 'update' of https://github.com/AmuGeoNaHae/project-workspace.git

@@ -1,21 +1,21 @@
 package com.team.webproject.mapper;
 
 import java.util.List;
-import java.util.Map;
 
-import com.team.webproject.dto.MypageRefundDTO;
-import com.team.webproject.dto.MypageTicketDTO;
-import com.team.webproject.dto.MypageTicketDetailDTO;
+import com.team.webproject.dto.TicketRefundDTO;
+import com.team.webproject.dto.TicketDetailDTO;
 import com.team.webproject.dto.TicketOptionDTO;
 import com.team.webproject.dto.TicketOptionQtyDTO;
 
 public interface TicketMapper {
 	
-	List<MypageTicketDTO> getMemberTickets(Integer booker_code);
+	List<TicketDetailDTO> getMemberTickets(Integer booker_code);
 	
-	MypageTicketDetailDTO getTicketDetail(String payment_code);
+	TicketDetailDTO getTicketDetail(String payment_code);
 	
-	List<MypageRefundDTO> getRefundTickets(Integer booker_code);
+	List<TicketRefundDTO> getRefundTickets(Integer booker_code);
+	
+	TicketRefundDTO getRefundTicketDetail (String payment_code);
 	
 	List<TicketOptionQtyDTO> getTicketOptionQty(String payment_code);
 	

@@ -69,8 +69,8 @@
 											</div>
 											<!-- 버튼들 -->
 											<div>
-												<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code_fk}')">상세내역</button></div>
-												<div><button class="mypage-ticket-btn" onclick="refundTicket('${ticket.payment_code_fk}', '${ticket.booking_date}')">취소/환불</button></div>
+												<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">상세내역</button></div>
+												<div><button class="mypage-ticket-btn" onclick="refundTicket('${ticket.payment_code}', '${ticket.booking_date}')">취소/환불</button></div>
 											</div>
 										</div>			
 									</div>		
@@ -105,7 +105,7 @@
 										</div>
 										<!-- 버튼들 -->
 										<div>
-											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code_fk}')">상세내역</button></div>
+											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">상세내역</button></div>
 											<c:choose>
 												<c:when test="${empty review_check}">
 													<div><button class="mypage-ticket-btn review">후기작성</button></div>	

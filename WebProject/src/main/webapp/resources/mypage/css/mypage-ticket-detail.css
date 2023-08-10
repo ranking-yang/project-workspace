@@ -1,0 +1,62 @@
+.mypage-detail-con {
+	display: grid;
+	grid-template-rows: 170px 1fr 170px 100px 100px;
+	padding: 10px;
+}
+
+.mypage-box {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	row-gap: 5px;
+	border-bottom: 2px rgb(230, 230, 230) solid;
+	padding: 20px;
+}
+
+.box-title {
+	font-size: 16px;
+    font-weight: 400;
+    color: gray;
+}
+
+.value {
+	font-size: 16px;
+}
+
+	#ticket-address-txt {
+		border: none;
+		outline: none;
+		font-size: 16px;
+	}
+
+	#address-copy-btn {
+		cursor: pointer;
+		background-color: gray;
+		color: white;
+		border: 0;
+		border-radius: 5px;
+	}
+	
+	#address-copy-btn:hover {
+		background-color: lightgray;
+		color: black;
+	}
+	
+	#back {
+		text-align: center;
+		padding-top: 20px;
+	}
+	
+	#back-btn {
+		width: 200px;
+		height: 50px;
+		font-size: 20px;
+		color: white;
+		background-color: #46c8b4;
+		border: 0;
+		border-radius: 10px;
+	}
+	
+	#back-btn:hover {
+		background-color: #7df5e2;
+		cursor: pointer;
+	}

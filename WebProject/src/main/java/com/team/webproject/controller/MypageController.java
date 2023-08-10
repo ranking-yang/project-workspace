@@ -25,8 +25,7 @@ public class MypageController {
 	
 	// 메인 겸 예매내역
 	@GetMapping("")
-	String gotoMypage(Model model) {
-		
+	String gotoMypage(Model model) {		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String userID = ((UserDetails) principal).getUsername();
 		model.addAttribute("tickets", mypageService.getMemberTickets(userID));
@@ -36,10 +35,11 @@ public class MypageController {
 	
 	// 티켓 상세페이지
 	@PostMapping("/ticket/detail")
-	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {
-		
-		System.out.println("코드 : " + payment_code);
-		
+	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {		
+		// 티켓 DTO 실어서 보내주기
+		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
 		return "/mypage/mypage-ticket-detail";
 	}
 	
@@ -101,6 +101,14 @@ public class MypageController {
 		String userID = ((UserDetails) principal).getUsername();		
 		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
 		return "/mypage/mypage-refund";
+	}
+	
+	@PostMapping("/refund/detail")
+	String gotoRefundDetailPage(Model model, @RequestParam("payment_code") String payment_code) {		
+		model.addAttribute("ticket", mypageService.getRefundTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));				
+		return "/mypage/mypage-refund-detail";
 	}
 	
 	// 리뷰
