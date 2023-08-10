@@ -2,6 +2,7 @@ package com.team.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -9,25 +10,37 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.CouponService;
-
-import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/main")
-@RequiredArgsConstructor
 public class MainController {
+	
+	@Autowired
+	CouponService couponService;
 
-	private final CouponService couponService;
+	@Autowired
+	LoginMapper loginMapper;
+
 	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
 		
 		// 전체 securityholder 내용
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
-		System.out.println("main principal : " + principal.toString());
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//		UserDetails user = (UserDetails) principal;
+//		
+//		System.out.println("username : "+user.getUsername());
+//		
+//		MembersDTO member = loginMapper.checklogin(user.getUsername());
+//		System.out.println("member code: "+ member.getMember_code());
+//
+//		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
+//		System.out.println("main principal : " + principal.toString());
+//		System.out.println("user name: "+ (UserDetails)principal);
 		
 		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {

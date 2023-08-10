@@ -7,15 +7,19 @@
 		SELECT * FROM performance 
 		WHERE end_date > sysdate 
 		AND (performance_name LiKE '%' || #{keyword} || '%'
-			OR address LiKE '%' || #{keyword} || '%'
-			OR place LiKE '%' || #{keyword} || '%')
+			OR address LIKE '%' || #{keyword} || '%'
+			OR place LIKE '%' || #{keyword} || '%'
+			OR main_category LiKE '%' || #{keyword} || '%'
+			OR sub_category LiKE '%' || #{keyword} || '%')
 		ORDER BY rownum
 	</select>
 	<select id="countSearchList">
 		SELECT count(*) FROM performance 
 		WHERE end_date > sysdate 
-		AND (performance_name LiKE '%' || #{keyword} || '%'
-			OR address LiKE '%' || #{keyword} || '%'
-			OR place LiKE '%' || #{keyword} || '%')
+		AND (performance_name LIKE '%' || #{keyword} || '%'
+			OR address LIKE '%' || #{keyword} || '%'
+			OR place LIKE '%' || #{keyword} || '%'
+			OR main_category LiKE '%' || #{keyword} || '%'
+			OR sub_category LiKE '%' || #{keyword} || '%')
 	</select>
 </mapper>

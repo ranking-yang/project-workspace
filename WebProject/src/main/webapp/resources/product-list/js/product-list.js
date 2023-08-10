@@ -11,7 +11,7 @@ function toggleLike(event, buttonId, member_code) {
       console.log("button",$button.attr('id'));
 
       $.ajax({
-			url: "addwishlist",
+			url: "../addwishlist",
 			type:"POST",
 			data: {
 				member_code: member_code,
@@ -25,7 +25,7 @@ function toggleLike(event, buttonId, member_code) {
 	} else {
       $icon.removeClass('fa-solid').addClass('fa-regular').css('color','#000000');
       $.ajax({
-		  url : "delewishlist",
+		  url : "../delewishlist",
 		  type: "POST",
 		  data: {
 			 	member_code: member_code,
@@ -40,37 +40,32 @@ function toggleLike(event, buttonId, member_code) {
   };
 
 $(document).ready(function(){
-	$('.product-module').on('click', function(){
-		console.log($(this).data('pk'));
-		
-		if ($(this).data('category') !== "art") {
-	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
-			} else {
-				location.href = '../product-detail-ex?performance_code=' + $(this).data('pk');				
-			}
-		
-	})
-});
+    let urlParams = new URLSearchParams(window.location.search);
+    let areaCode = urlParams.get('area_code');
 
+    function redirectToDetailPage(performanceCode, category) {
+        let detailPageUrl = `../product-detail${category === "art" ? "-ex" : ""}`;
+        location.href = `${detailPageUrl}?performance_code=${performanceCode}`;
+    }
 
-$(document).ready(function(){
-	$('.submenu').on('click', function(){
-		const urlParams = new URLSearchParams(window.location.search);
-        const textContent = $(this).text();
-        //console.log(textContent);
-        // 파라미터 중 'area'를 바꾸기
-        urlParams.set('area',textContent);
+    $('.product-module').on('click', function(){
+        let performanceCode = $(this).data('pk');
+        let category = $(this).data('category');
+
+        redirectToDetailPage(performanceCode, category);
         
-        // 새로운 URL 생성
-        const newUrl = window.location.pathname + '?' + urlParams.toString();
-        //console.log(newUrl);
-        //console.log(urlParams);
-        //console.log(window.location.pathname);
-        // 새로운 URL로 리다이렉트
-        window.location.href = newUrl;
-		
-	})
+    });
+
+    if (areaCode) {
+        $('.areaBtn[data-area="' + areaCode + '"]').addClass('selected');
+    }
+
+    $('.areaBtn').on('click', function(){
+        let area = $(this).data('area');
+        location.href = '../product/area?area_code=' + area;
+    });
 });
+
 
 
 $('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +36,7 @@ public class AdminController {
 	// 관리자 페이지
 	@GetMapping("/admin/api")
 	public String adminGET(){
-		return "admin/adminPage";
+		return "admin/admin_main";
 		
 	}
 	
@@ -58,11 +59,31 @@ public class AdminController {
 	public List<ShowDTO> adminSelect(){
 		
 		List<ShowDTO> show = addPerformance.selectShow();
-		System.out.println(show.toString());
-		
+		for(ShowDTO data : show) {
+			System.out.println(data.toString());
+		}
+		System.out.println(show.size());
 		return show;
 	}
 	
-	
+	@RequestMapping(value = "/admin/api/add", method = RequestMethod.POST)
+	@ResponseBody
+	public void tableList(@RequestBody List<ShowDTO> dataArrayToSend) {
+		
+		System.out.println(dataArrayToSend);
+		for(ShowDTO show : dataArrayToSend){
+			System.out.println(show.toString());
+			if(show.getPerformance_code() == null || show.getPerformance_code().isEmpty()) {
+				System.out.println(show);
+			}else {
+				try {
+					addPerformance.addShow(show);
+				}catch (Exception e) {
+					continue;
+				}
+			}
+			
+		}
+	}
 
 }

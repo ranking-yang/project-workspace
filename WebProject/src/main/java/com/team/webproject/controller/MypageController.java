@@ -6,57 +6,117 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.webproject.service.MypageService;
+import com.team.webproject.service.ProductListService;
 
 @Controller
+@RequestMapping("/mypage")
 public class MypageController {
 	
 	@Autowired
-	MypageService mapageService;
+	MypageService mypageService;
+	@Autowired
+	ProductListService productListService;
+	
 	
 	// 메인 겸 예매내역
-	@GetMapping("/mypage")
+	@GetMapping("")
 	String gotoMypage(Model model) {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String userID = ((UserDetails) principal).getUsername();
-		model.addAttribute("tickets", mapageService.getMemberTickets(userID));		
+		model.addAttribute("tickets", mypageService.getMemberTickets(userID));
+		model.addAttribute("countWish", productListService.countUserWish_list(productListService.getMember_code(userID)));
 		return "/mypage/mypage-ticket";
 	}
 	
+	// 티켓 상세페이지
+	@PostMapping("/ticket/detail")
+	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {
+		
+		System.out.println("코드 : " + payment_code);
+		
+		return "/mypage/mypage-ticket-detail";
+	}
+	
+	// 환불 상세페이지
+	@PostMapping("/ticket/refund")
+	String refundTicket(Model model, @RequestParam("payment_code") String payment_code) {
+		// 환불 DTO 실어서 보내주기
+		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
+		return "/mypage/mypage-ticket-refund";
+	}
+	
+	// 환불 요청
+	@PostMapping("/ticket/refund/request")
+	String refundTicketRequest(Model model, @RequestParam("payment_code") String payment_code) {
+		// 가져온 결제 코드로 DB 변경		
+		if (mypageService.refundTicket(payment_code)) {
+			
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String userID = ((UserDetails) principal).getUsername();
+			
+			model.addAttribute("tickets", mypageService.getRefundTickets(userID));
+			
+			return "/mypage/mypage-refund";
+		} else {
+			return "redirect:/mypage";
+		}		
+	}
+	
+	
 	// 쿠폰
-	@GetMapping("/mypage/coupon")
+	@GetMapping("/coupon")
 	String gotoCouponPage(Model model) {
 		return "/mypage/mypage-coupon";
 	}
 	
 	// 찜목록
-	@GetMapping("/mypage/wishlist")
+	@GetMapping("/wishlist")
 	String gotoWishlistPage(Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userID = ((UserDetails) principal).getUsername();
+		
+		int member_code = productListService.getMember_code(userID);
+		
+		model.addAttribute("performances", mypageService.getUserWishlist(member_code));
+		model.addAttribute("wishlist", productListService.getUserWish_list(member_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(member_code));
+		model.addAttribute("member_code", member_code);
+
 		return "/mypage/mypage-wishlist";
 	}
 	
 	// 환불
-	@GetMapping("/mypage/refund")
+	@GetMapping("/refund")
 	String gotoRefundPage(Model model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userID = ((UserDetails) principal).getUsername();		
+		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
 		return "/mypage/mypage-refund";
 	}
 	
 	// 리뷰
-	@GetMapping("/mypage/review")
+	@GetMapping("/review")
 	String gotoReviewPage(Model model) {
 		return "/mypage/mypage-review";
 	}
 	
 	// 나의 QnA
-	@GetMapping("/mypage/qna")
+	@GetMapping("/qna")
 	String gotoQnAPage(Model model) {
 		return "/mypage/mypage-qna";
 	}
 	
 	// 나의 정보 수정
-	@GetMapping("/mypage/info")
+	@GetMapping("/info")
 	String gotoQInfoPage(Model model) {
 		return "/mypage/mypage-info";
 	}

@@ -17,8 +17,9 @@ public class ShowDTO {
 	 Date end_date;
 	 String address;
 	 String place;
-	 char kid_state;
 	 String poster;
+	 double lat;
+	 double lon;
 
 	 public String getPerformance_code() {
 		return performance_code;
@@ -80,18 +81,24 @@ public class ShowDTO {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public char getKid_state() {
-		return kid_state;
-	}
-	public void setKid_state(char kid_state) {
-		this.kid_state = kid_state;
-	}
 
 	public String getPoster() {
 		return poster;
 	}
 	public void setPoster(String porster) {
 		this.poster = porster;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLon() {
+		return lon;
+	}
+	public void setLon(double lon) {
+		this.lon = lon;
 	}
 	
 }

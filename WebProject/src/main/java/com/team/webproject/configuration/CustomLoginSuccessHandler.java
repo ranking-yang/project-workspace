@@ -12,10 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
+
 public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	public CustomLoginSuccessHandler(String defaultTargetUrl) {
 		setDefaultTargetUrl(defaultTargetUrl);
 	}
+
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -48,5 +50,6 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
 	}
+
 
 }

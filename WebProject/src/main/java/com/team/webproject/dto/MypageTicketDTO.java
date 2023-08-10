@@ -8,20 +8,22 @@ import lombok.Data;
 public class MypageTicketDTO {
 	
 	// 예매 티켓
-	Date booking_date;
-	String booking_time;
-	int booking_total_qty;
+	private Date booking_date;
+	private String booking_time;
+	private int booking_total_qty;
+	private String advance_ticket_state;
 	
 	// 공연
 	private String performance_name;
 	private String poster;
 	
 	// 결제
-	String payment_code_fk;
-	Date payment_date;
-	Integer total_price;
+	private String payment_code_fk;
+	private Date payment_date;
+	private Integer total_price;
 	
 	// 리뷰 여부
-	Integer review_check;
+	private Integer review_num;
+	
 
 }
