@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
 body {
 	box-sizing: border-box;
 	width: 600px;
@@ -22,4 +24,63 @@ body {
 	width: 100%;
 	height: 10%;
 	margin-bottom: 10px;
+	border-radius: 10px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 60% 40%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.coupon div {
+	position: relative;
+}
+/*쿠폰*/
+.coupon>div:first-child {
+	grid-column: 1/2;
+	grid-row: 1/3;
+	background-color: #46c8b4;
+	font-size: 30px;
+}
+
+.coupon>div:first-child>div {
+	position: absolute;
+	transform: translateY(60%);
+	left: 20%;
+	font-weight: 600;
+}
+/*쿠폰이름*/
+.coupon>div:nth-child(2) {
+	grid-column: 2/6;
+	grid-row: 1/2;
+}
+
+.coupon>div:nth-child(2)>div {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	font-size: 25px;
+}
+/*만료날짜*/
+.coupon>div:nth-child(3) {
+	grid-column: 2/4;
+	grid-row: 2/3;
+}
+
+.coupon>div:nth-child(3)>div {
+	position: absolute;
+	top: 30%;
+	left: 10%;
+}
+/*할인*/
+.coupon>div:last-child {
+	grid-column: 4/6;
+	grid-row: 2/3;
+}
+
+.coupon>div:last-child>div {
+	position: absolute;
+	top: 20%;
+	right: 10%;
+	font-size: 20px;
 }
