@@ -26,20 +26,13 @@ const dateStr = `${year}-${month}-${day}`;
  });
 
 // 결제 진행 - ★ 회원인지 체크하는 것 필요
-function requestPay() {    
-    // 주문번호 임의로 만들기
-    let today = new Date();   
-    let hours = today.getHours(); // 시
-    let minutes = today.getMinutes();  // 분
-    let seconds = today.getSeconds();  // 초
-    let milliseconds = today.getMilliseconds();
-    let makeMerchantUid = hours +  minutes + seconds + milliseconds;
+function requestPay() {	
     
     if (confirm("구매 하시겠습니까?")) {
 	    IMP.request_pay({
 	      pg: "kcp",
 	      pay_method: "card",
-	      merchant_uid: "IMP"+makeMerchantUid, // 주문번호
+	      merchant_uid: createOrderNum(), // 주문번호
 	      name: $('#payment-ticketname').text(), // 상품명
 	      amount: parseInt($('#payment-total-Price').text()), // 숫자 타입
 	      // 구매자정보
@@ -47,14 +40,32 @@ function requestPay() {
 	      buyer_name: $('#user_name').text(),
 	      buyer_tel: $('#user_ph').text(),
 	      buyer_addr: "",
-	    }, function (rsp) {			
-		//rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+	    }, function (rsp) {
 			console.log(rsp);
 			
-			if (rsp.success) {	
-		     // 서브밋으로 DB에 값 저장 후 결제 완료 페이지로 리턴 (주문 DB, 결제 DB, performance 좌석 수 마이너스)		     
-		     makePaymentDTO(rsp); // 결제 DTO 생성
-		     $("#payment_success_form").submit(); // 서브밋
+			if (rsp.success) {			
+
+                $.ajax({
+                    url: "/payment/verify_iamport/" + rsp.imp_uid,
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        imp_uid: rsp.imp_uid,            // 결제 고유번호
+                        merchant_uid: rsp.merchant_uid,   // 주문번호
+                        amount: rsp.paid_amount
+                    }),
+                }).done(function (data) {
+					
+					if (parseInt($('#payment-total-Price').text()) == data.response.amount) {				
+						// 서브밋으로 DB에 값 저장 후 결제 완료 페이지로 리턴 (주문 DB, 결제 DB, performance 좌석 수 마이너스)		     	     
+				    	makePaymentDTO(rsp); // 결제 DTO 생성
+				  		$("#payment_success_form").submit(); // 서브밋							
+					} else {
+                    	alert('결제 실패');
+                    	// 결제 취소하는 곳으로 다시 보내야지
+               		}					
+
+                });
 		     
 		    } else {
 		      alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
@@ -116,6 +127,18 @@ couponBtn.addEventListener('click', () => {
 	let options = 'top=300, left=660, height=900, width=600, location=no';
 	window.open('/coupon/popup', '보유쿠폰', options);
 })
+
+function createOrderNum() {
+	// 주문번호 임의로 만들기
+    let today = new Date();   
+    let hours = today.getHours(); // 시
+    let minutes = today.getMinutes();  // 분
+    let seconds = today.getSeconds();  // 초
+    let milliseconds = today.getMilliseconds();
+    let makeMerchantUid = hours +  minutes + seconds + milliseconds;
+    
+    return "IMP"+makeMerchantUid;
+}
 
 
 
