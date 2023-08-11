@@ -11,6 +11,7 @@ import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.TicketDTO;
+import com.team.webproject.mapper.CouponMapper;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.mapper.PaymentMapper;
 import com.team.webproject.mapper.PerformanceMapper;
@@ -26,6 +27,9 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	@Autowired
 	LoginMapper loginMapper;
+	
+	@Autowired
+	CouponMapper couponMapper;
 	
 	// 쿠폰 조회
 	
@@ -91,6 +95,11 @@ public class PaymentServiceImpl implements PaymentService {
 	public void UpdateDB(PaymentDTO payment, List<TicketDTO> tickets, String performance_code) {
 		
 		paymentMapper.insertPayment(payment);
+		
+		// 회원쿠폰코드를 통해 사용한 쿠폰의 상태를 변경한다(미사용->사용)
+		if (payment.getRelated_coupon() != null) {
+			couponMapper.updateCouponState(payment.getRelated_coupon());
+		}
 		
 		for (TicketDTO ticket : tickets) {
 			for (int i = 0; i < ticket.getBooking_qty(); ++i) {

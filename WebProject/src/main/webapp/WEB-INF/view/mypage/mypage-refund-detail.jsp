@@ -25,19 +25,24 @@
 	<!-- 나의 티켓 -->
 
 	<div id="mypage_value">
-		<div class="mypage_value_title">예매상세내역</div>
+		<div class="mypage_value_title">환불상세내역</div>
 		
 		<div class="mypage-detail-con">
 			<div class="mypage-detail-ticket mypage-box">
 				<div class="box-title">티켓명</div>
 				<div class="value">${ticket.performance_name }</div>
-				<div class="box-title">예매상태</div>
-				<div class="value" style="color: orange; font-weight: 500;">예매완료</div>
+				<div class="box-title">환불상태</div>
+					<c:choose>
+						<c:when test="${ticket.refund_status eq '환불요청'}">
+							<div class="value" style="color: orange; font-weight: 500;">${ticket.refund_status}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="value" style="color: green; font-weight: 500;">${ticket.refund_status}</div>
+						</c:otherwise>
+					</c:choose>
+				
 				<div class="box-title">장소</div>
 				<div class="value">${ticket.place }</div>
-				<div class="box-title">주소</div>
-				<div class="value" >
-				<input type="text" name="address" id="ticket-address-txt" value="${ticket.address}" readonly /> &nbsp;&nbsp;<input type="button" id="address-copy-btn" value="주소복사"></div>
 			</div>
 			<div class="mypage-detail-option mypage-box">
 				<div class="box-title">옵션</div>
@@ -59,11 +64,9 @@
 						</c:otherwise>
 					</c:choose>					
 				</div>
-				<div class="box-title">예매번호</div>
+				<div class="box-title">환불번호</div>
 				<div class="value">				
-					<c:forEach items="${ticketNum}" var="num">
-						<div>${num.advance_ticket_code}</div>
-					</c:forEach>
+					${ticket.refund_code }
 				</div>
 			</div>
 			<div class="mypage-detail-user mypage-box">
@@ -79,19 +82,12 @@
 				<div class="value">				
 					카드
 				</div>
-				<div class="box-title">결제일</div>
+				<div class="box-title">환불요청일</div>
 				<div class="value">				
-					${ticket.payment_date}
+					${ticket.refund_date}
 				</div>
-			</div>
-			<div class="mypage-detail-notice mypage-box">
-				<div class="box-title">환불기한</div>
-				<div class="value">				
-					이용 1일 전 자정까지 전액 환불 가능 <br>
-					(단, 이용일 당일은 환불이 불가합니다)
-				</div>
-			</div>
-			<div id="back"><button id="back-btn">예매내역 전체보기</button></div>
+			</div>			
+			<div id="back"><button id="back-btn">환불내역 전체보기</button></div>
 		</div>
 		
 	</div>
@@ -107,20 +103,10 @@
 	<script>		
 		$(document).ready(function() {
 			
-			 $('.mypage_menu_btn').eq(2).addClass('clicked');
-			 
-			 $('#ticket-address-txt').width(($('#ticket-address-txt').val().length + 1) * 12);
+			 $('.mypage_menu_btn').eq(3).addClass('clicked');
 		
 		      $('#back-btn').click(function() {
-		        location.href = '/mypage';
-		      });
-		      
-		      $('#address-copy-btn').click(function() {
-		    	  $('#ticket-address-txt').select();
-		    	  let copy = document.execCommand('copy');
-		    	  if(copy) {
-		    	    	alert("주소가 복사되었습니다.");
-		    	  }
+		        location.href = '/mypage/refund';
 		      });
 		      
 		  });

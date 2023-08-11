@@ -12,8 +12,8 @@
 				</div>
 				<div class="mypage_top_contents" id="my_info">
 					<div>안녕하세요🙌</div>
-					<!-- 시큐리티에서 id만 가져옴 -->
-					<div><sec:authentication property="name"/>님</div>
+					<!-- 시큐리티에서 이름 가져옴 -->
+					<div><sec:authentication property="principal.member_name"/>님</div>
 				</div>
 				<div class="mypage_top_contents" id="my_coupon">
 					<div><button class="mypage_menu_btn" onclick="location.href='/mypage/coupon'">나의 쿠폰 ></button></div>

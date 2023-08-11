@@ -26,8 +26,22 @@
 	<!-- 나의 티켓 -->
 
 	<div id="mypage_value">
-		<div class="mypage_value_title">예매내역</div>
+		<div class="mypage_value_title">
 		
+		<div>예매내역</div>
+		
+		<div id="filter-con">		
+			<select id="filter-select" data-val="${val}" onchange="filteringTicket()">
+				<option value="all">전체</option>
+				<option value="available">사용가능</option>
+				<option value="done">사용완료</option>
+				<option value="newest">최신순</option>
+				<option value="old">오래된순</option>
+			</select>
+		</div>
+		
+		</div>
+
 			<c:choose>
 				<c:when test="${!empty tickets}">
 					<c:forEach items="${tickets}" var="ticket">
@@ -42,19 +56,19 @@
 									<c:when test="${ticket.booking_date > today}">
 											
 										<div id="mypage-ticket-top">
-											<div style="color: #7856b8">결제완료</div>
+											<div style="color: #7856b8">사용가능</div>
 													<div></div>
 											<div>${ticket.payment_date }</div>
 										</div>
 											
-										<div id="mypage-ticket-middle">										
+										<div id="mypage-ticket-middle">								
 											<!-- 포스터 -->
-											<div>
+											<div class="ticket-poster-btn" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">
 							                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
 							                </div>
 							                <!-- 공연 내역 -->
 											<div>
-												<div>${ticket.performance_name }</div>
+												<div class="ticket-performance-name-txt" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">${ticket.performance_name }</div>
 												<div> 
 													<c:choose>
 														<c:when test="${!empty ticket.booking_time }">${ticket.booking_date } / ${ticket.booking_time }</c:when>
@@ -69,8 +83,8 @@
 											</div>
 											<!-- 버튼들 -->
 											<div>
-												<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code_fk}')">상세내역</button></div>
-												<div><button class="mypage-ticket-btn" onclick="refundTicket('${ticket.payment_code_fk}', '${ticket.booking_date}')">취소/환불</button></div>
+												<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">상세내역</button></div>
+												<div><button class="mypage-ticket-btn" onclick="refundTicket('${ticket.payment_code}', '${ticket.booking_date}')">취소/환불</button></div>
 											</div>
 										</div>			
 									</div>		
@@ -87,12 +101,12 @@
 										
 										<div id="mypage-ticket-middle">										
 										<!-- 포스터 -->
-										<div>
+										<div class="ticket-poster-btn" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">
 						                    <img id="mypage-ticket-poster" src="${ticket.poster }" alt="공연포스터">
 						                </div>
 						                <!-- 공연 내역 -->
 										<div>
-											<div>${ticket.performance_name }</div>
+											<div class="ticket-performance-name-txt" onclick="goToperformance('${ticket.main_category}', '${ticket.performance_code}')">${ticket.performance_name }</div>
 											<div><c:choose>
 													<c:when test="${!empty ticket.booking_time }">${ticket.booking_date } / ${ticket.booking_time }</c:when>
 													<c:otherwise>유효기간 : ~ ${ticket.booking_date }</c:otherwise>
@@ -105,7 +119,7 @@
 										</div>
 										<!-- 버튼들 -->
 										<div>
-											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code_fk}')">상세내역</button></div>
+											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">상세내역</button></div>
 											<c:choose>
 												<c:when test="${empty review_check}">
 													<div><button class="mypage-ticket-btn review">후기작성</button></div>	

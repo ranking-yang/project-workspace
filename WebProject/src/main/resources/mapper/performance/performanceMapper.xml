@@ -18,4 +18,7 @@
 	<select id="getPerformance" resultType="PerformanceDTO">
 		SELECT * FROM performance WHERE performance_code=#{performance_code}
 	</select>
+	<select id="getEndDate">
+		SELECT end_date FROM performance WHERE performance_code=#{performance_code}
+	</select>
 </mapper>

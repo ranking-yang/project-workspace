@@ -79,7 +79,8 @@
 						form="payment_success_form" readonly />
 						</div>
 						<div class="payment-selected-box-title">총 가격</div>
-						<div>${ticket.booking_price * ticket.booking_qty}</div>
+						<!-- 쿠폰에 의한 변동가격 기본베이스 -->
+						<div class="base-price">${ticket.booking_price * ticket.booking_qty}</div>
 					</div>
 				</c:forEach>
 
@@ -98,13 +99,14 @@
 				<div>
 					<div class="payment-selected-subtitle">쿠폰할인</div>
 					<div class="payment-coupon">
+						<input type="hidden" id="member-coupon-code"/>
 						<div class="payment-selected-box-title">할인 금액</div>
-						<div class="payment-coupon-value"></div>
+						<div id="coupon-value" class="payment-coupon-value"></div>
 						<div>
 							<button class="payment-chkcoupon-btn">쿠폰 확인</button>
 						</div>
 						<div>
-							보유 쿠폰 <b style="color: red;">0장</b>
+							보유 쿠폰 <b style="color: red;">${coupon_count}장</b>
 						</div>
 					</div>
 				</div>
