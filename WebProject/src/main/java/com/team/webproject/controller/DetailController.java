@@ -67,7 +67,7 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code));
+		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code)); // 해당공연의 리뷰
 
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
