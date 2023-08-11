@@ -1,5 +1,7 @@
 package com.team.webproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,14 +15,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.team.webproject.dto.MD_getPosterDTO;
+import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.mapper.LoginMapper;
+import com.team.webproject.mapper.MD_RecomMapper;
 
 @Controller
 @RequestMapping("/main")
 public class MainController {
 	@Autowired
 	LoginMapper loginMapper;
+	
+	@Autowired
+	MD_RecomMapper mdMapper;
 	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
@@ -59,6 +67,18 @@ public class MainController {
 			return "admin/api";
 		}
 		
+	}
+	
+	@GetMapping("/mdrecom")
+	String mdrecommend(Model model) {
+		List<MDrecomDTO> mdDto = mdMapper.getMDrecom();
+		List<MD_getPosterDTO> postDto = mdMapper.getMDposter();
+		System.out.println(mdDto.toString());
+		System.out.println(postDto.toString());
+		model.addAttribute("md_list", mdDto);
+		model.addAttribute("md_poster_li", postDto);
+		
+		return "/main/mdrecommend";
 	}
 
 }

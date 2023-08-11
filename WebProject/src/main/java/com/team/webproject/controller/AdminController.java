@@ -104,18 +104,16 @@ public class AdminController {
 		recom_MD.addMDrecom(mddto);
 		System.out.println(mddto);
 		int md_seq = recom_MD.currseq();
-		
+		System.out.println(md_seq);
 		MDPerformanceDTO mdperDTO = new MDPerformanceDTO();
 		for(int i =0; i<mdget.getMd_performance().size(); i++) {
-			
+			System.out.println(i);
 			mdperDTO.setRecommened_performance(mdget.getMd_performance().get(i));
 			mdperDTO.setMd_code(md_seq);
 			mdperDTO.setRecommened_performance_name(mdget.getMd_perfotitle().get(i));
 			recom_MD.addMDperfo(mdperDTO);
-			System.out.println(mdperDTO);
+			System.out.println("안나오나?"+mdperDTO.toString());
 		}
-		
-		
 		
 	}
 	

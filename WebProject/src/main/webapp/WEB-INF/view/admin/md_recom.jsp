@@ -180,12 +180,30 @@
 		            	"md_local":checkLocal,
 		            	"md_show":checkshow,
 		            	"md_performance" : checkShowCode,
-		            	"md_perfotitle" : checkShowTitle
+		            	"md_perfotitle" : checkShowTitle,
 		            }),
 		            contentType: "application/json",
 		            cache : false,
 		            success : function(result) {
-		            	 window.location.href = "/admin/api";
+		            	alert('추천 완료');
+		            	
+	     		        $('input[type="checkbox"]').prop("checked", false);
+	     		        
+	     		        // 추천 제목과 날짜 입력 필드 초기화
+	     		        $("#md_title").val("");
+	     		        $("#md_stdate").attr("value", today);
+	     			    $("#md_endate").attr("value", today);
+	     		        
+	     		        // 선택된 라벨 제거
+	     		        $(".selected-label").remove();
+	     		        
+	     		        // 선택된 항목 배열 초기화
+	     		        checkShowCode = [];
+	     		        checkShowTitle = [];
+	     		        checkCategory = [];
+	     		        checkLocal = [];
+	     		        checkshow = [];
+		     		    
 		            }
 	            	
 	            });

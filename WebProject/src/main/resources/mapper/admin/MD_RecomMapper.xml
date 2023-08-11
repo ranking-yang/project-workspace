@@ -17,4 +17,14 @@
 		INSERT INTO md_performance_list
 		values(md_performance_code_seq.nextval, #{recommened_performance}, #{md_code}, #{recommened_performance_name})
 	</insert>
+	
+	<select id="getMDrecom" resultType="MDrecomDTO">
+    	SELECT * FROM md_recommendation
+	</select>
+	
+	<select id="getMDposter" resultType="MD_getPosterDTO">
+    	SELECT ml.md_code, ml.recommended_performance, pf.performance_name, pf.poster FROM md_performance_list ml LEFT JOIN performance pf ON ml.recommended_performance
+    		 = pf.performance_code
+	</select>
+	
 </mapper>
