@@ -126,12 +126,9 @@ public class DetailController {
     // ...
 
     @PostMapping("/product/reviews")
-    public String insertReview(ReviewDTO review, String username, String review_content, Integer review_star) {
+    public String insertReview(ReviewDTO review, Model model) {
     	// reviewDTO null 값 해결 (jdbcType 이용해서 해결 시도해봐야함)
     	System.out.println("insertReview 실행중");
-    	System.out.println("username: " + username);
-    	System.out.println("review_content: " + review_content);
-    	System.out.println("review_star: " + review_star);
     	//review.setReview_writer_code(userCode);
     	
     	System.out.println("ReviewDTO 보기: " + review.toString());
@@ -139,6 +136,9 @@ public class DetailController {
     	// ReviewDTO에 관련된 작업 수행
        int result = reviewService.insertReview(review);
        System.out.println(result);
+       
+       model.addAttribute("performance", detailService.getPerformance(review.getPerformance_code())); // DB에서 값 조회
+
 			
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }

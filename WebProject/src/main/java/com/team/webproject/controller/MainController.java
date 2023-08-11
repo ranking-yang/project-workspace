@@ -1,5 +1,6 @@
 package com.team.webproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.CouponService;
 
@@ -55,8 +55,8 @@ public class MainController {
 			return "main/main";
 		}
 		String username = null;
-		//List<GrantedAuthority> authority = new ArrayList<>(((UserDetails) principal).getAuthorities());
-		List<GrantedAuthority> authority = (List<GrantedAuthority>)((MembersDTO) principal).getAuthorities();
+		List<GrantedAuthority> authority = new ArrayList<>(((UserDetails) principal).getAuthorities());
+		//List<GrantedAuthority> authority = (List<GrantedAuthority>)((UserDetails) principal).getAuthorities();
 		// 권한이 User 이면
 		//if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
 		if (authority.get(0).getAuthority().equals("ROLE_member")) {
