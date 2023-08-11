@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.common.Principal;
 import com.team.webproject.service.CouponService;
 import com.team.webproject.service.MypageService;
 import com.team.webproject.service.ProductListService;
@@ -23,8 +23,6 @@ public class MypageController {
 	MypageService mypageService;
 	@Autowired
 	ProductListService productListService;
-	
-	
 	@Autowired
 	CouponService couponService;
 	
@@ -80,11 +78,7 @@ public class MypageController {
 	@GetMapping("/coupon")
 	String gotoCouponPage(Model model) {
 		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String userID = ((UserDetails) principal).getUsername();
-		
-		model.addAttribute("user", ((MembersDTO) principal));
-		model.addAttribute("coupons", couponService.getAllCoupon(userID));
+		System.out.println(Principal.getUser().getMember_name());
 		
 		return "/mypage/mypage-coupon";
 	}
