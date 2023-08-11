@@ -50,5 +50,10 @@ public class ProductListServiceImpl implements ProductListService {
 
 
     }
+	
+	@Override
+	public List<PerformanceDTO> getAllProduct() {
+		return performanceMapper.getAllPerformances();
+	}
 
 }

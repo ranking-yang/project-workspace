@@ -18,6 +18,7 @@ import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.mapper.MD_RecomMapper;
+import com.team.webproject.service.CouponService;
 
 
 @Controller
