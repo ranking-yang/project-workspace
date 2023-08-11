@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.service.DetailService;
+import com.team.webproject.service.LoginService;
+import com.team.webproject.service.LoginServiceImpl;
 import com.team.webproject.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -34,6 +37,8 @@ public class DetailController {
 	@Autowired
 	ReviewService reviewService;
 	
+	@Autowired
+	LoginService loginService;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		

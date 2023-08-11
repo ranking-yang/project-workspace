@@ -48,9 +48,7 @@ public class ProductListServiceImpl implements ProductListService {
         String areaName = AreaEnum.getAreaNameByCode(area_code);
         return performanceMapper.getAreaPerformances(areaName);
 
-    }
 
-	
-	
+    }
 
 }
