@@ -1,5 +1,7 @@
 package com.team.webproject.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.team.webproject.common.Principal;
+import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.service.CouponService;
 import com.team.webproject.service.MypageService;
 import com.team.webproject.service.ProductListService;
@@ -27,22 +32,68 @@ public class MypageController {
 	CouponService couponService;
 	
 	// 메인 겸 예매내역
-	@GetMapping("")
+	@GetMapping(value = {"", "/all"})
 	String gotoMypage(Model model) {
-		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String userID = ((UserDetails) principal).getUsername();
-		model.addAttribute("tickets", mypageService.getMemberTickets(userID));
-		model.addAttribute("countWish", productListService.countUserWish_list(productListService.getMember_code(userID)));
+		Integer user_code = ((MembersDTO) principal).getMember_code();		
+		model.addAttribute("tickets", mypageService.getMemberTickets(user_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+		model.addAttribute("val", "all");
 		return "/mypage/mypage-ticket";
 	}
 	
+	// 예매내역 필터링
+		// 사용가능
+		@GetMapping("/available")
+		String gotoTicketList_available(Model model) {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Integer user_code = ((MembersDTO) principal).getMember_code();		
+			model.addAttribute("tickets", mypageService.getMemberTickets_available(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+			model.addAttribute("val", "available");		
+			return "/mypage/mypage-ticket";
+		}
+		// 사용완료
+		@GetMapping("/done")
+		String gotoTicketList_done(Model model) {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Integer user_code = ((MembersDTO) principal).getMember_code();		
+			model.addAttribute("tickets", mypageService.getMemberTickets_done(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+			model.addAttribute("val", "done");		
+			return "/mypage/mypage-ticket";
+		}
+		// 최신순
+		@GetMapping("/newest")
+		String gotoTicketList_newest(Model model) {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Integer user_code = ((MembersDTO) principal).getMember_code();		
+			model.addAttribute("tickets", mypageService.getMemberTickets(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+			model.addAttribute("val", "newest");		
+			return "/mypage/mypage-ticket";
+		}
+		// 오래된순
+		@GetMapping("/old")
+		String gotoTicketList_old(Model model) {
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Integer user_code = ((MembersDTO) principal).getMember_code();		
+			model.addAttribute("tickets", mypageService.getMemberTickets_old(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+			model.addAttribute("val", "old");		
+			return "/mypage/mypage-ticket";
+		}
+	
 	// 티켓 상세페이지
 	@PostMapping("/ticket/detail")
-	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {
-		
-		System.out.println("코드 : " + payment_code);
-		
+	String showTicket(Model model, @RequestParam("payment_code") String payment_code) {		
+		// 티켓 DTO 실어서 보내주기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
+		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-ticket-detail";
 	}
 	
@@ -50,9 +101,12 @@ public class MypageController {
 	@PostMapping("/ticket/refund")
 	String refundTicket(Model model, @RequestParam("payment_code") String payment_code) {
 		// 환불 DTO 실어서 보내주기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
 		model.addAttribute("ticket", mypageService.getTicketDetail(payment_code));
 		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
-		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));		
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));	
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-ticket-refund";
 	}
 	
@@ -60,17 +114,22 @@ public class MypageController {
 	@PostMapping("/ticket/refund/request")
 	String refundTicketRequest(Model model, @RequestParam("payment_code") String payment_code) {
 		// 가져온 결제 코드로 DB 변경		
-		if (mypageService.refundTicket(payment_code)) {
-			
+		if (mypageService.refundTicket(payment_code)) {			
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String userID = ((UserDetails) principal).getUsername();
-			
-			model.addAttribute("tickets", mypageService.getRefundTickets(userID));
-			
+			Integer user_code = ((MembersDTO) principal).getMember_code();			
+			model.addAttribute("tickets", mypageService.getRefundTickets(user_code));
+			model.addAttribute("countWish", productListService.countUserWish_list(user_code));			
 			return "/mypage/mypage-refund";
 		} else {
 			return "redirect:/mypage";
 		}		
+	}
+	
+	// 공연 종료날짜 조회
+	@ResponseBody
+	@PostMapping("/checkDate")
+	Date chkPerformanceEndDate(@RequestParam("performance_code") String performance_code) {		
+		return mypageService.chkEndDate(performance_code);
 	}
 	
 	
@@ -104,9 +163,21 @@ public class MypageController {
 	@GetMapping("/refund")
 	String gotoRefundPage(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String userID = ((UserDetails) principal).getUsername();		
-		model.addAttribute("tickets", mypageService.getRefundTickets(userID));		
+		Integer user_code = ((MembersDTO) principal).getMember_code();	
+		model.addAttribute("tickets", mypageService.getRefundTickets(user_code));
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
 		return "/mypage/mypage-refund";
+	}
+	
+	@PostMapping("/refund/detail")
+	String gotoRefundDetailPage(Model model, @RequestParam("payment_code") String payment_code) {	
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Integer user_code = ((MembersDTO) principal).getMember_code();
+		model.addAttribute("ticket", mypageService.getRefundTicketDetail(payment_code));
+		model.addAttribute("options", mypageService.getTicketOptions(payment_code));
+		model.addAttribute("ticketNum", mypageService.getTicketNum(payment_code));	
+		model.addAttribute("countWish", productListService.countUserWish_list(user_code));
+		return "/mypage/mypage-refund-detail";
 	}
 	
 	// 리뷰
