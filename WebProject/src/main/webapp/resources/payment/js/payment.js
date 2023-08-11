@@ -80,7 +80,7 @@ function makePaymentDTO(rsp) {
     let related_coupon = $('<input>', {
         type: 'hidden',
         name: 'related_coupon',
-        value: null // 쿠폰 번호
+        value: $('#member-coupon-code').val() // 쿠폰 번호
     });
     
      let payment_way = $('<input>', {
@@ -114,7 +114,7 @@ const couponBtn = document.getElementsByClassName('payment-chkcoupon-btn')[0];
 
 couponBtn.addEventListener('click', () => {
 	let options = 'top=300, left=660, height=900, width=600, location=no';
-	window.open('./mycoupon', '보유쿠폰', options);
+	window.open('/coupon/popup', '보유쿠폰', options);
 })
 
 

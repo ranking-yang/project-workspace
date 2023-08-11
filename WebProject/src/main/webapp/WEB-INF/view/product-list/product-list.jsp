@@ -104,7 +104,7 @@
 			        </div>
 			        <div class="product-module-title">${product.performance_name}</div>
 			        <div class="product-module-bottom">
-			            <div class="star"><i class="fa-solid fa-star" style="color: #ffcb0f;"></i>4.8(828)</div>
+			            <div class="star">⭐ 4.8(828)</div>
 			            <div class="price">${product.performance_price}원</div>
 			        </div>
 			    </div>

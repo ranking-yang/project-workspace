@@ -1,0 +1,120 @@
+/* 필터 css */
+.mypage_value_title {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+}
+
+#filter-con {
+	width: 100%;
+	text-align: right;
+	font-size: 15px;
+	padding-top: 10px;
+}
+	
+	#filter-select {
+		width: 100px;
+	}
+	
+
+/* 예매내역 css */
+#mypage_ticket_con > div {
+	border: solid 1px yellowgreen;
+}
+
+#mypage-ticket-con {
+        display: grid;
+        grid-template-rows: 50px 200px;
+        border: 2px solid #f5f5f5;
+        border-radius: 15px;
+        margin-top: 20px;
+        height: 250px;
+    }
+    
+    #mypage-ticket-top {
+		display: grid;
+		grid-template-columns: 180px 1fr 170px;
+		border-bottom: 2px solid #f5f5f5;
+		text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+        padding-top: 10px;
+	}
+	
+	#mypage-ticket-middle {
+		display: grid;
+        grid-template-columns: 180px 1fr 125px;
+	}
+		/* 포스터 */
+		#mypage-ticket-middle > div:first-child {
+            text-align: center;
+            padding-top: 20px;
+        }
+        
+        .ticket-poster-btn, .ticket-performance-name-txt {
+			cursor: pointer;
+		}
+		
+		.ticket-performance-name-txt:hover {
+			text-decoration: underline;
+			font-weight: 500;
+		}
+	
+		#mypage-ticket-poster {
+	        width: 120px;
+	        height: 160px;
+	        border-radius: 10px;
+	     }
+	     
+	     /* 공연 내역 */
+	     #mypage-ticket-middle > div:nth-child(2) {
+			 padding: 20px;
+			 display: grid;
+			 grid-template-rows: 1fr 1fr 1fr 70px;
+		 }
+		 
+		 .notice {
+			 width: 400px;
+			 color: red;
+			 font-weight: 400;
+			 padding-top: 10px;
+		 }
+		 
+		 .done {
+			 width: 400px;
+			 color: gray;
+			 font-weight: 400;
+			 padding-top: 10px;
+		 }    
+	     
+	     /* 버튼들 */
+	     #mypage-ticket-middle > div:last-child {
+			 display: flex;
+			 flex-direction: column;
+			 justify-content: start;
+			 gap: 10px;
+			 padding-top: 20px;	 
+		 }
+		 
+	     .mypage-ticket-btn {
+			 width: 90px;
+			 height: 35px;
+			 background-color: #7856b8;
+			 border: 0;
+			 border-radius: 10px;
+			 color: white;
+			 font-weight: 600;
+			 font-size: 15px;
+		 }
+		 
+		 .review {
+			 background-color: #a956b8;
+		 }
+		 
+		 .mypage-ticket-btn:hover {
+			 background-color: rgb(182, 163, 216);
+			 cursor: pointer;
+		 }
+		 
+		 .review:hover {
+			 background-color: #e5cce9;
+		 }

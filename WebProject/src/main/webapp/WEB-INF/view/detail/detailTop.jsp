@@ -40,7 +40,16 @@
 				</div>
 				<div class="detail-top-info-icon">${performance.sub_category}</div>
 				<!-- DB 분야 -->
-				<div class="detail-top-info-title">${performance.performance_name}</div>
+				<c:choose>
+				    <c:when test="${fn:length(performance.performance_name) >= 35}">
+				        <div class="detail-top-info-title" style="font-size: 15px;">${performance.performance_name}</div>
+				    </c:when>
+				    <c:otherwise>
+				        <div class="detail-top-info-title" style="font-size: 20px;">${performance.performance_name}</div>
+				    </c:otherwise>
+				</c:choose>
+				
+				
 				<!-- DB 제목 -->
 				<div class="detail-top-info-openrun">
 					<div class="detail-top-run-tit">
