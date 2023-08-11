@@ -1,5 +1,3 @@
-@charset "EUC-KR";
-
 .allcss {
   margin: 0;
   padding: 0;
@@ -42,11 +40,34 @@
     width: 1000px;
     height: 500px;
 }
+
 .topnav {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 73px;
   background-color: #212529;
   overflow: hidden;
+  z-index: 2;
 }
+
+.topnav > input {
+	position: fixed;
+	border: 0;
+	background-color: transparent;
+	color: white;
+	font-size: 17px;
+	right: 20px;
+	top: 20px;	
+	cursor: pointer;
+}
+
+.topnav > input:hover {
+	color: #46c8b4;
+	font-weight: bold;
+}
+
 #mdselect{
 	padding: 10px;
 }
@@ -173,17 +194,6 @@
       background-color: #f2f2f2
     }
 
-       
-        button {
-        margin-top: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-
     #add {
         background-color: #4CAF50;
         color: white;
@@ -208,7 +218,8 @@
   text-align: center;
   padding: 25px 25px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 
@@ -227,19 +238,21 @@
 
 
 .sidenav {
-  height: 100%;
-  width: 200px;
   position: fixed;
+  width: 200px;
+  height: 100%;
   background-color: #111;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 73px;
+  padding-left: 10px;
  
 }
 
 .stitle {
   padding: 10px;
   margin-left: 5px;
-  font-size: 12px;
+  font-size: 20px;
+  font-weight: 600;
   color: #46c8b4;
 }
 
@@ -283,19 +296,7 @@
         padding: 5px;
         box-sizing: border-box;
     }
-    #button {
-       padding: 10px 20px;
-       margin-top: 10px;
-       background-color: #007bff;
-       color: white;
-       border: none;
-       border-radius: 5px;
-       cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
+    
 .table-box {
     width: auto;
     height: auto;
@@ -318,3 +319,29 @@
   #tr:nth-child(even) {
     background-color: #f2f2f2
   }
+  
+  /* 메뉴버튼 */
+  button {
+	  cursor: pointer;
+  }
+  
+  .indexbtn {
+	  margin-left: 10px;
+  }
+  
+  button {
+	   width: 100px;
+	   padding: 10px 20px;
+	   margin-top: 10px;
+	   background-color: rgb(160, 160, 160);
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 600;
+	   border: none;
+	   border-radius: 5px;
+	   cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #46c8b4;
+    }
