@@ -3,8 +3,10 @@ package com.team.webproject.dto;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ReviewDTO {
 	private Integer review_code;
 	private Integer review_writer_code; // 외래키

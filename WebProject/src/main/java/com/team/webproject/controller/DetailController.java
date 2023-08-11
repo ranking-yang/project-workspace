@@ -93,9 +93,7 @@ public class DetailController {
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//String member_id = ((UserDetails) principal).getUsername();
-		
-
-		
+				
 		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
 			model.addAttribute("member_id", null);
 		} else {			
@@ -111,8 +109,8 @@ public class DetailController {
 
 		// System.out.println("detail_member_code: "+ member.getMember_code());
 
-        List<ReviewDTO> reviews = reviewService.getAllReviews();
-        model.addAttribute("reviews", reviews);
+        //List<ReviewDTO> reviews = reviewService.getAllReviews();
+        //model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
@@ -128,17 +126,21 @@ public class DetailController {
     // ...
 
     @PostMapping("/product/reviews")
-    @ResponseBody
-    public void insertReview(@RequestBody ReviewDTO review, @RequestParam Integer userCode, @RequestParam String userId) {
+    public String insertReview(ReviewDTO review, String username, String review_content, Integer review_star) {
+    	// reviewDTO null 값 해결 (jdbcType 이용해서 해결 시도해봐야함)
+    	System.out.println("insertReview 실행중");
+    	System.out.println("username: " + username);
+    	System.out.println("review_content: " + review_content);
+    	System.out.println("review_star: " + review_star);
+    	//review.setReview_writer_code(userCode);
     	
-    	review.setReview_writer_code(userCode);
-    	
-    	System.out.println(review.toString());
+    	System.out.println("ReviewDTO 보기: " + review.toString());
     
     	// ReviewDTO에 관련된 작업 수행
-        reviewService.insertReview(review);
+       int result = reviewService.insertReview(review);
+       System.out.println(result);
 			
-//        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
+        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
     @PutMapping("/product/reviews/{reviewCode}")

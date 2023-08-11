@@ -250,15 +250,36 @@ function submitForm() {
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
  
   // 리뷰 데이터를 서버로 전송하기 위해 FormData 객체 생성
-   var formData = new Object();
+/*   var formData = new Object();
   formData.review_content= content_comment;
   formData.review_image= image_upload;
   formData.review_star=star_rating;
-  formData.review_code=reviewId;
+  //formData.review_code=reviewId;
   formData.review_writer_code= review_writer_code;
   formData.review_like= review_like;
   formData.performance_code=performance_code;
+*/ 
+var formData = {
+  review_content: content_comment,
+  review_image: image_upload,
+  review_star: star_rating,
+  review_writer_id: review_writer_id,
+  review_writer_code: review_writer_code,
+  review_like: review_like,
+  performance_code: performance_code
+};
   // AJAX를 사용하여 리뷰 생성 요청 보내기
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/product/reviews', true);
+  xhr.responseType='json';
+  xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8;');
+  xhr.onload = function(e) {
+	  if(this.status == 200) {
+		  alert('성공');
+	  }
+  }
+  xhr.send(JSON.stringify(formData));
+  /*
   fetch("/product/reviews", {
     method: "POST",
     headers: {
@@ -282,9 +303,10 @@ function submitForm() {
       console.error("Error:", error);
       alert("서버와의 통신 중 오류가 발생했습니다.");
     });
+    */
 
   
-  
+/*  
   var formData = {
   review_content: content_comment,
   review_image: image_upload,
@@ -301,6 +323,7 @@ console.log("review_image " + formData.review_image);
 console.log("review_like " + formData.review_like);
 console.log("review_star " + formData.review_star);
 console.log("review_writer_code " + formData.review_writer_code);
+*/
 /*
 $.ajax({
 	
