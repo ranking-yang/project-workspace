@@ -1,5 +1,3 @@
-@charset "EUC-KR";
-
 .allcss {
   margin: 0;
   padding: 0;
@@ -9,7 +7,6 @@
 .filter {
         width: 800px;
     }
-    /* 테이블스타일 */
     .table-box {
         width: auto;
         height: 500px;
@@ -43,16 +40,135 @@
     width: 1000px;
     height: 500px;
 }
+
 .topnav {
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 73px;
   background-color: #212529;
   overflow: hidden;
+  z-index: 2;
 }
 
+.topnav > input {
+	position: fixed;
+	border: 0;
+	background-color: transparent;
+	color: white;
+	font-size: 17px;
+	right: 20px;
+	top: 20px;	
+	cursor: pointer;
+}
+
+.topnav > input:hover {
+	color: #46c8b4;
+	font-weight: bold;
+}
+
+#mdselect{
+	padding: 10px;
+}
 #mdtable{
 	width: auto;
-      height: auto;
-      border: 1px solid #ddd;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
+#mdbtn{
+	padding: 10px;
+	
+}
+
+#mdbtn_menu{
+	float:left;
+	width: 450px;
+	height:420px;
+	margin-top: 10px;
+	border: 1px solid #ddd;
+}
+#mdmenu{
+	width: 73%;
+	margin:0 auto;
+	float:right;
+	
+}
+@media screen and (max-width: 1912px) {
+        /* 화면 크기가 768px 이하일 때 적용되는 스타일 */
+        #mdbtn_menu {
+            float: none; /* float 제거 */
+            width: 100%; /* 전체 너비로 설정 */
+            height: auto; /* 높이 자동 조정 */
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #mdmenu {
+            float: none; /* float 제거 */
+            width: 100%; /* 전체 너비로 설정 */
+            margin: 0 auto;
+        }
+    }
+#md_product{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 25px;
+    row-gap: 20px;
+    margin-left: 0px;
+	margin-top: 10px;
+	padding: 0px 10px;
+	float: left;
+	
+}
+.selected-label{
+	margin: 5px;
+    padding: 5px 10px; /* 라벨의 내부 여백 설정 */
+    border-radius: 15px; /* 라벨을 동그랗게 만들기 위한 속성 */
+    background-color: #f2f2f2; /* 라벨의 배경색 지정 */
+    display: inline-block;
+}
+
+
+.product-module{
+    column-gap: 10px;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 320px 40px 1fr 30px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+.product-module:hover{
+    transform: translate(0,-5px);
+}
+.product-module > :nth-child(n+2):nth-child(-n+4){
+    text-align: left;
+    padding-left: 10px;
+}
+.product-module-poster{
+    border-radius: 15px;
+    width: 250px;
+    height: 312.5px;
+    margin: auto;
+}
+.product-module-top{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.product-module-top > :first-child{
+    text-align: left;
+}
+.product-module-top > :last-child{
+    text-align: center;
+}
+
+.product-module-title{
+    font-weight: 600;
+    font-size: 20px;
+    padding-top: 5px;
+    color: black;
 }
 
  .table-box {
@@ -78,17 +194,6 @@
       background-color: #f2f2f2
     }
 
-        /* 공통 버튼 스타일 */
-        button {
-        margin-top: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    /* 추가 버튼 스타일 */
     #add {
         background-color: #4CAF50;
         color: white;
@@ -97,7 +202,7 @@
         background-color: #45a049;
     }
 
-    /* 삭제 버튼 스타일 */
+
     #delete {
         background-color: #f44336;
         color: white;
@@ -113,7 +218,8 @@
   text-align: center;
   padding: 25px 25px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 
@@ -132,18 +238,21 @@
 
 
 .sidenav {
-  height: 100%;
+  position: fixed;
   width: 200px;
-  position: absolute;
+  height: 100%;
   background-color: #111;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 73px;
+  padding-left: 10px;
+ 
 }
 
 .stitle {
   padding: 10px;
   margin-left: 5px;
-  font-size: 12px;
+  font-size: 20px;
+  font-weight: 600;
   color: #46c8b4;
 }
 
@@ -164,6 +273,7 @@
   margin-left: 200px;
   margin-top: 10px;
   padding: 0px 10px;
+  text-align: center;
 }
 
 .table-box {
@@ -186,19 +296,7 @@
         padding: 5px;
         box-sizing: border-box;
     }
-    #button {
-       padding: 10px 20px;
-       margin-top: 10px;
-       background-color: #007bff;
-       color: white;
-       border: none;
-       border-radius: 5px;
-       cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #0056b3;
-    }
+    
 .table-box {
     width: auto;
     height: auto;
@@ -221,3 +319,29 @@
   #tr:nth-child(even) {
     background-color: #f2f2f2
   }
+  
+  /* 메뉴버튼 */
+  button {
+	  cursor: pointer;
+  }
+  
+  .indexbtn {
+	  margin-left: 10px;
+  }
+  
+  button {
+	   width: 100px;
+	   padding: 10px 20px;
+	   margin-top: 10px;
+	   background-color: rgb(160, 160, 160);
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 600;
+	   border: none;
+	   border-radius: 5px;
+	   cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #46c8b4;
+    }

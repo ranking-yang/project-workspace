@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.mapper.ReviewMapper;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 public class ReviewServiceImpl implements ReviewService{
-	private final ReviewMapper reviewMapper;
-
-    @Autowired
-    public ReviewServiceImpl(ReviewMapper reviewMapper) {
-        this.reviewMapper = reviewMapper;
-    }
+	
+	
+	@Autowired
+	ReviewMapper reviewMapper;
 
     @Override
     public List<ReviewDTO> getAllReviews() {
@@ -46,4 +46,9 @@ public class ReviewServiceImpl implements ReviewService{
     public void deleteReview(Integer reviewCode) {
         reviewMapper.deleteReview(reviewCode);
     }
+
+	@Override
+	public List<ReviewDTO> getPerformanceReviews(String performance_code) {
+		return reviewMapper.getPerformanceReviews(performance_code);
+	}
 }

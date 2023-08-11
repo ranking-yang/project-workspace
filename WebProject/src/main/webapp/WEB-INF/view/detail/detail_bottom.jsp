@@ -1,38 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <link rel="stylesheet" href="/resources/detail/css/detail_bottom.css"/>
 
-	<section style="width:820px; margin:0 auto; padding-top:20px;">
-
-    <!-- 메뉴영역 -->
-    <ul id="maintab" class="shadetabs FixedTopMenu" style="border-radius:10px 10px 0 0;">
-      <li id="tab_01_notice" class="selected"><span onclick="loadTab('content_1', this)" class="Topclass">안내</span></li>
-      <li id="tab_02_review" class=""><span onclick="loadTab('content_2', this); setFormVisibility1();" class="Topclass">후기<span id="reviewCount" style="letter-spacing:-1px;">(0)</span></span></li>
-      <li class=""><span onclick="loadTab('content_3', this); setFormVisibility2();" class="Topclass">Q&amp;A<span id="commentCount" style="letter-spacing:-1px;">(0)</span></span></li>
-      <li class=""><span onclick="loadTab('content_4', this)" class="Topclass">장소</span></li>
-      <li class=""><span id="tab_05_refund" onclick="loadTab('content_5', this)" class="Topclass">환불규정</span></li>
-    </ul>
-
-    <!---------------------- 탭 영역 시작 ----------------------->
-    <div id="ajaxcontentarea" class="contentstyle" style="border-radius:0 0 10px 10px">
-	    <!-- 안내탭 시작 -->
-	    <%@ include file="./frag/bottom_info.jsp" %>
-	  	<!-- 후기탭 시작 -->	
-	  	<%@ include file="./frag/bottom_review.jsp" %>
-	  	<!-- Q&A탭 시작 -->
-	  	<%@ include file="./frag/bottom_qna.jsp" %>
-		<!-- 장소탭 시작 -->
-	  	<%@ include file="./frag/bottom_place.jsp" %>
-		<!-- 환불규정탭 시작 -->	
-		<%@ include file="./frag/bottom_refund.jsp" %>
-  	</div>
-  	
-</section>
-<%
-  String userId = (String) session.getAttribute("userId");
-%>
+<div id="detail_bottom_con">
+   <!-- 메뉴영역 -->
+    <div id="detailMenuBtns">
+        <div class="detailMenuBtn" data-target="info">안내</div>
+        <div class="detailMenuBtn" data-target="review">후기(0)</div>
+        <div class="detailMenuBtn" data-target="qna">Q&A(0)</div>
+        <div class="detailMenuBtn" data-target="place">장소</div>
+        <div class="detailMenuBtn" data-target="refund">환불규정</div>
+    </div>
+    <div id="menuContents">
+        <div class="menuContent" id="infoContent">
+            <%@ include file="./frag/bottom_info.jsp" %>
+        </div>
+        <div class="menuContent" id="reviewContent">
+            <%@ include file="./frag/bottom_review.jsp" %>
+        </div>
+        <div class="menuContent" id="qnaContent">
+            <%@ include file="./frag/bottom_qna.jsp" %>
+        </div>
+        <div class="menuContent" id="placeContent">
+            <%@ include file="./frag/bottom_place.jsp" %>
+        </div>
+        <div class="menuContent" id="refundContent">
+            <%@ include file="./frag/bottom_refund.jsp" %>
+        </div>
+    </div>
+</div>
 <script src="/resources/detail/js/detail_bottom.js"></script>
+
 <script>
-  var userId = "${userId}";
+
 </script>
