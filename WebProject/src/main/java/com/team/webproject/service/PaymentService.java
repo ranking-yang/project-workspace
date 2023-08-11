@@ -1,5 +1,7 @@
 package com.team.webproject.service;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import com.team.webproject.dto.MembersDTO;
@@ -15,6 +17,6 @@ public interface PaymentService {
 	
 	public MembersDTO getSingleUser(String user_id);
 	
-	void UpdateDB(PaymentDTO payment, List<TicketDTO> tickets, String performance_code);
+	void updateDB(PaymentDTO payment, List<TicketDTO> tickets, String performance_code);	
 	
 }

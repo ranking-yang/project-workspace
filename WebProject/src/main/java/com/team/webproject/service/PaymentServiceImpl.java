@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.siot.IamportRestClient.request.CancelData;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.PerformanceDTO;
@@ -30,8 +32,6 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	@Autowired
 	CouponMapper couponMapper;
-	
-	// 쿠폰 조회
 	
 	// 유저 아이디 조회
 	@Override
@@ -92,7 +92,7 @@ public class PaymentServiceImpl implements PaymentService {
 	// DB에 저장
 	@Override
 	@Transactional
-	public void UpdateDB(PaymentDTO payment, List<TicketDTO> tickets, String performance_code) {
+	public void updateDB(PaymentDTO payment, List<TicketDTO> tickets, String performance_code) {
 		
 		paymentMapper.insertPayment(payment);
 		
@@ -110,6 +110,5 @@ public class PaymentServiceImpl implements PaymentService {
 		paymentMapper.updatePerformaceQty(performance_code, getTotalQty(tickets));
 
 	}
-	
 
 }
