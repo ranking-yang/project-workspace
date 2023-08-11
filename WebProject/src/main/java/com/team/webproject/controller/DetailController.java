@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,18 +14,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
+import com.team.webproject.service.LoginService;
+import com.team.webproject.service.PaymentService;
 import com.team.webproject.service.ProductListService;
 import com.team.webproject.service.ReviewService;
 
@@ -41,8 +43,18 @@ public class DetailController {
 	
 	@Autowired
 	ReviewService reviewService;
+	
 	@Autowired
 	LoginMapper loginMapper;
+	
+	@Autowired
+	PaymentService performanceService;
+	
+	@Autowired
+	LoginService membersService;
+	
+	@Autowired
+	ProductListService productService;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
@@ -80,15 +92,25 @@ public class DetailController {
 	@GetMapping("/product/reviews")
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String member_id = ((UserDetails) principal).getUsername();
-		System.out.println("detail_member_id: "+ member_id);
-		MembersDTO member = loginMapper.checklogin(member_id);
-		System.out.println("detail_member_code: "+ member.getMember_code());
-		
-		model.addAttribute("userId", member_id);
-		
-        List<ReviewDTO> reviews = reviewService.getAllReviews();
-        model.addAttribute("reviews", reviews);
+		//String member_id = ((UserDetails) principal).getUsername();
+				
+		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
+			model.addAttribute("member_id", null);
+		} else {			
+			String member_id = ((UserDetails) principal).getUsername();
+			Integer member_code = productService.getMember_code(member_id);
+			MembersDTO member = loginMapper.checklogin(member_id);
+			
+			model.addAttribute("userId", member_id);
+			model.addAttribute("userCode", member_code);
+			System.out.println("detail_member_id: "+ member_id);
+
+		}
+
+		// System.out.println("detail_member_code: "+ member.getMember_code());
+
+        //List<ReviewDTO> reviews = reviewService.getAllReviews();
+        //model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
@@ -104,9 +126,20 @@ public class DetailController {
     // ...
 
     @PostMapping("/product/reviews")
-    public String insertReview(@RequestBody ReviewDTO review) {
-        reviewService.insertReview(review);
-				
+    public String insertReview(ReviewDTO review, String username, String review_content, Integer review_star) {
+    	// reviewDTO null 값 해결 (jdbcType 이용해서 해결 시도해봐야함)
+    	System.out.println("insertReview 실행중");
+    	System.out.println("username: " + username);
+    	System.out.println("review_content: " + review_content);
+    	System.out.println("review_star: " + review_star);
+    	//review.setReview_writer_code(userCode);
+    	
+    	System.out.println("ReviewDTO 보기: " + review.toString());
+    
+    	// ReviewDTO에 관련된 작업 수행
+       int result = reviewService.insertReview(review);
+       System.out.println(result);
+			
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 

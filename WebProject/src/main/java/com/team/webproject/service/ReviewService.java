@@ -7,8 +7,8 @@ import com.team.webproject.dto.ReviewDTO;
 public interface ReviewService {
 	 List<ReviewDTO> getAllReviews();
 	 ReviewDTO getReviewByCode(Integer reviewCode);
-	 List<ReviewDTO> getReviewsByWriterCode(Integer writerCode);
-	 void insertReview(ReviewDTO review);
+	 //List<ReviewDTO> getReviewsByWriterCode(Integer writerCode);
+	 int insertReview(ReviewDTO review);
 	 void updateReview(ReviewDTO review);
 	 void deleteReview(Integer reviewCode);
 }

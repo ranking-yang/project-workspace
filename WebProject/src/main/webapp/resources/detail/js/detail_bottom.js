@@ -109,8 +109,9 @@ function submitForm() {
   var star_rating = parseFloat(document.getElementById("star_rating").value);
   var review_like = 0;
   // var review_code;
-  var review_writer_code;
-  var performance_code;
+  var review_writer_code = document.getElementsByClassName("review_title_left_name").data('usercode');
+  console.log(review_writer_code);
+  var performance_code = document.getElementById("bottom_performance_code").value;
     
   // 별점이 1부터 5 사이가 아니라면 입력을 강제로 요구
   if (star_rating < 1 || star_rating > 5) {
@@ -132,7 +133,9 @@ function submitForm() {
   var newReviewDiv = document.createElement("div");
   reviewIdCounter++; // 리뷰 ID 카운터 증가
   var reviewId = String(reviewIdCounter).padStart(6, '0'); // 리뷰 ID 생성 (6자리 숫자)
-
+  
+  //var reviewId = `${userId}`;
+  console.log(reviewId);
   newReviewDiv.className = "review_wrap user_review_" + reviewId; // 리뷰 래핑 요소 클래스에 리뷰 ID 추가
   // 리뷰 내용의 최대 길이를 설정
   var maxReviewLength = 300; // 원하는 최대 길이로 설정
@@ -146,6 +149,7 @@ function submitForm() {
   if (content_comment.length <= maxReviewLength) {
   	  seeMoreLink = ""; // 최대 길이보다 작으면 "더보기" 링크를 숨김
   }
+  var review_writer_id = document.getElementById("bottom_member_id").value;
   reviewTitle = `
     <div class="review_title">
       <div class="review_title_left">
@@ -155,7 +159,7 @@ function submitForm() {
           </div>
         </div>
         <div class="review_title_left_name" style="padding-left: 10px;">
-          ${userId}
+          ${review_writer_id}
         </div>
       </div>	
       <div class="review_title_button" onclick="editReview('${reviewId}')">수정
@@ -246,18 +250,42 @@ function submitForm() {
   filledStarElement.style.width = `calc(${averageRating} * 24px)`;
  
   // 리뷰 데이터를 서버로 전송하기 위해 FormData 객체 생성
-  var formData = new FormData();
-  formData.append("review_content", content_comment);
-  formData.append("review_image", image_upload);
-  formData.append("review_star", star_rating);
-  formData.append("review_code", reviewId);
-  formData.append("review_writer_code", review_writer_code);
-  formData.append("review_like", review_like);
-  formData.append("performance_code", performance_code);
+/*   var formData = new Object();
+  formData.review_content= content_comment;
+  formData.review_image= image_upload;
+  formData.review_star=star_rating;
+  //formData.review_code=reviewId;
+  formData.review_writer_code= review_writer_code;
+  formData.review_like= review_like;
+  formData.performance_code=performance_code;
+*/ 
+var formData = {
+  review_content: content_comment,
+  review_image: image_upload,
+  review_star: star_rating,
+  review_writer_id: review_writer_id,
+  review_writer_code: review_writer_code,
+  review_like: review_like,
+  performance_code: performance_code
+};
   // AJAX를 사용하여 리뷰 생성 요청 보내기
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/product/reviews', true);
+  xhr.responseType='json';
+  xhr.setRequestHeader('Content-type', 'application/json;charset=UTF-8;');
+  xhr.onload = function(e) {
+	  if(this.status == 200) {
+		  alert('성공');
+	  }
+  }
+  xhr.send(JSON.stringify(formData));
+  /*
   fetch("/product/reviews", {
     method: "POST",
-    body: formData,
+    headers: {
+    "Content-Type": "application/json",
+  },
+    body: JSON.stringify(formData),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -275,8 +303,75 @@ function submitForm() {
       console.error("Error:", error);
       alert("서버와의 통신 중 오류가 발생했습니다.");
     });
+    */
 
   
+/*  
+  var formData = {
+  review_content: content_comment,
+  review_image: image_upload,
+  review_star: star_rating,
+  //review_code: reviewId,
+  review_writer_code: review_writer_id,
+  review_like: review_like,
+  performance_code: performance_code
+};
+console.log("review_content " + formData.review_content);
+//console.log("review_code " + formData.review_code);
+console.log("performance_code " + formData.performance_code);
+console.log("review_image " + formData.review_image);
+console.log("review_like " + formData.review_like);
+console.log("review_star " + formData.review_star);
+console.log("review_writer_code " + formData.review_writer_code);
+*/
+/*
+$.ajax({
+	
+	url: "/product/reviews",
+			type:"POST",
+			contentType: "application/json", // JSON 형식으로 보낸다고 지정
+			data: JSON.stringify({
+				review_content: content_comment,
+				review_image: image_upload ,
+				review_star: star_rating,
+				review_like: review_like,
+				performance_code: performance_code,
+				//review_writer_code: review_writer_id
+				}),
+			success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+            console.log("리뷰 데이터 등록 성공: ", response);
+            },
+            error: function(error) {
+        	// 오류 처리
+        	console.log("리뷰 데이터 등록 실패: " + error);
+    		}
+
+});*/
+/* fetch("/product/reviews", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json', // JSON 형식으로 요청을 보낼 것임을 지정
+},
+  body: JSON.stringify(formData), // JSON 형식으로 데이터를 변환하여 요청 본문에 포함
+})
+  .then((response) => response.json())
+  .then((data) => {
+    // 서버로부터의 응답 처리
+    console.log(data); // 서버가 리뷰 생성 성공 여부 등의 정보를 응답할 수 있음
+    if (data.success) {
+      // 리뷰가 성공적으로 생성된 경우, 페이지를 새로고침하거나 적절한 처리를 수행합니다.
+      location.reload();
+    } else {
+      alert("리뷰 생성에 실패했습니다.");
+    }
+  })
+  .catch((error) => {
+    // 오류 처리
+    console.error("Error:", error);
+    alert("서버와의 통신 중 오류가 발생했습니다.");
+  }); */
+ 
   // 기존에 입력한 내용 초기화
   document.getElementById("content_comment").value = "";
   document.getElementById("star_rating").value = "0";

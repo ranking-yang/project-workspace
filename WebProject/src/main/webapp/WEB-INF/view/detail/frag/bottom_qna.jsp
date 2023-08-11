@@ -39,7 +39,7 @@
   <div style="float:right;">
     <button style="width:110px; height:92px; border:1px solid #e6e6e6;
      font-size:18px; font-weight:600; color:#555; background:#fff;
-      margin-top:; text-align:center; cursor:pointer;" onclick="submitForm2()">등록
+      text-align:center; cursor:pointer;" onclick="submitForm2()">등록
     </button>
   </div>
 </div>

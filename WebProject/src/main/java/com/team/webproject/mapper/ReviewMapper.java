@@ -5,10 +5,9 @@ import java.util.List;
 import com.team.webproject.dto.ReviewDTO;
 
 public interface ReviewMapper {
-	List<ReviewDTO> getAllReviews(); // 모든 리뷰 조회
-    ReviewDTO getReviewByCode(Integer reviewCode); // 리뷰 코드로 특정 리뷰 조회
-    List<ReviewDTO> getReviewsByWriterCode(Integer writerCode); // 작성자 코드로 리뷰 조회
-    void insertReview(ReviewDTO review); // 리뷰 생성
-    void updateReview(ReviewDTO review); // 리뷰 수정
-    void deleteReview(Integer reviewCode); // 리뷰 삭제
+	int insertReview(ReviewDTO review);
+    ReviewDTO selectReviewByCode(Integer reviewCode);
+    void updateReview(ReviewDTO review);
+    void deleteReview(Integer reviewCode);
+    List<ReviewDTO> getAllReviews(); // 모든 리뷰 정보 가져오기
 }
