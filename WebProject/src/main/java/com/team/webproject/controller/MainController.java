@@ -80,5 +80,12 @@ public class MainController {
 		
 		return "/main/mdrecommend";
 	}
+	
+	@GetMapping("/mdlist")
+	String mdlist() {
+		
+		
+		return "/main/mdlist";
+	}
 
 }

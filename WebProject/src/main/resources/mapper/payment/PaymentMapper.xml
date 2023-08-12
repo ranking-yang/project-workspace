@@ -48,5 +48,19 @@
 	<select id="getUserPayment">
 		SELECT * FROM payments WHERE payment_code = #{payment_code}
 	</select>
+	<!-- 전체 join table coupon 제거? 변경시 필요할듯 -->
+	<!-- <select id="getRefundList" resultType="RefundDTO">
+		SELECT ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 ati.booking_type, ati.advance_ticket_code, ati.booking_time, 
+		 mem.member_name 
+		 FROM refund ref, payments pay, advance_tickets ati, members mem 
+		 WHERE ref.payment_code = pay.payment_code AND ati.payment_code_fk = pay.payment_code 
+		 and ati.booker_code = mem.member_code and ref.refund_status = '환불요청'
+	</select> -->
+	
+	<select id="getRefundList" resultType="RefundDTO">
+		SELECT * FROM refund ref, payments pay WHERE ref.payment_code = pay.payment_code AND ref.refund_status = #{option}
+	</select>
 	
 </mapper>

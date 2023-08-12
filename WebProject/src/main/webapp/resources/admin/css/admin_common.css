@@ -13,23 +13,6 @@
         border: 1px solid #ddd;
     }
 
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 1000px;
-        border: 1px solid #ddd;
-    }
-
-    th,
-    td {
-        text-align: center;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2
-    }
-
     .inquiry-title {
         width: 500px;
     }
@@ -345,3 +328,101 @@
     button:hover {
         background-color: #46c8b4;
     }
+/* 환불 부분 -------------------------------------------------------------*/   
+/* 스타일을 추가하여 요소 간격을 벌립니다. */
+#Refund-request {
+    display: flex;
+    /* 요소를 행으로 나란히 배치합니다. */
+}
+
+/* 각각의 요소에 스타일을 적용합니다. */
+#Refund-request>div {
+    margin-right: 100px;
+    /* 오른쪽 마진을 추가하여 간격을 만듭니다. */
+}
+
+/* 스타일을 추가하여 요소 간격을 벌립니다. */
+#Refund-complete {
+    display: none;
+    /* 요소를 행으로 나란히 배치합니다. */
+}
+
+/* 각각의 요소에 스타일을 적용합니다. */
+#Refund-complete>div {
+    margin-right: 100px;
+    /* 오른쪽 마진을 추가하여 간격을 만듭니다. */
+}
+/* 탭 스타일 */
+.refund_tab {
+	padding-top:70px;
+	font-size: 10px;
+    overflow: hidden;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+
+}
+
+.tablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 14px 15px;
+    background-color: darkgrey;
+}
+
+.tablinks.active {
+	font-size: 13px;
+    background-color: #02b900;
+
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+.search-text{
+	margin-right: 10px;
+	
+	
+}
+/* 검색/초기화 div */
+.search-box {
+    text-align: center;
+}
+
+/* 검색버튼 */
+.search-btn {
+    border: none;
+    color: white;
+    background-color: #03c75a;
+    margin: 5px;
+    width: 150px;
+    height: 50px;
+}
+
+.search-btn:hover {
+    background-color: #02b900;
+}
+
+/* 초기화 버튼 */
+.initialization-btn {
+    border: 1px solid #ddd;
+    color: black;
+    background-color:gainsboro ;
+    margin: 5px;
+    width: 150px;
+    height: 50px;
+}
+
+.initialization-btn:hover {
+    color: black;
+}
