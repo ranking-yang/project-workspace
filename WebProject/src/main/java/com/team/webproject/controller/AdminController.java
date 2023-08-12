@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,11 @@ import com.team.webproject.dto.MD_getDTO;
 import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.PerformanceDTO;
+import com.team.webproject.dto.RefundDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.mapper.MD_RecomMapper;
+import com.team.webproject.mapper.PaymentMapper;
 import com.team.webproject.service.DateChange;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.ProductListService;
@@ -46,6 +49,9 @@ public class AdminController {
 	
 	@Autowired
 	MD_RecomMapper recom_MD;
+	
+	@Autowired
+	PaymentMapper payment;
 	
 	private final LoginService exService;
 	private DateChange datech;
@@ -88,23 +94,17 @@ public class AdminController {
 	
 	@PostMapping("/admin/mdreom/add")
 	public void tableList(@RequestBody  MD_getDTO mdget){
-		
 		MDrecomDTO mddto = new MDrecomDTO();
-		
 		mddto.setMd_title(mdget.getMd_title());
 		datech = new DateChange();
 		mddto.setMd_period_start(datech.transformDate4(mdget.getMd_stdate()));
 		mddto.setMd_period_end(datech.transformDate4(mdget.getMd_endate()));
 		String area_concat = String.join(",", mdget.getMd_local());
 		String show_concat = String.join(",", mdget.getMd_show());
-		System.out.println(area_concat);
-		System.out.println(show_concat);
 		mddto.setMd_area(area_concat);
 		mddto.setMd_genrenm(show_concat);
 		recom_MD.addMDrecom(mddto);
-		System.out.println(mddto);
 		int md_seq = recom_MD.currseq();
-		System.out.println(md_seq);
 		MDPerformanceDTO mdperDTO = new MDPerformanceDTO();
 		for(int i =0; i<mdget.getMd_performance().size(); i++) {
 			System.out.println(i);
@@ -112,11 +112,17 @@ public class AdminController {
 			mdperDTO.setMd_code(md_seq);
 			mdperDTO.setRecommened_performance_name(mdget.getMd_perfotitle().get(i));
 			recom_MD.addMDperfo(mdperDTO);
-			System.out.println("안나오나?"+mdperDTO.toString());
 		}
 		
 	}
 	
+	@GetMapping("/admin/refund")
+	@ResponseBody
+	public List<RefundDTO> getRefundList(String option){
+		System.out.println(option);
+		List<RefundDTO> getlist = payment.getRefundList(option);
+		return getlist;
+	}
 	
-
+	
 }
