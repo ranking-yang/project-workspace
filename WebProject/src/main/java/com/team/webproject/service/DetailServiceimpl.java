@@ -234,14 +234,12 @@ public class DetailServiceimpl implements DetailService {
 
             Element root = document.getDocumentElement();
 
-            String gpsX = root.getElementsByTagName("gpsX").item(0).getTextContent();
-            String gpsY = root.getElementsByTagName("gpsY").item(0).getTextContent();
-                
+            String placeUrl = root.getElementsByTagName("placeUrl").item(0).getTextContent();
+              
                 
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectNode jsonNode = objectMapper.createObjectNode();
-            jsonNode.put("la", gpsY);
-            jsonNode.put("lo", gpsX);
+            jsonNode.put("placeUrl", placeUrl);
             
             String jsonStr = jsonNode.toString();
             System.out.println(jsonNode.toString());

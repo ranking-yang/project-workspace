@@ -35,6 +35,7 @@ detailMenuBtns.forEach((menuBtn) => {
     });
 });
 
+// 공연 내용 펼쳐보기에 사용되는 함수
 function showMoreDetailImage() {
   document.querySelector('.info_detail_btn').remove();
   document.querySelector('.info_detail_gradient').remove();
@@ -42,6 +43,51 @@ function showMoreDetailImage() {
   document.getElementById('main_img').style.display = 'block';
   document.querySelector('.main_img').scrollIntoView({block: 'start' });
 }
+// qna
+document.addEventListener('DOMContentLoaded', function() {
+  const textarea = document.getElementById('qnaTextarea');
+
+  textarea.addEventListener('click', (e) => {
+	console.log(e.target.dataset.user);
+	if(e.target.dataset.user === ''){
+		location.href='../login';
+	}
+	
+  });
+});
+
+
+function getQnQ() {
+    const qnaTextarea = document.getElementById('qnaTextarea');
+    const qnaValue = qnaTextarea.value; // textarea에 입력된 값 가져오기
+
+	// 요청 보낼 데이터 생성
+    var data = { 
+		qnaValue: qnaValue,
+		qa_writer_code,
+    	//작업 진행중입니다 
+     };
+
+    // fetch를 사용한 POST 요청
+    fetch('서버의_주소_또는_엔드포인트', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        // 서버 응답을 처리하는 로직
+        console.log('서버 응답:', result);
+    })
+    .catch(error => {
+        // 오류 처리 로직
+        console.error('오류:', error);
+    });
+}
+
+
 
 // 지도 가져오기
 var mapContainer1 = document.getElementById('map1'); //지도를 담을 영역의 DOM 레퍼런스

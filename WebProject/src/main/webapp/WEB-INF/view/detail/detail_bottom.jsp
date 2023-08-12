@@ -8,8 +8,8 @@
    <!-- 메뉴영역 -->
     <div id="detailMenuBtns">
         <div class="detailMenuBtn" data-target="info">안내</div>
-        <div class="detailMenuBtn" data-target="review">후기(0)</div>
-        <div class="detailMenuBtn" data-target="qna">Q&A(0)</div>
+        <div class="detailMenuBtn" data-target="review">후기(${countReviews })</div>        
+        <div class="detailMenuBtn" data-target="qna">Q&A(${qnaCount })</div>
         <div class="detailMenuBtn" data-target="place">장소</div>
         <div class="detailMenuBtn" data-target="refund">환불규정</div>
     </div>
@@ -32,7 +32,3 @@
     </div>
 </div>
 <script src="/resources/detail/js/detail_bottom.js"></script>
-
-<script>
-
-</script>

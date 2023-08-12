@@ -10,7 +10,7 @@
         (#{review_writer_code}, #{performance_code}, #{review_star}, #{review_content}, sysdate, #{review_like}, #{review_image}, #{review_code})
     </insert>
     <select id="getPerformanceReviews" resultType="ReviewDTO">
-		SELECT * FROM reviews WHERE performance_code=#{performance_code}
+		SELECT * FROM reviews WHERE performance_code=#{performance_code} ORDER BY review_date DESC
 	</select>
     <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
         SELECT * FROM reviews WHERE review_code = #{value}
@@ -28,4 +28,14 @@
     <delete id="deleteReview" parameterType="java.lang.Integer">
         DELETE FROM reviews WHERE review_code = #{value}
     </delete>
+    <select id="getPerformanceAvgScore">
+    	select AVG(review_star) from reviews where performance_code=#{performance_code}
+    </select>
+    <select id="getPerformanceReviewCount">
+    	select COUNT(*) from reviews where performance_code=#{performance_code}
+    </select>
+    <select id="getReviewScoreList">
+		select count(*) from reviews where performance_code=#{performance_code}
+		group by review_star order by review_star DESC
+    </select>
 </mapper>

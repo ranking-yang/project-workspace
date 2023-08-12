@@ -32,7 +32,6 @@
 		<!-- 상세이미지 -->
 		<div class="info_detail_poster"
 			style="background-image: url('${poster}');">
-			<%-- <img alt="상세이미지" src="${poster}"> --%>
 			<div class="info_detail_gradient"></div>
 			<div class="info_detail_btn" onclick="showMoreDetailImage()">
 				펼쳐보기 <img

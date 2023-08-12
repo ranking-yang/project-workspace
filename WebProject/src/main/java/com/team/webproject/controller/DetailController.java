@@ -1,6 +1,7 @@
 package com.team.webproject.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,14 +22,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team.webproject.common.Principal;
 import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
 import com.team.webproject.service.LoginService;
 import com.team.webproject.service.PaymentService;
 import com.team.webproject.service.ProductListService;
+import com.team.webproject.service.QnAService;
 import com.team.webproject.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -54,13 +56,21 @@ public class DetailController {
 	
 	@Autowired
 	ProductListService productService;
+	@Autowired
+	QnAService qnaService;
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
+			model.addAttribute("member_id", null);
+		} else {			
+			String member_id = Principal.getUser().getMember_id();
+			model.addAttribute("member_id", member_id);			
+		}
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
-		
 		model.addAttribute("timetable", new JSONObject(detailService.getTimeTable(jsonob.get("dtguidance")))); // 공연 일 - JSON으로 변환
 		model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
 		model.addAttribute("age", jsonob.get("prfage")); // 연령
@@ -68,7 +78,12 @@ public class DetailController {
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
 		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code)); // 해당공연의 리뷰
-
+		model.addAttribute("avgScore", reviewService.getPerformanceAvgScore(performance_code)); // 해당공연의 평점
+		model.addAttribute("countReviews", reviewService.getPerformanceReviewCount(performance_code)); // 해당공연의 리뷰 개수
+		model.addAttribute("scoreRate", reviewService.getReviewScoreRate(performance_code)); // 별점 비율
+		model.addAttribute("qnalist", qnaService.getPerformanceQnA(performance_code)); // 해당공연의 QnA
+		model.addAttribute("qnaCount", qnaService.getPerformanceQnACount(performance_code)); // 해당공연의 QnA
+		
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
 	         
@@ -84,6 +99,14 @@ public class DetailController {
 		
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code));
+		model.addAttribute("ex_info", jsonob);
+		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code)); // 해당공연의 리뷰
+		model.addAttribute("avgScore", reviewService.getPerformanceAvgScore(performance_code)); // 해당공연의 평점
+		model.addAttribute("countReviews", reviewService.getPerformanceReviewCount(performance_code)); // 해당공연의 리뷰 개수
+		model.addAttribute("scoreRate", reviewService.getReviewScoreRate(performance_code)); // 별점 비율
+		model.addAttribute("qnalist", qnaService.getPerformanceQnA(performance_code)); // 해당공연의 QnA
+		model.addAttribute("qnaCount", qnaService.getPerformanceQnACount(performance_code)); // 해당공연의 QnA
+		System.out.println(jsonob);
 		return "/detail/detail_ex";
 	}
 	

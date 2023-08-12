@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.QnAMapper">
+	<select id="getUserQnAs">
+		select * from q_and_a where qa_writer_code=#{member_code} ORDER BY qa_date DESC
+	</select>
+	<select id="getPerformanceQnA">
+		select * from q_and_a where performance_code=#{performance_code} ORDER BY qa_date DESC
+	</select>
+	<insert id="insertQnA">
+		insert into q_and_a(qa_code, qa_writer_code, qa_writer_id, performance_code, qa_content, qa_date, qa_answer, qa_secret)
+		values(qa_code_seq.nextval, #{qa_writer_code}, #{qa_writer_id}, #{performance_code}, #{qa_content}, sysdate, null, 0); 
+	</insert>
+	<update id="addAnswertoQ">
+		update q_and_a set qa_answer=#{qa_answer} where qa_code=#{qa_code}
+	</update>
+	<select id="getPerformanceQnACount">
+		select COUNT(*) from q_and_a where performance_code=#{performance_code}
+	</select>
+</mapper>

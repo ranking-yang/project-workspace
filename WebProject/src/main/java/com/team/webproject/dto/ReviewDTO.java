@@ -14,7 +14,7 @@ public class ReviewDTO {
 	private String performance_code; // 외래키
 	private Integer review_star;
 	private String review_content;
-	private Date review_date; // import util로 함
+	private Date review_date;
 	private Integer review_like;
 	private String review_image;
 }
