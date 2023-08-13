@@ -124,5 +124,8 @@ public class AdminController {
 		return getlist;
 	}
 	
+	@GetMapping("/admin/chart")
+	@ResponseBody
+	public 
 	
 }
