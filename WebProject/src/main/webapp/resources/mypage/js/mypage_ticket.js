@@ -85,3 +85,8 @@ function goToperformance(category, performance_code) {
 	
 
 }
+
+/*function goToReviewWriting(){
+	console.log("실행되니?");
+	window.open('../../WEB-INF/view/mypage/reviewWriting.jsp', 'reviewWriting', 'width=600,height=700,resizable=yes,scrollbars=yes');
+}*/

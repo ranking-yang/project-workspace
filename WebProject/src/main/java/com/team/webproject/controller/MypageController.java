@@ -197,4 +197,11 @@ public class MypageController {
 	String gotoQInfoPage(Model model) {
 		return "/mypage/mypage-info";
 	}
+	
+	// 리뷰 작성 팝업창
+	@GetMapping("/reviewWriting") String goToReviewWriting(Model model) {
+	return"/mypage/reviewWriting"; 
+	}
+	 
+	 
 }
