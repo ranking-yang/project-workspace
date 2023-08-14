@@ -1,30 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¸®ºäÀÛ¼º</title>
+  <title>ë¦¬ë·°ìž‘ì„±</title>
   <link rel="stylesheet" href="/resources/mypage/css/star.css">
 </head>
 <body>
 	<div class="review-box">
-    <h3>°ü¶÷Àº ¸¸Á·ÇÏ¼Ì³ª¿ä?</h3>
+	<sec:authentication property="principal" var="prc" />
+				<input type="hidden" id="bottom_member_id" name="review_writer_code"
+					value="${prc.member_code}" form="form"/>
+				<input type="hidden" name="performance_code" value="${performance_code}" form="form"/>
+				<input type="hidden" name="reviewer_id" value="${prc.member_id}" form="form"/>
+    <h3>ê´€ëžŒì€ ë§Œì¡±í•˜ì…¨ë‚˜ìš”?</h3>
+    <input type="hidden" name="review_star" form="form" value="" />
     <div class="stars" id="starContainer">
-      <img class="star gray" src="../resource/gray_star.PNG" alt="1Á¡" data-rating="0">
-      <img class="star gray" src="../resource/gray_star.PNG" alt="2Á¡" data-rating="0">
-      <img class="star gray" src="../resource/gray_star.PNG" alt="3Á¡" data-rating="0">
-      <img class="star gray" src="../resource/gray_star.PNG" alt="4Á¡" data-rating="0">
-      <img class="star gray" src="../resource/gray_star.PNG" alt="5Á¡" data-rating="0">
+      <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="1ì " data-rating="0" onclick="setRating(1)">
+      <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="2ì " data-rating="0" onclick="setRating(2)">
+      <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="3ì " data-rating="0" onclick="setRating(3)">
+      <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="4ì " data-rating="0" onclick="setRating(4)">
+      <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="5ì " data-rating="0" onclick="setRating(5)">
     </div>
-    <h3>¸¸Á·ÇÑ ºÎºÐÀ» Àû¾îÁÖ¼¼¿ä</h3>
-    <textarea id="writeNote" style="resize:none;" rows="10" cols="55" form="form"></textarea>
-    <h3>»çÁøÀ¸·Î ÀÎÁõÇÏ¸é ´õ¿í ÁÁ¾Æ¿ä</h3>
-    <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
+    <input type="hidden" name="review_star" form="form" value="3" />
+    <h3>ë§Œì¡±í•œ ë¶€ë¶„ì„ ì ì–´ì£¼ì„¸ìš”</h3>
+    <textarea id="writeNote" name="review_content" style="resize:none;" rows="10" cols="55" form="form"></textarea>
+    <h3>ì‚¬ì§„ìœ¼ë¡œ ì¸ì¦í•˜ë©´ ë”ìš± ì¢‹ì•„ìš”</h3>
+    <input name="review_image" type="file" id="imageInput" accept="image/*" onchange="previewImage()" form="form">
     <div id="imagePreview"></div>
-    <button class="submit" id="popupButton" onclick="showPopup()" type="submit" form="form">ÀÛ¼º¿Ï·á</button>
+    <button class="submit" id="popupButton" onclick="showPopup()" type="button" form="form">ìž‘ì„±ì™„ë£Œ</button>
     <form action="/product/reviews" method="post" id="form"></form>
   </div>
+  <script src="/resources/mypage/js/starprocess.js"></script>
 </body>
 </html>

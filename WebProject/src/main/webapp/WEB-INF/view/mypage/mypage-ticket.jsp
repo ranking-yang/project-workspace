@@ -122,7 +122,7 @@
 											<div><button class="mypage-ticket-btn" onclick="goToDetail('${ticket.payment_code}')">상세내역</button></div>
 											<c:choose>
 												<c:when test="${empty review_check}">
-													<div><button class="mypage-ticket-btn review" onclick="goToReviewWriting()">후기작성</button></div>	
+													<div><button class="mypage-ticket-btn review" onclick="goToReviewWriting('${ticket.performance_code}')">후기작성</button></div>	
 												</c:when>
 												<c:otherwise>
 													<div><button class="mypage-ticket-btn review">후기확인</button></div>	
@@ -158,9 +158,10 @@
 	<script src="${mypage_detail_js}"></script>
 
 	<script>
-		function goToReviewWriting(){
+		function goToReviewWriting(performance_code){
 			//console.log("실행되니?");
-			window.open('reviewWriting', 'reviewWriting', 'width=600,height=700,resizable=yes,scrollbars=yes');
+			console.log(performance_code);
+			window.open('reviewWriting?performance_code=' + performance_code, 'reviewWriting', 'width=700px,height=800px');
 		}
 	</script>
 	

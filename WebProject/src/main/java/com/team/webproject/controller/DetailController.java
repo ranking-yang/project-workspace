@@ -140,7 +140,7 @@ public class DetailController {
        model.addAttribute("performance", detailService.getPerformance(review.getPerformance_code())); // DB에서 값 조회
 
 			
-        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
+        return "/mypage/reviewWritingreviewWriting?performance_code=" + "${performance}"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 
     @PutMapping("/product/reviews/{reviewCode}")
@@ -170,5 +170,4 @@ public class DetailController {
         return ResponseEntity.ok(membersDTO);
     }
 
-    
 }
