@@ -107,10 +107,10 @@ function addQnA(performance_code, member_id, member_code) {
 
 function updateQnA(getQnAlist) {
     // 특정 영역을 찾아서 업데이트
-    const specificArea = document.getElementById('qna_text_container');
+    const newQnalist = document.getElementById('qna_text_container');
 
     // 기존 내용 지우기
-    specificArea.innerHTML = '';
+    newQnalist.innerHTML = '';
 
     // 받아온 새로운 데이터를 사용하여 업데이트
    getQnAlist.forEach(qnaData => {
@@ -137,7 +137,7 @@ function updateQnA(getQnAlist) {
         qnaElement.appendChild(qnaInfo);
         qnaElement.appendChild(qnaContentDiv);
 
-        specificArea.appendChild(qnaElement);
+        newQnalist.appendChild(qnaElement);
     });
 }
 
