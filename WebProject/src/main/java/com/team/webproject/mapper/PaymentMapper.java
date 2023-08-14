@@ -3,6 +3,7 @@ package com.team.webproject.mapper;
 import java.util.List;
 
 import com.team.webproject.dto.PaymentDTO;
+import com.team.webproject.dto.PerfomSaleDTO;
 import com.team.webproject.dto.RefundDTO;
 import com.team.webproject.dto.TicketDTO;
 
@@ -17,4 +18,8 @@ public interface PaymentMapper {
 	PaymentDTO getUserPayment(String payment_code);
 	
 	List<RefundDTO> getRefundList(String option);
+	
+	List<PaymentDTO> getAllPayment();
+	
+	List<PerfomSaleDTO> getAllPayPerfom();
 }

@@ -1,6 +1,7 @@
 package com.team.webproject.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.team.webproject.dto.MD_getPosterDTO;
@@ -84,8 +86,13 @@ public class MainController {
 	@GetMapping("/mdlist")
 	String mdlist() {
 		
-		
 		return "/main/mdlist";
 	}
-
+	
+	@GetMapping("/rank")
+	@ResponseBody
+	Map<String, Integer> getRank(){
+		
+		return null; 
+	}
 }

@@ -63,4 +63,13 @@
 		SELECT * FROM refund ref, payments pay WHERE ref.payment_code = pay.payment_code AND ref.refund_status = #{option}
 	</select>
 	
+	
+	<select id="getAllPayment" resultType="PaymentDTO">
+		SELECT * FROM payments
+	</select>
+	
+	<select id="getAllPayPerfom" resultType="PerfomSaleDTO">
+		SELECT * FROM payments pay, advance_tickets ticket, performance per WHERE pay.payment_code = ticket.payment_code_fk AND ticket.performance_code= per.performance_code
+	</select>
+	
 </mapper>

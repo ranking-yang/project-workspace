@@ -11,8 +11,19 @@
 <title>Main</title>
 <link rel="stylesheet" href="${css}">
 <script src="${js}" defer></script>
-<script src="https://kit.fontawesome.com/cdd406875c.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/cdd406875c.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script> 
+	$(document).ready(function(){
+		$.ajax({
+			url:"main/rank",
+			type:"GET",
+			success : function(result) {
+				
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>

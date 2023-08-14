@@ -34,5 +34,4 @@ public interface LoginService {
 	
 	MembersDTO findPw(String id, String name, String birth, String Phone);
 
-	
 }

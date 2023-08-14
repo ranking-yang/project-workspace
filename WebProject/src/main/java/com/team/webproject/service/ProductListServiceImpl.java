@@ -49,8 +49,5 @@ public class ProductListServiceImpl implements ProductListService {
 	public List<PerformanceDTO> getAllProduct() {
 		return performanceMapper.getAllPerformances();
 	}
-
 	
-	
-
 }

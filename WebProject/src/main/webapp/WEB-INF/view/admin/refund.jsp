@@ -61,7 +61,7 @@
 		}
 	}
 	
-	function ajaxtable (checkbtn, refund, ){
+	function ajaxtable (checkbtn, refund){
 		if(checkbtn == "search_refund"){
 			table = "refund_table";
 			category = "환불요청";
