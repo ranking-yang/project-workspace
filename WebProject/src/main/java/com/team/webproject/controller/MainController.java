@@ -13,9 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team.webproject.dto.MD_getPosterDTO;
+import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.mapper.LoginMapper;
+import com.team.webproject.mapper.MD_RecomMapper;
 import com.team.webproject.service.CouponService;
+
 
 @Controller
 @RequestMapping("/main")
@@ -28,6 +32,9 @@ public class MainController {
 	LoginMapper loginMapper;
 
 	
+	@Autowired
+	MD_RecomMapper mdMapper;
+	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
 		
@@ -35,21 +42,6 @@ public class MainController {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
-//		UserDetails user = (UserDetails) principal;
-
-
-//		System.out.println("username : "+user.getUsername());
-
-//		MembersDTO member = loginMapper.checklogin(user.getUsername());
-//		System.out.println("member code: "+ member.getMember_code());
-
-//		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
-//		System.out.println("main principal : " + principal.toString());
-//		System.out.println("user name: "+ (UserDetails)principal);
-		
-
-		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("userId", null);
 			return "main/main";
@@ -76,6 +68,25 @@ public class MainController {
 			return "admin/api";
 		}
 		
+	}
+	
+	@GetMapping("/mdrecom")
+	String mdrecommend(Model model) {
+		List<MDrecomDTO> mdDto = mdMapper.getMDrecom();
+		List<MD_getPosterDTO> postDto = mdMapper.getMDposter();
+		System.out.println(mdDto.toString());
+		System.out.println(postDto.toString());
+		model.addAttribute("md_list", mdDto);
+		model.addAttribute("md_poster_li", postDto);
+		
+		return "/main/mdrecommend";
+	}
+	
+	@GetMapping("/mdlist")
+	String mdlist() {
+		
+		
+		return "/main/mdlist";
 	}
 
 }

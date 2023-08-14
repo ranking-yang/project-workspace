@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.team.webproject.dto.MembersDTO;
+
 import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.service.DetailService;
 import com.team.webproject.service.LoginService;
+
 import com.team.webproject.service.PaymentService;
 import com.team.webproject.service.ProductListService;
 import com.team.webproject.service.ReviewService;
@@ -45,6 +47,7 @@ public class DetailController {
 	ReviewService reviewService;
 	
 	@Autowired
+
 	LoginMapper loginMapper;
 	
 	@Autowired
@@ -55,6 +58,7 @@ public class DetailController {
 	
 	@Autowired
 	ProductListService productService;
+
 	
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
@@ -68,7 +72,8 @@ public class DetailController {
 		model.addAttribute("poster", jsonob.get("poster")); // 미리보기 이미지
 		model.addAttribute("discountRates", detailService.getDisCount()); // DB에서 할인률 조회
 		model.addAttribute("performance", detailService.getPerformance(performance_code)); // DB에서 값 조회
-		
+		model.addAttribute("reviews", reviewService.getPerformanceReviews(performance_code)); // 해당공연의 리뷰
+
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
 	         
@@ -92,8 +97,7 @@ public class DetailController {
 	@GetMapping("/product/reviews")
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//String member_id = ((UserDetails) principal).getUsername();
-				
+
 		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
 			model.addAttribute("member_id", null);
 		} else {			
@@ -102,44 +106,23 @@ public class DetailController {
 			MembersDTO member = loginMapper.checklogin(member_id);
 			
 			model.addAttribute("userId", member_id);
+			System.out.println("아이디 : " + member_id);
 			model.addAttribute("userCode", member_code);
 			System.out.println("detail_member_id: "+ member_id);
 
 		}
 
-		// System.out.println("detail_member_code: "+ member.getMember_code());
+        List<ReviewDTO> reviews = reviewService.getAllReviews();
+        model.addAttribute("reviews", reviews);
 
-        //List<ReviewDTO> reviews = reviewService.getAllReviews();
-        //model.addAttribute("reviews", reviews);
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
-
-	
-	 @GetMapping("/product/reviews/{reviewCode}") public String
-	 getReviewByCode(@PathVariable Integer reviewCode, Model model) { ReviewDTO
-	 review = reviewService.getReviewByCode(reviewCode);
-	 model.addAttribute("review", review); return "/detail/detail"; // 리뷰 정보를 상세페이지로 전달하고 해당 뷰를 반환 
-	 }
-	 
-
     // 다른 REST 엔드포인트와 메서드 구현
     // ...
 
     @PostMapping("/product/reviews")
-    public String insertReview(ReviewDTO review, String username, String review_content, Integer review_star) {
-    	// reviewDTO null 값 해결 (jdbcType 이용해서 해결 시도해봐야함)
-    	System.out.println("insertReview 실행중");
-    	System.out.println("username: " + username);
-    	System.out.println("review_content: " + review_content);
-    	System.out.println("review_star: " + review_star);
-    	//review.setReview_writer_code(userCode);
+    public String insertReview(ReviewDTO review) {
     	
-    	System.out.println("ReviewDTO 보기: " + review.toString());
-    
-    	// ReviewDTO에 관련된 작업 수행
-       int result = reviewService.insertReview(review);
-       System.out.println(result);
-			
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
 

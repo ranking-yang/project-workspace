@@ -53,7 +53,10 @@
 				<button class="menu-btn" data-id="area">지역별</button>
 			</div>
 		</div>
-		<div class="md-choice">MD 추천작</div>
+		<div class="md-choice">
+			<button class="menu-btn" onclick="location.href='/main/mdrecom'">MD 추천작</button>
+		</div>
+		
 		<div class="search">
 			<!-- 나중에 input 태그 form 추가하세요 -->
 			<form id="search" action="">

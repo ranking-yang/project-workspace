@@ -5,10 +5,11 @@ import java.util.List;
 import com.team.webproject.dto.ReviewDTO;
 
 public interface ReviewService {
-	 List<ReviewDTO> getAllReviews();
-	 ReviewDTO getReviewByCode(Integer reviewCode);
+	 List<ReviewDTO> getAllReviews();// 모든 리뷰 조회
+	 List<ReviewDTO> getPerformanceReviews(String performance_code); 
+	 //ReviewDTO getReviewByCode(Integer reviewCode);
 	 //List<ReviewDTO> getReviewsByWriterCode(Integer writerCode);
-	 int insertReview(ReviewDTO review);
+	 void insertReview(ReviewDTO review);
 	 void updateReview(ReviewDTO review);
 	 void deleteReview(Integer reviewCode);
 }

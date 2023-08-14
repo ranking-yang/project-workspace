@@ -3,13 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.webproject.mapper.ReviewMapper">
-	<insert id="insertReview" parameterType="ReviewDTO">
+
+	<insert id="insertReview" parameterType="com.team.webproject.dto.ReviewDTO">
         INSERT INTO reviews
-        (review_writer_code, performance_code, review_star, review_content, review_date, review_like, review_image, review_code, reviewer_id)
+        (review_writer_code, performance_code, review_star, review_content, review_date, review_like, review_image, review_code)
         VALUES
         (#{review_writer_code}, #{performance_code}, #{review_star}, #{review_content}, sysdate, #{review_like}, #{review_image}, review_code_seq.nextval, #{reviewer_id})
     </insert>
-
+    <select id="getPerformanceReviews" resultType="ReviewDTO">
+		SELECT * FROM reviews WHERE performance_code=#{performance_code}
+	</select>
     <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
         SELECT * FROM reviews WHERE review_code = #{value}
     </select>

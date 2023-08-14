@@ -1,7 +1,9 @@
 package com.team.webproject.controller;
 
 import java.net.Authenticator.RequestorType;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +21,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.webproject.dto.MDPerformanceDTO;
+import com.team.webproject.dto.MD_getDTO;
+import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.PerformanceDTO;
+import com.team.webproject.dto.RefundDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
+import com.team.webproject.mapper.MD_RecomMapper;
+import com.team.webproject.mapper.PaymentMapper;
+import com.team.webproject.service.DateChange;
 import com.team.webproject.service.LoginService;
+import com.team.webproject.service.ProductListService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,11 +44,24 @@ public class AdminController {
 	@Autowired
 	AddPerformance addPerformance;
 	
-	private final LoginService exService;
+	@Autowired
+	ProductListService product;
 	
+	@Autowired
+	MD_RecomMapper recom_MD;
+	
+	@Autowired
+	PaymentMapper payment;
+	
+	private final LoginService exService;
+	private DateChange datech;
 	// 관리자 페이지
 	@GetMapping("/admin/api")
-	public String adminGET(){
+	public String adminGET(Model model){
+		
+		List<PerformanceDTO> performance_admin = product.getAllProduct();
+		model.addAttribute("performance", performance_admin);
+		
 		return "admin/admin_main";
 		
 	}
@@ -66,24 +92,37 @@ public class AdminController {
 		return show;
 	}
 	
-	@RequestMapping(value = "/admin/api/add", method = RequestMethod.POST)
-	@ResponseBody
-	public void tableList(@RequestBody List<ShowDTO> dataArrayToSend) {
-		
-		System.out.println(dataArrayToSend);
-		for(ShowDTO show : dataArrayToSend){
-			System.out.println(show.toString());
-			if(show.getPerformance_code() == null || show.getPerformance_code().isEmpty()) {
-				System.out.println(show);
-			}else {
-				try {
-					addPerformance.addShow(show);
-				}catch (Exception e) {
-					continue;
-				}
-			}
-			
+	@PostMapping("/admin/mdreom/add")
+	public void tableList(@RequestBody  MD_getDTO mdget){
+		MDrecomDTO mddto = new MDrecomDTO();
+		mddto.setMd_title(mdget.getMd_title());
+		datech = new DateChange();
+		mddto.setMd_period_start(datech.transformDate4(mdget.getMd_stdate()));
+		mddto.setMd_period_end(datech.transformDate4(mdget.getMd_endate()));
+		String area_concat = String.join(",", mdget.getMd_local());
+		String show_concat = String.join(",", mdget.getMd_show());
+		mddto.setMd_area(area_concat);
+		mddto.setMd_genrenm(show_concat);
+		recom_MD.addMDrecom(mddto);
+		int md_seq = recom_MD.currseq();
+		MDPerformanceDTO mdperDTO = new MDPerformanceDTO();
+		for(int i =0; i<mdget.getMd_performance().size(); i++) {
+			System.out.println(i);
+			mdperDTO.setRecommened_performance(mdget.getMd_performance().get(i));
+			mdperDTO.setMd_code(md_seq);
+			mdperDTO.setRecommened_performance_name(mdget.getMd_perfotitle().get(i));
+			recom_MD.addMDperfo(mdperDTO);
 		}
+		
 	}
-
+	
+	@GetMapping("/admin/refund")
+	@ResponseBody
+	public List<RefundDTO> getRefundList(String option){
+		System.out.println(option);
+		List<RefundDTO> getlist = payment.getRefundList(option);
+		return getlist;
+	}
+	
+	
 }

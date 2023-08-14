@@ -1,89 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
- <div class="contentstyle1" id="content_2" style=";">
-  <div class="main_tab_wrap">
-  <div class="score_section" style="padding-top:10px">
-    <div class="score_section_left" style="margin-top:10px;">
-      <div class="score_section_left_average">0</div>
-      <div class="score_section_left_stars">
-        <div class="score_section_left_star">
-          <div class="score_section_left_star_filled" style="width: calc(0 * 24px);"></div>
-        </div>
-      </div>
-      <div id="reviewCountpeople" class="score_section_left_total">(0명)</div>
-    </div>
-    <div class="score_section_right">
-      <div class="progress_section">
-        <div>5점</div>
-        <div class="progress_section_bar">
-          <div class="progress_section_value progress_section_value_5" style="width: 0%;"></div>
-        </div>
-      </div>
-      <div class="progress_section">
-        <div>4점</div>
-        <div class="progress_section_bar">
-          <div class="progress_section_value progress_section_value_4" style="width: 0%;"></div>
-        </div>
-      </div>
-      <div class="progress_section">
-        <div>3점</div>
-        <div class="progress_section_bar">
-          <div class="progress_section_value progress_section_value_3" style="width: 0%;"></div>
-        </div>
-      </div>
-      <div class="progress_section">
-        <div>2점</div>
-        <div class="progress_section_bar">
-          <div class="progress_section_value progress_section_value_2" style="width: 0%;"></div>
-        </div>
-      </div>
-      <div class="progress_section">
-        <div>1점</div>
-        <div class="progress_section_bar">
-          <div class="progress_section_value progress_section_value_1" style="width: 0%;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<div> 
-<!-- 비 로그인시 아무것도 없음 -->
-<sec:authorize access="isAnonymous()">
-</sec:authorize>
-<!-- 로그인 시에만 뜸. -->
-<sec:authorize access="isAuthenticated()">
-<sec:authentication property="principal" var="prc"/>
-<!-- <h3>${prc.username}</h3> -->
-<input type="hidden" id="bottom_member_id" name="username" value="${prc.username}" form="form"/> 
-<div style="padding:10px 10px 10px 10px; background:#f5f5f5; margin: 15px;">
-
-		<div style="padding:10px 10px 10px 10px; overflow:hidden;">
-	<div id="reply_write_frm1" name="reply_write_frm" style="margin:0;">
-	    <div style="float:left;">
-	      <div class="review_title_left_name" data-usercode="test" style="padding-left: 10px;">
-	      <textarea form="form" id="content_comment" name="review_content" style="font-size:15px; color:#000; font-weight:300; width:520px; padding-left:10px; height:80px; line-height:170%; border:1px solid #e6e6e6;" placeholder="리뷰를 작성해주세요"></textarea>
-	      <br>
-	      <input form="form" name="review_star" type="number" id="star_rating" min="1" max="5" step="1" value="5">
-	      <br>
-	      <input type="file" id="image_upload" accept="image/*" form="form">
-	      <input type="hidden" id="bottom_performance_code" name="code" value="test">
-	      </div>
-	    </div>
-	    <div style="float:right;">
-	      <button style="width:110px; height:92px; border:1px solid #e6e6e6; font-size:18px; font-weight:600; color:#555; background:#fff; text-align:center; 
-	      cursor:pointer;" type ="submit" form="form">등록</button>
-	    </div>
-	  </div>
-	  <form action="/product/reviews" method="post" id="form"></form>
+<div id="reviews_container">
+	<div class="score">
+		<div class="score_left">
+			<div class="score_left_average">4.8</div>
+			<div class="score_left_stars">
+				<div class="score_left_star_based">
+					<div class="score_left_star_filled" style="width: calc(4.8 * 24px);"></div>
+				</div>
+			</div>
+			<div class="score_left_total">(859명)</div>
+		</div>
+		<div class="score_right">
+			<c:set var="bar" value="${bar = [5, 4, 3, 2, 1]}" />
+			<c:forEach items="${bar}" var="score">
+			  <div class="progress">
+			    <div>${score}점</div>
+			    <div class="progress_bar">
+			      <div class="progress_value"></div>
+			    </div>
+			  </div>
+			</c:forEach>
+		</div>
+	</div>
+	<c:forEach var="review" items="${reviews }">
+		<div class="review">
+			<div class="review_top">
+				<div class="review_stars">
+					<div class="review_star_based">
+						<div class="review_star_filled" style="width: calc(${review.review_star} * 24px);"></div>
+					</div>
+				</div>
+				<div class="reviewer_id">${review.reviewer_id}</div>
+				<div class="review_date">${review.review_date}</div>
+			</div>
+			<div class="review_content">${review.review_content}</div>
+		</div>
+	</c:forEach>
 </div>
-</div>
-</sec:authorize>
-</div>
-    <div class="review_start" style=";">
-  	<div class="review_text" id="review_text_container">
-    </div>
-   </div>
-  </div>
- </div>
+<
