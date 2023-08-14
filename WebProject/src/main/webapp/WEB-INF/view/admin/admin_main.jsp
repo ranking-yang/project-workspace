@@ -23,6 +23,7 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
@@ -35,6 +36,7 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
@@ -47,6 +49,7 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
@@ -59,6 +62,7 @@
 	        	$("#inquriy_list").show();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
@@ -70,6 +74,19 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").show();
+	        	$("#refund").hide();
+	        	$("#md_recom").hide();
+	        	$("#chart").hide();
+	        });
+	        $("#menurefund_btn").click(function () {
+	        	console.log("test2");
+	        	$("#admin_as").hide();
+	        	$("#api_list").hide();
+	        	$("#api_add").hide();
+	        	$("#inquriy_list").hide();
+	        	$("#inquriy_detail").hide();
+	        	$("#qna").hide();
+	        	$("#refund").show();
 	        	$("#md_recom").hide();
 	        	$("#chart").hide();
 	        });
@@ -82,6 +99,7 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").hide();
 	        	$("#chart").show();
 	        });
@@ -94,6 +112,7 @@
 	        	$("#inquriy_list").hide();
 	        	$("#inquriy_detail").hide();
 	        	$("#qna").hide();
+	        	$("#refund").hide();
 	        	$("#md_recom").show();
 	        	$("#chart").hide();
 	        });
@@ -118,6 +137,7 @@
         <div class="stitle">CS</div>
         <button id="menuqna_btn" class="indexbtn">QnA</button>
         <button id="menuinquiry_btn" class="indexbtn">1:1 문의</button>
+        <button id="menurefund_btn" class="indexbtn">환불</button>
         <div class="stitle">Chart</div>
         <button id="menuchart_btn" class="indexbtn">통계</button>
         <div class="stitle">recommend</div>
@@ -144,6 +164,9 @@
     </div>
     <div id="qna" hidden>
     	<%@ include file="qna.jsp" %>
+    </div>
+    <div id="refund" hidden>
+    	<%@ include file="refund.jsp" %>
     </div>
     <div id="md_recom" hidden>
     	<%@ include file="md_recom.jsp" %>

@@ -18,7 +18,7 @@
 				<input type="hidden" name="performance_code" value="${performance_code}" form="form"/>
 				<input type="hidden" name="reviewer_id" value="${prc.member_id}" form="form"/>
     <h3>관람은 만족하셨나요?</h3>
-    <input type="hidden" name="review_star" form="form" value="" />
+    <input type="hidden" id="review_star" name="review_star" form="form" value="" />
     <div class="stars" id="starContainer">
       <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="1점" data-rating="0" onclick="setRating(1)">
       <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="2점" data-rating="0" onclick="setRating(2)">
@@ -26,13 +26,12 @@
       <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="4점" data-rating="0" onclick="setRating(4)">
       <img class="star gray" src="../../../resources/mypage/img/gray_star.png" alt="5점" data-rating="0" onclick="setRating(5)">
     </div>
-    <input type="hidden" name="review_star" form="form" value="3" />
     <h3>만족한 부분을 적어주세요</h3>
-    <textarea id="writeNote" name="review_content" style="resize:none;" rows="10" cols="55" form="form"></textarea>
+    <textarea form="form" id="writeNote" name="review_content" style="resize:none;" rows="10" cols="55"></textarea>
     <h3>사진으로 인증하면 더욱 좋아요</h3>
     <input name="review_image" type="file" id="imageInput" accept="image/*" onchange="previewImage()" form="form">
     <div id="imagePreview"></div>
-    <button class="submit" id="popupButton" onclick="showPopup()" type="button" form="form">작성완료</button>
+    <button class="submit" id="popupButton" onclick="popup();" type="button" form="form">작성완료</button>
     <form action="/product/reviews" method="post" id="form"></form>
   </div>
   <script src="/resources/mypage/js/starprocess.js"></script>

@@ -207,10 +207,10 @@ public class MypageController {
 	
 	// 리뷰 작성 팝업창
 	@GetMapping("/reviewWriting")
-	String goToReviewWriting(Model model, String performance_code) {
-		//System.out.println("팝업 code: "+performance_code);
+	void goToReviewWriting(Model model, String performance_code) {
+		System.out.println("팝업 code: "+performance_code);
 		model.addAttribute("performance_code", performance_code); // DB에서 값 조회
-		return"/mypage/reviewWriting";
+		//return"/mypage/reviewWriting";
 	}
 	 
 	 

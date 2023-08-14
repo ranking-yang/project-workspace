@@ -159,9 +159,10 @@
 
 	<script>
 		function goToReviewWriting(performance_code){
-			//console.log("실행되니?");
-			console.log(performance_code);
+			console.log("실행되니?");
+			console.log("performance_code: " + performance_code);
 			window.open('reviewWriting?performance_code=' + performance_code, 'reviewWriting', 'width=700px,height=800px');
+			
 		}
 	</script>
 	
