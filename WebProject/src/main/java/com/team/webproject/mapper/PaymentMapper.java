@@ -18,7 +18,10 @@ public interface PaymentMapper {
 	
 	int insertRefundTicket(String payment_code);
 
-
 	List<RefundDTO> getRefundList(String option);
+	
+	int updateRefundTicketState(String payment_code);
+	
+	int getTicketQty(String payment_code);
 
 }

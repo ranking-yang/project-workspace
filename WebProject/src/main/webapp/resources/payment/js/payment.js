@@ -16,8 +16,15 @@ const dateStr = `${year}-${month}-${day}`;
 	// 결제하기 버튼 클릭 시 이벤트
     $('#payment-btn').click(function() {
       if ($('#payment-chk').prop('checked')) {
+		  
+		if ($('#payment-total-Price').text() == 0) {
+			if (confirm("구매 하시겠습니까?")) {
+				// 무료로 구매일 때 input 처리해야됨
+			}
+		} else {
+      	  requestPay();			
+		}
 		
-        requestPay();
         
       } else {
         alert('환불규정, 주의사항, 약관에 동의하셔야 예매가 가능합니다');
