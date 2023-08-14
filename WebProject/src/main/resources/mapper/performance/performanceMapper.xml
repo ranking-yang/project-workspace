@@ -21,7 +21,4 @@
 	<select id="getEndDate">
 		SELECT end_date FROM performance WHERE performance_code=#{performance_code}
 	</select>
-	<update id="updateQty">
-		UPDATE performance SET performance_qty = performance_qty + #{ticket_qty} WHERE performance_code = (SELECT DISTINCT performance_code FROM advance_tickets WHERE payment_code_fk = #{payment_code})
-	</update>
 </mapper>

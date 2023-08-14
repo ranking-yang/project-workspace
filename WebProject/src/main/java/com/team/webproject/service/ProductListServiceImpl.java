@@ -48,12 +48,9 @@ public class ProductListServiceImpl implements ProductListService {
         String areaName = AreaEnum.getAreaNameByCode(area_code);
         return performanceMapper.getAreaPerformances(areaName);
 
-
     }
+
 	
-	@Override
-	public List<PerformanceDTO> getAllProduct() {
-		return performanceMapper.getAllPerformances();
-	}
+	
 
 }

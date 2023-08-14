@@ -24,5 +24,4 @@ public interface CouponMapper {
 	
 	int updateCouponState(@Param("member_coupon_code") int memberCouponCode);
 	
-	int updateCouponReturn(int member_code, String payment_code);
 }

@@ -13,6 +13,4 @@ public interface ProductListService {
 	List<WishlistDTO> getUserWish_list(int member_code);
 	int countUserWish_list(int member_code);
 	
-	List<PerformanceDTO> getAllProduct();
-
 }

@@ -15,9 +15,9 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script>
     // 결제 객체 초기화
-	 const market = "${api_market}";
-	 var IMP = window.IMP; 
-     IMP.init(market);
+	const market = ${api_market};
+	var IMP = window.IMP; 
+    IMP.init(market);
 </script>
 <link rel="stylesheet" href="${payment_css}">
 </head>

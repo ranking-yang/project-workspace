@@ -110,11 +110,4 @@
 			member_coupon_code=#{member_coupon_code}
 	</update>
 	
-	<update id="updateCouponReturn">	
-		UPDATE member_coupon 
-		SET coupon_state = 0 
-		WHERE user_code = #{member_code}
-	    AND member_coupon_code = (SELECT related_coupon FROM payments WHERE payment_code = #{payment_code})		
-	</update>
-	
 </mapper>

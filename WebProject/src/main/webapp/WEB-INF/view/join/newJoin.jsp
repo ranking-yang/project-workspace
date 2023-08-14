@@ -47,7 +47,7 @@
 	            	
 	            },
 	            error : function(){
-	            	alert('휴대폰 틀림');
+	            	alert('휴대폰 틀림')
 	            }
 	        });
 	    });

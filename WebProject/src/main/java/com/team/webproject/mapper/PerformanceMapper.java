@@ -11,5 +11,4 @@ public interface PerformanceMapper {
 	List<PerformanceDTO> getAreaPerformances(String area_code);
 	PerformanceDTO getPerformance(String pk);
 	Date getEndDate(String performance_code);
-	int updateQty(int ticket_qty, String payment_code);
 }
