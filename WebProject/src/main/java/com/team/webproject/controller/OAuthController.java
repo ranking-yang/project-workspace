@@ -2,17 +2,11 @@ package com.team.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import com.team.webproject.dto.KakaoOauthTokenDTO;
 import com.team.webproject.dto.KakaoProfileDTO;
@@ -78,7 +72,7 @@ public class OAuthController {
 		if (member == null) {
 			if(oauthService.saveKakaoMemberIntoDB(kakaoProfile) == 1) {
 				oauthService.getSessionIncludingMemberId(req, "kakao_"+kakaoProfile.getId());
-				return "/login/successLogin";
+				return "redirect:/main";
 			} 
 			return "/login/login";
 		} else {

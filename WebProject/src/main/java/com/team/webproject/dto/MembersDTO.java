@@ -2,6 +2,7 @@ package com.team.webproject.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 //import com.team.webproject.domain.Member;
 
@@ -22,7 +24,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MembersDTO implements UserDetails {
+public class MembersDTO implements UserDetails, OAuth2User {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -76,7 +78,7 @@ public class MembersDTO implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// null값
 		Collection<GrantedAuthority> collectors = new ArrayList<>();
-		
+
 		collectors.add(new GrantedAuthority() {
 
 			private static final long serialVersionUID = 1L;
@@ -131,6 +133,20 @@ public class MembersDTO implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	// OAuth2User override
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getAttributes'");
+	}
+
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getName'");
 	}
 	
 //	public Member toEntity(String roles) {

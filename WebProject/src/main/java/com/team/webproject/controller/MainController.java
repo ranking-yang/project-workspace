@@ -1,5 +1,6 @@
 package com.team.webproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,8 +62,8 @@ public class MainController {
 			return "main/main";
 		}
 		String username = null;
-		//List<GrantedAuthority> authority = new ArrayList<>(((UserDetails) principal).getAuthorities());
-		List<GrantedAuthority> authority = (List<GrantedAuthority>)((MembersDTO) principal).getAuthorities();
+		List<GrantedAuthority> authority = new ArrayList<>(((MembersDTO) principal).getAuthorities());
+		// List<GrantedAuthority> authority = (List<GrantedAuthority>)((MembersDTO) principal).getAuthorities();
 		// 권한이 User 이면
 		//if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
 		if (authority.get(0).getAuthority().equals("ROLE_member")) {
