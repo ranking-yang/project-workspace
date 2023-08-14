@@ -32,10 +32,10 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 			response.sendRedirect("/admin/api");
 			return;
 		}
-		if (roleNames.contains("ROLE_member")) {
-			response.sendRedirect("/main");
-			return;
-		}
+//		if (roleNames.contains("ROLE_member")) {
+//			response.sendRedirect("/main");
+//			return;
+//		}
 
 		HttpSession session = request.getSession();
 		if (session != null) {

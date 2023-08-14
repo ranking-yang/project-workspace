@@ -67,7 +67,8 @@ public class DetailController {
 			model.addAttribute("member_id", null);
 		} else {			
 			String member_id = Principal.getUser().getMember_id();
-			model.addAttribute("member_id", member_id);			
+			model.addAttribute("member_id", member_id);		
+			model.addAttribute("member_code", Principal.getUser().getMember_code());
 		}
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
@@ -94,6 +95,16 @@ public class DetailController {
 	
 	@GetMapping("/product-detail-ex")
 	String callGovernmentAPI(Model model, String performance_code) throws JsonProcessingException {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
+			model.addAttribute("member_id", null);
+		} else {			
+			String member_id = Principal.getUser().getMember_id();
+			model.addAttribute("member_id", member_id);		
+			model.addAttribute("member_code", Principal.getUser().getMember_code());
+		}
+		
 		
 		JSONObject jsonob = detailService.getPublicDataInfo(performance_code);
 		

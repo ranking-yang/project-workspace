@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div id="qna_button">
-			<button>등록</button>
+			<button onclick="addQnA('${performance.performance_code}', '${member_id}', '${member_code }')">등록</button>
 		</div>
 	</div>
 	<div id="qna_text_container">

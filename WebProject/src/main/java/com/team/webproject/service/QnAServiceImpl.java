@@ -26,16 +26,6 @@ public class QnAServiceImpl implements QnAService{
 	}
 
 	@Override
-	public int insertQnA(QnADTO qna) {
-		return qnaMapper.insertQnA(qna);
-	}
-
-	@Override
-	public int addAnswertoQ(int qa_code) {
-		return qnaMapper.addAnswertoQ(qa_code);
-	}
-
-	@Override
 	public int getPerformanceQnACount(String performance_code) {
 		return qnaMapper.getPerformanceQnACount(performance_code);
 	}
