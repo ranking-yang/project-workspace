@@ -13,6 +13,14 @@
 <script src="${js}" defer></script>
 <script src="https://kit.fontawesome.com/cdd406875c.js"
 	crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	 <script>
+	 	$(document).on("click", ".event_list_wrap", function(){
+	 		var mdcode = $("#mdli_code").val();
+	 		console.log(mdcode);
+	 	});
+	 </script>
+	
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -23,11 +31,10 @@
 		    <!-- 본문 등록시 '포스터 이미지 URL'을 입력하면 DB에 저장했다가 가져온다 -->
 		    <div class="event_list_left">
 		    <c:set var="loop_flag" value="false" />
-		      <c:forEach items="${md_poster_li}" var="md_li">
-		      	
+		      <c:forEach items="${md_poster_li}" var="md_li">	
 		      	<c:if test="${not loop_flag}">
 			      	<c:if test="${mdlist.md_code == md_li.md_code}">
-			      		<img src="${md_li.poster}" style="opacity: 0.5;">
+			      		<img src="${md_li.poster}" style="opacity: 0.5;"> 
 			      		<c:set var="loop_flag" value="true" />
 			      	</c:if>
 		      	</c:if>
@@ -61,8 +68,6 @@
         </c:forEach>
 		<!-- <a href=""> -->
 		  
-		
-		
 		</div>
 		</div>
 	<%@ include file="../common/footer.jsp" %>

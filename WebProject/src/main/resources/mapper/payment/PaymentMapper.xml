@@ -43,11 +43,31 @@
 		UPDATE performance		
 		SET performance_qty = (performance_qty - #{qty})
 		WHERE performance_code = #{performance_code}		
-	</update>
-	
-	<select id="getUserPayment">
+	</update>	
+
+	 <select id="getUserPayment">
 		SELECT * FROM payments WHERE payment_code = #{payment_code}
 	</select>
+
+	<select id="getRefundList" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem 
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+	</select>
+	
+	<!--  
+	<select id="getRefundList" resultType="RefundDTO">
+		SELECT * FROM refund ref, payments pay WHERE ref.payment_code = pay.payment_code AND ref.refund_status = #{option}
+	</select>
+	-->
 	
 	<insert id="insertRefundTicket">
 		INSERT INTO refund (
@@ -61,5 +81,13 @@
 			'환불요청'
 		)	
 	</insert>
+	
+	<update id="updateRefundTicketState">
+		UPDATE refund SET refund_status = '환불완료', refund_date = sysdate WHERE payment_code = #{payment_code}
+	</update>
+	
+	<select id="getTicketQty">
+		SELECT COUNT(*) FROM advance_tickets WHERE payment_code_fk = #{payment_code}
+	</select>
 	
 </mapper>

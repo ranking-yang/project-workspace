@@ -38,7 +38,7 @@
 										<!-- 환불 스테이트에 따라서 바꾸기 -->
 											<c:choose>
 												<c:when test="${ticket.refund_status eq '환불요청'}"><div style="color: orange">환불요청</div></c:when>
-												<c:otherwise><div style="color: gray">환불요청</div></c:otherwise>
+												<c:otherwise><div style="color: gray">환불완료</div></c:otherwise>
 											</c:choose>
 											<div></div>
 										<div>${ticket.refund_date }</div>
