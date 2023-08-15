@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.team.webproject.common.Principal;
 import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.MessageDTO;
+import com.team.webproject.dto.OAuthPropertiesDTO;
 import com.team.webproject.dto.SmsResponseDTO;
 import com.team.webproject.service.CouponService;
 import com.team.webproject.service.LoginService;
@@ -39,6 +41,8 @@ public class LoginController {
 	
 	private final LoginService exService;
 	private final CouponService couponService;
+	private final OAuthPropertiesDTO oauth;
+	
 	
 	// 로그인 페이지
 //	@GetMapping("/login")
@@ -99,8 +103,22 @@ public class LoginController {
 	
 	@GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/main";
+		MembersDTO member = Principal.getUser();
+		// logout작동 안함
+		System.out.println("로그아웃: " + member);
+		if (member.getMember_id().startsWith("kakao_")) {
+			System.out.println("카카오로그아웃");
+			return oauth.getInfo()
+					.append("redirect:")
+					.append(oauth.getKakaoLogoutUri())
+					.append("?client_id=")
+					.append(oauth.getKakaoClientId())
+					.append("&logout_redirect_uri=")
+					.append(oauth.getKakaoLogoutRedirectUri()).toString();
+		} else {
+			new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+	        return "redirect:/main";
+		}
     }
 //	// 타임티켓/간편 회원가입 선택 페이지
 //	@GetMapping("/join")

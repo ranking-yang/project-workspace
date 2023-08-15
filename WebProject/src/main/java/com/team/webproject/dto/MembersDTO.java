@@ -10,7 +10,6 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 
 //import com.team.webproject.domain.Member;
 
@@ -24,7 +23,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MembersDTO implements UserDetails, OAuth2User {
+public class MembersDTO implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -135,20 +134,6 @@ public class MembersDTO implements UserDetails, OAuth2User {
 		return true;
 	}
 
-	// OAuth2User override
-	@Override
-	public Map<String, Object> getAttributes() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getAttributes'");
-	}
-
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getName'");
-	}
-	
 //	public Member toEntity(String roles) {
 //		return Member.builder().member_code(member_code).member_pwd(member_pwd).member_id(member_id).member_name(member_name).member_phone(member_phone).member_birth(member_birth).member_email(member_email).member_role(roles).build();
 //	}
