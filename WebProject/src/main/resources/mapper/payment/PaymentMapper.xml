@@ -70,6 +70,7 @@
 	
 	<select id="getAllPayPerfom" resultType="PerfomSaleDTO">
 		SELECT * FROM payments pay, advance_tickets ticket, performance per WHERE pay.payment_code = ticket.payment_code_fk AND ticket.performance_code= per.performance_code
+
 	</select>
 	
 </mapper>

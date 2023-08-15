@@ -7,6 +7,8 @@ import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.PerfomSaleDTO;
 import com.team.webproject.dto.PerformanceDTO;
+import com.team.webproject.dto.RankDTO;
+import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.dto.TicketDTO;
 
 public interface PaymentService {
@@ -25,6 +27,12 @@ public interface PaymentService {
 	
 	public Map<String, Integer> calc_day(List<PaymentDTO> payment);
 	
-	public Map<String, Integer> rankin_perfom(String option);
-	public Map<String, Integer> rankin_perfomall();
+	public Map<String, Integer> ranking_perfom(String option);
+	public Map<String, Integer> ranking_perfomall();
+
+	public List<String> ranking_getperfom();
+	public List<String> ranking_getreview();
+	public List<String> ranking_getstar();
+	
+	List<Float> getPostli(List<PerfomSaleDTO> rank);
 }

@@ -13,7 +13,11 @@
     <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
         SELECT * FROM review_table WHERE review_code = #{value}
     </select>
-
+    
+	<select id="getAllReviews" resultType="com.team.webproject.dto.ReviewDTO">
+        SELECT * FROM reviews
+    </select>
+    
     <update id="updateReview" parameterType="com.team.webproject.dto.ReviewDTO">
         UPDATE review_table
         SET review_star = #{reviewStar},

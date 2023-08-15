@@ -2,9 +2,12 @@ package com.team.webproject.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,13 @@ import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.PerfomSaleDTO;
 import com.team.webproject.dto.PerformanceDTO;
+import com.team.webproject.dto.RankDTO;
+import com.team.webproject.dto.ReviewDTO;
 import com.team.webproject.dto.TicketDTO;
 import com.team.webproject.mapper.LoginMapper;
 import com.team.webproject.mapper.PaymentMapper;
 import com.team.webproject.mapper.PerformanceMapper;
+import com.team.webproject.mapper.ReviewMapper;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -31,6 +37,8 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	LoginMapper loginMapper;
 	
+	@Autowired
+	ReviewMapper reviewMapper;
 	// 쿠폰 조회
 	
 	// 유저 아이디 조회
@@ -165,7 +173,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public Map<String, Integer> rankin_perfom(String option) {
+	public Map<String, Integer> ranking_perfom(String option) {
 		List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom();
 		Calendar calendar = Calendar.getInstance();
 	    int currentMonth = calendar.get(Calendar.MONTH);
@@ -188,8 +196,41 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 	@Override
-	public Map<String, Integer> rankin_perfomall() {
-		List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom();
+	public List<String> ranking_getperfom() {
+		 List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom();
+		
+		 Calendar calendar = Calendar.getInstance(); 
+		 int currentMonth = calendar.get(Calendar.MONTH); 
+		 Map<String, Integer> rankingmap = new HashMap(); 
+		 for (PerfomSaleDTO perfom : li_perfom) {
+			 
+		 calendar.setTime(perfom.getPayment_date()); 
+		 int paymentMonth = calendar.get(Calendar.MONTH);
+		 
+		 if (paymentMonth == currentMonth) { // 같은 월에 해당하는 데이터 만.
+			 if(perfom.getAdvance_ticket_state()=='Y') { 
+				 int currentCount = rankingmap.getOrDefault(perfom.getPerformance_code(), 0);
+			 	 rankingmap.put(perfom.getPerformance_code(), currentCount + 1); 
+			 	} 
+		 	} 
+		 }
+		 List<Map.Entry<String, Integer>> sortedEntries = rankingmap.entrySet()
+			        .stream()
+			        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+			        .collect(Collectors.toList());
+
+		List<String> sortedPerformanceCodes = new ArrayList<>();
+		for (Map.Entry<String, Integer> entry : sortedEntries) {
+		    sortedPerformanceCodes.add(entry.getKey());
+		}
+		
+		return sortedPerformanceCodes;
+	}
+	
+	
+	@Override
+	public Map<String, Integer> ranking_perfomall() {
+		List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom(); // 전체 list
 		Calendar calendar = Calendar.getInstance();
 	    int currentMonth = calendar.get(Calendar.MONTH);
 	    
@@ -202,14 +243,129 @@ public class PaymentServiceImpl implements PaymentService {
             if (paymentMonth == currentMonth) { // 같은 월에 해당하는 데이터 만.
             	if(perfom.getAdvance_ticket_state()=='Y') {
             		int currentCount = rankingmap.getOrDefault(perfom.getMain_category(), 0);
-            		rankingmap.put(perfom.getMain_category(), currentCount + 1);
+            		rankingmap.put(perfom.getMain_category(), currentCount + 1); // 전체 공연에 대한 랭킹
             	}
             }
-	        
 	    }
 		return rankingmap;
 	}
+	
+	
 
+	@Override
+	public List<Float> getPostli(List<PerfomSaleDTO> rank) {
+		List<Float> perfom = new ArrayList();
+		float review = 0;
+		int sum= 0;
+		int count = 0;
+		String code = "";
+		for(PerfomSaleDTO per : rank) {
+			System.out.println(per.getPerformance_name() +","+ per.getPerformance_code());
+			for(ReviewDTO rev : reviewMapper.getAllReviews()) {
+				if(rev.getPerformance_code().equals(per.getPerformance_code())){
+					sum += rev.getReview_star();
+					count ++;
+				}
+			}
+			
+			if (count > 0) {
+				review = sum/count;
+				review = (float) sum / count;
+			    System.out.println("?? " + String.format("%.1f", review));
+			    perfom.add(review);
+			}else {
+				perfom.add((float) 0);
+			}
+		}
+		return perfom;
+		
+	}
+
+	@Override
+	public List<String> ranking_getreview() {
+	    List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom();
+
+	    Calendar calendar = Calendar.getInstance(); 
+	    int currentMonth = calendar.get(Calendar.MONTH); 
+	    Map<String, Integer> rankingmap = new HashMap(); // 리뷰 개수를 저장하는 맵
+
+	    // 각 공연별 리뷰 개수를 세고 맵에 저장
+	    for (PerfomSaleDTO perfom : li_perfom) {
+	        calendar.setTime(perfom.getPayment_date()); 
+	        int paymentMonth = calendar.get(Calendar.MONTH);
+
+	        if (paymentMonth == currentMonth) {
+	            if (perfom.getAdvance_ticket_state() == 'Y') {
+	                int reviewCount = 0;
+	                for (ReviewDTO rev : reviewMapper.getAllReviews()) {
+	                    if (rev.getPerformance_code().equals(perfom.getPerformance_code())) {
+	                        reviewCount++;
+	                    }
+	                }
+	                rankingmap.put(perfom.getPerformance_code(), reviewCount); // 리뷰 개수를 맵에 저장
+	            }
+	        }
+	    }
+	    
+	    // 리뷰 개수에 따라 내림차순으로 정렬된 맵 생성
+	    List<Map.Entry<String, Integer>> sortedEntries = rankingmap.entrySet()
+	            .stream()
+	            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+	            .collect(Collectors.toList());
+
+	    List<String> sortedPerformanceCodes = new ArrayList<>();
+	    for (Map.Entry<String, Integer> entry : sortedEntries) {
+	        sortedPerformanceCodes.add(entry.getKey());
+	    }
+
+	    return sortedPerformanceCodes;
+	}
+
+	@Override
+	public List<String> ranking_getstar() {
+	    List<PerfomSaleDTO> li_perfom = paymentMapper.getAllPayPerfom();
+
+	    Calendar calendar = Calendar.getInstance(); 
+	    int currentMonth = calendar.get(Calendar.MONTH); 
+	    Map<String, Float> rankingmap = new HashMap(); // 점수를 저장하는 맵으로 수정
+	    for (PerfomSaleDTO perfom : li_perfom) {
+	        calendar.setTime(perfom.getPayment_date()); 
+	        int paymentMonth = calendar.get(Calendar.MONTH);
+
+	        if (paymentMonth == currentMonth) {
+	            if (perfom.getAdvance_ticket_state() == 'Y') {
+	                // 점수 계산
+	                int sum = 0;
+	                int count = 0;
+	                for (ReviewDTO rev : reviewMapper.getAllReviews()) {
+	                    if (rev.getPerformance_code().equals(perfom.getPerformance_code())) {
+	                        sum += rev.getReview_star();
+	                        count++;
+	                    }
+	                }
+	                if (count > 0) {
+	                    float average = (float) sum / count;
+	                    rankingmap.put(perfom.getPerformance_code(), average); // 점수를 맵에 저장
+	                } else {
+	                    rankingmap.put(perfom.getPerformance_code(), 0f); // 리뷰 없을 경우 0으로 저장
+	                }
+	            }
+	        }
+	    }
+	    
+	    // 점수에 따라 내림차순으로 정렬된 맵 생성
+	    List<Map.Entry<String, Float>> sortedEntries = rankingmap.entrySet()
+	            .stream()
+	            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+	            .collect(Collectors.toList());
+
+	    List<String> sortedPerformanceCodes = new ArrayList<>();
+	    for (Map.Entry<String, Float> entry : sortedEntries) {
+	        sortedPerformanceCodes.add(entry.getKey());
+	    }
+
+	    return sortedPerformanceCodes;
+	}
 }
 
 

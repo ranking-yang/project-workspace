@@ -157,13 +157,13 @@ public class AdminController {
 	public Map<String, Integer> ranking(String option){
 		System.out.println(option);
 		
-		return payservice.rankin_perfom(option);
+		return payservice.ranking_perfom(option);
 	}
 
 	@GetMapping("/admin/saleall")
 	@ResponseBody
 	public Map<String, Integer> ranking(){
-		System.out.println(payservice.rankin_perfomall());
-		return payservice.rankin_perfomall();
+		System.out.println(payservice.ranking_perfomall());
+		return payservice.ranking_perfomall();
 	}
 }
