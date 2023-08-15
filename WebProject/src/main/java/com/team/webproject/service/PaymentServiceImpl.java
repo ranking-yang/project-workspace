@@ -61,6 +61,8 @@ public class PaymentServiceImpl implements PaymentService {
 	private String portOne_secret;
 	
 	private IamportClient client;
+	
+	@Autowired
 	ReviewMapper reviewMapper;
 	// 쿠폰 조회
 	
