@@ -65,7 +65,8 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
 	public List<MembersDTO> getAll() {
 		return loginMapper.getAll();
 	}
-
+	
+	
 	@Override
 	public MembersDTO getMember(String id) {
 		MembersDTO member = loginMapper.checklogin(id);
@@ -118,6 +119,8 @@ public class LoginServiceImpl implements LoginService, UserDetailsService{
         }
         return member;
     }
+
+	
 	
 	// 회원가입 및 로그인 서비스 끝
 }

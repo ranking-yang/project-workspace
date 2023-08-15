@@ -61,7 +61,7 @@ public class LoginController {
          
         String referrer = request.getHeader("Referer");
         request.getSession().setAttribute("prevPage", referrer);
-
+        
 		return "login/login";
 	}
 //	

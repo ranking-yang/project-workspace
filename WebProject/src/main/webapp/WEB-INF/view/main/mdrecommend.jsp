@@ -16,9 +16,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	 <script>
 	 	$(document).on("click", ".event_list_wrap", function(){
-	 		var mdcode = $("#mdli_code").val();
-	 		console.log(mdcode);
-	 	});
+	 		var mdCode = $(this).data("md-code"); // 클릭한 요소의 data-md-code 값을 가져옵니다.
+	 	    console.log(mdCode);
+	 	    location.href = "/product/mdrecom?main_category="+mdCode;
+			console.log(location.href);
+		});
 	 </script>
 	
 </head>
@@ -27,7 +29,8 @@
 	<div style="width:1100px; margin:auto; margin-bottom:30px; background: #eee;">
         <div style="width:600px; margin:0 auto; padding-top:20px;">
         <c:forEach items="${md_list}" var="mdlist">
-        	<div class="event_list_wrap" style="border:2px solid #f1f1f1;">
+        	
+        	<div class="event_list_wrap" style="border:2px solid #f1f1f1;" data-md-code="${mdlist.md_code}">
 		    <!-- 본문 등록시 '포스터 이미지 URL'을 입력하면 DB에 저장했다가 가져온다 -->
 		    <div class="event_list_left">
 		    <c:set var="loop_flag" value="false" />
@@ -40,7 +43,7 @@
 		      	</c:if>
 		      </c:forEach>
 		    </div>
-		
+			
 		    <div class="event_list_right">
 		      <div style="height:35px;"><span class="event_list_badge" style="background:#3E90FF;">MD 추천</span></div>
 		      <div style="height:60px;"><span class="event_list_title" style="color:#777">${mdlist.md_title}</span></div>

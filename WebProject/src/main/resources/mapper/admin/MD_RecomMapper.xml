@@ -27,4 +27,7 @@
     		 = pf.performance_code
 	</select>
 	
+	<select id="getMDperfom" resultType="com.team.webproject.dto.PerformanceDTO">
+    	SELECT * FROM md_performance_list md, performance per WHERE md.recommended_performance = per.performance_code AND md.md_code = #{md_code}
+	</select>
 </mapper>

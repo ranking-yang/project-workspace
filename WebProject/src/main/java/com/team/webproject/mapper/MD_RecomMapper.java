@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.team.webproject.dto.MDPerformanceDTO;
 import com.team.webproject.dto.MD_getPosterDTO;
 import com.team.webproject.dto.MDrecomDTO;
+import com.team.webproject.dto.PerformanceDTO;
 
 @Mapper
 public interface MD_RecomMapper {
@@ -20,4 +21,6 @@ public interface MD_RecomMapper {
 	List<MDrecomDTO> getMDrecom();
 	
 	List<MD_getPosterDTO> getMDposter();
+	
+	List<PerformanceDTO> getMDperfom(String md_code);
 }

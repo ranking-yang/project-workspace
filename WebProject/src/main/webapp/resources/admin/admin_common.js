@@ -1,5 +1,5 @@
 // 탭 메뉴 이벤트 설정
-function openrefund(evt, cityName) {
+function openrefund(evt, category) {
     var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -12,10 +12,9 @@ function openrefund(evt, cityName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(category).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
 
 // 초기화 버튼 스크립트
 
