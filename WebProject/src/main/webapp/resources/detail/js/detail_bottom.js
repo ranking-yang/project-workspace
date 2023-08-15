@@ -93,7 +93,10 @@ function addQnA(performance_code, member_id, member_code) {
 			})
 				.then(response => response.json())
 				.then(getQnAlist => {
-					updateQnA(getQnAlist);
+					const qnacount = getQnAlist.count;
+					const qnalist = getQnAlist.qnalist;
+					updateQnA(qnalist);
+					updateQnACount(qnacount);
 				})
 				.catch(error => {
 					console.error('SELECT 오류:', error);
@@ -105,8 +108,16 @@ function addQnA(performance_code, member_id, member_code) {
 		});
 }
 
+
+function updateQnACount(count){
+	const qnaCount = document.getElementById('qnaCount');
+	qnaCount.innerHTML = '';
+	qnaCount.textContent = 'Q&A(' + count + ')';
+}
+
+
+
 function updateQnA(getQnAlist) {
-    // 특정 영역을 찾아서 업데이트
     const newQnalist = document.getElementById('qna_text_container');
 
     // 기존 내용 지우기

@@ -8,7 +8,7 @@
     <div id="detailMenuBtns">
         <div class="detailMenuBtn" data-target="info">안내</div>
         <div class="detailMenuBtn" data-target="review">후기(${countReviews })</div>        
-        <div class="detailMenuBtn" data-target="qna">Q&A(${qnaCount })</div>
+        <div class="detailMenuBtn" id="qnaCount" data-target="qna">Q&A(${qnaCount })</div>
         <div class="detailMenuBtn" data-target="place">장소</div>
         <div class="detailMenuBtn" data-target="refund">환불규정</div>
     </div>

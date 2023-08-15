@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.team.webproject.dto.QnADTO;
@@ -40,12 +39,17 @@ public class QnACotroller {
 	
 	
 	 @PostMapping("/getQnAlist")
-	    public ResponseEntity<List<QnADTO>> getNewSelectData(@RequestBody JSONObject json) {
+	    public ResponseEntity<Map<String, Object>> getQnAlist(@RequestBody JSONObject json) {
 		 	String performance_code = (String) json.get("performance_code");
-	        // 새로운 SELECT 데이터를 가져와서 newSelectData 변수에 저장
-		 	List<QnADTO> newSelectData =  qnaMapper.getPerformanceQnA(performance_code);
-	        // 클라이언트에게 JSON 응답 보내기
-	        return ResponseEntity.ok().body(newSelectData);
+		 	List<QnADTO> getQnAlist =  qnaMapper.getPerformanceQnA(performance_code);
+		 	int countQnAlist = qnaMapper.getPerformanceQnACount(performance_code);
+		 	
+		 	Map<String, Object> result = new HashMap<>();
+		 	result.put("qnalist", getQnAlist);
+		 	result.put("count", countQnAlist);
+		 	
+		 	
+	        return ResponseEntity.ok().body(result);
 	    }
 
 	
