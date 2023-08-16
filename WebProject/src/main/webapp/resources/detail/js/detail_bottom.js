@@ -151,7 +151,6 @@ function updateQnA(getQnAlist) {
         newQnalist.appendChild(qnaElement);
     });
 }
-
 // 지도 가져오기
 var mapContainer1 = document.getElementById('map1'); //지도를 담을 영역의 DOM 레퍼런스
 var mapContainer2 = document.getElementById('map2'); //지도를 담을 영역의 DOM 레퍼런스

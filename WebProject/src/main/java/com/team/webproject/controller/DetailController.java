@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -127,7 +128,6 @@ public class DetailController {
     public String getAllReviews(Model model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		
 		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
 			model.addAttribute("member_id", null);
 		} else {			
@@ -144,29 +144,25 @@ public class DetailController {
 
         List<ReviewDTO> reviews = reviewService.getAllReviews();
         model.addAttribute("reviews", reviews);
+
         return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
     }
-
-	
-	 @GetMapping("/product/reviews/{reviewCode}") public String
-	 getReviewByCode(@PathVariable Integer reviewCode, Model model) { ReviewDTO
-	 review = reviewService.getReviewByCode(reviewCode);
-	 model.addAttribute("review", review); return "/detail/detail"; // 리뷰 정보를 상세페이지로 전달하고 해당 뷰를 반환 
-	 }
-	 
-
     // 다른 REST 엔드포인트와 메서드 구현
     // ...
 
     @PostMapping("/product/reviews")
-    @ResponseBody
-    public void insertReview(@RequestBody ReviewDTO review) {
-    	System.out.println(review.toString());
-    	
+    public String insertReview(ReviewDTO review, Model model) {
+    	System.out.println("insertReview 실행중");
+    	//review.setReview_writer_code(userCode);
+    	System.out.println("ReviewDTO 보기: " + review.toString());
+    
     	// ReviewDTO에 관련된 작업 수행
-        reviewService.insertReview(review);
-			
-//        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
+       int result = reviewService.insertReview(review);
+       System.out.println(result);
+       
+       model.addAttribute("performance", detailService.getPerformance(review.getPerformance_code())); // DB에서 값 조회
+       
+       return "mypage/reviewWriting";
     }
 
     @PutMapping("/product/reviews/{reviewCode}")
@@ -196,5 +192,4 @@ public class DetailController {
         return ResponseEntity.ok(membersDTO);
     }
 
-    
 }

@@ -62,27 +62,20 @@ public class MainController {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-//		System.out.println(principal);
-//		UserDetails user = (UserDetails)principal;
-////		
-
-//		System.out.println("username : "+user.getUsername());
-//		
-//		MembersDTO member = loginMapper.checklogin(user.getUsername());
-//		System.out.println("member code: "+ member.getMember_code());
-
-//		System.out.println("main logout check:"+ SecurityContextHolder.getContext());
-//		System.out.println("main principal : " + principal.toString());
-//		System.out.println("user name: "+ (UserDetails)principal);
-		
-		// 권한이 anonymousUser 이면 
 		if (principal.equals("anonymousUser")) {
 			model.addAttribute("userId", null);
 			return "main/main";
 		}
 		String username = null;
+
 		List<GrantedAuthority> authority = new ArrayList<>(((MembersDTO) principal).getAuthorities());
 		
+
+		//List<GrantedAuthority> authority = new ArrayList<>(((UserDetails) principal).getAuthorities());
+		//List<GrantedAuthority> authority = (List<GrantedAuthority>)((UserDetails) principal).getAuthorities();
+		// 권한이 User 이면
+		//if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
+
 		if (authority.get(0).getAuthority().equals("ROLE_member")) {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
