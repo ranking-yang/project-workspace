@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.webproject.common.Principal;
 import com.team.webproject.dto.MembersDTO;
-import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.service.CouponService;
-import com.team.webproject.service.DetailService;
 import com.team.webproject.service.MypageService;
-import com.team.webproject.service.PaymentService;
 import com.team.webproject.service.ProductListService;
 
 @Controller
@@ -32,10 +29,6 @@ public class MypageController {
 	ProductListService productListService;
 	@Autowired
 	CouponService couponService;
-	@Autowired
-	DetailService detailService;
-	@Autowired
-	PaymentService performanceService;
 
 	// 메인 겸 예매내역
 	@GetMapping(value = { "", "/all" })
@@ -205,14 +198,4 @@ public class MypageController {
 	String gotoQInfoPage(Model model) {
 		return "/mypage/mypage-info";
 	}
-	
-	// 리뷰 작성 팝업창
-	@GetMapping("/reviewWriting")
-	void goToReviewWriting(Model model, String performance_code) {
-		System.out.println("팝업 code: "+performance_code);
-		model.addAttribute("performance_code", performance_code); // DB에서 값 조회
-		//return"/mypage/reviewWriting";
-	}
-	 
-	 
 }

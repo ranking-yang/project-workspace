@@ -21,22 +21,22 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public List<ReviewDTO> getAllReviews() {
-        return reviewMapper.getAllReviews(); // 매퍼를 통해 리뷰 정보 가져오기
+        return reviewMapper.getAllReviews();
     }
 
-	/*
-	 * @Override public ReviewDTO getReviewByCode(Integer reviewCode) { return
-	 * reviewMapper.getReviewByCode(reviewCode); }
-	 */
-
-	/*
-	 * @Override public List<ReviewDTO> getReviewsByWriterCode(Integer writerCode) {
-	 * return reviewMapper.getReviewsByWriterCode(writerCode); }
-	 */
+    @Override
+    public ReviewDTO getReviewByCode(Integer reviewCode) {
+        return reviewMapper.getReviewByCode(reviewCode);
+    }
 
     @Override
-    public int insertReview(ReviewDTO review) {
-        return reviewMapper.insertReview(review);
+    public List<ReviewDTO> getReviewsByWriterCode(Integer writerCode) {
+        return reviewMapper.getReviewsByWriterCode(writerCode);
+    }
+
+    @Override
+    public void insertReview(ReviewDTO review) {
+        reviewMapper.insertReview(review);
     }
 
     @Override
@@ -49,11 +49,9 @@ public class ReviewServiceImpl implements ReviewService{
         reviewMapper.deleteReview(reviewCode);
     }
 
-
 	@Override
 	public List<ReviewDTO> getPerformanceReviews(String performance_code) {
 		return reviewMapper.getPerformanceReviews(performance_code);
-
 	}
 
 	@Override
