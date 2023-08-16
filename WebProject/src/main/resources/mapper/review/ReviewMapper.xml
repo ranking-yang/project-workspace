@@ -6,9 +6,27 @@
 
 	<insert id="insertReview" parameterType="com.team.webproject.dto.ReviewDTO">
         INSERT INTO reviews
-        (review_writer_code, performance_code, review_star, review_content, review_date, review_like, review_image, review_code)
+        	(
+        		review_writer_code,
+        		performance_code,
+        		review_star,
+        		review_content,
+        		review_date,
+        		review_like,
+        		review_code,
+        		reviewer_id
+        	)
         VALUES
-        (#{review_writer_code}, #{performance_code}, #{review_star}, #{review_content}, sysdate, #{review_like}, #{review_image}, review_code_seq.nextval, #{reviewer_id})
+        	(
+        		#{review_writer_code},
+        		#{performance_code},
+        		#{review_star},
+        		#{review_content},
+        		sysdate,
+        		0,
+        		review_code_seq.nextval,
+        		#{reviewer_id, jdbcType=VARCHAR}
+        	)
     </insert>
     <select id="getPerformanceReviews" resultType="ReviewDTO">
 		SELECT * FROM reviews WHERE performance_code=#{performance_code}

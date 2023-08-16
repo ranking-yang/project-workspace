@@ -9,7 +9,7 @@ public interface ReviewService {
 	 List<ReviewDTO> getPerformanceReviews(String performance_code); 
 	 //ReviewDTO getReviewByCode(Integer reviewCode);
 	 //List<ReviewDTO> getReviewsByWriterCode(Integer writerCode);
-	 void insertReview(ReviewDTO review);
+	 int insertReview(ReviewDTO review);
 	 void updateReview(ReviewDTO review);
 	 void deleteReview(Integer reviewCode);
 }

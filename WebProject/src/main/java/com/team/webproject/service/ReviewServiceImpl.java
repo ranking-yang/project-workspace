@@ -33,8 +33,8 @@ public class ReviewServiceImpl implements ReviewService{
 	 */
 
     @Override
-    public void insertReview(ReviewDTO review) {
-        reviewMapper.insertReview(review);
+    public int insertReview(ReviewDTO review) {
+        return reviewMapper.insertReview(review);
     }
 
     @Override

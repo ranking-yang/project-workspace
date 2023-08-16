@@ -121,9 +121,18 @@ public class DetailController {
     // ...
 
     @PostMapping("/product/reviews")
-    public String insertReview(ReviewDTO review) {
-    	
-        return "/detail/detail"; // 리뷰 정보를 상세 페이지로 전달하고 해당 뷰를 반환
+    public String insertReview(ReviewDTO review, Model model) {
+    	System.out.println("insertReview 실행중");
+    	//review.setReview_writer_code(userCode);
+    	System.out.println("ReviewDTO 보기: " + review.toString());
+    
+    	// ReviewDTO에 관련된 작업 수행
+       int result = reviewService.insertReview(review);
+       System.out.println(result);
+       
+       model.addAttribute("performance", detailService.getPerformance(review.getPerformance_code())); // DB에서 값 조회
+       
+       return "mypage/reviewWriting";
     }
 
     @PutMapping("/product/reviews/{reviewCode}")
@@ -153,5 +162,4 @@ public class DetailController {
         return ResponseEntity.ok(membersDTO);
     }
 
-    
 }

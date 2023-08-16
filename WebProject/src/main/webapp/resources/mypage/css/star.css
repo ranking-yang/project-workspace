@@ -1,0 +1,45 @@
+body {
+    
+    /*font-family: Arial, sans-serif;*/
+    width: 600px;
+    height: 700px;
+    border: 1px solid black;
+    margin: 10px;
+    display: block;
+    text-align: center;
+    
+  }
+
+  .review-box {
+    background-color: #f0f0f0;
+  }
+  
+  .star {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .gray {
+    filter: grayscale(100%);
+  }
+  
+  .yellow {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+  #imagePreview {
+    width: 200px;
+    height: auto;
+    border: 1px solid black;
+    margin: 0 auto; /* 가운데 정렬을 위한 margin 설정 */
+  }
+  .submit {
+    width: 50%;
+    height: 30px;
+    margin-top: 20px;
+  }
+  /* 팝업 */
+
+  

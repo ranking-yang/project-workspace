@@ -67,8 +67,15 @@ public class MainController {
 			return "main/main";
 		}
 		String username = null;
+
 		List<GrantedAuthority> authority = new ArrayList<>(((MembersDTO) principal).getAuthorities());
 		
+
+		//List<GrantedAuthority> authority = new ArrayList<>(((UserDetails) principal).getAuthorities());
+		//List<GrantedAuthority> authority = (List<GrantedAuthority>)((UserDetails) principal).getAuthorities();
+		// 권한이 User 이면
+		//if (SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString().equals("[ROLE_member]")) {
+
 		if (authority.get(0).getAuthority().equals("ROLE_member")) {
 			username = ((UserDetails) principal).getUsername();
 			System.out.println("main username : " + username);
