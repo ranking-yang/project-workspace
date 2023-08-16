@@ -20,6 +20,10 @@ public class OAuthPropertiesDTO {
 	String kakaoTokenUri;
 	@Value("${oauth.kakao.user-uri}")
 	String kakaoUserUri;
+	@Value("${oauth.kakao.logout-uri}")
+	String kakaoLogoutUri;
+	@Value("${oauth.kakao.logout-redirect-uri}")
+	String kakaoLogoutRedirectUri;
 	
 	@Value("${oauth.kakao.client-id}")
 	String kakaoClientId;

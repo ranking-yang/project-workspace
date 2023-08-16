@@ -1,14 +1,19 @@
 package com.team.webproject.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,11 +37,12 @@ public class OAuthServiceImpl implements OAuthService {
 	private final OAuthMapper oauthMapper;
 	private final OAuthPropertiesDTO oauthProperties;
 	private final OAuthTemplate oauthTemplate;
-	
+	private final BCryptPasswordEncoder passwordEncoder;
+
 	// 카카오 로그인 관련 로직
 	@Override
 	public ResponseEntity<String> getKakaoIssueTokenEntity(String code) {
-		
+
 		// POST방식으로key=value 데이터를 요청(카카오쪽으로)
 		// Retrofit2, OkHttp, RestTemplate
 		RestTemplate rt = oauthTemplate.getRestTemplate();
@@ -56,12 +62,7 @@ public class OAuthServiceImpl implements OAuthService {
 		HttpEntity<MultiValueMap<String, String>> kakaoTokenReq = oauthTemplate.getHttpEntity(params, headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
-		return rt.exchange(
-						oauthProperties.getKakaoTokenUri(),
-						HttpMethod.POST,
-						kakaoTokenReq,
-						String.class
-						);
+		return rt.exchange(oauthProperties.getKakaoTokenUri(), HttpMethod.POST, kakaoTokenReq, String.class);
 	}
 
 	@Override
@@ -93,12 +94,7 @@ public class OAuthServiceImpl implements OAuthService {
 		HttpEntity<MultiValueMap<String, String>> kakaoProfileReq = oauthTemplate.getHttpEntity(headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
-		return rt.exchange(
-						oauthProperties.getKakaoUserUri(),
-						HttpMethod.POST,
-						kakaoProfileReq,
-						String.class
-						);
+		return rt.exchange(oauthProperties.getKakaoUserUri(), HttpMethod.POST, kakaoProfileReq, String.class);
 	}
 
 	@Override
@@ -117,20 +113,20 @@ public class OAuthServiceImpl implements OAuthService {
 	@Override
 	public int saveKakaoMemberIntoDB(KakaoProfileDTO kakaoProfile) {
 
-		MembersDTO member = MembersDTO.builder()
-				.member_id("kakao_" + kakaoProfile.getId())
-				.member_pwd(oauthProperties.getPassword())
+		MembersDTO member = MembersDTO.builder().member_id("kakao_" + kakaoProfile.getId())
+				.member_pwd(passwordEncoder.encode(oauthProperties.getPassword()))
 				.member_birth(kakaoProfile.getKakao_account().getBirthday())
 				.member_name(kakaoProfile.getProperties().getNickname())
 				.member_email(kakaoProfile.getKakao_account().getEmail())
+				.member_role("member")
 				.build();
 
 		return oauthMapper.insertOauthMember(member);
 	}
-	
+
 	@Override
 	public ResponseEntity<String> getNaverIssueTokenEntity(String code, String state) {
-		
+
 		RestTemplate rt = oauthTemplate.getRestTemplate();
 
 		// HttpBody 객체 생성
@@ -142,17 +138,11 @@ public class OAuthServiceImpl implements OAuthService {
 		params.add("state", state);
 
 		// HttpHeader와 HttpBody를 하나의 객체 담기
-		HttpEntity<MultiValueMap<String, String>> naverTokenReq =
-				oauthTemplate.getHttpEntity(params,
-											oauthTemplate.getHttpHeaders());
+		HttpEntity<MultiValueMap<String, String>> naverTokenReq = oauthTemplate.getHttpEntity(params,
+				oauthTemplate.getHttpHeaders());
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
-		return rt.exchange(
-						oauthProperties.getNaverTokenUri(),
-						HttpMethod.POST,
-						naverTokenReq,
-						String.class
-						);
+		return rt.exchange(oauthProperties.getNaverTokenUri(), HttpMethod.POST, naverTokenReq, String.class);
 
 	}
 
@@ -183,12 +173,7 @@ public class OAuthServiceImpl implements OAuthService {
 		HttpEntity<MultiValueMap<String, String>> naverProfileReq = oauthTemplate.getHttpEntity(headers);
 
 		// Http 요청하기 - POST방식으로 - 그리고 response변수의 응답 받음.
-		return rt.exchange(
-						oauthProperties.getNaverUserUri(),
-						HttpMethod.POST,
-						naverProfileReq,
-						String.class
-						);
+		return rt.exchange(oauthProperties.getNaverUserUri(), HttpMethod.POST, naverProfileReq, String.class);
 	}
 
 	@Override
@@ -209,12 +194,12 @@ public class OAuthServiceImpl implements OAuthService {
 
 	@Override
 	public int saveNaverMemberIntoDB(NaverProfileDTO naverProfile) {
-		MembersDTO member = MembersDTO.builder()
-				.member_id(("naver_" + naverProfile.getResponse().getId()))
-				.member_pwd(oauthProperties.getPassword())
+		MembersDTO member = MembersDTO.builder().member_id(("naver_" + naverProfile.getResponse().getId()))
+				.member_pwd(passwordEncoder.encode(oauthProperties.getPassword()))
 				.member_birth(naverProfile.getResponse().getBirthday())
 				.member_name(naverProfile.getResponse().getNickname())
 				.member_email(naverProfile.getResponse().getEmail())
+				.member_role("member")
 				.build();
 
 		return oauthMapper.insertOauthMember(member);
@@ -226,10 +211,15 @@ public class OAuthServiceImpl implements OAuthService {
 	}
 
 	@Override
-	public HttpSession getSessionIncludingMemberId(HttpServletRequest request, String memberId) {
-		HttpSession session = request.getSession();
-		session.setAttribute("member_id", memberId);
-		return session;
+	public void setOAuth2Authentication(String memberId) {
+		
+		MembersDTO member = oauthMapper.findByMemberId(memberId);
+		
+		List<GrantedAuthority> roles = new ArrayList<>(1);
+		roles.add(new SimpleGrantedAuthority("ROLE_" + member.getMember_role()));
+
+		Authentication auth = new UsernamePasswordAuthenticationToken(member, null, roles);
+		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
 
 	@Override

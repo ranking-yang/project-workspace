@@ -1,8 +1,5 @@
 package com.team.webproject.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.http.ResponseEntity;
 
 import com.team.webproject.dto.KakaoOauthTokenDTO;
@@ -38,5 +35,5 @@ public interface OAuthService {
 	// 공통 사용부(DB조회 로직)
 	MembersDTO getMember(String memberId);
 	MembersDTO checkIfMemberExists(String memberId);
-	HttpSession getSessionIncludingMemberId(HttpServletRequest request, String memberId);
+	void setOAuth2Authentication(String memberId);
 }

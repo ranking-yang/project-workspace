@@ -124,7 +124,7 @@
         <button id="menumd_btn" class="indexbtn">MD 추천</button>
 
     </div>
-    <div id="admin_as">
+    <div id="admin_as" hidden>
     	<%@ include file="admin_as.jsp" %>
     </div>
     <div id="api_list" hidden>
@@ -148,7 +148,7 @@
     <div id="md_recom" hidden>
     	<%@ include file="md_recom.jsp" %>
     </div>
-    <div id="chart" hidden>
+    <div id="chart">
     	<%@ include file="chart.jsp" %>
     </div>
 	

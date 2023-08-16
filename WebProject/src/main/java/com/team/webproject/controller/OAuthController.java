@@ -2,17 +2,11 @@ package com.team.webproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 import com.team.webproject.dto.KakaoOauthTokenDTO;
 import com.team.webproject.dto.KakaoProfileDTO;
@@ -20,6 +14,7 @@ import com.team.webproject.dto.MembersDTO;
 import com.team.webproject.dto.NaverOauthTokenDTO;
 import com.team.webproject.dto.NaverProfileDTO;
 import com.team.webproject.dto.OAuthPropertiesDTO;
+import com.team.webproject.service.CouponService;
 import com.team.webproject.service.OAuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,6 +27,8 @@ public class OAuthController {
 
 	private final OAuthService oauthService;
 	private final OAuthPropertiesDTO oauthProperties;
+	private final CouponService couponService;
+	
 	
 	// 카카오 로그인 요청
 	@GetMapping("/kakao/login")
@@ -65,7 +62,7 @@ public class OAuthController {
 	
 	// 카카오 로그인 CallBack(인증과정)
 	@GetMapping("/kakao/callback")
-	public String kakaoCallback(String code, HttpServletRequest req) {
+	public String kakaoCallback(String code) {
 		
 		ResponseEntity<String> kakaoTokenResponse = oauthService.getKakaoIssueTokenEntity(code);
 		KakaoOauthTokenDTO oauthToken = oauthService.getKakaoTokenObject(kakaoTokenResponse);
@@ -77,13 +74,14 @@ public class OAuthController {
 
 		if (member == null) {
 			if(oauthService.saveKakaoMemberIntoDB(kakaoProfile) == 1) {
-				oauthService.getSessionIncludingMemberId(req, "kakao_"+kakaoProfile.getId());
-				return "/login/successLogin";
+				couponService.saveCouponIntoNewUser();
+				oauthService.setOAuth2Authentication("kakao_"+kakaoProfile.getId());
+				return "redirect:/main";
 			} 
 			return "/login/login";
 		} else {
 			
-			oauthService.getSessionIncludingMemberId(req, member.getMember_id());
+			oauthService.setOAuth2Authentication(member.getMember_id());
 			
 			return "redirect:/main";
 		}
@@ -91,7 +89,7 @@ public class OAuthController {
 
 	// 네이버 로그인 CallBack(인증과정)
 	@GetMapping("/naver/callback")
-	public String naverCallback(String code, String state, HttpServletRequest req) {
+	public String naverCallback(String code, String state) {
 
 		ResponseEntity<String> naverTokenResponse = oauthService.getNaverIssueTokenEntity(code, state);
 		NaverOauthTokenDTO oauthToken = oauthService.getNaverTokenObject(naverTokenResponse);
@@ -103,13 +101,14 @@ public class OAuthController {
 
 		if (member == null) {
 			if(oauthService.saveNaverMemberIntoDB(naverProfile) == 1) {
-				oauthService.getSessionIncludingMemberId(req, "naver_"+naverProfile.getResponse().getId());
-				return "/login/successLogin";
+				couponService.saveCouponIntoNewUser();
+				oauthService.setOAuth2Authentication("naver_"+naverProfile.getResponse().getId());
+				return "redirect:/main";
 			} 
 			return "/login/login";
 		} else {
 			
-			oauthService.getSessionIncludingMemberId(req, member.getMember_id());
+			oauthService.setOAuth2Authentication(member.getMember_id());
 			
 			return "redirect:/main";
 		}
