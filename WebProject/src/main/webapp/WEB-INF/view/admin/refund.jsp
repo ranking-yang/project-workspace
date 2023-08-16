@@ -2,7 +2,90 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+<div class="main" id="refund_main">
+
+	<!-- 환불탭 -->
+	<div class="refund_tab">
+		<button class="tablinks" onclick="openrefund(event, 'Refund-request')">환불요청</button>
+		<button class="tablinks"
+			onclick="openrefund(event, 'Refund-complete')">환불완료</button>
+	</div>
+	<!-- 환불요청 구성요소 -->
+	<div style="display: none;" id="Refund-request" class="tabcontent">
+		<div class="tab_search_area">
+
+			<select id="search-filter" name="search-filter" style="height: 25px;">
+				<option value="order-number">주문번호</option>
+			</select> <input type="text" name="search-field" class="search-text"
+				style="height: 25px;"> <label for="date">시작일: <input
+				type="date" style="height: 25px;"></label> <label for="date">종료일:
+				<input type="date" style="height: 25px;">
+			</label>
+			<!-- 검색/초기화버튼 -->
+			<button class="search-btn" id="search_refund_btn">검색</button>
+			<button class="initialization-btn" onclick="resetForm()">초기화</button>
+			<button class="initialization-btn" id="refund_tickets_Btn">환불</button>
+
+		</div>
+
+		<!-- 검색 결과 테이블 -->
+		<div style="overflow-x: auto; overflow-y: auto;" class="table-box"
+			id="tableContainer">
+			<table class="api-table" id="refund_table">
+				<tr>
+					<th><label><input type="checkbox" name="select"
+							value="select" onchange="changeBackgroundColor(this)">전체선택</label></th>
+					<th>아이디</th>
+					<th>멤버코드</th>
+					<th>주문번호</th>
+					<th>결제일자</th>
+					<th>환불요청일자</th>
+					<th>결제금액</th>
+					<th>처리상태</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<!-- 환불완료 구성요소 -->
+	<div id="Refund-complete" class="tabcontent">
+		<div class="tab_search_area">
+
+			<select id="search-filter" name="search-filter" style="height: 25px;">
+				<option value="order-number">주문번호</option>
+			</select> <input type="text" name="search-field" class="search-text"
+				style="height: 25px;"> <label for="date">시작일: <input
+				type="date" style="height: 25px;"></label> <label for="date">종료일:
+				<input type="date" style="height: 25px;">
+			</label>
+			<!-- 검색/초기화버튼 -->
+			<button class="search-btn" id="sucess_btn">검색</button>
+			<button class="initialization-btn" onclick="resetForm()">초기화</button>
+
+		</div>
+
+		<!-- 검색 결과 테이블 -->
+		<div style="overflow-x: auto; overflow-y: auto;" class="table-box"
+			id="tableContainer">
+			<table class="api-table" id="list_table">
+				<tr>
+					<th>아이디</th>
+					<th>멤버코드</th>
+					<th>주문번호</th>
+					<th>결제일자</th>
+					<th>환불요청일자</th>
+					<th>결제금액</th>
+					<th>처리상태</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
 <script>
+	$('.tabcontent').first().css('display', 'block');
+
 	//탭 메뉴 이벤트 설정
 	function openrefund(evt, refund_cat) {
 
@@ -61,18 +144,18 @@
 		}
 	}
 	
-	function ajaxtable (checkbtn, refund, ){
+	function ajaxtable (checkbtn, refund){
 		if(checkbtn == "search_refund"){
 			table = "refund_table";
 			category = "환불요청";
 			
 			plusstr = '<td><label> <input type="checkbox" name="select" value="select" onchange="changeBackgroundColor(this)"></label></td>';
-			plusalpa = '<tr><th><label><input type="checkbox" name="select"value="select" onchange="changeBackgroundColor(this)">전체선택</label></th><th>주문번호</th><th>결제일자</th><th>환불요청일자</th><th>결제금액</th><th>처리상태</th></tr>';
+			plusalpa = '<tr><th><label><input type="checkbox" name="select"value="select" onchange="changeBackgroundColor(this)">전체선택</label></th><th>아이디</th><th>멤버코드</th><th>주문번호</th><th>결제일자</th><th>환불요청일자</th><th>결제금액</th><th>처리상태</th></tr>';
 		}else{
 			table = "list_table";
 			category= "환불완료";
 			plusstr ="";
-			plusalpa = '<tr><th>주문번호</th><th>결제일자</th><th>환불요청일자</th><th>결제금액</th><th>처리상태</th></tr>';
+			plusalpa = '<tr><th>아이디</th><th>멤버코드</th><th>주문번호</th><th>결제일자</th><th>환불요청일자</th><th>결제금액</th><th>처리상태</th></tr>';
 		}
 		str = "";
 		$.ajax({
@@ -87,6 +170,8 @@
 				$(result).each(function(){
 					str += "<tr>";
 					str += plusstr;
+					str += '<td>'+this.member_id+'</td>';
+					str += '<td>'+this.member_code+'</td>';
 					str += '<td>'+this.payment_code+'</td>';
 					str += '<td>'+this.payment_date+'</td>';
 					str += '<td>'+this.refund_date+'</td>';
@@ -109,83 +194,48 @@
 		var category = "sucess_btn";
 		ajaxtable(category);
 	});
+    
+    // 환불 요청
+    $("#refund_tickets_Btn").click(function() {
+		// 클릭된 것들 값 가져오기
+		let checkBox = $("input:checkbox[name=select]:checked");
+		
+		let selecties = [];
+		
+		checkBox.each(function(i) {
+			let tr = checkBox.parent().parent().parent().eq(i);
+			let td = tr.children();	
+			
+			let selection = {
+				member_code: td.eq(2).text(),
+				payment_code: td.eq(3).text(),
+				total_price: td.eq(6).text()
+			}
+			
+			selecties.push(selection);
+		});
+		
+		console.log(selecties);
+
+		if (selecties.length == 0) {
+			alert('환불할 티켓을 선택해주세요');
+		} else {			
+			// ajax로 환불 처리
+			$.ajax({
+	        	method: "POST",
+	        	url: "/admin/refund/request", 
+	       	 	contentType: "application/json", 
+	        	data: JSON.stringify(selecties), 
+	        	success: function(data) {	        		    				
+	        		// 봤던 페이지로 리로드
+	        		location.reload();
+	       		 },
+	        	error: function(xhr, status, error) {
+	            	alert('환불에 실패했습니다.');
+	        	}
+			});			
+		}		
+	});
 	
 	// 검색 버튼 클릭 후 결과 테이블
 </script>
-
-
-<div class="main">
-
-	<!-- 환불탭 -->
-	<div class="refund_tab">
-		<button class="tablinks" onclick="openrefund(event, 'Refund-request')">환불요청</button>
-		<button class="tablinks"
-			onclick="openrefund(event, 'Refund-complete')">환불완료</button>
-	</div>
-	<!-- 환불요청 구성요소 -->
-	<div style="display: none;" id="Refund-request" class="tabcontent">
-		<div class="tab_search_area">
-
-			<select id="search-filter" name="search-filter" style="height: 25px;">
-				<option value="order-number">주문번호</option>
-			</select> <input type="text" name="search-field" class="search-text"
-				style="height: 25px;"> <label for="date">시작일: <input
-				type="date" style="height: 25px;"></label> <label for="date">종료일:
-				<input type="date" style="height: 25px;">
-			</label>
-			<!-- 검색/초기화버튼 -->
-			<button class="search-btn" id="search_refund_btn">검색</button>
-			<button class="initialization-btn" onclick="resetForm()">초기화</button>
-			<button class="initialization-btn" onclick="resetForm()">환불</button>
-
-		</div>
-
-		<!-- 검색 결과 테이블 -->
-		<div style="overflow-x: auto; overflow-y: auto;" class="table-box"
-			id="tableContainer">
-			<table class="api-table" id="refund_table">
-				<tr>
-					<th><label><input type="checkbox" name="select"
-							value="select" onchange="changeBackgroundColor(this)">전체선택</label></th>
-					<th>주문번호</th>
-					<th>결제일자</th>
-					<th>환불요청일자</th>
-					<th>결제금액</th>
-					<th>처리상태</th>
-				</tr>
-			</table>
-		</div>
-	</div>
-
-	<!-- 환불완료 구성요소 -->
-	<div id="Refund-complete" class="tabcontent">
-		<div class="tab_search_area">
-
-			<select id="search-filter" name="search-filter" style="height: 25px;">
-				<option value="order-number">주문번호</option>
-			</select> <input type="text" name="search-field" class="search-text"
-				style="height: 25px;"> <label for="date">시작일: <input
-				type="date" style="height: 25px;"></label> <label for="date">종료일:
-				<input type="date" style="height: 25px;">
-			</label>
-			<!-- 검색/초기화버튼 -->
-			<button class="search-btn" id="sucess_btn">검색</button>
-			<button class="initialization-btn" onclick="resetForm()">초기화</button>
-
-		</div>
-
-		<!-- 검색 결과 테이블 -->
-		<div style="overflow-x: auto; overflow-y: auto;" class="table-box"
-			id="tableContainer">
-			<table class="api-table" id="list_table">
-				<tr>
-					<th>주문번호</th>
-					<th>결제일자</th>
-					<th>환불요청일자</th>
-					<th>결제금액</th>
-					<th>처리상태</th>
-				</tr>
-			</table>
-		</div>
-	</div>
-</div>

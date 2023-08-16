@@ -4,14 +4,12 @@ import java.net.Authenticator.RequestorType;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,20 +17,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.webproject.dto.MDPerformanceDTO;
 import com.team.webproject.dto.MD_getDTO;
 import com.team.webproject.dto.MDrecomDTO;
 import com.team.webproject.dto.MembersDTO;
+import com.team.webproject.dto.PaymentDTO;
 import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.RefundDTO;
+import com.team.webproject.dto.SelectionDTO;
 import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.mapper.MD_RecomMapper;
 import com.team.webproject.mapper.PaymentMapper;
+import com.team.webproject.mapper.PerformanceMapper;
 import com.team.webproject.service.DateChange;
 import com.team.webproject.service.LoginService;
+import com.team.webproject.service.PaymentService;
+import com.team.webproject.service.PaymentServiceImpl;
 import com.team.webproject.service.ProductListService;
 
 import lombok.RequiredArgsConstructor;
@@ -52,6 +56,16 @@ public class AdminController {
 	
 	@Autowired
 	PaymentMapper payment;
+	
+	@Autowired
+
+	PaymentService paymentService;
+
+	PaymentServiceImpl payservice;
+	
+	@Autowired
+	PerformanceMapper perform;
+
 	
 	private final LoginService exService;
 	private DateChange datech;
@@ -119,10 +133,55 @@ public class AdminController {
 	@GetMapping("/admin/refund")
 	@ResponseBody
 	public List<RefundDTO> getRefundList(String option){
-		System.out.println(option);
-		List<RefundDTO> getlist = payment.getRefundList(option);
+		List<RefundDTO> getlist = payment.getRefundList(option);			
 		return getlist;
 	}
 	
+
+	// 환불 요청 시, 처리
+	@PostMapping("/admin/refund/request")
+	@ResponseBody
+	public void refundTickets(@RequestBody List<SelectionDTO> selections) {
+		
+		System.out.println(selections);
+		
+		for (SelectionDTO selection : selections) {
+			paymentService.refundTicket(selection.getPayment_code(), selection.getTotal_price(), selection.getMember_code());
+		}
+
+    }
 	
+
+	@GetMapping("/admin/chart")
+	@ResponseBody
+	public Map<String ,Map<String, Integer>> chartdata() {
+		List<PaymentDTO> payli = payment.getAllPayment();
+		
+		Map<String, Integer> salemap = payservice.calc_month(payli);
+		Map<String, Integer> saleweek = payservice.calc_wekend(payli);
+		Map<String, Integer> saleday = payservice.calc_day(payli);
+		Map<String, Map<String, Integer>> total_sales = new HashMap<>();
+		
+		total_sales.put("월매출", salemap);
+		total_sales.put("주간매출", saleweek);
+		total_sales.put("일매출", saleday);
+		
+		return total_sales;
+	}
+
+	
+	@GetMapping("/admin/showsale")
+	@ResponseBody
+	public Map<String, Integer> ranking(String option){
+		System.out.println(option);
+		
+		return payservice.ranking_perfom(option);
+	}
+
+	@GetMapping("/admin/saleall")
+	@ResponseBody
+	public Map<String, Integer> ranking(){
+		System.out.println(payservice.ranking_perfomall());
+		return payservice.ranking_perfomall();
+	}
 }

@@ -14,6 +14,7 @@ public class RefundDTO {
 	private Integer related_coupon;
 	private String payment_way;
 	private Integer total_price;
-	
+	private String member_id;
+	private Integer member_code;
 	
 }

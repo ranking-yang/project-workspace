@@ -19,4 +19,5 @@ public class ReviewDTO {
 	private Date review_date; // import util로 함
 	private Integer review_like;
 	private String review_image;
+	private String review_id;
 }

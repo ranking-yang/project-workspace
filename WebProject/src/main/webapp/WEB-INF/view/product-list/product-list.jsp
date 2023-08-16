@@ -28,6 +28,9 @@
         	<c:when test="${main_category eq 'kid'}">
         		<div id="page-title">키즈</div>
 			</c:when>     
+			<c:when test="${main_category eq 'md_category'}">
+        		<div id="page-title">MD 추천작</div>
+			</c:when>  
         	<c:when test="${main_category eq 'area' or not empty area_code}">
         		<div id="page-title">지역별</div>
 			</c:when>

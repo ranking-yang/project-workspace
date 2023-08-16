@@ -49,6 +49,11 @@ calendar.flatpickr({
     onChange : function(selectDates, dateStr, calendar) {
         showTimeTable(new Date(dateStr).getDay());
         selectedDate = dateStr;
+        
+        if (isSameDate(selectedDate)) {
+			alert('관람 당일을 선택하셨으며 [결제 이후 환불/변경이 절대 불가]합니다.');
+		}
+        
     }
 });
 }
@@ -228,6 +233,14 @@ function chkStartDate(startdate) {
 		date = today;
 	}
 	return date;
+}
+
+// 
+function isSameDate (date1) {
+  let date = new Date(date1);
+  return date.getFullYear() === new Date().getFullYear()
+     && date.getMonth() === new Date().getMonth()
+     && date.getDate() === new Date().getDate();
 }
 
 // 연령 계산 - qty div에서 사용

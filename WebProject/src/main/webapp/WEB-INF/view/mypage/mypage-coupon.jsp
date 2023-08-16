@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:url value="/resources/mypage/css" var="mypage_css" />
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
 
 	<div id="mypage_value">
 		<div class="mypage_value_title">나의 쿠폰</div>
-		<div>
+		<div id="coupon-container">
 			<!-- tickets는 Controller에서 model로 보낸 키 값으로 바꾸세요 -->
 			<!-- 가져온 값 출력 -->
 			<c:if test="${empty coupons}">
@@ -39,17 +40,24 @@
 						<div class="expiry-date text">만료기한: ${coupon.expiry_date}</div>
 					</div>
 					<c:choose>
-						<c:when test="${empty conpon.discount_rate}">
+						<c:when test="${empty coupon.discount_rate}">
 							<div class="contents">
-								<div class="discount text">${coupon.discount_money}원</div>
+								<fmt:formatNumber type="number" var="discount_money"
+									value="${coupon.discount_money}" />
+								<div class="discount text">${discount_money}원</div>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="contents">
-								<div class="discount text">${coupon.discount_rate * 100}%</div>
+								<fmt:formatNumber type="percent" var="discount_rate"
+									value="${coupon.discount_rate}" />
+								<div class="discount text">${discount_rate}</div>
 							</div>
 						</c:otherwise>
 					</c:choose>
+					<div class="contents">
+						<div class="coupon-text">coupon</div>
+					</div>
 				</div>
 			</c:forEach>
 		</div>

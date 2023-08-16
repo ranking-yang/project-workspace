@@ -13,5 +13,4 @@ public interface ReviewMapper {
     void insertReview(ReviewDTO review); // 리뷰 생성
     void updateReview(ReviewDTO review); // 리뷰 수정
     void deleteReview(Integer reviewCode); // 리뷰 삭제
-
 }

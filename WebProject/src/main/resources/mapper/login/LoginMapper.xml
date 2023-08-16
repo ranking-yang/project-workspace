@@ -21,7 +21,8 @@
 			#{member_birth},
 			#{member_phone},
 			#{member_email},
-			#{member_role})
+			#{member_role},
+			sysdate)
 	</insert>
 	<select id="checklogin">
 		SELECT * FROM members WHERE member_id = #{member_id}

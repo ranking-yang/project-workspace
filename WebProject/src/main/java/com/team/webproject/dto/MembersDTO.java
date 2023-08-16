@@ -2,6 +2,7 @@ package com.team.webproject.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -76,7 +77,7 @@ public class MembersDTO implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// null값
 		Collection<GrantedAuthority> collectors = new ArrayList<>();
-		
+
 		collectors.add(new GrantedAuthority() {
 
 			private static final long serialVersionUID = 1L;
@@ -132,7 +133,7 @@ public class MembersDTO implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 //	public Member toEntity(String roles) {
 //		return Member.builder().member_code(member_code).member_pwd(member_pwd).member_id(member_id).member_name(member_name).member_phone(member_phone).member_birth(member_birth).member_email(member_email).member_role(roles).build();
 //	}
