@@ -9,8 +9,9 @@
 <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon%20AWS&logoColor=white"/>
 <br>
 # 🎫 티켓킹
-### 🚀  배포 주소
- * [티켓킹 바로가기](http://3.39.232.202/main)
+### [[🎨 스토리보드|https://drive.google.com/file/d/1dpwZ6RSm_LbYeQefhA2cu5Wa-EyjZf3r/view?usp=sharing]]
+### [[🎭 발표자료|https://drive.google.com/file/d/157JN0OymTJTJ5l0VPaxA94YwXgVSyFiR/view?usp=sharing]]
+### [[🚀 티켓킹_바로가기|http://3.39.232.202/main)](http://3.39.232.202/main]]
 <br>
 
 
