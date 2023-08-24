@@ -1,54 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[고객센터] 공지사항</title>
-    <link rel="stylesheet" href="/resources/as/css/as.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/ad03eb7935.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[고객센터] 공지사항</title>
+<link rel="stylesheet" href="/resources/as/css/as.css">
+<script src="https://kit.fontawesome.com/ad03eb7935.js"
+	crossorigin="anonymous"></script>
+<%@ include file="../common/commonCss.jsp"%>
 </head>
 <body>
-    <div id="as-container">
-        <div id="as-side-menu">
-            <div id="as-side-menu-title">고객센터</div>
-            <div id="notice" class="as-side-menu-subtitle selected">공지사항</div>
-            <div id="freq-questions"class="as-side-menu-subtitle">자주 묻는 질문</div>
-            <div id="one-on-one" class="as-side-menu-subtitle">1:1 문의</div>
-        </div>
-        <div id="as-board">
-            <div id="as-board-title">공지사항</div>
-            <div id="as-board-list">
-                <div id="as-board-list-category">
-                    <div>번호</div>
-                    <div>제목</div>
-                    <div>작성일</div>
-                </div>
-                <div class="as-board-list-board">
-                    <div>123</div>
-                    <div>게시글 테스트입니다 테스트 테스트 제목입니다</div>
-                    <div>23/07/19</div>
-                </div>
-            </div>
-            <div id="as-board-list-page-buttons">
-                <button class="page-buttons selected">1</button>
-                <button class="page-buttons">2</button>
-                <button class="page-buttons">3</button>
-                <button class="page-buttons">4</button>
-                <button class="page-buttons">5</button>
-                <button class="page-buttons">6</button>
-
-            </div>
-        </div>
-
-    </div>
-    <script src="/resources/as/js/as.js"></script>
+	<%@ include file="../common/header.jsp"%>
+	<div id="body">
+		<div id="as-container">
+			<div id="as-side-menu">
+				<div id="as-side-menu-title">고객센터</div>
+				<div id="notice" class="as-side-menu-subtitle selected">공지사항</div>
+				<div id="freq-questions" class="as-side-menu-subtitle">자주 묻는
+					질문</div>
+				<div id="one-on-one" class="as-side-menu-subtitle">1:1 문의</div>
+			</div>
+			<div id="as-board">
+				<div id="as-board-title">
+					<span>공지사항</span>
+				</div>
+				<div id="as-board-list-category"></div>
+				<div id="as-board-list">
+					<c:forEach items="${listInPage}" var="notice">
+						<div class="as-board-list-board level${notice.notice_level}">
+							<div><c:if test="${notice.notice_level eq 1}"><span class="notice_top">공지</span></c:if></div>
+							<div>
+								<a href="/as/notice/detail?no=${notice.notice_code}">${notice.notice_title}</a>
+							</div>
+							<div>${notice.notice_date}</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div id="as-board-list-page-buttons">
+					<button id="notice-prev-btn" class="move-buttons">&lt;</button>
+					<c:forTokens delims="/" items="${pageBtnNum}" var="i">
+						<c:choose>
+							<c:when test="${i eq pagination.pageNum}">
+								<input type="hidden" id="page-num" value="${pagination.pageNum}" />
+								<input type="hidden" id="max-num" value="${pagination.maxNum}" />
+								<button class="notice-page-buttons page-buttons selected"
+									value="${i}">${i}</button>
+							</c:when>
+							<c:otherwise>
+								<button class="notice-page-buttons page-buttons" value="${i}">${i}</button>
+							</c:otherwise>
+						</c:choose>
+					</c:forTokens>
+					<button id="notice-next-btn" class="move-buttons">&gt;</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="../common/footer.jsp"%>
+	<script src="/resources/as/js/as.js"></script>
+	<%@ include file="../common/commonJs.jsp"%>
 </body>
 </html>

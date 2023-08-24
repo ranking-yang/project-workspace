@@ -1,50 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
-
+#main-background {
+	/*background-color: rgb(83, 83, 83);*/
+	background-image: url("/resources/main/img/background-image.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 #ranking-container {
     width: 1100px;
     padding: 0 25px;
     border-radius: 10px;
-    margin: auto;
+    margin: 50px auto;
     min-height: 700px;
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+    
 }
 
-.filters {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#main-filter-list, #sub-filter-list {
+#filter-list {
     list-style: none;
     display: flex;
     flex-direction: row;
     margin: 0;
     padding: 0;
+    justify-content: flex-end;
 }
 
-.main-filter-item {
-    margin-top: 10px;
-    /* margin-left: 6px; */
-}
-
-.sub-filter-item {
+.filter-item {
     margin-top: 10px;
     /* margin-right: 6px; */
 }
 
-.main-filter-btn {
-    font-size: 25px;
-    background-color: transparent;
-    /* border-radius: 15px; */
-    padding: 5px 15px;
-    outline: none;
-    border: none;
-}
 
-.sub-filter-btn {
+.filter-btn {
     font-size: 20px;
     background-color: transparent;
     /* border-radius: 15px; */
@@ -52,21 +37,23 @@
     padding: 5px 5px;
     outline: none;
     border: none;
+    cursor: pointer;
+    color: white;
 }
 
-.main-filter-btn {
-    border-right: 2px solid black;
+#rank_btn:focus{
+	color: deeppink;
 }
-.sub-filter-btn {
-    border-right: 1px solid black;
+#rank_star:focus{
+	color: deeppink;
 }
-.last-btn {
-    border: none;
+#rank_review:focus{
+	color: deeppink;
+}
+.filter-btn:hover {
+   color: deeppink;
 }
 
-.main-filter-btn:hover, .sub-filter-btn:hover {
-    color: aquamarine;
-}
 
 .wrapper {
     width: 100%;
@@ -86,6 +73,7 @@
     border-radius: 50%;
     position: absolute;
     transform: translateY(-50%);
+    opacity: 0.6;
 }
 
 .wrapper i:first-child {
@@ -133,6 +121,7 @@
     height: 550px;
     width: 340px;
     margin-left: 14px;
+    font-weight: 900;
 }
 
 .poster:first-child {
@@ -142,12 +131,13 @@
 .poster img {
 	object-fit: cover;
 	margin: 0;
-	filter: brightness(50%);
+	filter: brightness(70%);
 	transition: all 0.4s linear;
 }
 
 .poster img:hover {
-	transform: scale(1.2);
+	transform: scale(1);
+	filter: brightness(100%);
 }
 
 

@@ -1,0 +1,56 @@
+.score_left_star_based {
+	position: relative;
+	height:50px;
+	width:125px;
+	background: url('../../../resources/common/image/icon_background_stars.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	height: 22px;
+}
+
+.score_left_star_filled {
+	position: absolute;
+	height:50px;
+	width:125px;
+	background: url('../../../resources/common/image/icon_background_stars_filled.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	height: 22px;
+}
+
+#mypage-ticket-middle > div:nth-child(2) {
+	padding: 20px;
+	display: grid;
+	grid-template-rows: 30px 1fr;
+}
+
+#mypage-ticket-top {
+	display: grid;
+	grid-template-columns: 550px 1fr 170px;
+	text-align: left;
+}
+
+#performance_name2 {
+	padding-left: 30px;
+	width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#mypage-ticket-top > div:last-child {
+	text-align: center;
+}
+
+#content{
+    display: -webkit-inline-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 125px;
+}
+
+#performance_name2{
+	cursor: pointer;
+}

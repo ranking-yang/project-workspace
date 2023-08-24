@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.PaymentMapper">
+
+	<insert id="insertPayment" parameterType="PaymentDTO">
+		INSERT INTO payments(
+	  		payment_code,
+	  		related_coupon,
+	  		payment_way,
+	  		payment_date,
+	  		total_price
+  		) VALUES (
+	  		#{payment_code},
+	  		#{related_coupon, jdbcType=VARCHAR},
+	  		#{payment_way},
+	  		#{payment_date},
+	  		#{total_price}
+  		)
+	</insert>
+	
+	<insert id="insertTicket" parameterType="TicketDTO">
+		INSERT INTO advance_tickets(
+	  		advance_ticket_code,
+	  		booker_code,
+	  		performance_code,
+	  		booking_date,
+	  		booking_time,
+	  		booking_type,
+	  		payment_code_fk
+  		) VALUES
+        (advance_ticket_code_seq.nextval,
+  		 #{booker_code},
+  		 #{performance_code},
+  		 #{booking_date},
+  		 #{booking_time, jdbcType=VARCHAR},
+  		 #{booking_type},
+  		 #{payment_code_fk})
+	</insert>
+	
+	<update id="updatePerformaceQty">
+		UPDATE performance		
+		SET performance_qty = (performance_qty - #{qty})
+		WHERE performance_code = #{performance_code}		
+	</update>	
+
+	 <select id="getUserPayment">
+		SELECT * FROM payments WHERE payment_code = #{payment_code}
+	</select>
+
+	<select id="getAllRefundList" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code, per.performance_name
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem, performance per
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.performance_code = per.performance_code
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+		 ORDER BY ref.refund_date DESC
+	</select>
+	
+	<select id="getAllRefundList_ChkDate" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code, per.performance_name
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem, performance per
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.performance_code = per.performance_code
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+		 AND TO_DATE(ref.refund_date) BETWEEN TO_DATE(#{startday},'YYYY-MM-DD') AND TO_DATE(#{endday},'YYYY-MM-DD') 
+		 ORDER BY ref.refund_date DESC
+	</select>
+	
+	<select id="getRefundList_ChkId" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code, per.performance_name
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem, performance per
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.performance_code = per.performance_code
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+		 AND mem.member_id = #{keyword}
+		 ORDER BY ref.refund_date DESC
+	</select>
+	
+		<select id="getRefundList_ChkId_ChkDate" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code, per.performance_name
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem, performance per
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.performance_code = per.performance_code
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+		 AND mem.member_id = #{keyword}
+		 AND TO_DATE(ref.refund_date) BETWEEN TO_DATE(#{startday},'YYYY-MM-DD') AND TO_DATE(#{endday},'YYYY-MM-DD') 
+		 ORDER BY ref.refund_date DESC
+	</select>
+	
+	<select id="getRefundList_ChkPaymentCode" resultType="RefundDTO">
+		SELECT DISTINCT
+		 ref.refund_code, ref.payment_code, ref.refund_date, ref.refund_status,
+		 pay.payment_date, pay.related_coupon, pay.total_price, pay.payment_way,
+		 mem.member_id, mem.member_code, per.performance_name
+		 FROM 
+		 refund ref, payments pay, advance_tickets ati, members mem, performance per
+		 WHERE 
+		 ref.payment_code = pay.payment_code 
+		 AND ati.performance_code = per.performance_code
+		 AND ati.payment_code_fk = pay.payment_code 
+		 AND ati.booker_code = mem.member_code 
+		 AND ref.refund_status = #{option}
+		 AND ref.payment_code = #{keyword}
+		 ORDER BY ref.refund_date DESC
+	</select>
+	
+
+	
+	<insert id="insertRefundTicket">
+		INSERT INTO refund (
+			refund_code,
+			payment_code,
+			refund_status
+		)
+		VALUES (
+			refund_code_seq.nextval,
+			#{payment_code}, 
+			'환불요청'
+		)	
+	</insert>
+	
+	<update id="updateRefundTicketState">
+		UPDATE refund SET refund_status = '환불완료', refund_date = sysdate WHERE payment_code = #{payment_code}
+	</update>
+	
+	<select id="getTicketQty">
+		SELECT COUNT(*) FROM advance_tickets WHERE payment_code_fk = #{payment_code}
+	</select>
+	
+	
+	<select id="getAllPayment" resultType="PaymentDTO">
+		SELECT * FROM payments
+	</select>
+	
+	<select id="getAllPayPerfom" resultType="PerfomSaleDTO">
+		SELECT * FROM payments pay, advance_tickets ticket, performance per WHERE pay.payment_code = ticket.payment_code_fk AND ticket.performance_code= per.performance_code
+	</select>
+	
+	<select id="getCoupontNum">
+		SELECT related_coupon FROM payments WHERE payment_code = #{payment_code}
+	</select>
+	
+	<select id="chkPayment_code">
+		SELECT payment_code FROM refund WHERE payment_code = #{payment_code}
+	</select>
+	
+</mapper>

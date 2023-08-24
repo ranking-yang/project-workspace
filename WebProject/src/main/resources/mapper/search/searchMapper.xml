@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.SearchMapper">
+	<select id="getSearchList">
+		SELECT * FROM performance 
+		WHERE end_date > sysdate 
+		AND (performance_name LiKE '%' || #{keyword} || '%'
+			OR address LIKE '%' || #{keyword} || '%'
+			OR place LIKE '%' || #{keyword} || '%'
+			OR main_category LiKE '%' || #{keyword} || '%'
+			OR sub_category LiKE '%' || #{keyword} || '%')
+		ORDER BY rownum
+	</select>
+	<select id="countSearchList">
+		SELECT count(*) FROM performance 
+		WHERE end_date > sysdate 
+		AND (performance_name LIKE '%' || #{keyword} || '%'
+			OR address LIKE '%' || #{keyword} || '%'
+			OR place LIKE '%' || #{keyword} || '%'
+			OR main_category LiKE '%' || #{keyword} || '%'
+			OR sub_category LiKE '%' || #{keyword} || '%')
+	</select>
+</mapper>

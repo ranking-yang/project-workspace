@@ -1,11 +1,8 @@
 /* 고객센터 - 1:1 문의 css */
-* {
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-body{
+
+#body{
     background-color: rgb(236, 236, 236);
+    padding: 10px 0;
 }
 #as-container{
     width: 1100px;
@@ -25,18 +22,23 @@ body{
 .as-side-menu-subtitle{
     padding: 10px 0;
     cursor: pointer;
+    background-color: white;
+	color: black;
+	font-size: 18px;
 }
 .as-side-menu-subtitle.selected{
-    color: rgb(70,200,180);
+   	color: rgb(70, 200, 180);
+	font-weight: bold;
 }
 .as-side-menu-subtitle:hover{
-    color: rgb(70,200,180);
+    color: rgb(70, 200, 180);
+	font-weight: bold;
 }
 #as-side-menu-title{
     border-bottom: 1px solid rgb(236, 236, 236);
-    font-size: 1.5rem;
-    font-weight: 500;
     padding-bottom: 20px;
+    font-size: 25px;
+    font-weight: 700;
 }
 #as-board{
     background-color: white;
@@ -49,19 +51,84 @@ body{
 
 }
 #as-board-title{
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 700;
+    color: #555;
+    padding: 0 0 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#as-board-list-page-buttons{
+    text-align: center;
+}
+.page-buttons{
+	border: none;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 20px 0;
+}
+.page-buttons:hover{
+    border: none;
+    background-color: rgb(240, 239, 239);
+    cursor: pointer;
+}
+.page-buttons.selected{
+    border: none;
+    color: rgb(70,200,180);
 }
 
+.move-buttons {
+	border: none;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+.move-buttons:hover{
+    border: 0.1px solid gray;
+    background-color: rgb(240, 239, 239);
+    cursor: pointer;
+}
 
 #addAsk{
     background: rgb(70,200,180);
+    border: none;
     color: white;
     text-align: center;
     border-radius: 5px;
     padding: 5px;
-    font-size: 0.8rem;
-    
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+#oneon_submit{
+	background: rgb(70,200,180);
+    border: none;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 30px;
+    cursor: pointer;
+    float: right;
+    font-size: 15px;
+    font-weight: 500;
+    width:100px;
+}
+#as-board-detail{
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    margin: 5px 0 30px 0;
+}
+#as-board-detail > div{
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 100px;
+    padding: 10px 20px;
+    column-gap: 20px;
 }
 
 #as-board-list{
@@ -75,11 +142,17 @@ body{
     padding: 10px 20px;
     column-gap: 20px;
 }
+#as-board-datail{
+	padding: 10px 20px;
+}
+
 #as-board-list-category{
     font-weight: 500;
     background-color: rgb(236, 236, 236);
     text-align: center;
+    height: 50px;
 }
+
 .as-board-list-board{
     border-bottom: 1px solid rgb(236, 236, 236);
     font-weight: 300;
@@ -96,6 +169,10 @@ body{
 }
 .as-board-list-board > div:nth-child(3),
 .as-board-list-board > div:last-child{
+    text-align: center;
+}
+
+#as-board-list-page-buttons {
     text-align: center;
 }
 /* 1:1 문의의 처리상태 */
@@ -117,23 +194,11 @@ body{
 .board-status.done >span{
     background-color: rgb(20, 92, 224);
 }
-
+.as-board-list-detail{
+	 float:left;
+	 text-align: center;
+}
 #as-board-list-page-buttons{
     text-align: center;
 }
-.page-buttons{
-    border: 0.1px solid gray;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 2px;
-    margin: 20px 0;
-}
-.page-buttons:hover{
-    border: 0.1px solid gray;
-    background-color: rgb(240, 239, 239);
-    cursor: pointer;
-}
-.page-buttons.selected{
-    border: none;
-    color: rgb(70,200,180);
-}
+

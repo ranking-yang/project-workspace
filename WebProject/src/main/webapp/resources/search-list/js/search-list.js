@@ -1,40 +1,59 @@
-/**
- * 
- */
-const scrollUp = document.querySelector('.scroll-up');
-
-document.addEventListener('scroll', () =>{
-    if(window.scrollY > 300){
-        scrollUp.classList.add('visible');
-    }else{
-        scrollUp.classList.remove('visible');
-    }
-});
-
-scrollUp.addEventListener('click', () => {
-    document.querySelector('html').scrollIntoView({behavior: "smooth", block:"start"});
-
-});
-
-function toggleLike(event, buttonId) {
+function toggleLike(event, buttonId, member_code) {
     event.stopPropagation();
-    var button = document.getElementById(buttonId);
-    button.classList.toggle('liked');
 
-    var icon = button.querySelector('i.fa-heart');
-    if (button.classList.contains('liked')) {
-      icon.classList.add('fa-solid');
-      icon.classList.remove('fa-regular');
-      icon.style.color = '#e41b1b';
-    } else {
-      icon.classList.remove('fa-solid');
-      icon.classList.add('fa-regular');
-      icon.style.color = '#000000';
+    let $button = $('#'+buttonId);
+    $button.toggleClass('liked');
+    
+    let $icon = $button.find('i.fa-heart');
+    
+    if ($button.hasClass('liked')) {
+      $icon.removeClass('fa-regular').addClass('fa-solid').css('color','#e41b1b');
+      console.log("button",$button.attr('id'));
+
+      $.ajax({
+			url: "addwishlist",
+			type:"POST",
+			data: {
+				member_code: member_code,
+				performance_code : buttonId 
+				},
+			success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+            console.log("찜 추가 성공:", response);
+            }
+		});
+	} else {
+      $icon.removeClass('fa-solid').addClass('fa-regular').css('color','#000000');
+      $.ajax({
+		  url : "delewishlist",
+		  type: "POST",
+		  data: {
+			  member_code: member_code,
+			  performance_code : buttonId 
+		  },
+		  success: function (response) {
+            // 서버로부터의 성공 응답 처리 (필요한 경우)
+           console.log("찜 삭제 성공:", response);
+           }
+	  });
     }
-  }
-  
-const product = document.querySelector('.product-module');
+  };
+$(document).ready(function(){
+	$('.product-module').on('click', function(){
+		console.log($(this).data('pk'));
+		
+		if ($(this).data('category') !== "art") {
+	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
+			} else {
+				location.href = '../product-detail-ex?performance_code=' + $(this).data('pk');				
+			}
+		
+	})
+});
 
-// product.addEventListener('click', () => {
-//     window.location.href='상품상세페이지로 가면됨';
-// });
+
+$('.price').each(function(){ // 가격 표시 , 세자리마다 콤마 찍기
+		  var price = $(this).text();
+		  let result = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		  $(this).html(result);
+	});

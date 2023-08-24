@@ -1,103 +1,201 @@
-var bustcachevar=1 //bust potential caching of external pages after initial request? (1=yes, 0=no)
-var loadstatustext="<div style='height:500px;'></div>"
+const detailMenuBtns = document.querySelectorAll('.detailMenuBtn');
+const menuContents = document.querySelectorAll('.menuContent');
 
-////NO NEED TO EDIT BELOW////////////////////////
-var loadedobjects=""
-var defaultcontentarray=new Object()
-var bustcacheparameter=""
+// 초기에 선택된 메뉴를 설정하는 함수
+function selectMenu(menuBtn) {
+	const selectedTarget = menuBtn.dataset.target;
 
-function ajaxpage(url, containerid, targetobj){
-var page_request = false
-if (window.XMLHttpRequest) // if Mozilla, Safari etc
-page_request = new XMLHttpRequest()
-else if (window.ActiveXObject){ // if IE
-try {
-page_request = new ActiveXObject("Msxml2.XMLHTTP")
-} 
-catch (e){
-try{
-page_request = new ActiveXObject("Microsoft.XMLHTTP")
-}
-catch (e){}
-}
-}
-else
-return false
-var ullist=targetobj.parentNode.parentNode.getElementsByTagName("li")
-for (var i=0; i<ullist.length; i++)
-ullist[i].className=""  //deselect all tabs
-targetobj.parentNode.className="selected"  //highlight currently clicked on tab
-if (url.indexOf("#default")!=-1){ //if simply show default content within container (verus fetch it via ajax)
-document.getElementById(containerid).innerHTML=defaultcontentarray[containerid]
-return
-}
-document.getElementById(containerid).innerHTML=loadstatustext
-page_request.onreadystatechange=function(){
-loadpage(page_request, containerid)
-}
-if (bustcachevar) //if bust caching of external page
-bustcacheparameter=(url.indexOf("?")!=-1)? "&"+new Date().getTime() : "?"+new Date().getTime()
-page_request.open('GET', url+bustcacheparameter, true)
-page_request.send(null)
+	// 메뉴 컨텐츠를 보여주는 로직 추가
+	menuContents.forEach((content) => {
+		content.style.display = content.id === `${selectedTarget}Content` ? 'block' : 'none';
+	});
 }
 
-function loadpage(page_request, containerid){
-if (page_request.readyState == 4 && (page_request.status==200 || window.location.href.indexOf("http")==-1))
-document.getElementById(containerid).innerHTML=page_request.responseText
+window.addEventListener('DOMContentLoaded', () => {
+	const initialSelectedMenu = document.querySelector('.detailMenuBtn[data-target="info"]');
+	initialSelectedMenu.classList.add('selected');
+
+	// 초기 선택된 메뉴를 표시
+	selectMenu(initialSelectedMenu);
+});
+
+detailMenuBtns.forEach((menuBtn) => {
+	menuBtn.addEventListener('click', (e) => {
+		// 기존에 선택된 버튼이 있다면 클래스 제거
+		const prevSelectedBtn = document.querySelector('.detailMenuBtn.selected');
+		if (prevSelectedBtn) {
+			prevSelectedBtn.classList.remove('selected');
+		}
+
+		// 현재 클릭된 버튼에 selected 클래스 추가
+		e.target.classList.add('selected');
+
+		// 선택된 메뉴 컨텐츠 표시
+		selectMenu(e.target);
+	});
+});
+
+// 공연 내용 펼쳐보기에 사용되는 함수
+function showMoreDetailImage() {
+	document.querySelector('.info_detail_btn').remove();
+	document.querySelector('.info_detail_gradient').remove();
+	document.querySelector('.info_detail_poster').setAttribute("style", `display:none;`);
+	document.getElementById('main_img').style.display = 'block';
+	document.querySelector('.main_img').scrollIntoView({ block: 'start' });
+}
+// qna
+function gethiddenId(){
+	var qnaIdElements = document.querySelectorAll(".qna_id");
+	for (var i = 0; i < qnaIdElements.length; i++) {
+	    var qnaId = qnaIdElements[i].textContent;
+	    if (qnaId.length >= 2) {
+	        var hiddenId = qnaId.substring(0, 2) + "*".repeat(qnaId.length - 2);
+	        qnaIdElements[i].textContent = hiddenId;
+	    }
+	}
 }
 
-function loadobjs(revattribute){
-if (revattribute!=null && revattribute!=""){ //if "rev" attribute is defined (load external .js or .css files)
-var objectlist=revattribute.split(/\s*,\s*/) //split the files and store as array
-for (var i=0; i<objectlist.length; i++){
-var file=objectlist[i]
-var fileref=""
-if (loadedobjects.indexOf(file)==-1){ //Check to see if this object has not already been added to page before proceeding
-if (file.indexOf(".js")!=-1){ //If object is a js file
-fileref=document.createElement('script')
-fileref.setAttribute("type","text/javascript");
-fileref.setAttribute("src", file);
-}
-else if (file.indexOf(".css")!=-1){ //If object is a css file
-fileref=document.createElement("link")
-fileref.setAttribute("rel", "stylesheet");
-fileref.setAttribute("type", "text/css");
-fileref.setAttribute("href", file);
-}
-}
-if (fileref!=""){
-document.getElementsByTagName("head").item(0).appendChild(fileref)
-loadedobjects+=file+" " //Remember this object as being already added to page
-}
-}
-}
+
+document.addEventListener('DOMContentLoaded', function() {
+	const textarea = document.getElementById('qnaTextarea');
+	gethiddenId();
+	textarea.addEventListener('click', (e) => {
+		console.log(e.target.dataset.user);
+		if (e.target.dataset.user === '') {
+			location.href = '../login';
+		}
+
+	});
+});
+
+
+function addQnA(performance_code, member_id, member_code) {
+	const qnaTextarea = document.getElementById('qnaTextarea');
+	const qa_content = qnaTextarea.value; // textarea에 입력된 값 가져오기
+
+	var data = {
+		performance_code: performance_code,
+		qa_writer_id: member_id,
+		qa_writer_code: member_code,
+		qa_content: qa_content
+	};
+	var performance_code = {
+		performance_code: performance_code
+	}
+
+	fetch('../addQnA', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	})
+		.then(response => response.json())
+		.then(result => {
+			// 서버 응답을 처리하는 로직
+			document.getElementById("qnaTextarea").value='';
+			console.log('서버 응답:', result);
+			
+			fetch('../getQnAlist', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(performance_code)
+			})
+				.then(response => response.json())
+				.then(getQnAlist => {
+					const qnacount = getQnAlist.count;
+					const qnalist = getQnAlist.qnalist;
+					updateQnA(qnalist);
+					updateQnACount(qnacount);
+				})
+				.catch(error => {
+					console.error('SELECT 오류:', error);
+				});
+		})
+		.catch(error => {
+			// 오류 처리 로직
+			console.error('오류:', error);
+		});
 }
 
-function savedefaultcontent(contentid){// save default ajax tab content
-if (typeof defaultcontentarray[contentid]=="undefined") //if default content hasn't already been saved
-defaultcontentarray[contentid]=document.getElementById(contentid).innerHTML
+
+function updateQnACount(count){
+	const qnaCount = document.getElementById('qnaCount');
+	qnaCount.innerHTML = '';
+	qnaCount.textContent = 'Q&A(' + count + ')';
 }
 
-function startajaxtabs(){
-for (var i=0; i<arguments.length; i++){ //loop through passed UL ids
-var ulobj=document.getElementById(arguments[i])
-var ulist=ulobj.getElementsByTagName("li") //array containing the LI elements within UL
-for (var x=0; x<ulist.length; x++){ //loop through each LI element
-var ulistlink=ulist[x].getElementsByTagName("a")[0]
-if (ulistlink.getAttribute("rel")){
-var modifiedurl=ulistlink.getAttribute("href").replace(/^http:\/\/[^\/]+\//i, "http://"+window.location.hostname+"/")
-ulistlink.setAttribute("href", modifiedurl) //replace URL's root domain with dynamic root domain, for ajax security sake
-savedefaultcontent(ulistlink.getAttribute("rel")) //save default ajax tab content
-ulistlink.onclick=function(){
-ajaxpage(this.getAttribute("href"), this.getAttribute("rel"), this)
-loadobjs(this.getAttribute("rev"))
-return false
+
+
+function updateQnA(getQnAlist) {
+    const newQnalist = document.getElementById('qna_text_container');
+
+    // 기존 내용 지우기
+    newQnalist.innerHTML = '';
+
+    // 받아온 새로운 데이터를 사용하여 업데이트
+   getQnAlist.forEach(qnaData => {
+        const qnaElement = document.createElement('div');
+        qnaElement.classList.add('qna'); // qna 클래스 추가
+
+        const qnaInfo = document.createElement('div');
+        qnaInfo.classList.add('qna_info'); // qna_info 클래스 추가
+
+        const qnaIdSpan = document.createElement('span');
+        qnaIdSpan.classList.add('qna_id'); // qna_id 클래스 추가
+        qnaIdSpan.textContent = qnaData.qa_writer_id;
+        qnaInfo.appendChild(qnaIdSpan);
+
+        const qnaDateSpan = document.createElement('span');
+        qnaDateSpan.classList.add('qna_date'); // qna_date 클래스 추가
+        qnaDateSpan.textContent = `(${qnaData.qa_date})`;
+        qnaInfo.appendChild(qnaDateSpan);
+
+        const qnaContentDiv = document.createElement('div');
+        qnaContentDiv.classList.add('qna_content'); // qna_content 클래스 추가
+        qnaContentDiv.textContent = qnaData.qa_content;
+
+        qnaElement.appendChild(qnaInfo);
+        qnaElement.appendChild(qnaContentDiv);
+
+        newQnalist.appendChild(qnaElement);
+    });
+    gethiddenId();
 }
-if (ulist[x].className=="selected"){
-ajaxpage(ulistlink.getAttribute("href"), ulistlink.getAttribute("rel"), ulistlink) //auto load currenly selected tab content
-loadobjs(ulistlink.getAttribute("rev")) //auto load any accompanying .js and .css files
-}
-}
-}
-}
-}
+
+// 지도 가져오기
+var mapContainer1 = document.getElementById('map1'); //지도를 담을 영역의 DOM 레퍼런스
+var mapContainer2 = document.getElementById('map2'); //지도를 담을 영역의 DOM 레퍼런스
+
+let la = mapContainer1.dataset.la;
+let lo = mapContainer1.dataset.lo;
+
+
+var options = { //지도를 생성할 때 필요한 기본 옵션
+	center: new kakao.maps.LatLng(la, lo), //지도의 중심좌표.
+	level: 3 //지도의 레벨(확대, 축소 정도)
+};
+
+var map1 = new kakao.maps.Map(mapContainer1, options); //지도 생성 및 객체 리턴
+var map2 = new kakao.maps.Map(mapContainer2, options); //지도 생성 및 객체 리턴
+
+
+// 마커가 표시될 위치입니다 
+var markerPosition = new kakao.maps.LatLng(la, lo);
+
+// 마커를 생성합니다
+var marker1 = new kakao.maps.Marker({
+	position: markerPosition
+});
+var marker2 = new kakao.maps.Marker({
+	position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker1.setMap(map1);
+marker2.setMap(map2);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);   

@@ -1,12 +1,9 @@
 /* 고객센터 - 공지사항, 자주묻는 질문 css */
-* {
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-body{
+#body{
     background-color: rgb(236, 236, 236);
+    padding: 10px 0;
 }
+
 #as-container{
     width: 1100px;
     margin: 30px auto;
@@ -25,17 +22,22 @@ body{
 .as-side-menu-subtitle{
     padding: 10px 0;
     cursor: pointer;
+    background-color: white;
+	color: black;
+	font-size: 18px;
 }
 .as-side-menu-subtitle.selected{
-    color: rgb(70,200,180);
+    color: rgb(70, 200, 180);
+	font-weight: bold;
 }
 .as-side-menu-subtitle:hover{
-    color: rgb(70,200,180);
+    color: rgb(70, 200, 180);
+	font-weight: bold;
 }
 #as-side-menu-title{
     border-bottom: 1px solid rgb(236, 236, 236);
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 25px;
+	font-weight: 700;
     padding-bottom: 20px;
 }
 #as-board{
@@ -79,8 +81,13 @@ body{
     margin: 30px 10px;
     text-align: right;
 }
-#as-board-detail-listBtn >span{
+#as-board-detail-listBtn > button{
     padding: 10px 30px;
     background-color: rgb(226, 226, 226);
     border-radius: 10px;
+	outline: none;
+    border: none;
+    cursor: pointer;
 }
+
+

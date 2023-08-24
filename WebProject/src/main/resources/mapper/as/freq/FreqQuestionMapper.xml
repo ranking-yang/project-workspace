@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.FreqQuestionMapper">
+	<select id="getCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			freq_questions
+	</select>
+	
+	<select id="getPage" resultType="FreqQuestionDTO" parameterType="int">
+		SELECT 
+			* 
+		FROM
+			(SELECT 
+				rownum AS rn, A.*
+			FROM 
+				(SELECT
+					question_code, question_title, question_category
+			 	FROM 
+					freq_questions 
+			 	ORDER BY
+					question_code DESC
+				) A
+			)
+		WHERE
+			rn &gt;= #{start} AND rn &lt;= #{end}
+	</select>
+	
+	<select id="getRecord" resultType="FreqQuestionDTO" parameterType="int">
+		SELECT * FROM freq_questions WHERE question_code=#{pk}
+	</select>
+	
+	<insert id="addNewFaq" parameterType="FreqQuestionDTO">
+		INSERT INTO freq_questions (
+			question_code, 
+			question_category, 
+			question_title, 
+			question_content
+		)
+		VALUES (
+			question_code_seq.nextval,
+			#{question_category},
+			#{question_title},
+			#{question_content}
+		)
+	</insert>
+	
+	<select id="getAllFaq" resultType="FreqQuestionDTO">
+		select * from freq_questions ORDER BY question_code DESC
+	</select>
+	
+	<delete id="deleteFaq">
+		delete from freq_questions where question_code=#{question_code}
+	</delete>
+	
+	<update id="updateFaq">
+		update freq_questions set question_category=#{question_category}, question_title=#{question_title}, question_content=#{question_content} where question_code=#{question_code}
+	</update>
+</mapper>

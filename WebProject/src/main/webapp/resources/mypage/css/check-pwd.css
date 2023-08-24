@@ -1,0 +1,32 @@
+#container {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: start;
+	align-items: center;
+	padding-top: 20px;
+}
+
+.box {
+	margin-top: 15px;
+	border-radius: 10px;
+	outline: none;
+	padding: 5px;
+}
+
+.pwd-check {
+	font-size: 25px;
+	width: 60%;
+}
+
+#check-btn {
+	font-size: 25px;
+	font-weight: 500;
+	width: 20%;
+	border: none;
+	background-color: #46c8b4;
+	cursor: pointer;
+}
+
+#check-btn:hover {
+	filter: brightness(80%);
+}

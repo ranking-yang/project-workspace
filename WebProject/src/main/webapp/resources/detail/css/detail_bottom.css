@@ -1,583 +1,335 @@
-@charset "EUC-KR";
-
-/* ªÛ«∞∆‰¿Ã¡ˆ(main) øµø™ */
-
-#ajaxcontentarea {
-  background-color: #fff;
+#detail_bottom_con {
+	width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background: white;
+	border-radius: 15px;
+	display: grid;
+	grid-template-rows: 50px 1fr;
 }
 
-.score_wrap {
-  border: 1px solid #eee;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  padding: 20px 55px;
+#detailMenuBtns {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	font-weight: 500;
+	font-size: 1.2rem;
+	cursor: pointer;
 }
 
-.score_section {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  height: 150px;
-  background-color: #f6f6f6;
-  border-radius: 10px;
+.detailMenuBtn.selected {
+	color: red;
+	border-bottom: 3px solid red;
 }
 
-.score_section_left {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  border-right: 2px solid #e2e2e2;
-  width: 50%;
+.main_tab_wrap {
+	margin: 30px;
 }
 
-.score_section_left_average {
-  padding-top: 15px;
-  font-size: 35px;
+/* ÏïàÎÇ¥ */
+.viewpage_noti,
+.main_tab_title {
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin: 15px 0 5px 0;
 }
 
-.score_section_left_stars {
-  width: 120px;
-  padding-top: 2px;
+.viewpage_text {
+	padding: 20px;
 }
 
-.score_section_left_star {
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars.png");
-  background-repeat: no-repeat;
-  background-size: 120px;
-  width: 100%;
-  height: 22px;
+.viewpage_content {
+	color: #777;
 }
 
-.score_section_left_star_filled {
-  position: absolute;
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
-  background-repeat: no-repeat;
-  background-size: 120px;
-  height: 22px;
+.viewpage_link {
+	font-weight: 400;
+	text-decoration: underline;
+	color: #000;
 }
 
-.score_section_left_total {
-  padding-top: 15px;
-  color: #777;
+.radius_box {
+	background: #eee;
+	border-radius: 15px;
+	margin: 20px 0;
 }
 
-.score_section_right {
-  text-align: center;
-  align-items: center;
-  width: 50%;
-  transform: translateY(8%);
+/* ÏÉÅÏÑ∏ Ïù¥ÎØ∏ÏßÄ ÌéºÏ≥êÎ≥¥Í∏∞ */
+.info_detail_btn {
+	position: absolute;
+	bottom: 15px;
+	width: 94%;
+	height: 55px;
+	line-height: 55px;
+	margin-left: 3%;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background: #fff;
+	color: #000;
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+	box-shadow: 1px 1px 3px 2px #ddd;
+	cursor: pointer;
 }
 
-.progress_section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #777;
-  padding: 3px 0;
-}
-
-.progress_section div {
-  margin-right: 15px;
-}
-
-.progress_section_bar,
-.progress_section_value {
-  height: 6px;
-  border-radius: 10px;
-}
-
-.progress_section_bar {
-  width: 60%;
-  background-color: #e2e2e2;
-}
-
-.progress_section_value {
-  background-color: #FFA515;
-}
-
-
-
-/* ¿ÃøÎ»ƒ±‚ : ªÛººp & ∏∂¿Ãp : ¿ÃøÎ»ƒ±‚ ∞¯≈Î */
-
-.review_wrap {
-  display: flex;
-  flex-direction: column;
-  padding-top: 8px;
-  border-top: 1px solid #e2e2e2;
-}
-
-.review_wrap:after {
-  content: "";
-  display: block;
-  width: 95%;
-  padding: 7px;
-  text-align: center;
-  transform: translateX(-2.5%);
-}
-
-.review_title {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0 7px 0;
-}
-
-.review_title_left {
-  display: flex;
-  align-items: center;
-}
-
-.review_title_left_stars {
-  width: 95px;
-  height: 16px;
-}
-
-.review_title_left_star {
-  background-image: url("/mobile_img/icon_background_stars.png");
-  background-repeat: no-repeat;
-  background-size: 95px;
-  width: 100%;
-  height: 16px;
-}
-
-.review_title_left_star_filled {
-  position: absolute;
-  background-image: url("https://timeticket.co.kr/mobile_img/icon_background_stars_filled.png");
-  background-repeat: no-repeat;
-  background-size: 95px;
-  height: 16px;
-}
-
-.review_title_left_name,
-.review_title_right {
-  color: #777;
-  font-size: 14px;
-}
-
-.review_title_left_name {
-  align-items: flex-end;
-}
-
-.review_text {
-  position: relative;
-}
-
-.review_text_area {
-  display: -webkit-box;
-  width: 99%;
-  position: relative;
-  max-height: 38px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  color: #333;
-  text-align: justify;
-  font-size: 15px;
-  line-height: 25px;
-  padding-top: 7px;
-  padding-bottom: 10px;
-}
-
-.show {
-  display: block;
-  max-height: none;
-  overflow: auto;
-  -webkit-line-clamp: unset;
-}
-
-.review_text_seemore {
-  position: absolute;
-  bottom: 2px;
-  right: 1%;
-  max-height: 16px;
-  padding-left: 20px;
-  font-size: 15px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 10%
-  );
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-
-.img_label {
-  display: inline-block;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 150px;
-  height: 150px;
-  transition: all 400ms ease;
-  cursor: pointer;
-}
-
-.sample_img_label {
-  display: inline-block;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 150px;
-  height: 150px;
-  transition: all 400ms ease;
-  cursor: pointer;
-}
-
-.review_start {
-  margin: 20px 0;
-}
-
-
-
-/* ªÛºº∆‰¿Ã¡ˆ > ªÛ¥‹ ø‰æ‡ ≥Î√‚ øµø™ */
-/* main.html */
-
-.review_preview {
-  margin: 20px auto;
-  width: 820px;
-}
-
-.review_preview {}
-
-.review_preview_container {
-  background-color: #FFFFFF;
-  padding: 18px 50px 10px 50px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-}
-
-.review_preview_title_section {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 15px;
-}
-
-.review_preview_left {
-  display: flex;
-  font-size: 16px;
-  font-weight: 600;
-  align-items: baseline;
-  padding: 5px 0;
-}
-
-.review_preview_title {
-  padding-right: 8px;
-}
-
-.review_preview_number {
-  padding-right: 25px;
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.review_preview_right {
-  font-size: 16px;
-  color: #777;
-  transform: translateY(10%);
-  cursor: pointer;
-}
-
-.review_preview_right_btn {
-  background-image: url("https://timeticket.co.kr/img/icon_arrow_down.png");
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-}
-
-.review_seemore_wrap {
-	background-color: #fff;
+.info_detail_poster {
+	position: relative;
+	margin: 35px 0;
 	width: 100%;
-	height: 65px;
-	display: flex;
-	justify-content: center;
+	height: 700px;
+	color: #fff;
+	font-size: 20px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position-y: 0%;
 }
 
-.review_seemore {
-  background-image: url("https://timeticket.co.kr/img/btn_seemore.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  width: 155px;
-  height: 35px;
-  cursor: pointer;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+.info_detail_gradient {
+	width: 100%;
+	height: 700px;
+	background-image: linear-gradient(to bottom,
+			rgba(255, 255, 255, 0) 40%,
+			rgba(255, 255, 255, 0.4) 60%,
+			rgba(255, 255, 255, 0.8) 80%,
+			rgb(255, 255, 255) 100%);
 }
 
-.review_empty {
-  display: none;
-  color: #999;
-  font-size: 16px;
-  text-align: center;
-  top: 50%;
-  transform: translateY(60%);
-  font-weight: 900;
-  padding-top : 60px;
+/* ÏÉÅÏÑ∏ Ïù¥ÎØ∏ÏßÄ Ïä§ÌÉÄÏùº   */
+.main_img {
+	margin: 35px 0;
+	width: 700px;
+	text-align: center;
 }
 
-.review_empty_icon {
-  margin-bottom: 15px;
+.main_img img {
+	display: block;
+	width: 100%;
 }
 
-
-
-/* ≥™¿« ¿ÃøÎ»ƒ±‚ øµø™ ONLY */
-/* user_review_rows_my.html */
-
-.my_review_productname {
-  font-size: 18px;
-  font-weight: 800;
-  color: #000;
+/*ÌõÑÍ∏∞ÌÉ≠ Î≥ÑÏ†ê Ïπ∏*/
+.score {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 100%;
+	background-color: #f6f6f6;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	padding: 20px 30px;
 }
 
-.my_review_title_right {
-  display: flex;
-  white-space: nowrap;
-  color: #777;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+.score_left {
+	display: grid;
+	grid-template-rows: 2fr 1fr 1fr;
+	place-items: center;
+	border-right: 2px solid #e2e2e2;
+	padding: 10px 30px;
 }
 
-.my_review_title_right div:hover {
-  color:#ff4b4b;
+.score_left_average {
+	font-size: 2rem;
+	font-weight: 500;
 }
 
-.my_review_title_right div {
-  margin-left: 5px;
-  font-size:13px;
-  cursor: pointer;
+.score_left_stars {
+	width: 120px;
 }
 
-
-
-/* »ƒ±‚ ¿€º∫/ºˆ¡§ ∆‰¿Ã¡ˆ */
-/* my_buy_choice_wright */
-
-.review_write_wrap {
-  background-color: #fff;
-  margin-top: 5px;
-  padding-top: 15px;
-  border-top: #e2e2e2 1px solid;
+.score_left_star_based {
+	position: relative;
+	background: url('/resources/common/image/icon_background_stars.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	height: 22px;
 }
 
-.first_flex_container {
-  display: flex;
-  height: 100px;
+.score_left_star_filled {
+	position: absolute;
+	background: url('/resources/common/image/icon_background_stars_filled.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	height: 22px;
 }
 
-.second_flex_container {
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  padding: 5px 0 10px 0;
-}
-
-.product_info_poster {
-  width: 100px;
-  height: 100px;
-  margin-right: 18px;
-  border-radius: 10px;
-  background-color: #cccccc;
-}
-
-.product_info_poster_img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-}
-
-.product_info_detail {
-  text-align: left;
-  padding-top: 7px;
-  width: 550px;
-}
-
-.product_info_detail_title {
-  font-size: 17px;
-  font-weight: 900;
-  color: #000;
-  padding-bottom: 10px;
-}
-
-.product_info_detail_option {
-  font-size: 14px;
-  color: #999;
-  white-space: nowrap;
-  width: 550px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-}
-
-.product_info_detail_date {
-  font-size: 14px;
-  color: #999;
-}
-
-.review_section_stars {
-  display:flex;
-  align-items: center;
-}
-
-.review_section_stars img {
-  width: 33px;
-  margin-right: 4px;
-  cursor: pointer;
-}
-
-.review_section_star_value {
-  visibility: hidden;
-}
-
-.review_section_text {
-  width: 100%;
-  height: 100%;
-}
-
-.review_section_text_input {
-  padding: 15px;
-  width: 750px;
-  height: 150px;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  resize: none;
-  outline: none;
-  line-height: 22px;
-  font-size: 14px;
-  text-align: justify;
-}
-
-.review_section_photo {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-}
-
-.review_section_photo_label {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #e2e2e2;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
-.review_section_photo_preview {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.review_section_photo_cancel {
-  visibility: hidden;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  transform: translateY(-103%);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.review_section_text_limit {
-  text-align: right;
-  color: #ff4b4b;
-  font-size: 13px;
-  padding-top: 5px;
-  letter-spacing: -0.5px;
-}
-
-.review_section_reward {
-  display: flex;
-  align-items: center;
-}
-
-.review_section_reward_text {
-  padding: 7px 15px;
-  border-radius: 8px 8px 8px 0;
-  font-size: 14px;
-  background-color: #2bda8b;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.review_section_submit {
-  padding: 20px 0;
-  text-align: center;
-}
-
-.review_section_submit button {
-  background-color: #ff4b4b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: 400;
-  height: 55px;
-  width: 40%;
-  cursor: pointer;
-  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
-}
-
-#img_upload {
-  display: none;
-}
-
-.notice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 130%;
-  height: 150%;
-  transform: translate(-35%, -35%);
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-}
-
-.notice_box {
-  position: absolute;
-  width: 480px;
-  height: auto;
-  background-color: #fff;
-}
-
-.notice_box_title {
-  color: #ff4b4b;
-  font-size: 20px;
-  font-weight: 800;
-  padding: 35px;
-  text-align: center;
-}
-
-.notice_box_description {
-  color: #777;
-  text-align: left;
-  padding: 0px 50px 50px ;
-  font-size: 16px;
+.score_left_total {
+	color: #777;
 
 }
 
-.notice_box_confirm {
-  color: #777;
-  font-size: 20px;
-  text-align: center;
-  font-weight: 800;
-  padding: 20px 0px;
-  cursor: pointer;
-  border-top: #e2e2e2 1px solid;
+.score_right {
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	margin: 10px 20px;
+
 }
 
-.inactive {
-  display: none;
+/* Î≥ÑÏ†ê Î∂ÑÌè¨ Í∑∏ÎûòÌîÑ */
+.progress {
+	display: grid;
+	grid-template-columns: 1fr 5fr;
+	color: #777;
+	place-items: center;
+}
+
+.progress div {
+	margin-right: 15px;
+}
+
+.progress_bar,
+.progress_value {
+	height: 6px;
+	border-radius: 10px;
+}
+
+.progress_bar {
+	width: 80%;
+	background-color: #e2e2e2;
+}
+
+.progress_value {
+	background-color: #FFA515;
+}
+
+/* Î¶¨Î∑∞ */
+#reviews_container {
+	margin: 20px;
+}
+#noReview{
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 200px;
+}
+#noReview > div{
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.review {
+	padding-top: 15px;
+	border-top: 2px solid #eee;
+	display: grid;
+	grid-template-rows: 30px 1fr;
+}
+
+.review_top {
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+}
+
+.review_stars {
+	width: 120px;
+	padding-top: 2px;
+}
+
+.review_star_based {
+	background-image: url('/resources/common/image/icon_background_stars.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	width: 100%;
+	height: 22px;
+}
+
+.review_star_filled {
+	position: absolute;
+	background-image: url('/resources/common/image/icon_background_stars_filled.png');
+	background-repeat: no-repeat;
+	background-size: 120px;
+	height: 22px;
+}
+
+.reviewer_id {
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+
+.review_date {
+	text-align: right;
+	color: #777;
+}
+
+.review_content {
+	padding: 5px;
+}
+
+.star_num {
+	font-weight: 600;
+	padding-top: 10px;
+}
+
+/* qna */
+#qna_form_container {
+	padding: 20px;
+	background: #f5f5f5;
+	margin: 10px 0;
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+	column-gap: 10px;
+}
+
+#qna_textarea textarea {
+	width: 100%;
+	height: 100px;
+	border: 1px solid #e6e6e6;
+	padding: 10px;
+	font-size: 1.05rem;
+	line-height: 1.5;
+	resize: none;
+}
+
+#qna_button button {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	font-size: 1.2rem;
+	font-weight: 600;
+	border: 1px solid #e6e6e6;
+	color: #777;
+}
+
+
+.qna{
+	width: 100%;
+	border: 1px solid #e6e6e6;
+	background: #fff;
+	padding: 20px;
+	display: grid;
+	grid-template-rows: 30px 1fr;
+	row-gap: 10px;
+	margin-bottom: 10px;
+}
+.qna_id{
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+.qna_date{
+	color: #777;
+	font-size: 0.9rem;
+}
+.ans{
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: red;
+}
+
+/* Ïû•ÏÜå - ÏßÄÎèÑ */
+
+div[id^=map] {
+	padding: 10px;
+	width: 100%;
+	height: 400px;
+}
+
+
+/* ÌôòÎ∂àÍ∑úÏ†ï */
+.txt_blue {
+	color: #000098;
+}
+
+.txt_red {
+	color: #FF0000;
+}
+
+.txt_gray {
+	color: #777;
 }

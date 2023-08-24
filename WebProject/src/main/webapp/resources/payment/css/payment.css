@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
-* {
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+input {
+	border: none;
+    outline: none;
+	font-size: 15px;
 }
 
 .payment-con {
     width: 1100px;
     margin: auto;
-    padding: 10px 50px;
+    padding: 20px 50px;
     background:#f1f1f1;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
     .payment-title {
@@ -41,7 +41,6 @@
 
     /* 예매정보 */
     .payment-selected-box-title {
-        display: inline-block;
         color: #888;
         font-size: 15px;
     }
@@ -59,7 +58,20 @@
         font-size: 15px;
         line-height: 160%;
     }
-
+	
+	#title-reset-wrapper {
+		display: flex;
+		justify-content: space-between;
+		flex-flow: row nowrap;
+	}
+	
+	#reset {
+		margin-right: 5px;
+		cursor: pointer;
+		background-color: transparent;
+		border: none;
+	}
+	
     .payment-coupon-value {
         border-bottom: 2px solid #888;
         margin-right: 10px;

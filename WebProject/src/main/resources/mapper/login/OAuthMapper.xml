@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.OAuthMapper">
+	<!-- 카카오 로그인 sql -->
+	<insert id="insertOauthMember" parameterType="MembersDTO">
+		INSERT INTO
+			members(
+				member_code,
+				member_id,
+				member_pwd,
+				member_name,
+				member_email,
+				member_role,
+				join_date
+			)
+		VALUES(
+			member_code_seq.nextval,
+			#{member_id}, 
+			#{member_pwd},
+			#{member_name},
+			#{member_email},
+			#{member_role},
+			sysdate
+		)
+	</insert>
+	<select id="findByMemberId" resultType="MembersDTO"
+		parameterType="string">
+		SELECT
+			*
+		FROM 
+			members 
+		WHERE 
+			member_id=#{id}
+	</select>
+</mapper>

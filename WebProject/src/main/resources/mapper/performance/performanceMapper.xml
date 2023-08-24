@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.PerformanceMapper">
+	<select id="getAllPerformances">
+		SELECT * FROM performance where end_date > sysdate
+	</select>
+	<select id="getAllPerformancesSortbyPrice">
+		SELECT * FROM performance
+		<choose>
+			<when test="sort_code == 'asc'">
+				order by performance_price ASC
+			</when>
+			<when test="sort_code == 'desc'">
+				order by performance_price DESC
+			</when>
+			<otherwise>
+				ORDER BY rownum
+			</otherwise>
+		</choose>
+	</select>
+	<select id="getAllPerformancesSortbyScore">
+		select * from performance left outer join (select performance_code, round(avg(review_star),1)as avg from reviews group by performance_code) 
+		using(performance_code) where end_date > sysdate order by avg desc nulls last
+	</select>
+	<select id="getPerformances">
+		SELECT * FROM performance
+		WHERE main_category=#{main_category} AND end_date > sysdate ORDER BY rownum
+	</select>
+	<select id="getRandomPerformances">
+		 SELECT * FROM (SELECT * FROM performance ORDER BY DBMS_RANDOM.VALUE) WHERE end_date > sysdate and ROWNUM &lt;= 5
+	</select>
+	<select id="getAreaPerformances">
+		SELECT * FROM performance
+		WHERE address LIKE '' || #{area_code} || '%'
+		AND end_date > sysdate ORDER BY rownum
+	</select>
+	
+	<select id="getPerformance" resultType="PerformanceDTO">
+		SELECT * FROM performance
+		WHERE performance_code=#{performance_code}
+	</select>
+	<update id="updateQty">
+		UPDATE performance SET performance_qty =
+		performance_qty + #{ticket_qty} WHERE performance_code = (SELECT
+		DISTINCT performance_code FROM advance_tickets WHERE payment_code_fk=#{payment_code})
+	</update>
+	<select id="getPerformancesAreanSortbyPrice">
+		SELECT * FROM performance
+		WHERE address LIKE '' || #{area_code} || '%'
+		AND end_date > sysdate
+		<choose>
+			<when test="sort_code == 'asc'">
+				order by performance_price ASC
+			</when>
+			<when test="sort_code == 'desc'">
+				order by performance_price DESC
+			</when>
+			<otherwise>
+				ORDER BY rownum
+			</otherwise>
+		</choose>
+	</select>
+	<select id="getPerformancesAreanSortbyScore">
+	select * from performance left outer join (select performance_code,round(avg(review_star),1)as avg from reviews group by performance_code)
+	using(performance_code) where address LIKE '' || #{area_code} || '%' and end_date > sysdate order by avg desc nulls last
+	</select>
+	<select id="getPerformancesSortbyScore">
+	select * from performance left outer join (select performance_code,round(avg(review_star),1)as avg from reviews group by performance_code)
+	using(performance_code) where main_category=#{main_category} and end_date > sysdate order by avg desc nulls last
+	</select>
+	<select id="getPerformancesSortbyPrice">
+		select * from performance where main_category=#{main_category} and end_date > sysdate
+		<choose>
+			<when test="sort_code == 'asc'">
+				order by performance_price ASC
+			</when>
+			<when test="sort_code == 'desc'">
+				order by performance_price DESC
+			</when>
+			<otherwise>
+				ORDER BY rownum
+			</otherwise>
+		</choose>
+	</select>
+	
+	<update id="setShowUpdate" parameterType="PerformanceDTO">
+		UPDATE performance SET 
+		performance_name = #{performance_name}, 
+		performance_qty = #{performance_qty},
+		main_category = #{main_category},
+		sub_category = #{sub_category},
+		performance_price = #{performance_price},
+		start_date = #{start_date},
+		end_date = #{end_date},
+		address= #{address},
+		place = #{place},
+		poster = #{poster}
+		WHERE performance_code = #{performance_code}
+	</update>
+</mapper>

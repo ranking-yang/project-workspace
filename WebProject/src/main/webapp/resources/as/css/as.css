@@ -1,131 +1,235 @@
-@charset "UTF-8";
-/* 고객센터 - 메인 + 공통적으로 적용되는 사항 */
-* {
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Noto Sans KR', sans-serif;
+.footer-container {
+	background-color: white;
 }
-body{
-    background-color: rgb(236, 236, 236);
+
+#body {
+	background-color: rgb(236, 236, 236);
+	padding: 10px 0;
 }
-#as-container{
-    width: 1100px;
-    margin: 30px auto;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    height: 700px;
-    column-gap: 20px;
+
+#as-container {
+	width: 1100px;
+	margin: 30px auto;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	/*height: 700px;*/
+	column-gap: 20px;
 }
-#as-container> * {
-    border-radius: 15px;
-    padding: 40px 30px 0;
+
+#as-container>* {
+	border-radius: 15px;
+	padding: 40px 30px 0;
 }
-#as-side-menu{
-    background-color: white;
+
+#as-side-menu {
+	background-color: white;
 }
-.as-side-menu-subtitle{
-    padding: 10px 0;
-    cursor: pointer;
+
+.as-side-menu-subtitle {
+	padding: 10px 0;
+	cursor: pointer;
+	background-color: white;
+	color: black;
+	font-size: 18px;
 }
-.as-side-menu-subtitle.selected{
-    color: rgb(70,200,180);
+
+.as-side-menu-subtitle.selected {
+	color: rgb(70, 200, 180);
+	font-weight: bold;
 }
-.as-side-menu-subtitle:hover{
-    color: rgb(70,200,180);
+
+.as-side-menu-subtitle:hover {
+	color: rgb(70, 200, 180);
+	font-weight: bold;
 }
-#as-side-menu-title{
-    border-bottom: 1px solid rgb(236, 236, 236);
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding-bottom: 20px;
+
+#as-side-menu-title {
+	border-bottom: 1px solid rgb(236, 236, 236);
+	padding-bottom: 20px;
+	font-size: 25px;
+	font-weight: 700;
 }
-#as-board{
-    background-color: white;
+
+#as-board {
+	background-color: white;
 
 }
-#as-board-title{
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding: 0 0 15px 0;
+#as-board > #as-board-list-page-buttons{
+	text-align: center;
+	margin: 0 0 10px 0;
 }
-#as-board-list{
-    display: grid;
-    grid-template-rows: repeat(11, 1fr);
-    margin: 5px 0 30px 0;
+
+
+#as-board-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #555;
+	padding: 0 0 20px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
-#as-board-list > div{
-    display: grid;
-    grid-template-columns: 50px 1fr 100px;
-    padding: 10px 20px;
-    column-gap: 20px;
+
+#as-board-list {
+	display: grid;
+	grid-template-rows: repeat(10, 1fr);
+	margin: 5px;
 }
-#as-board-list-category{
-    font-weight: 500;
-    background-color: rgb(236, 236, 236);
-    text-align: center;
+
+.faq-top {
+	font-weight: 500;
 }
-.as-board-list-board{
-    border-bottom: 1px solid rgb(236, 236, 236);
-    font-weight: 300;
+
+#as-board-list>div {
+	display: grid;
+	grid-template-columns: 80px 1fr 100px;
+	padding: 10px 20px;
 }
-.as-board-list-board > div:first-child{
-    text-align: center;
+
+#as-board-list-category {
+	border-bottom: 3px solid rgb(184, 184, 184);
+	display: grid;
+	grid-template-columns: 80px 1fr 100px;
 
 }
-.as-board-list-board > div:nth-child(2){
-    padding: 0 20px;
+
+#as-board-list-category-freq {
+	font-size: 1.1rem;
+	font-weight: 500;
+	text-align: center;
+	border: none;
+	background-color: rgb(236, 236, 236);
 }
-.as-board-list-board > div:nth-child(2):hover{
-    text-decoration: underline;
-    cursor: pointer;
+.as-board-list-board-freq{
+	display: grid;
+	grid-template-columns: 80px 1fr;
+	padding: 10px 20px;
+	border-bottom: 1px solid rgb(236, 236, 236);
 }
-.as-board-list-board > div:last-child{
-    text-align: center;
+
+.as-board-list-board-freq>div:first-child {
+	text-align: center;
 }
-#as-board-list-page-buttons{
-    text-align: center;
+
+.as-board-list-board-freq>div:last-child {
+	text-align: left;
+	padding: 0 50px;
+}
+.as-board-list-board-freq>div:last-child:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.as-board-list-board-freq a {
+	text-decoration: none;
+	color: black;
+}
+
+.as-board-list-board {
+	border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+.as-board-list-board>div:first-child {
+	text-align: center;
+}
+
+.as-board-list-board a {
+	text-decoration: none;
+	color: black;
+}
+
+.as-board-list-board>div:nth-child(2):hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.as-board-list-board>div:nth-child(3) {
+	text-align: center;
+}
+
+/*공지사항 우선순위*/
+.level1 {
+	font-weight: bold;
+}
+
+/* 고정 공지사항 태그 */
+.notice_top {
+	background-color: rgb(159, 64, 255);
+	color: white;
+	font-weight: 500;
+	border-radius: 10px;
+	padding: 0 5px;
 }
 .page-buttons{
-    border: 0.1px solid gray;
+	border: none;
     background-color: white;
     cursor: pointer;
     border-radius: 2px;
     margin: 20px 0;
 }
 .page-buttons:hover{
-    border: 0.1px solid gray;
+    border: none;
     background-color: rgb(240, 239, 239);
     cursor: pointer;
 }
-.page-buttons.selected{
-    border: none;
-    color: rgb(70,200,180);
+
+.page-buttons:hover {
+	border: 0.1px solid gray;
+	background-color: rgb(240, 239, 239);
+	cursor: pointer;
+}
+
+.page-buttons.selected {
+	border: none;
+	color: rgb(70, 200, 180);
+}
+
+.move-buttons {
+	border: none;
+	background-color: white;
+	cursor: pointer;
+	border-radius: 2px;
+	margin: 20px 0;
+	font-weight: 700;
+}
+
+.move-buttons:hover {
+	border: 0.1px solid gray;
+	background-color: rgb(240, 239, 239);
+	cursor: pointer;
 }
 
 /* 고객센터 - 자주묻는 질문 css */
-#freq-questions-top3-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid gray;
-    border-radius: 15px;
-    background-color: rgb(231, 245, 243);
-    margin: 5px 0 20px 0;
+#freq-questions-top3-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	border-radius: 15px;
+	background-color: rgb(231, 245, 243);
+	margin: 5px 0 20px 0;
 }
-#freq-questions-top3-container > * {
-    text-align: center;
-    margin: 30px;
-    display: grid;
-    grid-template-rows: 4fr 1fr;
+
+#freq-questions-top3-container>* {
+	text-align: center;
+	margin: 30px;
+	display: grid;
+	grid-template-rows: 4fr 1fr;
 }
-.freq-q-top3-icon{
-    font-size: 50px;
+
+.freq-question-top3-module {
+	cursor: pointer;
 }
-.freq-q-top3-icon > img{
-    width: 100px;
-    height: 100px;
+
+.freq-q-top3-icon {
+	font-size: 50px;
 }
-.freq-q-span{
-    color: rgb(70,200,180);
-    font-weight: 600;
-    margin-right: 10px;
+
+.freq-q-top3-icon>img {
+	width: 100px;
+	height: 100px;
+}
+
+.freq-q-span {
+	color: rgb(70, 200, 180);
+	font-weight: 600;
+	margin-right: 10px;
 }

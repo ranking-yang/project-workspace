@@ -12,6 +12,23 @@
 	background-size: 60px 60px;
 }
 
+.join-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.join-submenu a {
+	color: #777;
+}
+
+
+.join-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
+}
 .join-wrap {
 	width: 500px;
 	margin: 50px auto;
@@ -43,7 +60,7 @@
 	border: 1px solid #ddd;
 	background-repeat: no-repeat;
 	background-size: 24px;
-	background-position: 20px 15px; /* 오른쪽, 아래 */
+	background-position: 20px 15px; /* �삤瑜몄そ, �븘�옒 */
 }
 
 .readonly {
@@ -51,7 +68,7 @@
 }
 
 .input-alret-id, .input-alret-password, .input-alret-name,
-	.input-alret-email, .input-alret-cid, .input-alret-birth-date {
+	.input-alret-email, .input-alret-cid, .input-alret-birth-date, .input-alret-phone {
 	text-align: left;
 	margin-left: 60px;
 	height: 15px;
@@ -117,6 +134,8 @@
 	font-size: 18px;
 	font-weight: 400;
 }
+
+
 
 .btn-hphone-off {
 	width: 90px;
@@ -211,4 +230,20 @@
 	font-size: 18px;
 	font-weight: 600;
 	cursor: pointer;
+}
+.join-submenu {
+	margin-top: 25px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.join-submenu a {
+	color: #777;
+}
+
+.join-submenu span {
+	color: #777;
+	font-size: 14px;
+	vertical-align: 0px;
+	margin: 0 10px;
 }

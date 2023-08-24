@@ -1,7 +1,9 @@
 
+
 const carousel = document.querySelector(".performance-list"),
-firstImg = carousel.querySelectorAll("img")[0];
+firstImg = carousel.querySelectorAll("img");
 arrowIcons = document.querySelectorAll(".wrapper i");
+
 
 
 let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
