@@ -8,7 +8,6 @@ function toggleLike(event, buttonId, member_code) {
     
     if ($button.hasClass('liked')) {
       $icon.removeClass('fa-regular').addClass('fa-solid').css('color','#e41b1b');
-      console.log("button",$button.attr('id'));
 
       $.ajax({
 			url: "../addwishlist",
@@ -19,7 +18,6 @@ function toggleLike(event, buttonId, member_code) {
 				},
 			success: function (response) {
             // 서버로부터의 성공 응답 처리 (필요한 경우)
-            console.log("찜 추가 성공:", response);
             }
 		});
 	} else {
@@ -33,7 +31,6 @@ function toggleLike(event, buttonId, member_code) {
 				},
 		  success: function (response) {
             // 서버로부터의 성공 응답 처리 (필요한 경우)
-           console.log("찜 삭제 성공:", response);
            }
 	  });
     }

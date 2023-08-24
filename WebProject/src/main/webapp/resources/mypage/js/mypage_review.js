@@ -31,12 +31,7 @@ function delete_alrim(review_code, performance_code){
 }
 		
 function update_content(review_code) {
-	console.log("업데이트 실행");
-	console.log(review_code);
-		
 	// 객체를 JSON 문자열로 변환하여 서버로 전송
-	//var reviewJson = JSON.stringify(review);
-	//console.log(reviewJson);
 	window.open('/mypage/reviewUpdate?review_code=' + review_code, 'reviewUpdate', 'width=625px,height=425px,left=655px,top=250px');
 }
 	
@@ -51,7 +46,6 @@ function changeSeq() {
 }
 	
 function goToperformance(category, performance_code) {
-	console.log("goToperformance 실행됨");	
 	if (category !== "art") {
 		location.href = '../product-detail?performance_code=' + performance_code;				
 	} else {

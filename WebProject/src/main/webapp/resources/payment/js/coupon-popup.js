@@ -14,7 +14,6 @@ for (let index = 0; index < couponBtns.length; ++index) {
 		let totalPrice = 0; 
 		for (let i = 0; i < basePrice.length; ++i) {
 			totalPrice += Number(basePrice[i].innerHTML);
-			//console.log(totalPrice);
 		}
 		
 		

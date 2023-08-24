@@ -19,10 +19,6 @@ $(document).ready(function() {
 				$('#faq-write-btn').show();
 				$('#faq-delete-btn').show();
 				$('#faq-title').text("자주묻는질문 관리");
-			},
-			error: function(xhr, status, error) {
-				console.error('목록 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 
@@ -80,9 +76,6 @@ $(document).ready(function() {
 					// 새로운 게시글 등록 성공 후 list 다시 받아와서 테이블 그리기
 					getFaqList();
 
-				},
-				error: function(xhr, status, error) {
-					console.error('등록을 실패했습니다.')
 				}
 			});
 		}
@@ -118,7 +111,7 @@ $(document).ready(function() {
 				},
 				error: function(xhr, status, error) {
 					alert("게시글 삭제를 실패하였습니다.");
-					console.error('Error:', error);
+					
 				}
 			})
 		}
@@ -153,10 +146,6 @@ $(document).ready(function() {
 				$('#faq-delete-btn').hide();
 				$('#faq-title').text("자주묻는질문 작성");
 
-			},
-			error: function(xhr, status, error) {
-				console.error('게시글 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 	})
@@ -193,18 +182,10 @@ $(document).ready(function() {
 						if (result === 1) {
 							alert("게시글이 수정되었습니다.");
 							getFaqList();
-						} else {
-							console.log("게시글 수정 실패");
 						}
-					},
-					error: function(xhr, status, error) {
-						console.error('게시글 추가를 실패했습니다.');
-						console.error('Error:', error);
 					}
 				});
 			}
-		} else {
-			console.log("게시글 등록 취소");
 		}
 	});
 

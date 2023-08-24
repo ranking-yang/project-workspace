@@ -25,8 +25,7 @@ var closePopup = false;
 function showPopup() {
 	var review_content = document.getElementById("writeNote").value.trim();
 	var review_star = document.getElementById("review_star").value.trim();
-	console.log("되니?");
-	console.log(review_content);
+
 	if(review_content === ''){
 		alert("리뷰를 올바르게 작성해주세요");
 	}else if(review_star ===''){
@@ -35,7 +34,7 @@ function showPopup() {
 		alert("작성이 완료되었습니다!");
 		document.getElementById("form").submit();
 		closePopup = true;
-		console.log(closePopup);
+
 	}	
 }
 

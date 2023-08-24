@@ -5,7 +5,7 @@ $(document).ready(function() {
 	// 체크박스 전체 선택
 	$("input[name=selectAll]").click(function(){	
 	    if($("input[name=selectAll]").prop("checked")){
-		console.log('test');
+		
 		    $("input[name=select]").prop("checked",true);   // 전체 체크
 		} else {
 		    $("input[name=select]").prop("checked",false);  // 전체 체크 해제
@@ -134,7 +134,7 @@ $(document).ready(function() {
 			selecties.push(selection);
 		});
 		
-		console.log(selecties);
+		
 		if (selecties.length == 0) {
 			alert('환불할 티켓을 선택해주세요');
 		} else {			

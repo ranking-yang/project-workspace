@@ -45,11 +45,7 @@
 									+ '<button class="coupon-btn update-btn ' + i + '" data-code="' + i + '">수정</button>');
 					}
 				}
-			},
-			error: function() {
-				console.log('에러');
 			}
-			
 		});
 	});
 	/* 쿠폰 생성창 */
@@ -86,7 +82,7 @@
 	            	$('#coupon-container').empty();
 	            	$('#coupon-ask').css('display', 'none');
 	        		$('#coupon-container').css({'display':'grid', 'grid-template-columns':'1fr 3fr 2fr 1fr 1fr 1fr'});
-	        		console.log(data);
+	        		
 	        		
 	        		$('#coupon-container')
 					.append('<div class="coupon-headers">쿠폰코드</div>'
@@ -119,10 +115,7 @@
 						}
 					}
 				
-				}, 
-	    		error : function() {
-	                console.log("에러");
-	            }
+				}
 	        });
 		}
 	}
@@ -130,7 +123,6 @@
 	$(document).on('click', '.delete-btn', function(e) {
 		let code = $(e.target).data('code');
 		let couponCode = $('.' + code + '.code').text();
-		console.log(couponCode);
 		
 		if(confirm('정말로 삭제하시겠습니까?') == true)  {
 		
@@ -142,7 +134,7 @@
 					$('#coupon-container').empty();
 	            	$('#coupon-ask').css('display', 'none');
 	        		$('#coupon-container').css({'display':'grid', 'grid-template-columns':'1fr 3fr 2fr 1fr 1fr 1fr'});
-	        		console.log(data);
+	        		
 	        		
 	        		$('#coupon-container')
 					.append('<div class="coupon-headers">쿠폰코드</div>'
@@ -174,9 +166,6 @@
 									+ '<button class="coupon-btn update-btn ' + i + '" data-code="' + i + '">수정</button>');
 						}
 					}
-				},
-				error: function() {
-					console.log('에러');
 				}
 			});
 		}
@@ -224,7 +213,7 @@
 	            	$('#coupon-container').empty();
 	            	$('#coupon-ask').css('display', 'none');
 	        		$('#coupon-container').css({'display':'grid', 'grid-template-columns':'1fr 3fr 2fr 1fr 1fr 1fr'});
-	        		console.log(data);
+	        		
 	        		
 	        		$('#coupon-container')
 					.append('<div class="coupon-headers">쿠폰코드</div>'
@@ -257,10 +246,7 @@
 						}
 					}
 				
-				}, 
-	    		error : function() {
-	                console.log("에러");
-	            }
+				}
 	        });
 		}
 	}

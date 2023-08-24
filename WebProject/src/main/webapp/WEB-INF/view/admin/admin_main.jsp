@@ -13,7 +13,7 @@
 	// 메뉴 버튼 클릭시 이벤트
 	$(function() {
 		$("#menuidex_btn").click(function() {
-			console.log("test");
+			
 			$("#admin_as").show();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -42,7 +42,7 @@
         	$("#coupon").hide();
         });
 		$("#menuapi_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").show();
@@ -57,7 +57,7 @@
 			$("#coupon").hide();
 		});
 		$("#menuapi_add_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -72,7 +72,7 @@
 			$("#coupon").hide();
 		});
 		$("#menuinquiry_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -87,7 +87,7 @@
 			$("#coupon").hide();
 		});
 		$("#menuqna_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -101,7 +101,7 @@
 			$("#coupon").hide();
 		});
 		$("#menurefund_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -115,7 +115,7 @@
 			$("#coupon").hide();
 		});
 		$("#menuchart_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -130,7 +130,7 @@
 			$("#coupon").hide();
 		});
 		$("#menumd_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();
@@ -145,7 +145,7 @@
 			$("#coupon").hide();
 		});
 		$("#menucoupon_btn").click(function() {
-			console.log("test2");
+			
 			$("#admin_as").hide();
 			$("#admin_faq").hide();
 			$("#api_list").hide();

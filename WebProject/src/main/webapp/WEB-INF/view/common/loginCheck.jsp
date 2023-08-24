@@ -8,7 +8,7 @@
             type: "GET",
             dateType: "text",
             success : function(result) {
-            	console.log(result);
+            	
             	if(result){
             		$("#loginmenu").append("<button class='user-nav-btn' id='mypage'>마이페이지</button>"
 						+"<button class='user-nav-btn' id='logout'>로그아웃</button>")

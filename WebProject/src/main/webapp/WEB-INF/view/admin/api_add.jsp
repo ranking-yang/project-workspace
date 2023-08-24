@@ -31,9 +31,6 @@ $(document).ready(function() {
             		+"<td>"+this.longitude+"</td>"
             		+"</tr>");
     			});
-            },
-            error: function(e){
-            	console.log(e);
             }
         });
     });
@@ -62,9 +59,6 @@ $(document).ready(function() {
             		+"<td>"+this.longitude+"</td>"
             		+"</tr>");
     			});
-            },
-            error: function(e){
-            	console.log(e);
             }
         });
     });
@@ -93,9 +87,6 @@ $(document).ready(function() {
             		+"<td>"+this.longitude+"</td>"
             		+"</tr>");
     			});
-            },
-            error: function(e){
-            	console.log(e);
             }
         });
     });
@@ -125,18 +116,15 @@ $(document).ready(function() {
             		+"<td>"+this.longitude+"</td>"
             		+"</tr>");
     			});
-            },
-            error: function(e){
-            	console.log(e);
             }
         });
     });
 $(document).on("click", "#add_table_btn", function() {
-		console.log("add");
+		
 		var dataArray = [];
 		$("#apiaddtable tr").each(function(){
 			var len = $(this).find("td").length;
-			console.log(len);
+			
 			var show = new Object();
 			for(var i=0; i< len; i++)
 			{
@@ -158,7 +146,7 @@ $(document).on("click", "#add_table_btn", function() {
 			dataArray.push(show);
 			
 		});
-		console.log(dataArray);
+		
 		$.ajax({
 			contentType: "application/json",
 			type: "POST",

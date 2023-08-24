@@ -1,16 +1,4 @@
 /* 헤더 */
-/*
-const loginBtn = document.querySelector('#login');
-loginBtn.addEventListener('click', ()=> {
-	location.href='../login'
-});
-
-const joinBtn = document.querySelector('#join');
-joinBtn.addEventListener('click', () =>{
-	location.href='../join'
-});
-*/
-
 
 const asBtn = document.querySelector('#as');
 asBtn.addEventListener('click', () => {

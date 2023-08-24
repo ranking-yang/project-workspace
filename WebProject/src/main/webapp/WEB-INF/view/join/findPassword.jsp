@@ -19,7 +19,6 @@
 		checkphone = false;
 		$("#input-hphone-btn").click(function() {
 			const phone = $("#user-hphone").val();
-			console.log(phone);
 	        $.ajax({
 	            url : "/sms/send", // send로 변경시 sms 보냄.
 	            type: "POST",
@@ -27,9 +26,9 @@
 	            cache : false,
 	            dataType: "text",
 	            success : function(result) {
-	            	console.log(result);
+	            	
 	            	var obj = JSON.parse(result);
-	            	console.log(obj.smsConfirmNum);
+	            	
 	            	code = obj.smsConfirmNum;
 	            	if(check == false){
 	            		$("#smsArea").append("<div class='flex-between'><div>"
@@ -42,8 +41,6 @@
 								+" value=확인>"
 								+"</div></div>");
 	            		check = true;
-	            	}else{
-	            		console.log("이미 누름");
 	            	}
 	            	
 	            },
@@ -68,6 +65,7 @@
 		      }
 	    });
     </script>
+     <script defer src="/resources/join/js/findPassword.js"></script>
 </head>
 
 <body>
@@ -90,14 +88,14 @@
 					class="input-box icon-id" value="${member.member_id}"
 					style="text-transform: lowercase;">
 				</div>
-				<div class="input-alret-id"><span>${valid_member_id}</span></div>
+				<div class="input-alret-id"><span id="findpw-id-span">${valid_member_id}</span></div>
 			</section> 
 
 			<!-- 이름 -->
 			<section class="section-wrap">
 				<input type="text" id="user-name" name="member_name"
 					placeholder="이름" value="${member.member_name}" class="input-box icon-name">
-				<div class="input-alret-name"><span>${valid_member_name}</span></div>
+				<div class="input-alret-name"><span id="findpw-name-span">${valid_member_name}</span></div>
 			</section>
 
 			<!-- 생년월일 -->
@@ -105,7 +103,7 @@
 				<input type="text" id="user-birth-date" name="member_birth"
 					placeholder="생년월일" value="${member.member_birth}" class="input-box icon-birth-date"
 					oninput="removeSpace(this)">
-				<div class="input-alret-birth-date"><span>${valid_member_birth}</span></div>
+				<div class="input-alret-birth-date"><span id="findpw-birth-span">${valid_member_birth}</span></div>
 			</section>
 
 			<!-- 휴대폰 인증 -->
@@ -124,7 +122,7 @@
 							value="인증요청">
 					</div>
 				</div>
-				<div class="input-alret-phone"><span>${valid_member_phone}</span></div>
+				<div class="input-alret-phone"><span id="findpw-phone-span">${valid_member_phone}</span></div>
 			</section>
 			
 

@@ -92,7 +92,6 @@ $(document).on("click", "#search_oneon", function(){
             	option:keyword
             },
             success : function(result) {
-            	console.log("검색 후:"+ result);
             	$(".inquiry-body").empty();
             	$(result).each(function(){
             		let row = $('<tr>');

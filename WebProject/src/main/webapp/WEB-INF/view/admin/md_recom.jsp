@@ -15,7 +15,7 @@
 	                var labeltext = $(this).next('label').find('.product-module-title').text();
 	                checkShowCode.push(labelcode);
 	                checkShowTitle.push(labeltext);
-	                console.log($(this).next('label').find('.product-module-title').text());
+	               
 	                
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
@@ -28,32 +28,13 @@
 	            }
 	        });
 			
-			// 카테고리 부문 선택시 
-			/* var checkCategory = new Array();
-			$('input[type=radio]').change(function() {
-				if ($(this).is(":checked")) {
-	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
-	                checkCategory.push(labelText);
-	                console.log("Label text:", labelText);
-	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
-	            }else{
-	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
-	            	for(let i = 0; i < checkCategory.length; i++) {
-	            		  if(checkCategory[i] === labelText)  {
-	            			  checkCategory.splice(i, 1);
-	            		     i--;
-	            		  }
-	            	}
-	            	$("#select_show_label").find("label[for='" + $(this).attr("id") + "']").remove(); // 지우기
-	            }
-	        }); */
-			// 
+			
 			checkLocal = new Array();
 			$('input[class="optionlocal"]').change(function() {
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkLocal.push(labelText);
-	                console.log("Label text:", labelText);
+	                
 	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
@@ -71,7 +52,7 @@
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkshow.push(labelText);
-	                console.log("Label text:", labelText);
+	                
 	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
@@ -89,7 +70,7 @@
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkshow.push(labelText);
-	                console.log("Label text:", labelText);
+	               
 	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	                /*
 	    			if ($('.selected-label').length < 10) {
@@ -115,7 +96,7 @@
 				if ($(this).is(":checked")) {
 	                var labelText = $(this).next('label').text(); // 선택한 input 가져오기
 	                checkshow.push(labelText);
-	                console.log("Label text:", labelText);
+	               
 	                $("#select_show_label").append("<label class='selected-label' for="+$(this).attr('id')+">"+labelText+" x</label>");
 	            }else{
 	            	var labelText = $(this).next('label').text(); // 선택해제 한 input 가져오기
@@ -167,9 +148,7 @@
 				var endate = $("#md_endate").val();
 				var area = checkLocal;
 				var show = checkshow;
-				//console.log(title, stdate, endate, area, show);
-				//console.log(checkShowCode);
-				//console.log(checkShowTitle);
+				
 				$.ajax({
 	            	url : "/admin/mdreom/add", 
 		            type: "POST",
@@ -220,7 +199,7 @@
 	        
 	        // 선택된 라벨 제거
 	        $(".selected-label").remove();
-	        console.log($("#select_show_label").find("label"));
+	        
 	        // 선택된 항목 배열 초기화
 	        checkShowCode = [];
 	        checkShowTitle = [];
@@ -238,7 +217,7 @@
 		$(document).ready(function() {
 		    $('input.optionchk').change(function() {
 		        var selectedCategory = $('input[name="catoption"]:checked').data('category');
-		        console.log("selectedCategory>>>>>>>>>>>>>"+selectedCategory);
+		        
 		        filterPerformancesByCategory(selectedCategory);
 		    });
 
@@ -247,7 +226,7 @@
 		        $('.product-module').hide();
 		        $('.showpost').hide(); // showpost 요소도 숨기기
 		        $(".wrapper").css("display", "none");
-		        console.log("공연 숨기기>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		        
 		        if (category === 'all') {
 		            // "전체" 카테고리 선택 시 모든 공연 요소 표시
 		            $('.product-module').show();

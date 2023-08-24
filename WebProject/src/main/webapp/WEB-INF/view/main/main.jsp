@@ -23,10 +23,9 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				console.log(result);
 				for (var i = 0; i < result.li_per.length; i++) {
 		            var key = result.li_per[i].poster;
-		            console.log("code>>>>>>>>>>>>>>>>>>>"+result.li_per[i]["performance_code"]);
+		           
 		            var star = result.perfom[i].toFixed(1);
 		            var ranking = i + 1; 
 					$(".performance-list").append("<div class='poster'><span class='ranking'>"+ranking+"</span>"
@@ -46,10 +45,9 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				console.log(result);
 				for (var i = 0; i < result.li_per.length; i++) {
 		            var key = result.li_per[i].poster;
-		            console.log("code>>>>>>>>>>>>>>>>>>>"+result.li_per[i]["performance_code"]);
+		            
 		            var star = result.perfom[i].toFixed(1);
 		            var ranking = i + 1; 
 					$(".performance-list").append("<div class='poster'><span class='ranking'>"+ranking+"</span>"
@@ -70,7 +68,6 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				console.log(result);
 				for (var i = 0; i < result.li_per.length; i++) {
 		            var key = result.li_per[i].poster;
 		            var star = result.perfom[i].toFixed(1);
@@ -90,7 +87,6 @@
 		$("#rank_btn").focus();
 		$(".performance-list").on("click", ".poster", function(){
 	        var perfomCode = $(this).find("#perfom_code").val();
-	        console.log("perfom_code:", perfomCode);
 	        var category = $(this).find("#perfom_category").val();
 	        if(category == "art"){
 	        	location.href="/product-detail-ex?performance_code="+perfomCode;

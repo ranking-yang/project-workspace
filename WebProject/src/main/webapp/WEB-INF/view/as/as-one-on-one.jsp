@@ -13,7 +13,6 @@
 	$(document).ready(function(){
 		$(".as-board-list-board").on("click", ".board-title", function() {
 	        var code = $(this).siblings(".board-num").text();
-	        console.log("code: " + code);
 	        
 	        location.href = "/as/one-on-one/select?onecode="+code;
 	        

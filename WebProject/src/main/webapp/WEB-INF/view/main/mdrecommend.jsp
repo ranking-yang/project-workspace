@@ -17,23 +17,16 @@
 	 <script>
 	 	$(document).on("click", ".event_list_wrap", function(){
 	 		var mdCode = $(this).data("md-code"); // 클릭한 요소의 data-md-code 값을 가져옵니다.
-	 	    console.log(mdCode);
 	 	    location.href = "/product/mdrecom?main_category="+mdCode;
-			console.log(location.href);
 		});
 	 	
 	 	$(document).ready(function() {
-	 		console.log("checking");
 	        var today = new Date();
 	        today.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 00:00:00으로 설정
-	        console.log($("#enddate").text());
 	        $(".event_list_wrap").each(function() {
 	            var mdPeriodEndStr = $(this).find("#enddate").text();
-	            console.log(mdPeriodEndStr);
 	            var mdPeriodEnd = new Date(mdPeriodEndStr + "T23:59:59"); // 'T23:59:59'를 추가하여 날짜와 시간을 표현
-	            console.log(mdPeriodEnd);
 	            if (mdPeriodEnd < today) {
-	                console.log($(this).find("img"));
 	                $(this).find("img").css("opacity", "0.5");
 	                $(this).hide();
 	            }

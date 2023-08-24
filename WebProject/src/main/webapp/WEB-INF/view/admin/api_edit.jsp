@@ -18,7 +18,7 @@
 		show.poster= $("#edit_Thumbnail").attr("src");
 		show.kid_state=$("#catkids").val();
 		
-		console.log(show);
+		
 		$.ajax({
 			contentType: "application/json",
 			type: "POST",

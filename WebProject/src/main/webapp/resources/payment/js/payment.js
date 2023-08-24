@@ -60,7 +60,6 @@ function requestPay() {
       buyer_tel: $('#user_ph').text(),
       buyer_addr: "",
     }, function (rsp) {
-		console.log(rsp);
 		
 		if (rsp.success) {			
 
@@ -201,7 +200,6 @@ $('#reset').click(function() {
 	for (let i = 0; i < basePrices.length; ++i) {
 		totalPrice += parseInt(basePrices.eq(i).text());
 	}
-	console.log(totalPrice);
 	$('#payment-total-Price').text(totalPrice + '원');
 })
 

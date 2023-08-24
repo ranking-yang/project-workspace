@@ -24,10 +24,6 @@ $(document).ready(function() {
 				$('#notice-write-btn').show();
 				$('#notice-delete-btn').show();
 				$('#notice-title').text("공지사항 관리");
-			},
-			error: function(xhr, status, error) {
-				console.error('목록 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 
@@ -88,7 +84,7 @@ $(document).ready(function() {
 				},
 				error: function(xhr, status, error) {
 					alert("공지사항 등록이 실패하였습니다.");
-					console.error('Error:', error);
+					
 				}
 			});
 		}
@@ -105,7 +101,7 @@ $(document).ready(function() {
 			let noticeCode = $(this).data();
 			selectedNoticeCodes.push(noticeCode);
 		})
-		console.log(selectedNoticeCodes);
+		
 
 		if (selectedNoticeCodes.length == 0) {
 			alert('삭제할 게시글을 선택해주세요');
@@ -119,7 +115,7 @@ $(document).ready(function() {
 				contentType: "application/json",
 				data: JSON.stringify(selectedNoticeCodes),
 				success: function(response) {
-					console.log(status);
+					
 					//삭제 성공시 공지사항 list를 다시 받아와서 테이블 그리기
 					alert("공지사항이 삭제되었습니다.");
 					getNoticeList();
@@ -127,7 +123,7 @@ $(document).ready(function() {
 				},
 				error: function(xhr, status, error) {
 					alert("공지사항 삭제를 실패하였습니다.");
-					console.error('Error:', error);
+					
 				}
 			})
 		}
@@ -162,10 +158,6 @@ $(document).ready(function() {
 				$('#notice-delete-btn').hide();
 				$('#notice-title').text("공지사항 작성");
 
-			},
-			error: function(xhr, status, error) {
-				console.error('notice 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 	})
@@ -197,17 +189,9 @@ $(document).ready(function() {
 					if (result === 1) {
 						alert("게시글이 수정되었습니다.");
 						getNoticeList();
-					} else {
-						console.log("게시글 수정 실패");
 					}
-				},
-				error: function(xhr, status, error) {
-					console.error('게시글 추가를 실패했습니다.');
-					console.error('Error:', error);
 				}
 			});
-		} else {
-			console.log("게시글 등록 취소");
 		}
 	});
 

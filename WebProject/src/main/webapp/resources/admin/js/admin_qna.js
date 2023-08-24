@@ -24,10 +24,6 @@ $(document).ready(function() {
 					}
 					$("#qna_table tbody").append(row); // tbody에만 추가
 				});
-			},
-			error: function(xhr, status, error) {
-				console.error('목록 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 	}
@@ -74,10 +70,6 @@ $(document).ready(function() {
 						loadQnaList("/admin/qna/complete");
 					}
 				});
-			},
-			error: function(xhr, status, error) {
-				console.error('목록 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 	}
@@ -114,10 +106,6 @@ $(document).ready(function() {
 				str.append('<div class="addAnswerBody"><div>' + result.qa_content + '</div></div>');
 				str.append('<div class="addAnswerBottom"><textarea id="addAnswerTextarea"></textarea><button id="addAnswerBtn">등록</button></div>');
 				$("#qnatab").empty().append(str);
-			},
-			error: function(xhr, status, error) {
-				console.error('qna 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 		
@@ -147,17 +135,9 @@ $(document).ready(function() {
 						if (result === 1) {
 							alert("답변이 등록되었습니다.");
 							refreshQnatab("/admin/qna/main");
-						} else {
-							console.log("답변 추가 실패");
 						}
-					},
-					error: function(xhr, status, error) {
-						console.error('답변 추가를 실패했습니다.');
-						console.error('Error:', error);
 					}
 				});
-			} else {
-				console.log("답변 등록 취소");
 			}
 		});
 
@@ -178,10 +158,6 @@ $(document).ready(function() {
 				str.append('<div class="addAnswerBody"><div>' + result.qa_content + '</div></div>');
 				str.append('<div class="addAnswerBottom"><textarea id="addAnswerTextarea">'+result.qa_answer+'</textarea><button id="addAnswerBtn">등록</button></div>');
 				$("#qnatab").empty().append(str);
-			},
-			error: function(xhr, status, error) {
-				console.error('qna 불러오기를 실패했습니다.');
-				console.error('Error:', error);
 			}
 		});
 
@@ -210,17 +186,9 @@ $(document).ready(function() {
 						if (result === 1) {
 							alert("답변이 수정되었습니다.");
 							refreshQnatab("/admin/qna/main");
-						} else {
-							console.log("답변 수정 실패");
 						}
-					},
-					error: function(xhr, status, error) {
-						console.error('답변 추가를 실패했습니다.');
-						console.error('Error:', error);
 					}
 				});
-			} else {
-				console.log("답변 등록 취소");
 			}
 		});
 

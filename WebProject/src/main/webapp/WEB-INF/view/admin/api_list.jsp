@@ -27,9 +27,6 @@ function standard_select(){
         		+"<td width='50'><img src='"+this.poster+"' width='50'/></td>"
         		+"</tr>");
 			});
-        },
-        error: function(e){
-        	console.log(e);
         }
     	
     });
@@ -53,7 +50,7 @@ $(document).on("click", "#api_btn", function(){
 			var td = tr.children();
 		   	// 선택한 정보 edit jsp에 넣기
 		   	$("#api-select-body").ready(function(){
-		   		console.log(td.eq(1).text());
+		   		
 		   		$("#edit_code").val(td.eq(2).text());
 			    $("#edit_title").val(td.eq(3).find("input").val());
 			    $("#edit_qty").val(td.eq(4).find("input").val());
@@ -65,10 +62,7 @@ $(document).on("click", "#api_btn", function(){
 			    $("#edit_address").val(td.eq(10).text());
 			    $("#edit_place").val(td.eq(11).text());
 			    $("#edit_Thumbnail").prop("src", td.eq(12).find("img").prop("src"));
-			    console.log(td.eq(2).find("input").val());
-			    console.log(td.eq(3).find("input").val());
-			    console.log(td.eq(6).find("input").val());
-			    console.log(td.eq(11).find("img").attr("src"));
+			   
 		   	});
 		   		
 		});
@@ -113,7 +107,6 @@ $(document).on("click", "#dbupdate", function() {
 	var dataArray = [];
 	$("#api-select-body tr").each(function(){
 		var len = $(this).find("td").length;
-		console.log(len);
 		var show = new Object();
 		for(var i=0; i< len; i++)
 		{
@@ -132,7 +125,6 @@ $(document).on("click", "#dbupdate", function() {
 		dataArray.push(show);
 		
 	});
-	console.log(dataArray);
 	$.ajax({
 		contentType: "application/json",
 		type: "POST",

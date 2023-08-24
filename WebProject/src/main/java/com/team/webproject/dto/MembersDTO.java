@@ -36,8 +36,7 @@ public class MembersDTO implements UserDetails {
 	
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 	@Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
-    		message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도<br>1개 이상씩 포함된"
-    				+ "8자 ~ 20자의 비밀번호여야 합니다.")
+    		message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 포함된 8~20자입니다.")
 	private String member_pwd;
 	
 	@NotBlank(message = "이름은 필수 입력 값입니다.")

@@ -11,7 +11,6 @@ function mainchart(optionval){
 		url:"/admin/chart",
 		type:"GET",
 		success : function(result) {
-			console.log(result);
 			$(result).each(function(){
 				var xValues = new Array();
 				var yValues = new Array();
@@ -19,7 +18,7 @@ function mainchart(optionval){
 				var month = now.getMonth();	// 월
 				
 				var currentMonth = now.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
-				console.log("얼마로 넘어오니? >?>>>>>>"+ optionval);
+				
 			    //var optionMonth = parseInt(optionValue); // value 값을 정수로 변환합니다.
 				var opmonth = result['월매출'][optionval+'월'];
 			    var memMonth = result['회원추이'][optionval+'월'];
@@ -32,8 +31,6 @@ function mainchart(optionval){
 		    		$("#join_member").html("회원 추이<br> 0 명");
 		    	}
 		    	
-		    	console.log(result["월매출"][opmonth]);
-			    
 				for(i=1; i<=12; ++i){
 					yValues.push(result['월매출'][i+'월']);
 					xValues.push(i);
@@ -82,7 +79,7 @@ function mainchart(optionval){
 				    var formattedWeekSales = Number(weekSales).toLocaleString();
 
 				    $("#week-sales").html("주간 매출<br>" + formattedWeekSales + "￦");
-				    console.log(result["주간매출"][currentWeekNumber + "주"]);
+				    
 				}else{
 					$("#week-sales").html("주간 매출<br> 0 ￦");
 				}
@@ -157,7 +154,7 @@ function mainchart(optionval){
 				    var formattedTodaySales = Number(todaySales).toLocaleString();
 
 				    $("#day-sales").html("오늘 매출<br>" + formattedTodaySales + "￦");
-				    console.log(result["일매출"][currentDay + "일"]);
+				   
 				}else{
 					$("#day-sales").html("오늘 매출<br> 0 ￦");
 				}
@@ -205,15 +202,14 @@ function mainchart(optionval){
 		var currentMonth = now.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
 		var selectElement = document.querySelector('.select_month'); // 해당하는 <select> 요소를 선택합니다.
 		var optionElements = selectElement.getElementsByTagName('option'); // <option> 요소들을 가져옵니다.
-		console.log("날짜 선택>>>>>>>>>" + optionElements);
-		console.log("날짜>>>>>>>>>" + currentMonth);
+		
 		category= "show";
 		rankajax(category ,"myChartShow1");
 		chartall("myChartShow2");
 		for (var i = 0; i < optionElements.length; i++) {
 		    var optionValue = optionElements[i].value; // <option>의 value 값을 가져옵니다.
 		    var monthValue = optionValue.replace("mon", ""); // "mon"을 제거하여 순수한 월 값만 추출
-		    console.log(monthValue);
+		   
 		    
 		    if (parseInt(monthValue) === currentMonth) { // 숫자로 변환하여 현재 월과 비교
 		        optionElements[i].selected = true;
@@ -231,7 +227,6 @@ function mainchart(optionval){
 	
 	//탭 메뉴 이벤트 설정
 	function openshow(evt, show) {
-		console.log("test");
 	    var i, tabcontent, tablinks;
 	
 	    tabcontent = document.getElementsByClassName("tabs");
@@ -388,25 +383,21 @@ function mainchart(optionval){
 	$(document).ready(function(){
 		category = "";
 		$("#btnShow").click(function(event){
-			console.log(event.target);
 			category= "show";
 			rankajax(category ,"myChartShow1");
 			chartall("myChartShow2");
 		});
 		$("#btnArt").click(function(event){
-			console.log(event.target);
 			category= "art";
 			rankajax(category, "myChartArt1");
 			chartall("myChartArt2");
 		});
 		$("#btnMusic").click(function(event){
-			console.log(event.target);
 			category= "music";
 			rankajax(category, "myChartMusic1");
 			chartall("myChartMusic2");
 		});
 		$("#btnKid").click(function(event){
-			console.log(event.target);
 			category= "kid";
 			rankajax(category, "myChartKid1");
 			chartall("myChartKid2");

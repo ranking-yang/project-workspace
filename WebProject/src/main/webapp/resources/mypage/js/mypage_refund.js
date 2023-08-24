@@ -45,10 +45,6 @@ function goToperformance(category, performance_code) {
 		} else {
 			alert('판매 기간이 종료된 상품입니다.');
 		}
-    },
-	    error: function(xhr, status, error) {
-	        // 요청이 실패했을 때 실행되는 콜백 함수
-	        console.error("Error:", error);
-	    }
+    }
 	});
 }

@@ -19,7 +19,6 @@
 		checkphone = false;
 		$("#input-hphone-btn").click(function() {
 			const phone = $("#user-hphone").val();
-			console.log(phone);
 	        $.ajax({
 	            url : "/sms/send", // send로 변경시 sms 보냄.
 	            type: "POST",
@@ -27,9 +26,9 @@
 	            cache : false,
 	            dataType: "text",
 	            success : function(result) {
-	            	console.log(result);
+	            	
 	            	var obj = JSON.parse(result);
-	            	console.log(obj.smsConfirmNum);
+	            	
 	            	code = obj.smsConfirmNum;
 	            	if(check == false){
 	            		$("#smsArea").append("<div class='flex-between'><div>"
@@ -43,8 +42,6 @@
 								+"</div></div>");
 
 	            		check = true;
-	            	}else{
-	            		console.log("이미 누름");
 	            	}
 	            	
 	            },
@@ -70,6 +67,7 @@
     });
 		
     </script>
+    <script defer src="/resources/join/js/findId.js"></script>
 </head>
 
 <body>
@@ -95,7 +93,7 @@
 					placeholder="이름" value="${member.member_name}"
 					class="input-box icon-name">
 				<div class="input-alret-name">
-					<span>${valid_member_name}</span>
+					<span id="findid-name-span">${valid_member_name}</span>
 				</div>
 			</section>
 
@@ -105,7 +103,7 @@
 					placeholder="생년월일" value="${member.member_birth}"
 					class="input-box icon-birth-date" oninput="removeSpace(this)">
 				<div class="input-alret-birth-date">
-					<span>${valid_member_birth}</span>
+					<span id="findid-birth-span">${valid_member_birth}</span>
 				</div>
 			</section>
 
@@ -127,7 +125,7 @@
 					</div>
 				</div>
 				<div class="input-alret-phone">
-					<span>${valid_member_phone}</span>
+					<span id="findid-phone-span">${valid_member_phone}</span>
 				</div>
 			</section>
 

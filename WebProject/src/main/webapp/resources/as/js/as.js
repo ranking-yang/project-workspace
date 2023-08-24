@@ -55,7 +55,7 @@ const noticePrevBtn = document.getElementById('notice-prev-btn');
 if (noticePrevBtn) {
 	noticePrevBtn.addEventListener('click', () => {
 		let pageNum = document.getElementById('page-num').value;
-		console.log(pageNum);
+		
 		if (pageNum - 1 == 0) {
 			location.href = `/as/notice/list?pageNum=${pageNum}`;
 		} else {
@@ -117,7 +117,7 @@ const oneonPrevBtn = document.getElementById('oneon-prev-btn');
 if (oneonPrevBtn) {
 	oneonPrevBtn.addEventListener('click', () => {
 		let pageNum = document.getElementById('page-num').value;
-		console.log(pageNum);
+		
 		if (pageNum - 1 == 0) {
 			location.href = `/as/one-on-one/list?pageNum=${pageNum}`;
 		} else {
@@ -128,7 +128,7 @@ if (oneonPrevBtn) {
 const oneonNextBtn = document.getElementById('oneon-next-btn');
 if (oneonNextBtn) {
 	oneonNextBtn.addEventListener('click', () => {
-		console.log("다음버튼?");
+		
 		let pageNum = document.getElementById('page-num').value;
 		let maxNum = document.getElementById('max-num').value;
 		if (pageNum + 1 > maxNum) {

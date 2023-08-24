@@ -16,10 +16,7 @@ $(document).ready(function() {
 		contentType: 'application/json',
 		success: function(data){
 			emailCode = data;
-			console.log(emailCode);
-		},
-		error: function() {
-			console.log('에러');
+			
 		}
 	})
 });
@@ -44,10 +41,6 @@ retryBtn.click(function() {
 		contentType: 'application/json',
 		success: function(data){
 			emailCode = data;
-			console.log(emailCode);
-		},
-		error: function() {
-			console.log('에러');
 		}
 		
 	});

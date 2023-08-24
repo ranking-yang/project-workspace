@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const textarea = document.getElementById('qnaTextarea');
 	gethiddenId();
 	textarea.addEventListener('click', (e) => {
-		console.log(e.target.dataset.user);
+		
 		if (e.target.dataset.user === '') {
 			location.href = '../login';
 		}
@@ -94,7 +94,7 @@ function addQnA(performance_code, member_id, member_code) {
 		.then(result => {
 			// 서버 응답을 처리하는 로직
 			document.getElementById("qnaTextarea").value='';
-			console.log('서버 응답:', result);
+			
 			
 			fetch('../getQnAlist', {
 				method: 'POST',
