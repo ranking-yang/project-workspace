@@ -92,9 +92,7 @@
 
 ### ✅ 로그인 / 회원가입
 
-![로그인_회원정보수정](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/17b49ab1-afc9-4167-b87e-ce4a5e6345e6)
-
-![회원가입](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/b779aaf9-e913-4c54-a915-734b63d58786)
+![회원가입, 로그인](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/547046b8-a19e-4ff6-9b81-588f49a68fc5)
 
 ```
 - 일반 회원가입 : Naver SMS API를 사용하여 인증 후, 회원가입 진행
@@ -103,7 +101,7 @@
 
 ### ✅ 메인
 
-![메인_정렬_배너](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/67677aec-7ab6-4454-bb29-55cc27004b1e)
+![메인](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/fd5184f3-e17b-482b-bf0c-4743eaac3d18)
 
 ```
 - 랭킹 기능을 통해 사용자가 사이트에 방문했을 때 관심도가 높은 작품을 보여줌
@@ -111,7 +109,8 @@
 
 ### ✅ 작품 리스트 및 찜기능
 
-![지역별카테고리](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/c9460c8a-c1e0-43a5-8e5b-052f189add22)
+![작품 리스트, 찜기능](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/4785dbe3-e53f-4a31-852d-edf599befb80)
+![지역별카테고리](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/940dfc59-0201-4ba5-97ec-9ec5b19a4651)
 
 ```
 - 작품 리스트 : 카테고리 및 지역 필터링 기능
@@ -120,7 +119,7 @@
 
 ### ✅ 상세페이지
 
-![상세페이지_정보](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/d944476a-28df-4d71-9c78-583d57747f13)
+![상세페이지](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/ff6e0a4c-78f0-4ad8-80cb-42639d551d77)
 
 ```
 - REST API를 통해 가져온 정보를 토대로 페이지를 구성
@@ -143,6 +142,10 @@
 ```
 
 ### ✅ 마이페이지
+
+![로그인_회원정보수정](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/17b49ab1-afc9-4167-b87e-ce4a5e6345e6)
+![마이페이지](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/75ef4375-f34f-4819-9afa-123f9ecc4e31)
+
 ```
 - 예매내역, 취소/환불 내역, 후기, Q&A, 회원정보수정 기능
 ```
