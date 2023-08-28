@@ -91,33 +91,53 @@
 # 2. 기능 소개
 
 ### ✅ 로그인 / 회원가입
+
+![로그인_회원정보수정](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/17b49ab1-afc9-4167-b87e-ce4a5e6345e6)
+
+![회원가입](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/b779aaf9-e913-4c54-a915-734b63d58786)
+
 ```
 - 일반 회원가입 : Naver SMS API를 사용하여 인증 후, 회원가입 진행
 - 간편 로그인 : OAuth2.0을 사용하여 간편 로그인 진행
 ```
 
 ### ✅ 메인
+
+![메인_정렬_배너](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/67677aec-7ab6-4454-bb29-55cc27004b1e)
+
 ```
 - 랭킹 기능을 통해 사용자가 사이트에 방문했을 때 관심도가 높은 작품을 보여줌
 ```
 
 ### ✅ 작품 리스트 및 찜기능
+
+![지역별카테고리](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/c9460c8a-c1e0-43a5-8e5b-052f189add22)
+
 ```
 - 작품 리스트 : 카테고리 및 지역 필터링 기능
 - 찜기능 : 로그인한 사용자가 관심 있는 작품을 모아서 확인 할 수 있는 기능 
 ```
 
 ### ✅ 상세페이지
+
+![상세페이지_정보](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/d944476a-28df-4d71-9c78-583d57747f13)
+
 ```
 - REST API를 통해 가져온 정보를 토대로 페이지를 구성
 ```
 
 ### ✅ 결제
+
+![결제](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/0ba8ccbf-8789-42a3-87df-dd646c04de9f)
+
 ```
 - 결제 API를 이용하여 PG사 결제를 진행 및 DB 저장
 ```
 
 ### ✅ 검색
+
+![검색기능](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/49132761-75f8-4ee8-8f4a-b71bdf8fa6fe)
+
 ```
 - 검색어와 관련된 작품을 검색하여 작품들을 보여주는 기능
 ```
@@ -129,13 +149,19 @@
 
 ### ✅ MD 추천
 
-![ezgif com-video-to-gif](https://github.com/AmuGeoNaHae/project-workspace/assets/45970992/3f9a6ed6-d4e9-48c8-b8f1-8cfa426be595")
+![MD추천_찜목록](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/736436aa-42ac-43bb-b970-6ee714f7f32e)
 
 ```
 - 기능 설명
 ```
 
 ### ✅ 관리자
+
+![관리자_공지사항_FaQ](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/bed4cedc-6ff7-43e5-b48e-cd64f46538d7)
+![관리자qna_문의_답변하기](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/e4c9cebe-784e-40cb-911c-b2842ced0ff4)
+![관리자_api조회_추가](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/006cd1fc-15bb-4086-8048-957399a64282)
+![관리자_환불](https://github.com/AmuGeoNaHae/project-workspace/assets/132882336/71a4bcc7-eb0e-4cc1-82f8-6ec52552d8df)
+
 ```
 - API 작품 관리, 공지사항 관리, Q&A 관리, 1:1 문의 관리, 환불 관리, MD 추천 관리, 통계 관리
 ```
