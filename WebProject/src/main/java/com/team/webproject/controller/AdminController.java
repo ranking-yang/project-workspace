@@ -156,11 +156,15 @@ public class AdminController {
 	}
 	@PostMapping("/admin/api/add")
 	@ResponseBody
-	public String apiDataAdd(@RequestBody List<PerformanceDTO> li_perfom) throws SQLException {
+	public String apiDataAdd(@RequestBody List<PerformanceDTO> li_perfom) {
 		for(PerformanceDTO perfom: li_perfom) {
 			if(perfom.getPerformance_code() != null) {
+				try {
+					addPerformance.addShow(perfom);
+				}catch(Exception e) {
+					continue;
+				}
 				
-				addPerformance.addShow(perfom);
 			}
 		}
 		return "완료";

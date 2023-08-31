@@ -157,7 +157,7 @@ public class ListShowingAPIController {
 		        show.setPerformance_qty(50);
 		        show.setMain_category("art");
 		        show.setSub_category((String)js.get("realmName"));
-		        show.setPerformance_price(300);
+		        show.setPerformance_price(3000);
 		        show.setStart_date(datech.transformDate2((String)js.get("startDate")));
 		        show.setEnd_date(datech.transformDate2((String)js.get("endDate")));
 		        

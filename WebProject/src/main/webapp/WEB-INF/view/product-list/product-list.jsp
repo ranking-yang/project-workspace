@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>공연, 전시, 음악, 키즈 상세페이지</title>
-<%@ include file="../common/commonCss.jsp"%>
 <link rel="stylesheet"
 	href="/resources/product-list/css/product-list.css">
+<%@ include file="../common/commonCss.jsp"%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://kit.fontawesome.com/ad03eb7935.js"></script>
 </head>

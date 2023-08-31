@@ -245,7 +245,7 @@ public class ListShowAPIController {
         			show.setPerformance_qty(50);
         			show.setMain_category("music");
         			show.setSub_category((String)js.get("genrenm"));
-        			show.setPerformance_price(300);
+        			show.setPerformance_price(3000);
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
@@ -341,7 +341,7 @@ public class ListShowAPIController {
         			show.setPerformance_qty(50);
         			show.setMain_category("kid");
         			show.setSub_category((String)js.get("genrenm"));
-        			show.setPerformance_price(300);
+        			show.setPerformance_price(3000);
         			show.setStart_date(datech.transformDate((String)js.get("prfpdfrom")));
         			show.setEnd_date(datech.transformDate((String)js.get("prfpdto")));
         			Map<String, String> detail_map= detail((String)js.get("mt20id"));
