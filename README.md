@@ -11,8 +11,8 @@
 # 🎫 티켓킹
 + [🎨 스토리보드](https://drive.google.com/file/d/1dpwZ6RSm_LbYeQefhA2cu5Wa-EyjZf3r/view?usp=sharing)
 + [🎭 발표자료](https://drive.google.com/file/d/157JN0OymTJTJ5l0VPaxA94YwXgVSyFiR/view?usp=sharing)
-+ [🚀 티켓킹_바로가기](http://3.39.232.202/main)
-+ 자세한 사항은 [Wiki](https://github.com/AmuGeoNaHae/project-workspace/wiki)를 참고해주세요
++ [🚀 티켓킹_바로가기](http://3.39.232.202/main)<br>
++ 자세한 개발 과정은 👉[Wiki](https://github.com/AmuGeoNaHae/project-workspace/wiki)를 참고해주세요
 <br>
 
 
