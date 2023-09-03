@@ -103,7 +103,7 @@ public class MainController {
 	@ResponseBody
 	RankDTO getRank(){
 		List<String> li_rank = payment.ranking_getperfom();
-		List<PerfomSaleDTO> li_per = new ArrayList();
+		List<PerfomSaleDTO> li_per = new ArrayList<>();
 		
 		for(String rank : li_rank) {
 			for(PerfomSaleDTO per : paymapper.getAllPayPerfom()) {

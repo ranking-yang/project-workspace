@@ -343,13 +343,14 @@ public class PaymentServiceImpl implements PaymentService {
 		 
 		 Calendar calendar = Calendar.getInstance(); 
 		 int currentMonth = calendar.get(Calendar.MONTH); 
-		 Map<String, Integer> rankingmap = new HashMap(); 
+		 Map<String, Integer> rankingmap = new HashMap<>(); 
 		 for (PerfomSaleDTO perfom : li_perfom) {
 			 PerformanceDTO perfomdto = performanceMapper.getPerformance(perfom.getPerformance_code());
 			 calendar.setTime(perfom.getPayment_date()); 
 			 int paymentMonth = calendar.get(Calendar.MONTH);
 			 // 같은 월에 해당하는 데이터 만. 오늘 날짜보다 적은 값은 빼고 
-			 if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) { 
+			 //if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) {
+			 if (perfomdto.getEnd_date().after(new Date())) {
 				 if(perfom.getAdvance_ticket_state()=='Y') { 
 					 int currentCount = rankingmap.getOrDefault(perfom.getPerformance_code(), 0);
 				 	 rankingmap.put(perfom.getPerformance_code(), currentCount + 1); 
@@ -383,7 +384,8 @@ public class PaymentServiceImpl implements PaymentService {
 	        calendar.setTime(perfom.getPayment_date()); 
 	        int paymentMonth = calendar.get(Calendar.MONTH);
 	        PerformanceDTO perfomdto = performanceMapper.getPerformance(perfom.getPerformance_code());
-	        if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) {
+	        //if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) {
+	        if (perfomdto.getEnd_date().after(new Date())) {
 	            if (perfom.getAdvance_ticket_state() == 'Y') {
 	                int reviewCount = 0;
 	                for (ReviewDTO rev : reviewMapper.getAllReviews()) {
@@ -421,7 +423,8 @@ public class PaymentServiceImpl implements PaymentService {
 	        calendar.setTime(perfom.getPayment_date()); 
 	        int paymentMonth = calendar.get(Calendar.MONTH);
 	        PerformanceDTO perfomdto = performanceMapper.getPerformance(perfom.getPerformance_code());
-	        if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) {
+	        //if (paymentMonth == currentMonth && perfomdto.getEnd_date().after(new Date())) {
+	        if (perfomdto.getEnd_date().after(new Date())) {
 	            if (perfom.getAdvance_ticket_state() == 'Y') {
 	                // 점수 계산
 	                int sum = 0;

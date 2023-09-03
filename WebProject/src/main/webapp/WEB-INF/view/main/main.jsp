@@ -23,7 +23,8 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				for (var i = 0; i < result.li_per.length; i++) {
+				let length = result.li_per.length > 10 ? 10 : result.li_per.length;
+				for (var i = 0; i < length; i++) {
 		            var key = result.li_per[i].poster;
 		           
 		            var star = result.perfom[i].toFixed(1);
@@ -35,6 +36,7 @@
 					+"<div class='img-wrap'><img class='imgtag' src='"+key+"'>"
 					+"</div></div>");
 			    }
+				console.log('가지고 와짐', result.li_per);
 			}
 		});
 	}
@@ -45,7 +47,8 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				for (var i = 0; i < result.li_per.length; i++) {
+				let length = result.li_per.length > 10 ? 10 : result.li_per.length;
+				for (var i = 0; i < length; i++) {
 		            var key = result.li_per[i].poster;
 		            
 		            var star = result.perfom[i].toFixed(1);
@@ -68,7 +71,8 @@
 			type:"GET",
 			success : function(result) {
 				$(".performance-list").empty();
-				for (var i = 0; i < result.li_per.length; i++) {
+				let length = result.li_per.length > 10 ? 10 : result.li_per.length;
+				for (var i = 0; i < length; i++) {
 		            var key = result.li_per[i].poster;
 		            var star = result.perfom[i].toFixed(1);
 		            var ranking = i + 1; 	
