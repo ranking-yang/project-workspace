@@ -48,6 +48,7 @@
 
 ### ◻ Back-End
 + Java (ver-jdk11)
++ Spring boot (ver-2.7.13)
 
 ### ◻ DBMS
 + Oracle SQL (ver-ojdbc8)
