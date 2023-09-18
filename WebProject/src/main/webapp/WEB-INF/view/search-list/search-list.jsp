@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>검색 상세페이지</title>
 <link rel="stylesheet" href="/resources/search-list/css/search-list.css">
-<%@ include file="../common/commonCss.jsp" %>
+<%@ include file="../common/commonCss.jsp"%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://kit.fontawesome.com/ad03eb7935.js"></script>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../common/header.jsp"%>
 	<div id="search-list-container">
 		<c:choose>
 			<%-- 검색된 값이 없을때 나오는 화면 --%>
@@ -25,47 +25,51 @@
 				<div id="recommendTitle">😊 이런 티켓은 어떠세요?</div>
 				<div id="recommendList">
 					<div id="recommendProduct">
-		            	<c:forEach var="product" items="${recommendList }">
-						<div class="recommend-module" data-category="${product.main_category}" data-pk="${product.performance_code}">
-			        <img class="recommend-module-poster" src="${product.poster}" alt="포스터">
-			        <div class="recommend-module-top">
-			            <div class="recTag">
-			                <span>
-			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
-			                </span>
-			                <span>
-			                    ${product.sub_category }
-			                </span>
-			            </div>
-			            <c:choose>
-			                <c:when test="${empty member_id}">
-			                    <div></div>
-			                </c:when>
-			                <c:otherwise>
-			                    <c:set var="liked" value="false" />
-			                    <c:forEach var="wish" items="${wishlist}">
-			                        <c:if test="${product.performance_code eq wish.performance_code}">
-			                            <c:set var="liked" value="true" />
-			                        </c:if>
-			                    </c:forEach>
-			                    <button class="likeBtn ${liked ? 'liked' : ''}" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
-			                        <i class="fa-${liked ? 'solid' : 'regular'} fa-heart" style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
-			                    </button>
-			                </c:otherwise>
-			            </c:choose>
-			        </div>
-			        <div class="recommend-module-title">${product.performance_name}</div>
-			        <div class="recommend-module-bottom">
-			            <div class="star">
-							<c:forEach items="${scorenavgs}" var="scorenavg">
-								<c:if test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
-							</c:forEach>
-						</div>
-			            <div class="price rec">${product.performance_price}원</div>
-			        </div>
-			    </div>
-			</c:forEach>
-		    		</div>
+						<c:forEach var="product" items="${recommendList }">
+							<div class="recommend-module"
+								data-category="${product.main_category}"
+								data-pk="${product.performance_code}">
+								<img class="recommend-module-poster" src="${product.poster}"
+									alt="포스터">
+								<div class="recommend-module-top">
+									<div class="recTag">
+										<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
+										</span> <span> ${product.sub_category } </span>
+									</div>
+									<c:choose>
+										<c:when test="${empty member_id}">
+											<div></div>
+										</c:when>
+										<c:otherwise>
+											<c:set var="liked" value="false" />
+											<c:forEach var="wish" items="${wishlist}">
+												<c:if
+													test="${product.performance_code eq wish.performance_code}">
+													<c:set var="liked" value="true" />
+												</c:if>
+											</c:forEach>
+											<button class="likeBtn ${liked ? 'liked' : ''}"
+												id="${product.performance_code}"
+												onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+												<i class="fa-${liked ? 'solid' : 'regular'} fa-heart"
+													style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
+											</button>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="recommend-module-title">${product.performance_name}</div>
+								<div class="recommend-module-bottom">
+									<div class="star">
+										<c:forEach items="${scorenavgs}" var="scorenavg">
+											<c:if
+												test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
+										</c:forEach>
+									</div>
+									<div class="price rec">${product.performance_price}원</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -74,54 +78,61 @@
 						<div>🔎 '${keyword }'의 검색 결과 총 ${count }건</div>
 					</div>
 					<div id="product">
-		            	<c:forEach var="product" items="${searchList }">
-						<div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">
-			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
-			        <div class="product-module-top">
-			            <div class="tag">
-			                <span>
-			                    <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
-			                </span>
-			                <span>
-			                    ${product.sub_category }
-			                </span>
-			            </div>
-			            <c:choose>
-			                <c:when test="${empty member_id}">
-			                    <div></div>
-			                </c:when>
-			                <c:otherwise>
-			                    <c:set var="liked" value="false" />
-			                    <c:forEach var="wish" items="${wishlist}">
-			                        <c:if test="${product.performance_code eq wish.performance_code}">
-			                            <c:set var="liked" value="true" />
-			                        </c:if>
-			                    </c:forEach>
-			                    <button class="likeBtn ${liked ? 'liked' : ''}" id="${product.performance_code}" onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
-			                        <i class="fa-${liked ? 'solid' : 'regular'} fa-heart" style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
-			                    </button>
-			                </c:otherwise>
-			            </c:choose>
-			        </div>
-			        <div class="product-module-title">${product.performance_name}</div>
-			        <div class="product-module-bottom">
-			            <div class="star">
-							<c:forEach items="${scorenavgs}" var="scorenavg">
-								<c:if test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
-							</c:forEach>
-						</div>
-			            <div class="price">${product.performance_price}원</div>
-			        </div>
-			    </div>
-			</c:forEach>
-		    		</div>
-            		<div class="scroll-up"><img src="https://timeticket.co.kr/mobile_img/btn_scrollup.png" alt=""> </div>
+						<c:forEach var="product" items="${searchList }">
+							<div class="product-module"
+								data-category="${product.main_category}"
+								data-pk="${product.performance_code}">
+								<img class="product-module-poster" src="${product.poster}"
+									alt="포스터">
+								<div class="product-module-top">
+									<div class="tag">
+										<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
+										</span> <span> ${product.sub_category } </span>
+									</div>
+									<c:choose>
+										<c:when test="${empty member_id}">
+											<div></div>
+										</c:when>
+										<c:otherwise>
+											<c:set var="liked" value="false" />
+											<c:forEach var="wish" items="${wishlist}">
+												<c:if
+													test="${product.performance_code eq wish.performance_code}">
+													<c:set var="liked" value="true" />
+												</c:if>
+											</c:forEach>
+											<button class="likeBtn ${liked ? 'liked' : ''}"
+												id="${product.performance_code}"
+												onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+												<i class="fa-${liked ? 'solid' : 'regular'} fa-heart"
+													style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
+											</button>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="product-module-title">${product.performance_name}</div>
+								<div class="product-module-bottom">
+									<div class="star">
+										<c:forEach items="${scorenavgs}" var="scorenavg">
+											<c:if
+												test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
+										</c:forEach>
+									</div>
+									<div class="price">${product.performance_price}원</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="scroll-up">
+						<img src="https://timeticket.co.kr/mobile_img/btn_scrollup.png"
+							alt="">
+					</div>
 				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<%@ include file="../common/footer.jsp" %>
-	<%@ include file="../common/commonJs.jsp" %>
+	<%@ include file="../common/footer.jsp"%>
+	<%@ include file="../common/commonJs.jsp"%>
 	<script src="/resources/search-list/js/search-list.js"></script>
 </body>
 </html>

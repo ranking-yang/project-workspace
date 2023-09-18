@@ -36,7 +36,7 @@ function toggleLike(event, buttonId, member_code) {
     }
   };
 $(document).ready(function(){
-	$('.product-module').on('click', function(){
+	$('.recommend-module').on('click', function(){
 		
 		if ($(this).data('category') !== "art") {
 	    		location.href = '../product-detail?performance_code=' + $(this).data('pk');				
