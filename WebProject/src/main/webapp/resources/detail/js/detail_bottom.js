@@ -26,10 +26,12 @@ detailMenuBtns.forEach((menuBtn) => {
 		if (prevSelectedBtn) {
 			prevSelectedBtn.classList.remove('selected');
 		}
-
 		// 현재 클릭된 버튼에 selected 클래스 추가
 		e.target.classList.add('selected');
-
+		console.log(e.target.dataset.target);
+		if(e.target.dataset.target === 'review'){
+			gethiddenId("reviewer_id");
+		}
 		// 선택된 메뉴 컨텐츠 표시
 		selectMenu(e.target);
 	});
@@ -43,7 +45,20 @@ function showMoreDetailImage() {
 	document.getElementById('main_img').style.display = 'block';
 	document.querySelector('.main_img').scrollIntoView({ block: 'start' });
 }
-// qna
+// id가 두글자 이상일 때 *처리
+function gethiddenId(idlist){
+	var idlistElements = document.getElementsByClassName(`${idlist}`);
+	for (var i = 0; i < idlistElements.length; i++) {
+	    var idtext = idlistElements[i].textContent;
+	    if (idtext.length >= 2) {
+	        var hiddenId = idtext.substring(0, 2) + "*".repeat(idtext.length - 2);
+	        idlistElements[i].textContent = hiddenId;
+	    }
+	}
+}
+
+
+/*
 function gethiddenId(){
 	var qnaIdElements = document.querySelectorAll(".qna_id");
 	for (var i = 0; i < qnaIdElements.length; i++) {
@@ -54,11 +69,12 @@ function gethiddenId(){
 	    }
 	}
 }
+*/
 
-
+// qna
 document.addEventListener('DOMContentLoaded', function() {
 	const textarea = document.getElementById('qnaTextarea');
-	gethiddenId();
+	gethiddenId("qna_id");
 	textarea.addEventListener('click', (e) => {
 		
 		if (e.target.dataset.user === '') {

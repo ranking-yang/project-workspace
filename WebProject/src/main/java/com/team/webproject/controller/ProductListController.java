@@ -72,9 +72,11 @@ public class ProductListController {
 	    } catch (NumberFormatException e) {
 	    	model.addAttribute("main_category", main_category);
 	    	if(sort_code == null) {
-				model.addAttribute("performances", productListService.getProductList(main_category,area_code));
+				//model.addAttribute("performances", productListService.getProductList(main_category,area_code));
+	    		model.addAttribute("performances", null);
 			}else {
-				model.addAttribute("performances", productListService.getSortProductList(main_category, sort_code, area_code));			
+				//model.addAttribute("performances", productListService.getSortProductList(main_category, sort_code, area_code));			
+				model.addAttribute("performances", null);
 			}
 	    }
 		model.addAttribute("scorenavgs", reviewService.getPerformanceReviewCountnAvg());

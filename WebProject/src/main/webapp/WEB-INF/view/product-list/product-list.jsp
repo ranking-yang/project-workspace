@@ -65,61 +65,69 @@
 				<span class="filter" data-sort="desc">최고가순</span>
 			</div>
 		</div>
-		<div id="product">
-			<c:forEach var="product" items="${performances}">
-				<div class="product-module" data-category="${product.main_category}"
-					data-pk="${product.performance_code}">
-					<img class="product-module-poster" src="${product.poster}"
-						alt="포스터">
-					<div class="product-module-top">
-						<div class="tag">
+		<c:choose>
+		<%-- 해당 카테고리에 작품이 없을 때 --%>
+		<c:when test="${empty performances}">
+			<div id="noPerformances"> 현재 예매 가능한 공연이 없어요. 😥</div>
+		</c:when>
+		<c:otherwise>
+			<div id="product">
+				<c:forEach var="product" items="${performances}">
+					<div class="product-module" data-category="${product.main_category}"
+						data-pk="${product.performance_code}">
+						<img class="product-module-poster" src="${product.poster}"
+							alt="포스터">
+						<div class="product-module-top">
+							<div class="tag">
+								<c:choose>
+									<%--태그에 대한 처리 --%>
+									<c:when test="${main_category eq 'area' and empty area_code}">
+										<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}</span>
+										<span> ${product.sub_category} </span>
+									</c:when>
+									<c:when test="${main_category eq 'area' and not empty area_code}">
+										<span> ${product.sub_category} </span>
+									</c:when>
+									<c:otherwise>
+										<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}</span>
+									</c:otherwise>
+								</c:choose>
+							</div>
 							<c:choose>
-								<%--태그에 대한 처리 --%>
-								<c:when test="${main_category eq 'area' and empty area_code}">
-									<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}</span>
-									<span> ${product.sub_category} </span>
-								</c:when>
-								<c:when test="${main_category eq 'area' and not empty area_code}">
-									<span> ${product.sub_category} </span>
+								<c:when test="${empty member_id}">
+									<div></div>
 								</c:when>
 								<c:otherwise>
-									<span> <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}</span>
+									<c:set var="liked" value="false" />
+									<c:forEach var="wish" items="${wishlist}">
+										<c:if
+											test="${product.performance_code eq wish.performance_code}">
+											<c:set var="liked" value="true" />
+										</c:if>
+									</c:forEach>
+									<button class="likeBtn ${liked ? 'liked' : ''}"
+										id="${product.performance_code}"
+										onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
+										<i class="fa-${liked ? 'solid' : 'regular'} fa-heart"
+											style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
+									</button>
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<c:choose>
-							<c:when test="${empty member_id}">
-								<div></div>
-							</c:when>
-							<c:otherwise>
-								<c:set var="liked" value="false" />
-								<c:forEach var="wish" items="${wishlist}">
-									<c:if
-										test="${product.performance_code eq wish.performance_code}">
-										<c:set var="liked" value="true" />
-									</c:if>
+						<div class="product-module-title">${product.performance_name}</div>
+						<div class="product-module-bottom">
+							<div class="star">
+								<c:forEach items="${scorenavgs}" var="scorenavg">
+									<c:if test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
 								</c:forEach>
-								<button class="likeBtn ${liked ? 'liked' : ''}"
-									id="${product.performance_code}"
-									onclick="toggleLike(event, '${product.performance_code}', '${member_code}')">
-									<i class="fa-${liked ? 'solid' : 'regular'} fa-heart"
-										style="color: ${liked ? '#e41b1b' : '#000000'};"></i>
-								</button>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<div class="product-module-title">${product.performance_name}</div>
-					<div class="product-module-bottom">
-						<div class="star">
-							<c:forEach items="${scorenavgs}" var="scorenavg">
-								<c:if test="${scorenavg.performance_code eq product.performance_code}">⭐ ${scorenavg.review_avg} (${scorenavg.review_count})</c:if>
-							</c:forEach>
+							</div>
+							<div class="price">${product.performance_price}원</div>
 						</div>
-						<div class="price">${product.performance_price}원</div>
 					</div>
-				</div>
-			</c:forEach>
-		</div>
+				</c:forEach>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		<%@ include file="../common/scroll.jsp"%>
 	</div>
 	<%@ include file="../common/footer.jsp"%>

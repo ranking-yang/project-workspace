@@ -2,6 +2,13 @@
 a{
     color: black;
 }
+#noPerformances{
+	margin: 100px 300px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 500;
+	
+}
 .likeBtn {
     border: none;
     background-color: inherit;
