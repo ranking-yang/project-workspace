@@ -1,6 +1,5 @@
 package com.team.webproject.controller;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nimbusds.jose.shaded.json.JSONObject;
-
-import com.team.webproject.dto.FreqQuestionDTO;
-
 import com.team.webproject.dto.CouponDTO;
-
+import com.team.webproject.dto.FreqQuestionDTO;
 import com.team.webproject.dto.MDPerformanceDTO;
 import com.team.webproject.dto.MD_getDTO;
 import com.team.webproject.dto.MDrecomDTO;
@@ -34,7 +30,6 @@ import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.QnADTO;
 import com.team.webproject.dto.RefundDTO;
 import com.team.webproject.dto.SelectionDTO;
-import com.team.webproject.dto.ShowDTO;
 import com.team.webproject.mapper.AddPerformance;
 import com.team.webproject.mapper.MD_RecomMapper;
 import com.team.webproject.mapper.PaymentMapper;

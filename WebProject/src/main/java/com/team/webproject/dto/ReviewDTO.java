@@ -23,5 +23,6 @@ public class ReviewDTO {
 	private String performance_name;
 	
 	private String payment_code;
-
+	
+	private String main_category;
 }

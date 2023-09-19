@@ -47,9 +47,9 @@ function changeSeq() {
 	
 function goToperformance(category, performance_code) {
 	if (category !== "art") {
-		location.href = '../product-detail?performance_code=' + performance_code;				
+		location.href = '/product-detail?performance_code=' + performance_code;				
 	} else {
-		location.href = '../product-detail-ex?performance_code=' + performance_code;				
+		location.href = '/product-detail-ex?performance_code=' + performance_code;				
 	}	
 
 }

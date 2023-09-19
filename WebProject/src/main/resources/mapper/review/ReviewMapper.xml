@@ -48,21 +48,51 @@
     </select>
     
     <select id="getReviewsByWriterCode" resultType="ReviewDTO">
-    	SELECT r.review_writer_code,r.performance_code,r.review_star,r.review_content,r.review_date,r.reviewer_id,p.performance_name,p.poster,r.review_code 
-    	FROM reviews r 
-    	INNER JOIN performance p 
-    	ON r.performance_code = p.performance_code 
-    	WHERE r.review_writer_code = #{review_writer_code}
-    	ORDER BY review_code DESC
+    	SELECT
+    		r.review_writer_code,
+    		r.performance_code,
+    		r.review_star,
+    		r.review_content,
+    		r.review_date,
+    		r.reviewer_id,
+    		p.performance_name,
+    		p.poster,
+    		r.review_code,
+    		p.main_category 
+    	FROM
+    		reviews r 
+    	INNER JOIN
+    		performance p 
+    	ON
+    		r.performance_code = p.performance_code 
+    	WHERE
+    		r.review_writer_code = #{review_writer_code}
+    	ORDER BY
+    		review_code DESC
     </select>
     
     <select id="getReviewsByWriterCodeASC" resultType="ReviewDTO">
-    	SELECT r.review_writer_code,r.performance_code,r.review_star,r.review_content,r.review_date,r.reviewer_id,p.performance_name,p.poster,r.review_code 
-    	FROM reviews r 
-    	INNER JOIN performance p 
-    	ON r.performance_code = p.performance_code 
-    	WHERE r.review_writer_code = #{review_writer_code}
-    	ORDER BY review_code ASC
+    	SELECT
+    		r.review_writer_code,
+    		r.performance_code,
+    		r.review_star,
+    		r.review_content,
+    		r.review_date,
+    		r.reviewer_id,
+    		p.performance_name,
+    		p.poster,
+    		r.review_code,
+    		p.main_category 
+    	FROM
+    		reviews r 
+    	INNER JOIN
+    		performance p 
+    	ON
+    		r.performance_code = p.performance_code 
+    	WHERE
+    		r.review_writer_code = #{review_writer_code}
+    	ORDER BY
+    		review_code ASC
     </select>
     
     <update id="updateReview" parameterType="com.team.webproject.dto.ReviewDTO">

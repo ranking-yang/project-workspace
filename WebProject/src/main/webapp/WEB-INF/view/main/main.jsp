@@ -36,7 +36,6 @@
 					+"<div class='img-wrap'><img class='imgtag' src='"+key+"'>"
 					+"</div></div>");
 			    }
-				console.log('가지고 와짐', result.li_per);
 			}
 		});
 	}

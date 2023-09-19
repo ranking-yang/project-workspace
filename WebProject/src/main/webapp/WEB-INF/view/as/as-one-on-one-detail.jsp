@@ -64,7 +64,7 @@
 								<textarea style="width: 770px; height: 300px; border: none; font-size: 15px; color: #313131; line-height: 22px; padding: 15px; resize: none;"
 									name="oneon_content" placeholder="문의사항을 입력해주세요" required=""></textarea>
 							</div>
-							<div style="margin-top: 20px;">
+							<div>
 								<button id="oneon_submit" value="등록" class="cs_btn_red_button">등 록</button>
 							</div>
 						</form>

@@ -15,57 +15,56 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewServiceImpl implements ReviewService{
-	
+public class ReviewServiceImpl implements ReviewService {
 
 	private final ReviewMapper reviewMapper;
 	private final TicketMapper ticketMapper;
 
-    @Override
-    public List<ReviewDTO> getAllReviews() {
-        return reviewMapper.getAllReviews();
-    }
+	@Override
+	public List<ReviewDTO> getAllReviews() {
+		return reviewMapper.getAllReviews();
+	}
 
 	@Override
-	public ReviewDTO getReviewByCode(Integer reviewCode) { 
-	return reviewMapper.getReviewByCode(reviewCode); 
+	public ReviewDTO getReviewByCode(Integer reviewCode) {
+		return reviewMapper.getReviewByCode(reviewCode);
 	}
-	
+
 	@Override
 	public List<ReviewDTO> reviews(Integer review_writer_code) {
-	return reviewMapper.getReviewsByWriterCode(review_writer_code);
+		return reviewMapper.getReviewsByWriterCode(review_writer_code);
 	}
-	 
+
 	@Override
 	public List<ReviewDTO> reviewsASC(Integer review_writer_code) {
-	return reviewMapper.getReviewsByWriterCodeASC(review_writer_code);
+		return reviewMapper.getReviewsByWriterCodeASC(review_writer_code);
 	}
-	
-    @Override
-    public void insertReview(ReviewDTO review) {
-        reviewMapper.insertReview(review);
-    }
-    
-    @Override
-    public int getReviewCode(Integer member_code) {    	
-    	return reviewMapper.getReviewCode(member_code);
-    }
-    
-    @Override
-    public void updateTicketReviewCode(int review_code, String payment_code) {
-    	ticketMapper.updateReviewCode(review_code, payment_code);
-    }
 
-    @Override
-    public void updateReview(ReviewDTO review) {
-        reviewMapper.updateReview(review);
-    }
+	@Override
+	public void insertReview(ReviewDTO review) {
+		reviewMapper.insertReview(review);
+	}
 
-    @Override
-    public void deleteReview(Integer review_code) {
-    	ticketMapper.deleteReviewCode(review_code);
-        reviewMapper.deleteReview(review_code);
-    }
+	@Override
+	public int getReviewCode(Integer member_code) {
+		return reviewMapper.getReviewCode(member_code);
+	}
+
+	@Override
+	public void updateTicketReviewCode(int review_code, String payment_code) {
+		ticketMapper.updateReviewCode(review_code, payment_code);
+	}
+
+	@Override
+	public void updateReview(ReviewDTO review) {
+		reviewMapper.updateReview(review);
+	}
+
+	@Override
+	public void deleteReview(Integer review_code) {
+		ticketMapper.deleteReviewCode(review_code);
+		reviewMapper.deleteReview(review_code);
+	}
 
 	@Override
 	public List<ReviewDTO> getPerformanceReviews(String performance_code) {
@@ -84,39 +83,38 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public Map<Integer, Integer> getReviewScoreRate(String performance_code) {
-	    int total = reviewMapper.getPerformanceReviewCount(performance_code);
-	    Map<Integer, Integer> scoreRateMap = new HashMap<>();
-	    List<Integer> scoreList = reviewMapper.getReviewScoreList(performance_code);
+		int total = reviewMapper.getPerformanceReviewCount(performance_code);
+		Map<Integer, Integer> scoreRateMap = new HashMap<>();
+		List<Integer> scoreList = reviewMapper.getReviewScoreList(performance_code);
 
-	    if (scoreList != null && !scoreList.isEmpty()) {
-	        Map<Integer, Integer> scoreToIndexMap = new HashMap<>();
-	        scoreToIndexMap.put(5, 0);
-	        scoreToIndexMap.put(4, 1);
-	        scoreToIndexMap.put(3, 2);
-	        scoreToIndexMap.put(2, 3);
-	        scoreToIndexMap.put(1, 4);
+		if (scoreList != null && !scoreList.isEmpty()) {
+			Map<Integer, Integer> scoreToIndexMap = new HashMap<>();
+			scoreToIndexMap.put(5, 0);
+			scoreToIndexMap.put(4, 1);
+			scoreToIndexMap.put(3, 2);
+			scoreToIndexMap.put(2, 3);
+			scoreToIndexMap.put(1, 4);
 
-	        int[] scoreValues = {5, 4, 3, 2, 1};
+			int[] scoreValues = { 5, 4, 3, 2, 1 };
 
-	        for (int score : scoreValues) {
-	            int index = scoreToIndexMap.get(score);
-	            if (index < scoreList.size() && scoreList.get(index) != null && total != 0) {
-	                int rate = (int) ((scoreList.get(index).doubleValue() / total) * 100);
-	                scoreRateMap.put(score, rate);
-	            } else {
-	                scoreRateMap.put(score, 0);
-	            }
-	        }
-	    }
+			for (int score : scoreValues) {
+				int index = scoreToIndexMap.get(score);
+				if (index < scoreList.size() && scoreList.get(index) != null && total != 0) {
+					int rate = (int) ((scoreList.get(index).doubleValue() / total) * 100);
+					scoreRateMap.put(score, rate);
+				} else {
+					scoreRateMap.put(score, 0);
+				}
+			}
+		}
 
-	    return scoreRateMap;
+		return scoreRateMap;
 	}
 
 	@Override
 	public List<PerformanceReviewDTO> getPerformanceReviewCountnAvg() {
-		
+
 		return reviewMapper.getPerformanceReviewCountnAvg();
 	}
 
 }
-

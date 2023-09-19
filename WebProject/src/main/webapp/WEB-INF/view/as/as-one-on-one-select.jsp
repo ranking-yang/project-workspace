@@ -62,7 +62,7 @@
 								<label id="select_answerdate" style="width: 100px; height: 24px; padding: 2px 5px; font-size: 15px; color: #313131; float:right;">${oneselect.answer_date}</label>
 							</div>
 						</div>
-						<div style="margin-top: 10px; border: 1px solid #ccc; width: 805px; height: 150px;">
+						<div style="margin-top: 10px; margin-bottom: 20px; border: 1px solid #ccc; width: 805px; height: 150px;">
 							<label id="select_answer" style="width: 745px; border: none; font-size: 15px; color: #313131; line-height: 22px; padding: 15px; resize: none;">${oneselect.one_answer}</label>
 						</div>
 					</div>

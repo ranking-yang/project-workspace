@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.dto.WishlistDTO;
 import com.team.webproject.mapper.LoginMapper;
-import com.team.webproject.mapper.MD_RecomMapper;
 import com.team.webproject.mapper.PerformanceMapper;
 import com.team.webproject.mapper.WishlistMapper;
 
@@ -20,7 +19,6 @@ public class ProductListServiceImpl implements ProductListService {
 	private final PerformanceMapper performanceMapper;
 	private final LoginMapper loginMapper;
 	private final WishlistMapper wishMapper;
-	private final MD_RecomMapper mdmapper;
 
 	@Override
 	public List<PerformanceDTO> getProductList(String main_category, String area_code) { // /product로 들어올때

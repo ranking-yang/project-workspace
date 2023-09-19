@@ -51,6 +51,7 @@ public class DetailController {
 	QnAService qnaService;
 
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
 

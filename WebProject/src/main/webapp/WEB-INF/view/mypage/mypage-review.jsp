@@ -43,7 +43,7 @@
 						<c:forEach items="${reviews}" var="review" varStatus="status">
 							<div id="mypage-ticket-con">
 								<div id="mypage-ticket-top">	
-									<div id="performance_name2" onclick="goToperformance('${tickets[status.index].main_category}', '${review.performance_code}')">
+									<div id="performance_name2" onclick="goToperformance('${review.main_category}', '${review.performance_code}')">
 										${review.performance_name}
 									</div>
 									<div></div>
@@ -51,7 +51,7 @@
 								</div>
 								<div id="mypage-ticket-middle">
 								<!-- 포스터 -->
-								<div class="ticket-poster-btn" onclick="goToperformance('${tickets[status.index].main_category}', '${review.performance_code}')">
+								<div class="ticket-poster-btn" onclick="goToperformance('${review.main_category}', '${review.performance_code}')">
 							    	<img id="mypage-ticket-poster" src="${review.poster}" alt="공연포스터">
 							    </div>
 							    <div>

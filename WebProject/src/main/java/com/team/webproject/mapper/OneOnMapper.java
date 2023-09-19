@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.team.webproject.dto.NoticeDTO;
 import com.team.webproject.dto.OneOnAsDTO;
 
 public interface OneOnMapper {
