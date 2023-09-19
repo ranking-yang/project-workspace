@@ -57,20 +57,6 @@ function gethiddenId(idlist){
 	}
 }
 
-
-/*
-function gethiddenId(){
-	var qnaIdElements = document.querySelectorAll(".qna_id");
-	for (var i = 0; i < qnaIdElements.length; i++) {
-	    var qnaId = qnaIdElements[i].textContent;
-	    if (qnaId.length >= 2) {
-	        var hiddenId = qnaId.substring(0, 2) + "*".repeat(qnaId.length - 2);
-	        qnaIdElements[i].textContent = hiddenId;
-	    }
-	}
-}
-*/
-
 // qna
 document.addEventListener('DOMContentLoaded', function() {
 	const textarea = document.getElementById('qnaTextarea');
