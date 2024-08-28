@@ -91,7 +91,6 @@
 					${performance.performance_price}원
 				</div>
 				<div id="lowestprice">
-					<!-- DB 최저가 가격 -->
 				</div>
 			</div>
 		</div>

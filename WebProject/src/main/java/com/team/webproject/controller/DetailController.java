@@ -54,7 +54,7 @@ public class DetailController {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/product-detail")
 	String callKopisAPI(HttpSession session, Model model, String performance_code) throws JsonProcessingException {		
-
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal.equals("anonymousUser")) { // 로그인상태가 아님
 			model.addAttribute("member_id", null);
@@ -65,6 +65,7 @@ public class DetailController {
 		}
 		
 		JSONObject jsonob = detailService.getKopisInfo(performance_code);
+		
 		model.addAttribute("timetable", new JSONObject(detailService.getTimeTable(jsonob.get("dtguidance")))); // 공연 일 - JSON으로 변환
 		model.addAttribute("runtime", jsonob.get("prfruntime")); // 러닝타임
 		model.addAttribute("age", jsonob.get("prfage")); // 연령
@@ -82,7 +83,7 @@ public class DetailController {
 	    JSONArray lijs = new JSONArray();
 	    lijs.add(jsonob.get("styurls"));
 	         
-	     model.addAttribute("image", lijs); // 소개이미지
+	    model.addAttribute("image", lijs); // 소개이미지
 		
 		return "/detail/detail";
 	}

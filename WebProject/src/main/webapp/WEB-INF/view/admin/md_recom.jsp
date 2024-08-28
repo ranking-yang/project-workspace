@@ -149,6 +149,11 @@
 				var area = checkLocal;
 				var show = checkshow;
 				
+				console.log('나야야: ' + checkShowCode);
+				console.log('나는야: ' + checkShowTitle);
+				console.log(checkLocal);
+				console.log(checkshow);
+				
 				$.ajax({
 	            	url : "/admin/mdreom/add", 
 		            type: "POST",
@@ -165,9 +170,7 @@
 		            cache : false,
 		            success : function(result) {
 		            	alert('추천 완료');
-		            	
 		            	checkremove();
-		     		    
 		            }
 	            	
 	            });
@@ -485,23 +488,23 @@
     	<div id="md_product">
         	<c:forEach var="product" items="${performance}">
 			    <div class="wrapper">
-			    <input type="checkbox" class="showpost" id="md_${product.performance_code}" style="width:20px"/>
-			    <label for="md_${product.performance_code}" >
-			    <div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">			    	
-			        <img class="product-module-poster" src="${product.poster}" alt="포스터">
-			        <div class="product-module-top">
-			            <div class="tag">
-			            	<span>
-					           <c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
-					        </span>
-				            <span>
-					           ${product.sub_category}
-					        </span>
-			            </div>
-			        </div>
-			        <div class="product-module-title">${product.performance_name}</div>
-			    </div>
-			    </label>
+			    	<input type="checkbox" class="showpost" id="md_${product.performance_code}" style="width:20px"/>
+			    	<label for="md_${product.performance_code}" >
+			    		<div class="product-module" data-category="${product.main_category}" data-pk="${product.performance_code}">			    	
+			       			<img class="product-module-poster" src="${product.poster}" alt="포스터">
+			        		<div class="product-module-top">
+			            		<div class="tag">
+			            			<span>
+					           			<c:set var="test" value="${product.address}" />${fn:substring(test, 0, 2)}
+					        		</span>
+				            		<span>
+					           			${product.sub_category}
+					        		</span>
+			            		</div>
+			        		</div>
+			        		<div class="product-module-title">${product.performance_name}</div>
+			    		</div>
+			    	</label>
 			    </div>
 			    
 			</c:forEach>

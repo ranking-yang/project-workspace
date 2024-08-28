@@ -16,8 +16,10 @@ let selectedTime; // 선택한 시간
 // 전시 파트
 const optionBtn = document.querySelector('#popup-option-btn');
 
-// 최저가 출력 - 더 좋은 방법을 찾아보쟝 ... 
+// 최저가 출력 - 더 좋은 방법을 찾아보쟝 ...
+
 const age = chkAge();
+
 if (age >= 15) {
 	lowestprice.textContent = qtyPirce[0].value + "원 ~";
 } else if (age >= 7) {

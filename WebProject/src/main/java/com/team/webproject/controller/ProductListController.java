@@ -65,18 +65,13 @@ public class ProductListController {
 			model.addAttribute("wishlist", productListService.getUserWish_list(member_code));
 		}
 
-		try {
-	        int category = Integer.parseInt(main_category);
-	        model.addAttribute("main_category", "md_category");
-	        model.addAttribute("performances", mdMapper.getMDperfomSort(main_category, sort_code));
-	    } catch (NumberFormatException e) {
-	    	model.addAttribute("main_category", main_category);
-	    	if(sort_code == null) {
-				model.addAttribute("performances", productListService.getProductList(main_category,area_code));
-			}else {
-				model.addAttribute("performances", productListService.getSortProductList(main_category, sort_code, area_code));			
-			}
-	    }
+	    model.addAttribute("main_category", main_category);
+	    if(sort_code == null) {
+			model.addAttribute("performances", productListService.getProductList(main_category,area_code));
+		}else {
+			model.addAttribute("performances", productListService.getSortProductList(main_category, sort_code, area_code));			
+		}
+
 		model.addAttribute("scorenavgs", reviewService.getPerformanceReviewCountnAvg());
 		return "/product-list/product-list";
 	}

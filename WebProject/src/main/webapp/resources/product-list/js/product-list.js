@@ -44,7 +44,9 @@ $(document).ready(function(){
 
     function redirectToDetailPage(performanceCode, category) {
         let detailPageUrl = `../product-detail${category === "art" ? "-ex" : ""}`;
+        
         location.href = `${detailPageUrl}?performance_code=${performanceCode}`;
+        
     }
 
     $('.product-module').on('click', function(){

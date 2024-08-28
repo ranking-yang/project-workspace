@@ -161,6 +161,10 @@
         border-radius: 10px !important;
     }
     
+    .placeholder {
+		border-radius: 10px !important;
+	}
+    
     /* 전시 옵션선택 */
     .popup-option {
 		display: flex;

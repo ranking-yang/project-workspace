@@ -10,8 +10,8 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
@@ -32,6 +32,7 @@ import com.team.webproject.service.DateChange;
 
 import lombok.RequiredArgsConstructor;
 
+@PropertySource("classpath:/protected/data_api.properties")
 @Controller
 @RequiredArgsConstructor
 public class ListShowAPIController {
@@ -39,7 +40,9 @@ public class ListShowAPIController {
 
 	@Autowired
 	AddPerformance addPerformance;
-	
+	@Value("${kopis.servicekey}")
+	private String kopis_servicekey;
+
 	private DateChange datech;
 	
 	private Map<String, String> detail(String id) {
@@ -51,7 +54,7 @@ public class ListShowAPIController {
 		    factory.setReadTimeout(5000);//타임아웃 설정 5초
 		    RestTemplate restTemplate = new RestTemplate(factory);
 		    
-			String urldetail = "http://www.kopis.or.kr/openApi/restful/pblprfr/"+id+"?service=c7e9ff4fa5dd433aac399c3804a60abb";
+			String urldetail = "http://www.kopis.or.kr/openApi/restful/pblprfr/"+id+"?service=" + kopis_servicekey;
 			UriComponents uri = UriComponentsBuilder.fromHttpUrl(urldetail).build();
 			ResponseEntity<String> resultMap = restTemplate.getForEntity(uri.toString(), String.class);
 		    // xml convert 부분
@@ -64,7 +67,7 @@ public class ListShowAPIController {
 		    JSONObject alljson = (JSONObject) parser.parse(json);
 		    JSONObject dbjson =  (JSONObject) alljson.get("db");
 		    String addressid = (String) dbjson.get("mt10id");
-		    String addressurl = "http://www.kopis.or.kr/openApi/restful/prfplc/"+addressid+"?service=c7e9ff4fa5dd433aac399c3804a60abb";
+		    String addressurl = "http://www.kopis.or.kr/openApi/restful/prfplc/"+addressid+"?service=" + kopis_servicekey;
 		    UriComponents uri2 = UriComponentsBuilder.fromHttpUrl(addressurl).build();
 			ResponseEntity<String> resultMap2 = restTemplate.getForEntity(uri2.toString(), String.class);
 		    // xml convert 부분
@@ -112,10 +115,7 @@ public class ListShowAPIController {
             factory.setReadTimeout(5000);//타임아웃 설정 5초
             RestTemplate restTemplate = new RestTemplate(factory);
  
-            HttpHeaders header = new HttpHeaders();
-            HttpEntity<?> entity = new HttpEntity<>(header);
- 
-            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=c7e9ff4fa5dd433aac399c3804a60abb";
+            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=" + kopis_servicekey;
 
             LocalDate date = LocalDate.now();
             LocalDate plusdate = date.plusMonths(1);
@@ -204,10 +204,7 @@ public class ListShowAPIController {
             factory.setReadTimeout(5000);//타임아웃 설정 5초
             RestTemplate restTemplate = new RestTemplate(factory);
  
-            HttpHeaders header = new HttpHeaders();
-            HttpEntity<?> entity = new HttpEntity<>(header);
- 
-            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=c7e9ff4fa5dd433aac399c3804a60abb";
+            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=" + kopis_servicekey;
 
             LocalDate date = LocalDate.now();
             LocalDate plusdate = date.plusMonths(1);
@@ -298,10 +295,7 @@ public class ListShowAPIController {
             factory.setReadTimeout(5000);//타임아웃 설정 5초
             RestTemplate restTemplate = new RestTemplate(factory);
  
-            HttpHeaders header = new HttpHeaders();
-            HttpEntity<?> entity = new HttpEntity<>(header);
- 
-            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=c7e9ff4fa5dd433aac399c3804a60abb";
+            String url = "http://www.kopis.or.kr/openApi/restful/pblprfr?service=" + kopis_servicekey;
 
             LocalDate date = LocalDate.now();
             LocalDate plusdate = date.plusMonths(1);
@@ -328,9 +322,6 @@ public class ListShowAPIController {
             	datech = new DateChange();
             	// api에서 가져오는 데이터 json list로
             	List<JSONObject> lijson = (List<JSONObject>) json2.get("db");
-            	
-            	// DB에 들어가있는 값중 코드가 겹치는 코드 검사
-            	List<PerformanceDTO> showDB = addPerformance.selectShow();
             	
             	for(int i=0; i<lijson.size(); i++) {
             		PerformanceDTO show = new PerformanceDTO();

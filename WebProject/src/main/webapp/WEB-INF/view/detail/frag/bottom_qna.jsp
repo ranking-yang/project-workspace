@@ -11,10 +11,10 @@
 	<div id="qna_form_container">
 		<div id="qnd_form">
 			<div id="qna_textarea">
-				<textarea id="qnaTextarea" data-user="${member_id }" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
+				<textarea id="qnaTextarea" data-user="${member_id}" placeholder="· Q&amp;A를 통한 일정변경/환불 문의는 처리되지 않습니다.
 · 날짜/시간 변경은 불가하며 환불 후 다시 예매해야 합니다.
 · 티켓 환불은 마이티켓>예매내역에서 신청 가능합니다.">
-</textarea>
+				</textarea>
 			</div>
 		</div>
 		<div id="qna_button">

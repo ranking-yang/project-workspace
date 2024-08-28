@@ -50,7 +50,7 @@ public class MainController {
 	
 	@GetMapping(value = { "/", "" })
 	String main(Model model, HttpServletRequest request) {
-		
+
 		// 전체 securityholder 내용
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

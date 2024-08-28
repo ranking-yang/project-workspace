@@ -22,6 +22,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -44,7 +45,11 @@ import com.team.webproject.dto.PerformanceDTO;
 import com.team.webproject.mapper.GenerationDiscountMapper;
 import com.team.webproject.mapper.PerformanceMapper;
 
-@PropertySource("classpath:/protected/kakaomap.properties")
+@PropertySources({
+		@PropertySource("classpath:/protected/kakaomap.properties"),
+		@PropertySource("classpath:/protected/data_api.properties")
+})
+
 @Service
 public class DetailServiceimpl implements DetailService {
 
@@ -57,6 +62,11 @@ public class DetailServiceimpl implements DetailService {
 	@Value("${kakaomap.appkey}")
 	private String kakaomap_appkey;
 	
+	@Value("${kopis.servicekey}")
+	private String kopis_servicekey;
+	
+	@Value("${culture.servicekey}")
+	private String culture_servicekey;
 	
 	// DB에서 할인률 조회
 	public List<GenerationDiscountDTO> getDisCount() {
@@ -162,8 +172,8 @@ public class DetailServiceimpl implements DetailService {
 
 			String url = "http://www.kopis.or.kr/openApi/restful/pblprfr/"+performance_code;
 
-			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
-
+			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=" + kopis_servicekey).build();
+			
 			//이 한줄의 코드로 API를 호출해 MAP타입으로 전달 받는다.
 			ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
 			result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
@@ -199,7 +209,7 @@ public class DetailServiceimpl implements DetailService {
 		JSONObject jsonob = null;
 		try {
 
-			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
+			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + culture_servicekey); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("ComMsgHeader","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
             urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
             urlBuilder.append("&" + URLEncoder.encode("CallBackURI","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*Optional 필드*/
@@ -273,7 +283,7 @@ public class DetailServiceimpl implements DetailService {
 			HttpEntity<?> entity = new HttpEntity<>(header);
 
 			String url = "http://www.kopis.or.kr/openApi/restful/prfplc/"+place_id; // 공연장 위치(경도, 위도) => 지도를 불러올때 사용
-			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=c7e9ff4fa5dd433aac399c3804a60abb").build();
+			UriComponents uri = UriComponentsBuilder.fromHttpUrl(url+"?"+"service=" + kopis_servicekey).build();
 			ResponseEntity<Map> resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Map.class);
 
 

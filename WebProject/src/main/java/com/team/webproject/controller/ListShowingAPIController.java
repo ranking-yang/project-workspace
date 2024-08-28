@@ -16,7 +16,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,13 +30,17 @@ import com.team.webproject.service.DateChange;
 
 import lombok.RequiredArgsConstructor;
 
+@PropertySource("classpath:/protected/data_api.properties")
 @Controller
 @RequiredArgsConstructor
 public class ListShowingAPIController {
 	
 	@Autowired
 	AddPerformance addPerformance;
-	 
+	
+	@Value("${culture.servicekey}")
+	private String culture_servicekey;
+
 	private DateChange datech;
 
 	private String address(String id) {
@@ -43,7 +48,7 @@ public class ListShowingAPIController {
 		try {
 			
 			StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/d/"); /*URL*/
-		    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
+		    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + culture_servicekey); /*Service Key*/
 		    urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
 		    urlBuilder.append("&" + URLEncoder.encode("seq","UTF-8") + "=" + URLEncoder.encode(id, "UTF-8")); /**/
 		        
@@ -100,7 +105,7 @@ public class ListShowingAPIController {
         try {
         	
 			StringBuilder urlBuilder = new StringBuilder("http://www.culture.go.kr/openapi/rest/publicperformancedisplays/realm"); /*URL*/
-		    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=cXG%2BsVlagSV2%2FrTreOPObTV1p66Hho1fOgZi0uxSNS3GGBq7xLhMe9uPRSf3u4Ya%2BoyDgW4evwP42PU18PTy0g%3D%3D"); /*Service Key*/
+		    urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + culture_servicekey); /*Service Key*/
 		    urlBuilder.append("&" + URLEncoder.encode("sortStdr","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*1:등록일, 2:공연명, 3:지역*/
 		    urlBuilder.append("&" + URLEncoder.encode("ComMsgHeader","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /**/
 		    urlBuilder.append("&" + URLEncoder.encode("RequestTime","UTF-8") + "=" + URLEncoder.encode("20100810:23003422", "UTF-8")); /*Optional 필드*/
@@ -167,12 +172,9 @@ public class ListShowingAPIController {
 		        show.setPoster((String) js.get("thumbnail"));
 		        show.setLatitude(Double.parseDouble((String)js.get("gpsY")));        
 		        show.setLongitude(Double.parseDouble((String)js.get("gpsX")));
-		        try {
-		        	addPerformance.addShow(show);
-		        	showli.add(show);
-		        } catch(Exception e) {
-		        	continue;
-		        }
+		        
+				showli.add(show);
+				
 
 		    }
 		        
