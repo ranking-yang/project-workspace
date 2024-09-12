@@ -3,6 +3,9 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+env:
+  PROJECT_NAME: "ticketking"
+  PORT: "8081"
 
 jobs:
   build:
@@ -38,3 +41,14 @@ jobs:
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}:${IMAGE_TAG}
           
+    - name: Deploy to EC2 using SSH
+      uses: appleboy/ssh-action@v0.1.2
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_SSH_USER }}
+        key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        script: |
+          docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}:${IMAGE_TAG}
+          docker stop ${{ env.PROJECT_NAME }} || true
+          docker rm ${{ env.PROJECT_NAME }} || true
+          docker run -d --name ${{ env.PROJECT_NAME }} -p ${{ env.PORT }}:${{ env.PORT }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}:${IMAGE_TAG}
