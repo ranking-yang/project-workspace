@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.OneOnMapper">
+	<insert id="addOneOnContent" parameterType="OneOnAsDTO">
+		INSERT INTO one_on_one values(one_code_seq.nextval, #{writer_code}, #{one_title}, #{one_content}, #{one_state}, sysdate , NULL ,NULL)
+	</insert>
+	<select id="getCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			one_on_one
+	</select>
+	<select id="getPage" resultType="OneOnAsDTO" parameterType="int">
+		SELECT 
+			* 
+		FROM
+			(SELECT 
+				rownum AS rn, A.*
+			FROM 
+				(SELECT
+					*
+			 	FROM 
+					one_on_one 
+			 	ORDER BY
+					one_code DESC
+				) A
+			)
+		WHERE
+			rn &gt;= #{start} AND rn &lt;= #{end} AND writer_code = #{writer}
+	</select>
+	
+	<select id="select_OneOn" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one WHERE writer_code = #{writer}  ORDER BY one_code DESC
+	</select>
+	
+	<select id="select_OneOn_title" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one WHERE one_code = #{onecode}
+	</select>
+	
+	<select id="getAllOneOn" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one ORDER BY one_code DESC
+	</select>
+	
+	<update id="setAnswer" >
+		UPDATE one_on_one SET one_answer = #{answer}, answer_date = sysdate, one_state = 2 WHERE one_code = #{onecode}
+	</update>
+	
+	<select id="getSearchDate" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one WHERE TO_DATE(one_date) BETWEEN TO_DATE(#{stdate},'YYYY-MM-DD') AND TO_DATE(#{endate},'YYYY-MM-DD') ORDER BY one_code DESC
+	</select>
+	
+	<select id="getSearchAll" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one WHERE TO_DATE(one_date) BETWEEN TO_DATE(#{stdate},'YYYY-MM-DD') AND TO_DATE(#{endate},'YYYY-MM-DD') AND 
+		<choose>
+			<when test="option == 'title'">
+				one_title
+			</when>
+			<when test="option == 'writer'">
+				writer_code
+			</when>
+		</choose>
+		 LIKE '%'||#{text}||'%' ORDER BY one_code DESC
+	</select>
+	
+	<select id="getSearch" resultType="OneOnAsDTO">
+		SELECT * FROM one_on_one WHERE
+		<choose>
+			<when test="option == 'title'">
+				one_title
+			</when>
+			<when test="option == 'writer'">
+				writer_code
+			</when>
+		</choose>
+		LIKE '%'||#{text}||'%' ORDER BY one_code DESC
+	</select>
+</mapper>

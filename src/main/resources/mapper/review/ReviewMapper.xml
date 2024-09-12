@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.ReviewMapper">
+
+	<insert id="insertReview"
+		parameterType="com.team.webproject.dto.ReviewDTO">
+		INSERT INTO reviews
+		(
+		review_writer_code,
+		performance_code,
+		review_star,
+		review_content,
+		review_date,
+		review_like,
+		review_code,
+		reviewer_id
+		)
+		VALUES
+		(
+		#{review_writer_code},
+		#{performance_code},
+		#{review_star},
+		#{review_content},
+		sysdate,
+		0,
+		review_code_seq.nextval,
+		#{reviewer_id, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="getReviewCode">
+		SELECT MAX(review_code) FROM reviews where review_writer_code = #{member_code}
+	</select>
+	
+	<select id="getPerformanceReviews" resultType="ReviewDTO">
+		SELECT * FROM
+		reviews WHERE performance_code=#{performance_code}
+	</select>
+
+    <select id="selectReviewByCode" parameterType="java.lang.Integer" resultType="com.team.webproject.dto.ReviewDTO">
+        SELECT * FROM reviews WHERE review_code = #{value}
+    </select>
+    
+	<select id="getAllReviews" resultType="com.team.webproject.dto.ReviewDTO">
+        SELECT * FROM reviews
+    </select>
+    
+    <select id="getReviewsByWriterCode" resultType="ReviewDTO">
+    	SELECT
+    		r.review_writer_code,
+    		r.performance_code,
+    		r.review_star,
+    		r.review_content,
+    		r.review_date,
+    		r.reviewer_id,
+    		p.performance_name,
+    		p.poster,
+    		r.review_code,
+    		p.main_category 
+    	FROM
+    		reviews r 
+    	INNER JOIN
+    		performance p 
+    	ON
+    		r.performance_code = p.performance_code 
+    	WHERE
+    		r.review_writer_code = #{review_writer_code}
+    	ORDER BY
+    		review_code DESC
+    </select>
+    
+    <select id="getReviewsByWriterCodeASC" resultType="ReviewDTO">
+    	SELECT
+    		r.review_writer_code,
+    		r.performance_code,
+    		r.review_star,
+    		r.review_content,
+    		r.review_date,
+    		r.reviewer_id,
+    		p.performance_name,
+    		p.poster,
+    		r.review_code,
+    		p.main_category 
+    	FROM
+    		reviews r 
+    	INNER JOIN
+    		performance p 
+    	ON
+    		r.performance_code = p.performance_code 
+    	WHERE
+    		r.review_writer_code = #{review_writer_code}
+    	ORDER BY
+    		review_code ASC
+    </select>
+    
+    <update id="updateReview" parameterType="com.team.webproject.dto.ReviewDTO">
+        UPDATE reviews
+        SET review_star = #{review_star},
+            review_content = #{review_content},
+            review_date = sysdate
+        WHERE review_code = #{review_code}
+    </update>
+
+    <delete id="deleteReview" parameterType="java.lang.Integer">
+        DELETE FROM reviews WHERE review_code = #{review_code}
+    </delete>
+	
+	<select id="getReviewByCode">
+		SELECT * FROM reviews WHERE review_code = #{review_code}
+	</select>
+
+	<select id="getPerformanceAvgScore">
+		select AVG(review_star) from reviews where
+		performance_code=#{performance_code}
+	</select>
+	<select id="getPerformanceReviewCount">
+		select COUNT(*) from reviews where performance_code=#{performance_code}
+	</select>
+	<select id="getReviewScoreList">
+		select count(*) from reviews where
+		performance_code=#{performance_code}
+		group by review_star order by
+		review_star DESC
+	</select>
+	<select id="getPerformanceReviewCountnAvg">
+		select p.performance_code as performance_code,
+		count(*) as review_count, round(AVG(review_star), 1) as review_avg
+		from performance p, reviews r where p.performance_code =
+		r.performance_code group by p.performance_code
+	</select>
+</mapper>

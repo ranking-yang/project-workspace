@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.LoginMapper">
+	
+	<select id="checkId">
+		SELECT count(*) FROM members WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="getAdmin">
+		SELECT admin_id, admin_pwd FROM administrators;
+	</select>
+	
+	<insert id="add">
+		INSERT INTO members VALUES(
+			member_code_seq.nextval,
+			#{member_id},
+			#{member_pwd},
+			#{member_name},
+			#{member_birth},
+			#{member_phone},
+			#{member_email},
+			#{member_role},
+			sysdate)
+	</insert>
+	<select id="checklogin">
+		SELECT * FROM members WHERE member_id = #{member_id}
+	</select>
+	<select id="getAll">
+		SELECT * FROM members
+	</select>
+	
+
+	<select id="getId">
+		SELECT * FROM members WHERE member_id= #{id};
+	</select>
+	
+	<select id="FindId">
+		SELECT * FROM members WHERE member_name = #{name} AND member_birth = #{birth} AND member_phone = #{phone}
+	</select>
+	
+	<select id="FindPwd">
+		SELECT * FROM members WHERE member_id = #{id} AND member_name = #{name} AND member_birth = #{birth} AND member_phone = #{phone}
+	</select>
+	
+	<update id="updateMember" parameterType="MembersDTO">
+		UPDATE
+			members
+		SET
+			member_pwd=#{member_pwd},
+			member_name=#{member_name},
+			member_email=#{member_email},
+			member_phone=#{member_phone, jdbcType=VARCHAR},
+			member_birth=#{member_birth, jdbcType=VARCHAR}
+		WHERE
+			member_code=#{member_code}
+	</update>
+
+</mapper>

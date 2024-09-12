@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.webproject.mapper.NoticeMapper">
+	<select id="getCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			notice
+	</select>
+	
+	<select id="getPage" resultType="NoticeDTO" parameterType="int">
+		SELECT 
+			* 
+		FROM
+			(SELECT 
+				rownum AS rn, A.*
+			FROM 
+				(SELECT
+					notice_code, notice_title, notice_date, notice_level
+			 	FROM 
+					notice 
+			 	ORDER BY
+					notice_level DESC, notice_code DESC
+				) A
+			)
+		WHERE
+			rn &gt;= #{start} AND rn &lt;= #{end}
+	</select>
+	
+	<select id="getRecord" resultType="NoticeDTO" parameterType="int">
+		SELECT * FROM notice WHERE notice_code=#{pk}
+	</select>
+	
+	<insert id="insertNotice" parameterType="NoticeDTO">
+		INSERT INTO notice values(notice_code_seq.nextval, #{notice_title}, #{notice_content}, #{notice_level}, sysdate)
+	</insert>
+	<select id="getAllNotices">
+		SELECT * FROM notice order by notice_code desc
+	</select>
+	<select id="getNoticeByCode">
+		SELECT * FROM notice where notice_code=#{notice_code}
+	</select>
+	<update id="editNotice">
+		update notice set notice_title=#{notice_title}, notice_content=#{notice_content}, notice_level=#{notice_level} where notice_code=#{notice_code}
+	</update>
+	<delete id="deleteNotice">
+		delete from notice where notice_code=#{notice_code}
+	</delete>
+	
+</mapper>
