@@ -52,7 +52,10 @@ jobs:
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}:${IMAGE_TAG}
-          
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
     - name: Deploy to EC2 using SSH
       uses: appleboy/ssh-action@v0.1.2
       with:
