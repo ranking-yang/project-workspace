@@ -54,6 +54,7 @@ jobs:
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_NAME }}:${IMAGE_TAG}
 
   docker:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to EC2 using SSH
