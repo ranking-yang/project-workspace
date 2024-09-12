@@ -1,12 +1,3 @@
-FROM maven:3.8.4-openjdk-11-slim AS build
-
-WORKDIR /app
-
-COPY pom.xml .
-COPY src ./src
-
-RUN mvn clean package -DskipTests
-
 FROM alpine:3.14
 
 RUN  apk update \
@@ -22,7 +13,7 @@ RUN apk --no-cache add tzdata \
 
 WORKDIR /app
 
-COPY --from=build /app/target/webproject-0.0.1.war .
+COPY target/webproject-0.0.1.war .
 
 CMD ["java", "-jar", "webproject-0.0.1.war"]
 
