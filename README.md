@@ -56,8 +56,10 @@
 ### ◻ SQL GUI Tool
 + SQL Developer
 
-### ◻ Web service hosting and infrastructure
-+ AWS
+### ◻ CI/CD and Infrastructure
++ AWS EC2
++ Docker
++ GitHub Actions
 
 ### ◻ 협업도구
 + Git
